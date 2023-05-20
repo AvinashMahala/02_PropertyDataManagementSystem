@@ -396,3 +396,5 @@ export const CreateNewAccountModal = ({
 
 export default OwnerDetailsLoggedInView;
 
+
+
