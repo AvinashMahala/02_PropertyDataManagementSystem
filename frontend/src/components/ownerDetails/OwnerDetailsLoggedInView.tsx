@@ -133,6 +133,7 @@ const OwnerDetailsLoggedInView = () => {
             columnVisibility: {
               _id: false, //hide firstName column by default
             },
+            density: "compact",
           }}
           editingMode="modal" //default
           enableEditing
