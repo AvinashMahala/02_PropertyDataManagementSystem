@@ -1,9 +1,8 @@
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { Container, Nav, Row, Col } from "react-bootstrap";
 import { User } from "../models/user";
 import NavBarLoggedInView from "./NavBarLoggedInView";
 import NavBarLoggedOutView from "./NavBarLoggedOutView";
 import { Link } from "react-router-dom";
-
 
 interface NavBarProps{
     loggedInUser: User | null,
@@ -14,31 +13,25 @@ interface NavBarProps{
 
 const NavBar=({loggedInUser, onSignUpClicked, onLoginClicked, onLogoutSuccessful}: NavBarProps)=>{
     return (
-        <Navbar bg="primary" variant="dark" expand="sm" sticky="top">
-            <Container>
-                <Navbar.Brand as={Link} to="/">
-                    PDMS
-                </Navbar.Brand>
-                <Navbar.Toggle aria-controls="main-navbar" />
-                <Navbar.Collapse id="main-navbar">
-                    <Nav>
+        <Container>
+            <Row className="justify-content-md-center">
+                <Col className="col-auto">
+                    <Nav className="flex-column">
+                        <Nav.Link as={Link} to="/">
+                            PDMS
+                        </Nav.Link>
                         <Nav.Link as={Link} to="/privacy">
                             Privacy
                         </Nav.Link>
+                        {loggedInUser
+                            ? <NavBarLoggedInView user={loggedInUser} onLogoutSuccessful={onLogoutSuccessful}/>
+                            : <NavBarLoggedOutView onLoginClicked={onLoginClicked} onSignUpClicked={onSignUpClicked} />
+                        }
                     </Nav>
-                    <Nav className="ms-auto">
-                    {
-                        loggedInUser
-                        ? <NavBarLoggedInView user={loggedInUser} onLogoutSuccessful={onLogoutSuccessful}/>
-                        : <NavBarLoggedOutView onLoginClicked={onLoginClicked} onSignUpClicked={onSignUpClicked} />
-                    }
-                    </Nav>
-                </Navbar.Collapse>
-
-            </Container>
-        </Navbar>
+                </Col>
+            </Row>
+        </Container>
     );
 }
-
 
 export default NavBar;
