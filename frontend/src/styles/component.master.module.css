@@ -37,3 +37,11 @@
     padding: 0 0 0 0;
     height: 100%;
 }
+
+.masterContentContainer{
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    height: 95vh;
+    min-width: 100%;
+    overflow: auto;
+}

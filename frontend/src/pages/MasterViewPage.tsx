@@ -3,7 +3,7 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { Container, Row, Col } from 'react-bootstrap';
 import { User } from '../models/user';
-
+import MasterViePageStyles from './../styles/component.master.module.css';
 
 interface MasterViewPageProps {
   children: ReactNode;
@@ -24,7 +24,7 @@ const MasterViewPage: React.FC<MasterViewPageProps> = ({ children, title, logged
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Row style={{ flex: '1' }}>
-        <Col style={{ maxWidth: '300px' }}>
+        <Col style={{ maxWidth: '240px' }}>
           <NavBar 
             loggedInUser={loggedInUser}
             onSignUpClicked={onSignUpClicked}
@@ -34,7 +34,7 @@ const MasterViewPage: React.FC<MasterViewPageProps> = ({ children, title, logged
           />
         </Col>
         <Col>
-          <Container>
+          <Container className={MasterViePageStyles.masterContentContainer}>
             {activeComponent ? activeComponent : children}
           </Container>
         </Col>
