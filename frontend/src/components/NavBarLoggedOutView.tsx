@@ -1,4 +1,4 @@
-import {Button} from "react-bootstrap";
+import { Button, Nav } from "react-bootstrap";
 
 interface NavBarLoggedOutViewProps{
     onSignUpClicked:()=>void,
@@ -8,10 +8,13 @@ interface NavBarLoggedOutViewProps{
 const NavBarLoggedOutView = ({onSignUpClicked, onLoginClicked}:NavBarLoggedOutViewProps)=>{
     return (
         <>
-            <Button onClick={onSignUpClicked}>Sign Up</Button>
-            <Button onClick={onLoginClicked}>Log In</Button>
+            <Nav.Item>
+                <Button variant="link" onClick={onSignUpClicked}>Sign Up</Button>
+            </Nav.Item>
+            <Nav.Item>
+                <Button variant="link" onClick={onLoginClicked}>Log In</Button>
+            </Nav.Item>
         </>
-
     );
 }
 

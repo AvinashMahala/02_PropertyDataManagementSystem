@@ -1,0 +1,39 @@
+.masterMainContainer{
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    height: 100%;
+    min-width: 100%;
+}
+
+.rootRow{
+    height: 100%;
+}
+.masterMainLeftContainer{
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    height: 100%;
+    min-width: 100%;
+
+    background-color: aqua;
+}
+
+.masterMainRightContainer{
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    height: 100%;
+    min-width: 100%;
+
+    background-color: bisque;
+}
+
+.leftHalfDiv{
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    height: 100%;
+}
+
+.rightHalfDiv{
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    height: 100%;
+}
