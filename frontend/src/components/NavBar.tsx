@@ -3,8 +3,8 @@ import { User } from "../models/user";
 import NavBarLoggedInView from "./NavBarLoggedInView";
 import NavBarLoggedOutView from "./NavBarLoggedOutView";
 import { Link } from "react-router-dom";
-import PrivacyPage from './../pages/PrivacyPage';
-import DashboardPage from './../pages/DashboardPage';
+import PrivacyPage from "./../pages/PrivacyPage";
+import DashboardPage from "./../pages/DashboardPage";
 import OwnerDetailsPage from "../pages/OwnerDetailsPage";
 
 import {
@@ -26,13 +26,12 @@ interface NavBarProps {
   onButtonLinkClick: (component: ReactNode) => void; // Updated prop for button link click event
 }
 
-
 const NavBar = ({
   loggedInUser,
   onSignUpClicked,
   onLoginClicked,
   onLogoutSuccessful,
-  onButtonLinkClick // Updated prop for button link click event
+  onButtonLinkClick, // Updated prop for button link click event
 }: NavBarProps) => {
   const [activeComponent, setActiveComponent] = useState(null);
   const handleButtonLinkClick = (component: ReactNode) => {
@@ -64,12 +63,31 @@ const NavBar = ({
 
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
-            <Nav.Link onClick={() => handleButtonLinkClick(<DashboardPage loggedInUser={loggedInUser} />)}>
-              <CDBSidebarMenuItem icon="house-user">Home</CDBSidebarMenuItem>
+            <Nav.Link
+              onClick={() =>
+                handleButtonLinkClick(
+                  <DashboardPage loggedInUser={loggedInUser} />
+                )
+              }
+            >
+              <CDBSidebarMenuItem icon="th-large">Dashboard</CDBSidebarMenuItem>
             </Nav.Link>
-            <Nav.Link onClick={() => handleButtonLinkClick(<PrivacyPage />)}>
-              <CDBSidebarMenuItem icon="lock">Privacy</CDBSidebarMenuItem>
-            </Nav.Link>
+            {loggedInUser ? (
+              <Nav.Link
+                onClick={() =>
+                  handleButtonLinkClick(
+                    <OwnerDetailsPage loggedInUser={loggedInUser} />
+                  )
+                }
+              >
+                <CDBSidebarMenuItem icon="house-user">
+                  Owner Details
+                </CDBSidebarMenuItem>
+              </Nav.Link>
+            ) : (
+              <></>
+            )}
+
             {loggedInUser ? (
               <NavLink to="/profile">
                 <CDBSidebarMenuItem icon="user">
@@ -90,15 +108,9 @@ const NavBar = ({
               <></>
             )}
 
-            {loggedInUser ? (
-              <Nav.Link onClick={() => handleButtonLinkClick(<OwnerDetailsPage loggedInUser={loggedInUser} />)}>
-                <CDBSidebarMenuItem icon="table">
-                  Owner Details
-                </CDBSidebarMenuItem>
-              </Nav.Link>
-            ) : (
-              <></>
-            )}
+            <Nav.Link onClick={() => handleButtonLinkClick(<PrivacyPage />)}>
+              <CDBSidebarMenuItem icon="lock">Privacy</CDBSidebarMenuItem>
+            </Nav.Link>
           </CDBSidebarMenu>
         </CDBSidebarContent>
 
