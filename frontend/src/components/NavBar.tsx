@@ -18,6 +18,14 @@ import {
 } from "cdbreact";
 import { NavLink } from "react-router-dom";
 import { ReactNode, useState } from "react";
+import TenantDetailsPage from "../pages/TenantDetailsPage";
+import AllPropertiesDetailsPage from "../pages/AllPropertiesDetailsPage";
+import AllFlatDetailsPage from "../pages/AllFlatsDetailsPage";
+import AllRentDetailsPage from "../pages/AllRentDetailsPage";
+import AllMaintenanceDetailsPage from "../pages/AllMaintenanceDetailsPage";
+import NotificationsPage from "../pages/NotificationsPage";
+import ProfilePage from "../pages/ProfilePage";
+import AnalyticsPage from "../pages/AnalyticsPage";
 
 interface NavBarProps {
   loggedInUser: User | null;
@@ -93,11 +101,11 @@ const NavBar = ({
 
             {loggedInUser ? (
               <Nav.Link
-                // onClick={() =>
-                //   handleButtonLinkClick(
-                //     <TenantDetailsPage loggedInUser={loggedInUser} />
-                //   )
-                // }
+                onClick={() =>
+                  handleButtonLinkClick(
+                    <TenantDetailsPage loggedInUser={loggedInUser} />
+                  )
+                }
               >
                 <CDBSidebarMenuItem icon="house-user">
                   Tenant Details
@@ -109,11 +117,11 @@ const NavBar = ({
 
             {loggedInUser ? (
               <Nav.Link
-                // onClick={() =>
-                //   handleButtonLinkClick(
-                //     <TenantDetailsPage loggedInUser={loggedInUser} />
-                //   )
-                // }
+                onClick={() =>
+                  handleButtonLinkClick(
+                    <AllPropertiesDetailsPage loggedInUser={loggedInUser} />
+                  )
+                }
               >
                 <CDBSidebarMenuItem 
                 icon="house-user"
@@ -127,11 +135,11 @@ const NavBar = ({
 
             {loggedInUser ? (
               <Nav.Link
-                // onClick={() =>
-                //   handleButtonLinkClick(
-                //     <TenantDetailsPage loggedInUser={loggedInUser} />
-                //   )
-                // }
+                onClick={() =>
+                  handleButtonLinkClick(
+                    <AllFlatDetailsPage loggedInUser={loggedInUser} />
+                  )
+                }
               >
                 <CDBSidebarMenuItem icon="house-user">
                   Flat Details
@@ -143,11 +151,11 @@ const NavBar = ({
 
             {loggedInUser ? (
               <Nav.Link
-                // onClick={() =>
-                //   handleButtonLinkClick(
-                //     <TenantDetailsPage loggedInUser={loggedInUser} />
-                //   )
-                // }
+                onClick={() =>
+                  handleButtonLinkClick(
+                    <AllRentDetailsPage loggedInUser={loggedInUser} />
+                  )
+                }
               >
                 <CDBSidebarMenuItem icon="money-bill">
                   All Rent Details
@@ -159,11 +167,11 @@ const NavBar = ({
 
             {loggedInUser ? (
               <Nav.Link
-                // onClick={() =>
-                //   handleButtonLinkClick(
-                //     <TenantDetailsPage loggedInUser={loggedInUser} />
-                //   )
-                // }
+                onClick={() =>
+                  handleButtonLinkClick(
+                    <AllMaintenanceDetailsPage loggedInUser={loggedInUser} />
+                  )
+                }
               >
                 <CDBSidebarMenuItem icon="table">
                   Maintenance Details
@@ -179,11 +187,11 @@ const NavBar = ({
 
             {loggedInUser ? (
               <Nav.Link
-                // onClick={() =>
-                //   handleButtonLinkClick(
-                //     <TenantDetailsPage loggedInUser={loggedInUser} />
-                //   )
-                // }
+                onClick={() =>
+                  handleButtonLinkClick(
+                    <NotificationsPage loggedInUser={loggedInUser} />
+                  )
+                }
               >
                 <CDBSidebarMenuItem icon="bell">
                   Notifications
@@ -194,21 +202,33 @@ const NavBar = ({
             )}
 
             {loggedInUser ? (
-              <NavLink to="/profile">
-                <CDBSidebarMenuItem icon="user">
-                  Profile page
+              <Nav.Link
+                onClick={() =>
+                  handleButtonLinkClick(
+                    <ProfilePage loggedInUser={loggedInUser} />
+                  )
+                }
+              >
+                <CDBSidebarMenuItem icon="bell">
+                  Profile
                 </CDBSidebarMenuItem>
-              </NavLink>
+              </Nav.Link>
             ) : (
               <></>
             )}
 
             {loggedInUser ? (
-              <NavLink to="/analytics">
-                <CDBSidebarMenuItem icon="chart-line">
+              <Nav.Link
+                onClick={() =>
+                  handleButtonLinkClick(
+                    <AnalyticsPage loggedInUser={loggedInUser} />
+                  )
+                }
+              >
+                <CDBSidebarMenuItem icon="bell">
                   Analytics
                 </CDBSidebarMenuItem>
-              </NavLink>
+              </Nav.Link>
             ) : (
               <></>
             )}
