@@ -24,6 +24,7 @@
 
 ![Downloads](https://img.shields.io/github/downloads/AvinashMahala/PropertyDataManagementSystem/total) ![Contributors](https://img.shields.io/github/contributors/AvinashMahala/PropertyDataManagementSystem?color=dark-green) ![Forks](https://img.shields.io/github/forks/AvinashMahala/PropertyDataManagementSystem?style=social) ![Stargazers](https://img.shields.io/github/stars/AvinashMahala/PropertyDataManagementSystem?style=social) ![Issues](https://img.shields.io/github/issues/AvinashMahala/PropertyDataManagementSystem) ![License](https://img.shields.io/github/license/AvinashMahala/PropertyDataManagementSystem) 
 
+
 ## Table Of Contents
 
 - [Table Of Contents](#table-of-contents)
