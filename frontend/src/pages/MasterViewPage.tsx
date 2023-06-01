@@ -35,16 +35,15 @@ const MasterViewPage: React.FC<MasterViewPageProps> = ({ children, title, logged
         </Col>
         <Col>
           <Container>
-            <h1>{title}</h1>
             {activeComponent ? activeComponent : children}
           </Container>
         </Col>
       </Row>
-      <Row>
+      {/* <Row>
         <Col>
           <Footer />
         </Col>
-      </Row>
+      </Row> */}
     </div>
   );
 };

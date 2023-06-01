@@ -8,6 +8,7 @@ import DashboardPage from "./../pages/DashboardPage";
 import OwnerDetailsPage from "../pages/OwnerDetailsPage";
 
 import {
+  CDBBadge,
   CDBSidebar,
   CDBSidebarContent,
   CDBSidebarFooter,
@@ -63,6 +64,7 @@ const NavBar = ({
 
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
+
             <Nav.Link
               onClick={() =>
                 handleButtonLinkClick(
@@ -72,6 +74,7 @@ const NavBar = ({
             >
               <CDBSidebarMenuItem icon="th-large">Dashboard</CDBSidebarMenuItem>
             </Nav.Link>
+
             {loggedInUser ? (
               <Nav.Link
                 onClick={() =>
@@ -87,6 +90,90 @@ const NavBar = ({
             ) : (
               <></>
             )}
+
+            {loggedInUser ? (
+              <Nav.Link
+                // onClick={() =>
+                //   handleButtonLinkClick(
+                //     <TenantDetailsPage loggedInUser={loggedInUser} />
+                //   )
+                // }
+              >
+                <CDBSidebarMenuItem icon="house-user">
+                  Tenant Details
+                </CDBSidebarMenuItem>
+              </Nav.Link>
+            ) : (
+              <></>
+            )}
+
+            {loggedInUser ? (
+              <Nav.Link
+                // onClick={() =>
+                //   handleButtonLinkClick(
+                //     <TenantDetailsPage loggedInUser={loggedInUser} />
+                //   )
+                // }
+              >
+                <CDBSidebarMenuItem 
+                icon="house-user"
+                >
+                  All Properties
+                </CDBSidebarMenuItem>
+              </Nav.Link>
+            ) : (
+              <></>
+            )}
+
+            {loggedInUser ? (
+              <Nav.Link
+                // onClick={() =>
+                //   handleButtonLinkClick(
+                //     <TenantDetailsPage loggedInUser={loggedInUser} />
+                //   )
+                // }
+              >
+                <CDBSidebarMenuItem icon="house-user">
+                  Flat Details
+                </CDBSidebarMenuItem>
+              </Nav.Link>
+            ) : (
+              <></>
+            )}
+
+            {loggedInUser ? (
+              <Nav.Link
+                // onClick={() =>
+                //   handleButtonLinkClick(
+                //     <TenantDetailsPage loggedInUser={loggedInUser} />
+                //   )
+                // }
+              >
+                <CDBSidebarMenuItem icon="money-bill">
+                  All Rent Details
+                </CDBSidebarMenuItem>
+              </Nav.Link>
+            ) : (
+              <></>
+            )}
+
+            {loggedInUser ? (
+              <Nav.Link
+                // onClick={() =>
+                //   handleButtonLinkClick(
+                //     <TenantDetailsPage loggedInUser={loggedInUser} />
+                //   )
+                // }
+              >
+                <CDBSidebarMenuItem icon="table">
+                  Maintenance Details
+                </CDBSidebarMenuItem>
+              </Nav.Link>
+            ) : (
+              <></>
+            )}
+
+            <hr />
 
             {loggedInUser ? (
               <NavLink to="/profile">
@@ -111,6 +198,8 @@ const NavBar = ({
             <Nav.Link onClick={() => handleButtonLinkClick(<PrivacyPage />)}>
               <CDBSidebarMenuItem icon="lock">Privacy</CDBSidebarMenuItem>
             </Nav.Link>
+
+
           </CDBSidebarMenu>
         </CDBSidebarContent>
 

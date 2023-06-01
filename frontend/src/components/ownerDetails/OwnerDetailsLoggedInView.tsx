@@ -128,6 +128,7 @@ const OwnerDetailsLoggedInView = () => {
           }}
           columns={ownerDetailsGridColumns}
           data={ownerDetailsArr}
+        
           enableColumnOrdering
           initialState={{
             columnVisibility: {
