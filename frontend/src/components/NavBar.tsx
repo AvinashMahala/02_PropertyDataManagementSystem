@@ -91,7 +91,7 @@ const NavBar = ({
                   )
                 }
               >
-                <CDBSidebarMenuItem icon="house-user">
+                <CDBSidebarMenuItem icon="user-shield">
                   Owner Details
                 </CDBSidebarMenuItem>
               </Nav.Link>
@@ -107,7 +107,7 @@ const NavBar = ({
                   )
                 }
               >
-                <CDBSidebarMenuItem icon="house-user">
+                <CDBSidebarMenuItem icon="users">
                   Tenant Details
                 </CDBSidebarMenuItem>
               </Nav.Link>
@@ -124,7 +124,7 @@ const NavBar = ({
                 }
               >
                 <CDBSidebarMenuItem 
-                icon="house-user"
+                icon="city"
                 >
                   All Properties
                 </CDBSidebarMenuItem>
@@ -141,7 +141,7 @@ const NavBar = ({
                   )
                 }
               >
-                <CDBSidebarMenuItem icon="house-user">
+                <CDBSidebarMenuItem icon="door-open">
                   Flat Details
                 </CDBSidebarMenuItem>
               </Nav.Link>
@@ -157,7 +157,7 @@ const NavBar = ({
                   )
                 }
               >
-                <CDBSidebarMenuItem icon="money-bill">
+                <CDBSidebarMenuItem icon="hand-holding-usd">
                   All Rent Details
                 </CDBSidebarMenuItem>
               </Nav.Link>
@@ -173,7 +173,7 @@ const NavBar = ({
                   )
                 }
               >
-                <CDBSidebarMenuItem icon="table">
+                <CDBSidebarMenuItem icon="tools">
                   Maintenance Details
                 </CDBSidebarMenuItem>
               </Nav.Link>
@@ -209,7 +209,7 @@ const NavBar = ({
                   )
                 }
               >
-                <CDBSidebarMenuItem icon="bell">
+                <CDBSidebarMenuItem icon="user-check">
                   Profile
                 </CDBSidebarMenuItem>
               </Nav.Link>
@@ -225,7 +225,7 @@ const NavBar = ({
                   )
                 }
               >
-                <CDBSidebarMenuItem icon="bell">
+                <CDBSidebarMenuItem icon="chart-line">
                   Analytics
                 </CDBSidebarMenuItem>
               </Nav.Link>
