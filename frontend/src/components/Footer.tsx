@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const Footer: React.FC = () => {
@@ -9,13 +9,13 @@ const Footer: React.FC = () => {
             <Container style={{ paddingTop: '20px', paddingBottom: '20px' }}>
                 <Row>
                     <Col md={3}>
-                        <h5>Our Company</h5>
-                        <p>Our Company provides high-quality property management services. We are committed to providing the best experience for property owners and tenants.</p>
+                        <h5>PDMS</h5>
+                        <p>PDMS is a comprehensive application designed to simplify the management of property data and rental information. It provides a centralized platform for property owners, tenants, and administrators to effectively manage property details, rental agreements, payments, and communication.</p>
                     </Col>
                     <Col md={3}>
                         <h5>Legal</h5>
                         <ul style={{ listStyle: 'none', paddingLeft: '0' }}>
-                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="/privacy">Privacy Policy</a></li>
                             <li><a href="#">Terms of Use</a></li>
                         </ul>
                     </Col>
@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
                 </Row>
                 <Row style={{ borderTop: '1px solid #dee2e6', paddingTop: '10px' }}>
                     <Col md={12} style={{ textAlign: 'center' }}>
-                        <p style={{ margin: '10px 0' }}>© {new Date().getFullYear()} Our Company</p>
+                        <p style={{ margin: '10px 0' }}>© {new Date().getFullYear()} PDMS</p>
                     </Col>
                 </Row>
             </Container>

@@ -1,8 +1,9 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { Container, Row, Col } from 'react-bootstrap';
 import { User } from '../models/user';
+
 
 interface MasterViewPageProps {
   children: ReactNode;
@@ -14,6 +15,12 @@ interface MasterViewPageProps {
 }
 
 const MasterViewPage: React.FC<MasterViewPageProps> = ({ children, title, loggedInUser, onSignUpClicked, onLoginClicked, onLogoutSuccessful }) => {
+  const [activeComponent, setActiveComponent] = useState<ReactNode | null>(null);
+
+  const handleButtonLinkClick = (component: ReactNode) => {
+    setActiveComponent(component);
+  };
+  
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Row style={{ flex: '1' }}>
@@ -23,12 +30,13 @@ const MasterViewPage: React.FC<MasterViewPageProps> = ({ children, title, logged
             onSignUpClicked={onSignUpClicked}
             onLoginClicked={onLoginClicked}
             onLogoutSuccessful={onLogoutSuccessful}
+            onButtonLinkClick={handleButtonLinkClick}
           />
         </Col>
         <Col>
           <Container>
             <h1>{title}</h1>
-            {children}
+            {activeComponent ? activeComponent : children}
           </Container>
         </Col>
       </Row>

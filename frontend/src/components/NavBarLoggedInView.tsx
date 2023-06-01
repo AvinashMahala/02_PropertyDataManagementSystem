@@ -20,12 +20,15 @@ const NavBarLoggedInView = ({ user, onLogoutSuccessful }: NavBarLoggedInViewProp
 
     return (
         <>
+        <div>
             <Nav.Item>
-                <Nav.Link disabled>Signed in as: {user.username}</Nav.Link>
+                <span>Signed in as: {user.username}</span>
             </Nav.Item>
             <Nav.Item>
-                <Button variant="link" onClick={logout}>Log Out</Button>
+                <span><Button variant="link" onClick={logout}>Log Out</Button></span>
             </Nav.Item>
+        </div>
+            
         </>
     );
 }
