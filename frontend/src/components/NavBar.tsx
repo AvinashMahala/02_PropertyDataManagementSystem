@@ -173,7 +173,25 @@ const NavBar = ({
               <></>
             )}
 
+            
+
             <hr />
+
+            {loggedInUser ? (
+              <Nav.Link
+                // onClick={() =>
+                //   handleButtonLinkClick(
+                //     <TenantDetailsPage loggedInUser={loggedInUser} />
+                //   )
+                // }
+              >
+                <CDBSidebarMenuItem icon="bell">
+                  Notifications
+                </CDBSidebarMenuItem>
+              </Nav.Link>
+            ) : (
+              <></>
+            )}
 
             {loggedInUser ? (
               <NavLink to="/profile">
