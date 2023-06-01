@@ -3,7 +3,7 @@ import { InferSchemaType, Schema, model } from "mongoose";
 
 const propertyDetailsSchemaMain = new Schema({
     ownerDetailsId: {type: Schema.Types.ObjectId, required: true},
-    rentReceiptDetailsId: {type: Schema.Types.ObjectId, required: true},
+    rentReceiptDetailsId: {type: Schema.Types.ObjectId, required: false},
     
     propertyName: {type:String, required:true},
     propertyAddress: {type:String, required:true},

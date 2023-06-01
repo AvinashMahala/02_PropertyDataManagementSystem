@@ -4,14 +4,14 @@ const tenantDetailsSchemaMain = new Schema({
     roomDetailsId: {type: Schema.Types.ObjectId, required: true},
 
     imp_det_salutation: {type:String, required:true},
-    imp_det_tenat_name: {type:String, required:true},
+    imp_det_tenant_name: {type:String, required:true},
     imp_det_profession: {type:String, required:true},
     imp_det_no_of_people: {type:String, required:true},
 
     contact_info_address_native: {type:String, required:true},
     contact_info_address_work: {type:String, required:true},
     contact_info_primary_phone: {type:String, required:true},//This Will be used for All Communication
-    contact_info_secondary_phone: {type:String, required:true},
+    contact_info_secondary_phone: {type:String, required:false},
     contact_info_email: {type:String, required:true},
 
     amount_details_deposit_amt: {type:Number, required:true},

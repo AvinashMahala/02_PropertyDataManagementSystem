@@ -26,6 +26,7 @@ import AllMaintenanceDetailsPage from "../pages/AllMaintenanceDetailsPage";
 import NotificationsPage from "../pages/NotificationsPage";
 import ProfilePage from "../pages/ProfilePage";
 import AnalyticsPage from "../pages/AnalyticsPage";
+import AllRentReceiptMetaDataPage from "../pages/AllRentReceiptMetaDataPage";
 
 interface NavBarProps {
   loggedInUser: User | null;
@@ -103,17 +104,19 @@ const NavBar = ({
               <Nav.Link
                 onClick={() =>
                   handleButtonLinkClick(
-                    <TenantDetailsPage loggedInUser={loggedInUser} />
+                    <AllRentReceiptMetaDataPage loggedInUser={loggedInUser} />
                   )
                 }
               >
-                <CDBSidebarMenuItem icon="users">
-                  Tenant Details
+                <CDBSidebarMenuItem icon="user-shield">
+                  Rent Receipt MetaData
                 </CDBSidebarMenuItem>
               </Nav.Link>
             ) : (
               <></>
             )}
+
+            
 
             {loggedInUser ? (
               <Nav.Link
@@ -143,6 +146,22 @@ const NavBar = ({
               >
                 <CDBSidebarMenuItem icon="door-open">
                   Flat Details
+                </CDBSidebarMenuItem>
+              </Nav.Link>
+            ) : (
+              <></>
+            )}
+
+              {loggedInUser ? (
+              <Nav.Link
+                onClick={() =>
+                  handleButtonLinkClick(
+                    <TenantDetailsPage loggedInUser={loggedInUser} />
+                  )
+                }
+              >
+                <CDBSidebarMenuItem icon="users">
+                  Tenant Details
                 </CDBSidebarMenuItem>
               </Nav.Link>
             ) : (
