@@ -18,7 +18,6 @@ import AdminDashboardPage from "./pages/AdminDashboardPage";
 import OwnerDetailsPage from "./pages/OwnerDetailsPage";
 import DashboardPageLoggedInView from "./components/dashboard/DashboardPageLoggedInView";
 
-
 function App() {
   const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
 
@@ -41,11 +40,11 @@ function App() {
     <BrowserRouter>
       <div className={styles.mainAppDiv}>
         <Routes>
-          <Route 
-            path='/' 
+          <Route
+            path="/"
             element={
-              <MasterViewPage 
-                title="Dashboard" 
+              <MasterViewPage
+                title="Dashboard"
                 loggedInUser={loggedInUser}
                 onLoginClicked={() => setShowLoginModal(true)}
                 onSignUpClicked={() => setShowSignUpModal(true)}
@@ -53,35 +52,29 @@ function App() {
               >
                 <DashboardPage loggedInUser={loggedInUser} />
               </MasterViewPage>
-            } 
+            }
           />
-          <Route
-				path='/privacy'
-				element={<PrivacyPage />}
-			/>
-			<Route 
-			path='/*'
-			element={<NotFoundPage />}
-			/>
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/*" element={<NotFoundPage />} />
         </Routes>
         {showSignUpModal && (
-        <SignUpModal
-          onDismiss={() => setShowSignUpModal(false)}
-          onSignUpSuccessful={(user) => {
-            setLoggedInUser(user);
-            setShowSignUpModal(false);
-          }}
-        />
-      )}
-      {showLoginModal && (
-        <LoginModal
-          onDismiss={() => setShowLoginModal(false)}
-          onLoginSuccessful={(user) => {
-            setLoggedInUser(user);
-            setShowLoginModal(false);
-          }}
-        />
-      )}
+          <SignUpModal
+            onDismiss={() => setShowSignUpModal(false)}
+            onSignUpSuccessful={(user) => {
+              setLoggedInUser(user);
+              setShowSignUpModal(false);
+            }}
+          />
+        )}
+        {showLoginModal && (
+          <LoginModal
+            onDismiss={() => setShowLoginModal(false)}
+            onLoginSuccessful={(user) => {
+              setLoggedInUser(user);
+              setShowLoginModal(false);
+            }}
+          />
+        )}
       </div>
     </BrowserRouter>
   );

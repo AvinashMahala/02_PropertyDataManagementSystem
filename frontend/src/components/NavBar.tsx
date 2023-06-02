@@ -27,6 +27,8 @@ import NotificationsPage from "../pages/NotificationsPage";
 import ProfilePage from "../pages/ProfilePage";
 import AnalyticsPage from "../pages/AnalyticsPage";
 import AllRentReceiptMetaDataPage from "../pages/AllRentReceiptMetaDataPage";
+import logoImg from "../assets/logo/logo-black.png";
+import { useNavigate } from 'react-router-dom';
 
 interface NavBarProps {
   loggedInUser: User | null;
@@ -47,6 +49,8 @@ const NavBar = ({
   const handleButtonLinkClick = (component: ReactNode) => {
     onButtonLinkClick(component);
   };
+  const navigate = useNavigate();
+
 
   return (
     <div
