@@ -10,14 +10,11 @@ interface AllRentReceiptMetaDataPageProps{
 
 const AllRentReceiptMetaDataPage = ({loggedInUser}:AllRentReceiptMetaDataPageProps) => {
     return (
-      <Container>
-        <h4>All Rent Receipt Meta-Data Details Page</h4>
         <>
         {loggedInUser 
         ? <RentReceiptMetaDataLoggedInView /> 
         : <RentReceiptMetaDataLoggedOutView />}
         </>
-      </Container>
     );
   };
 
