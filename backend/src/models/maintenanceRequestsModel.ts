@@ -11,11 +11,8 @@ const MaintenanceRequestsModelSchemaMain = new Schema({
     tenantNotes: {type: String, required: true},
     ownerNotes: {type: String, required: true},
 },{ timestamps: true });
-
 type IMaintenanceRequestsMainModel = InferSchemaType<typeof MaintenanceRequestsModelSchemaMain>;
-
 export default model<IMaintenanceRequestsMainModel>("MaintenanceRequests", MaintenanceRequestsModelSchemaMain);
-
 export interface IMaintenanceRequestsCreateModel {
     flatId: string;
     tenantId: string;
@@ -27,12 +24,9 @@ export interface IMaintenanceRequestsCreateModel {
     tenantNotes: string;
     ownerNotes: string;    
 }
-
-
 export interface IMaintenanceRequestsUpdateParamsModel{
     maintenanceRequestId:string;
 }
-
 export interface IMaintenanceRequestsUpdateBodyModel{
     flatId: string;
     tenantId: string;

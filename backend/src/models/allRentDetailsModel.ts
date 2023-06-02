@@ -29,11 +29,8 @@ const RentModelSchemaMain = new Schema({
     paymentReceiptStatus: {type: String, required: true},
     
 },{ timestamps: true });
-
 type IRentMainModel = InferSchemaType<typeof RentModelSchemaMain>;
-
 export default model<IRentMainModel>("Rent", RentModelSchemaMain);
-
 export interface IRentCreateModel {
     flatId: Schema.Types.ObjectId;
     tenantId: Schema.Types.ObjectId;
@@ -62,12 +59,9 @@ export interface IRentCreateModel {
     paymentReceiptRemarks: string;
     paymentReceiptStatus: string;
 }
-
-
 export interface IRentUpdateParamsModel{
     rentId:string;
 }
-
 export interface IRentUpdateBodyModel{
     flatId: Schema.Types.ObjectId;
     tenantId: Schema.Types.ObjectId;
@@ -95,5 +89,4 @@ export interface IRentUpdateBodyModel{
     paymentReceiptDate: Date;
     paymentReceiptRemarks: string;
     paymentReceiptStatus: string;
-    
 }

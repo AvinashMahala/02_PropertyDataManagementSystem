@@ -28,9 +28,7 @@ const TenantModelSchemaMain = new Schema({
 },{ timestamps: true });
 
 type ITenantMainModel = InferSchemaType<typeof TenantModelSchemaMain>;
-
 export default model<ITenantMainModel>("Tenants", TenantModelSchemaMain);
-
 export interface ITenantCreateModel {
     flatId: Schema.Types.ObjectId;
     Photo: string;
@@ -58,11 +56,9 @@ export interface ITenantCreateModel {
     ExtraService: string;//1.Bike Parking 2.Car Parking
 }
 
-
 export interface ITenantUpdateParamsModel{
     TenantId:string;
 }
-
 export interface ITenantUpdateBodyModel{
     flatId: Schema.Types.ObjectId;
     Photo: string;

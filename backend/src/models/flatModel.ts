@@ -1,12 +1,11 @@
 import { InferSchemaType, Schema, model } from "mongoose";
 
-
 const FlatModelSchemaMain = new Schema({
     propertyId: {type: Schema.Types.ObjectId, required: true},
     roomName: {type: String, required: true},
     roomRent: {type: Number, required: true},
     roomColorSeparator: {type: String, required: true},
-    roomType: {type: String, required: true},//1Rk, 2RK,3RK,1BHK,2BHK,3BHK,4BHK,5BHK,Flat,Cabin,Villa,PentHouse,Office, Shop,Stall,Restaurant,Basement,Ware-House, Garage, Others.
+    roomType: {type: String, required: true},
     roomRemarks: {type: String, required: true},
     rentCalcMethod: {type: String, required: true},
     electricityBillType: {type: String, required: true},
@@ -21,20 +20,14 @@ const FlatModelSchemaMain = new Schema({
     waterBillFixedAmtCost: {type: Number, required: true},
 },{ timestamps: true });
 
-
-
 type IFlatModelMainModel = InferSchemaType<typeof FlatModelSchemaMain>;
-
 export default model<IFlatModelMainModel>("FlatSchema", FlatModelSchemaMain);
-
-
-
 export interface IFlatModelCreateModel {
     flatId: Schema.Types.ObjectId;
     roomName: string;
     roomRent: number;
     roomColorSeparator: string;
-    roomType: string;//1Rk, 2RK,3RK,1BHK,2BHK,3BHK,4BHK,5BHK,Flat,Cabin,Villa,PentHouse,Office, Shop,Stall,Restaurant,Basement,Ware-House, Garage, Others.
+    roomType: string;
     roomRemarks: string;
     rentCalcMethod: string;
     electricityBillType: string;
@@ -48,18 +41,15 @@ export interface IFlatModelCreateModel {
     waterBillMeterReading: number;
     waterBillFixedAmtCost: number;
 }
-
-
 export interface IFlatModelUpdateParamsModel{
     FlatId: string;
 }
-
 export interface IFlatModelUpdateBodyModel{
     flatId: Schema.Types.ObjectId;
     roomName: string;
     roomRent: number;
     roomColorSeparator: string;
-    roomType: string;//1Rk, 2RK,3RK,1BHK,2BHK,3BHK,4BHK,5BHK,Flat,Cabin,Villa,PentHouse,Office, Shop,Stall,Restaurant,Basement,Ware-House, Garage, Others.
+    roomType: string;
     roomRemarks: string;
     rentCalcMethod: string;
     electricityBillType: string;
