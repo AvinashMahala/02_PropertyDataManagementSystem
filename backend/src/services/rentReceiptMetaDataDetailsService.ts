@@ -57,20 +57,20 @@ export const createRentReceiptMetaDataDetails: RequestHandler<
 
   try {
     if (
-      !rentReceiptMetaDataRefNm ||
-      !logo ||
-      !bk_details_bk_name ||
-      !bk_details_bk_acc_number ||
-      !bk_details_bk_ifsc ||
-      !bk_details_acc_holder_name ||
-      !wallet_details_type ||
-      !wallet_details_phone_number ||
-      !wallet_details_name ||
-      !wallet_details_upi_id ||
-      !will_generate_direct_upi_payment_links ||
-      !payment_qr_code ||
-      !payment_signature ||
-      !payment_watermark
+      typeof rentReceiptMetaDataRefNm ==undefined ||
+      typeof logo ==undefined ||
+      typeof bk_details_bk_name ==undefined ||
+      typeof bk_details_bk_acc_number ==undefined ||
+      typeof bk_details_bk_ifsc ==undefined ||
+      typeof bk_details_acc_holder_name ==undefined ||
+      typeof wallet_details_type ==undefined ||
+      typeof wallet_details_phone_number ==undefined ||
+      typeof wallet_details_name ==undefined ||
+      typeof wallet_details_upi_id ==undefined ||
+      typeof will_generate_direct_upi_payment_links ==undefined ||
+      typeof payment_qr_code ==undefined ||
+      typeof payment_signature ==undefined ||
+      typeof payment_watermark ==undefined
     ) {
       throw createHttpError(400, "Parameters Missing!");
     }
@@ -120,7 +120,7 @@ export const createRentReceiptMetaDataDetailsArr: RequestHandler<
   const rentReceiptMetaDataDetailsCreatedArr:IRentReceiptMetaDataDetailsCreateModel[]=[];
   let newRentReceiptMetaData:any;
 
-  req.body.forEach(element => {
+  req.body.forEach(element => {//Need to add Exception Handling for req.body.forEach is not a function
     const rentReceiptMetaDataRefNm = element.rentReceiptMetaDataRefNm;
     const logo = element.logo;
     const bk_details_bk_name = element.bk_details_bk_name;

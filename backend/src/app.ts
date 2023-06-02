@@ -10,6 +10,7 @@ import { requiresAuth } from "./middleware/auth";
 import notesRoutes from "./routes/notes";
 import userRoutes from "./routes/users";
 import ownerDetailsRoutes from "./routes/ownerDetailsRoutes";
+import rentReceiptMetaDataDetailsRoutes from "./routes/rentReceiptMetaDataDetailsRoutes";
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use(session({
 
 app.use("/api/users", userRoutes);
 app.use("/api/ownerDetails", ownerDetailsRoutes);
+app.use("/api/rentReceiptMetaDataDetails", rentReceiptMetaDataDetailsRoutes);
 app.use("/api/notes", requiresAuth, notesRoutes);
 
 app.use((req, res, next)=>{
