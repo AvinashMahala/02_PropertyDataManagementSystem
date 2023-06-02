@@ -9,7 +9,7 @@ import IRentReceiptMetaDataDetailsMainModel, {
 } from "../models/rentReceiptMetaDataDetails";
 import mongoose from "mongoose";
 
-export const getRentReceiptMetaDataDetails: RequestHandler = async (req, res, next) => {
+export const getAllRentReceiptMetaDataDetails: RequestHandler = async (req, res, next) => {
   const authenticatedUserId = req.session.userId;
   try {
     assertIsDefined(authenticatedUserId);
