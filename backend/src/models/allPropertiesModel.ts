@@ -3,6 +3,7 @@ import { InferSchemaType, Schema, model } from "mongoose";
 
 const PropertyModelSchemaMain = new Schema({
     ownerId: {type: Schema.Types.ObjectId, required: true},
+    rentReceiptMetaDataId: {type: Schema.Types.ObjectId, required: true},
 
     propertyName: {type: String, required: true},
     propertyType: {type: String, required: true},
@@ -21,6 +22,7 @@ export default model<IPropertyModelMainModel>("PropertySchema", PropertyModelSch
 
 export interface IPropertyModelCreateModel {
     ownerId: Schema.Types.ObjectId;
+    rentReceiptMetaDataId: Schema.Types.ObjectId;
 
     propertyName: string;
     propertyType: string;
@@ -35,6 +37,7 @@ export interface IPropertyModelUpdateParamsModel{
 
 export interface IPropertyModelUpdateBodyModel{
     ownerId: Schema.Types.ObjectId;
+    rentReceiptMetaDataId: Schema.Types.ObjectId;
 
     propertyName: string;
     propertyType: string;

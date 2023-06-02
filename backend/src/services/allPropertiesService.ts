@@ -38,6 +38,7 @@ export const createPropertyModel: RequestHandler<
   unknown
 > = async (req, res, next) => {
   const ownerId = req.body.ownerId;
+  const rentReceiptMetaDataId = req.body.rentReceiptMetaDataId;
   const propertyName = req.body.propertyName;
   const propertyType = req.body.propertyType;
   const propertyAddress = req.body.propertyAddress;
@@ -46,6 +47,7 @@ export const createPropertyModel: RequestHandler<
   try {
     if (
       !ownerId ||
+      !rentReceiptMetaDataId ||
       !propertyName ||
       !propertyType ||
       !propertyAddress ||
@@ -56,6 +58,7 @@ export const createPropertyModel: RequestHandler<
 
     const newPropertyModel = await IPropertyModelMainModel.create({
       ownerId: ownerId,
+      rentReceiptMetaDataId: rentReceiptMetaDataId,
       propertyName: propertyName,
       propertyType: propertyType,
       propertyAddress: propertyAddress,
@@ -77,6 +80,7 @@ export const updatePropertyModel: RequestHandler<
   const paramsPropertyId = req.params.propertyId;
 
   const ownerId = req.body.ownerId;
+  const rentReceiptMetaDataId = req.body.rentReceiptMetaDataId;
   const propertyName = req.body.propertyName;
   const propertyType = req.body.propertyType;
   const propertyAddress = req.body.propertyAddress;
@@ -93,6 +97,7 @@ export const updatePropertyModel: RequestHandler<
       paramsPropertyId,
       {
         ownerId: ownerId,
+        rentReceiptMetaDataId: rentReceiptMetaDataId,
         propertyName: propertyName,
         propertyType: propertyType,
         propertyAddress: propertyAddress,
