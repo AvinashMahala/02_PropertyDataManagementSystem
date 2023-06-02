@@ -1,0 +1,23 @@
+.fancyButton {
+    background-color: #0050ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .fancyButton:hover {
+    background-color: #b2cdf1;
+  }
+
+
+  .signedInAsText{
+    text-align-last: center;
+    font-size: 20px;
+  }

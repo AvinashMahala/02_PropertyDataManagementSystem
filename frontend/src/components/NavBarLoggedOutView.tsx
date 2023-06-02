@@ -1,4 +1,5 @@
 import { Button, Nav } from "react-bootstrap";
+import navBarStyles from "../styles/component.navbar.module.css";
 
 interface NavBarLoggedOutViewProps{
     onSignUpClicked:()=>void,
@@ -9,10 +10,10 @@ const NavBarLoggedOutView = ({onSignUpClicked, onLoginClicked}:NavBarLoggedOutVi
     return (
         <>
             <Nav.Item>
-                <Button variant="link" onClick={onSignUpClicked}>Sign Up</Button>
+                <Button className={navBarStyles.fancyButton} variant="button" onClick={onSignUpClicked}>Sign Up</Button>
             </Nav.Item>
             <Nav.Item>
-                <Button variant="link" onClick={onLoginClicked}>Log In</Button>
+                <Button className={navBarStyles.fancyButton} variant="button" onClick={onLoginClicked}>Log In</Button>
             </Nav.Item>
         </>
     );
