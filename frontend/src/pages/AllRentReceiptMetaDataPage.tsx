@@ -1,5 +1,7 @@
 import { Container } from "react-bootstrap";
 import { User } from "../models/user";
+import RentReceiptMetaDataLoggedInView from "../components/rentReceiptMetaData/RentReceiptMetaDataLoggedInView";
+import RentReceiptMetaDataLoggedOutView from "../components/rentReceiptMetaData/RentReceiptMetaDataLoggedOutView";
 
 
 interface AllRentReceiptMetaDataPageProps{
@@ -11,7 +13,9 @@ const AllRentReceiptMetaDataPage = ({loggedInUser}:AllRentReceiptMetaDataPagePro
       <Container>
         <h4>All Rent Receipt Meta-Data Details Page</h4>
         <>
-          
+        {loggedInUser 
+        ? <RentReceiptMetaDataLoggedInView /> 
+        : <RentReceiptMetaDataLoggedOutView />}
         </>
       </Container>
     );

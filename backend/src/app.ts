@@ -33,7 +33,7 @@ app.use(session({
 
 
 app.use("/api/users", userRoutes);
-app.use("/api/ownerDetails", ownerDetailsRoutes);
+app.use("/api/ownerDetails", requiresAuth, ownerDetailsRoutes);
 app.use("/api/rentReceiptMetaDataDetails", rentReceiptMetaDataDetailsRoutes);
 app.use("/api/notes", requiresAuth, notesRoutes);
 
