@@ -26,48 +26,48 @@ async function apiCall(input: RequestInfo, init?: RequestInit){
 }
 
 //GetAllPropertiesDetails
-export async function getAllOwnerDetails():Promise<IPropertyDetailsViewModel[]>{
-    const response=await apiCall("/api/ownerDetails/all",{method:"GET"});
-    const ownerDetails=await response.json();
-    return ownerDetails;
+export async function getAllPropertyDetails():Promise<IPropertyDetailsViewModel[]>{
+    const response=await apiCall("/api/properties/all",{method:"GET"});
+    const propertyDetails=await response.json();
+    return propertyDetails;
 }
 
 //GetOnePropertyDetails
-export async function getOneOwnerDetails(ownerId:string):Promise<IPropertyDetailsViewModel>{
-    const response=await apiCall("/api/ownerDetails/"+ownerId,{method:"GET"});
-    const ownerDetails=await response.json();
-    return ownerDetails;
+export async function getOnePropertyDetails(propertyId:string):Promise<IPropertyDetailsViewModel>{
+    const response=await apiCall("/api/properties/"+propertyId,{method:"GET"});
+    const propertyDetails=await response.json();
+    return propertyDetails;
 }
 
 //CreatePropertyDetails
-export async function createOwnerDetails(ownerDetails:IPropertyDetailsInputModel):Promise<IPropertyDetailsViewModel>{
-    const response=await apiCall("/api/ownerDetails/create",{
+export async function createPropertyDetails(propertyDetails:IPropertyDetailsInputModel):Promise<IPropertyDetailsViewModel>{
+    const response=await apiCall("/api/properties/create",{
         method:"POST",
         headers:{
             "Content-Type":"application/json"
         },
-        body:JSON.stringify(ownerDetails)
+        body:JSON.stringify(propertyDetails)
     });
-    const createdOwnerDetails=await response.json();
-    return createdOwnerDetails;
+    const createdPropertyDetails=await response.json();
+    return createdPropertyDetails;
 }
 
 //UpdatePropertyDetails
-export async function updateOwnerDetails(ownerId:string,ownerDetails:IPropertyDetailsInputModel):Promise<IPropertyDetailsViewModel>{
-    const response=await apiCall("/api/ownerDetails/update/"+ownerId,{
+export async function updatePropertyDetails(propertyId:string,propertyDetails:IPropertyDetailsInputModel):Promise<IPropertyDetailsViewModel>{
+    const response=await apiCall("/api/properties/update/"+propertyId,{
         method:"PATCH",
         headers:{
             "Content-Type":"application/json"
         },
-        body:JSON.stringify(ownerDetails)
+        body:JSON.stringify(propertyDetails)
     });
-    const updatedOwnerDetails=await response.json();
-    return updatedOwnerDetails;
+    const updatedPropertyDetails=await response.json();
+    return updatedPropertyDetails;
 }
 
 //DeletePropertyDetails
-export async function deleteOwnerDetails(ownerId:string){
-    await apiCall("/api/ownerDetails/delete/"+ownerId,{method:"DELETE"});
+export async function deletePropertyDetails(propertyId:string){
+    await apiCall("/api/properties/delete/"+propertyId,{method:"DELETE"});
 }
 
 
