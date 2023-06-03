@@ -1,5 +1,7 @@
 import { Container } from "react-bootstrap";
 import { User } from "../models/user";
+import AllRentsLoggedInView from "../components/allRentDetails/AllRentsLoggedInView";
+import AllRentsLoggedOutView from "../components/allRentDetails/AllRentsLoggedOutView";
 
 
 interface AllRentDetailsPageProps{
@@ -8,12 +10,7 @@ interface AllRentDetailsPageProps{
 
 const AllRentDetailsPage = ({loggedInUser}:AllRentDetailsPageProps) => {
     return (
-      <Container>
-        <h4>All Rent Details Page</h4>
-        <>
-          
-        </>
-      </Container>
+      <>{loggedInUser ? <AllRentsLoggedInView /> : <AllRentsLoggedOutView />}</>
     );
   };
 

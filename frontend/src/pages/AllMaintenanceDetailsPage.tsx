@@ -1,5 +1,7 @@
 import { Container } from "react-bootstrap";
 import { User } from "../models/user";
+import MaintenanceRequestsLoggedInView from "../components/allMaintenanceDetails/MaintenanceRequestsLoggedInView";
+import MaintenanceRequestsLoggedOutView from "../components/allMaintenanceDetails/MaintenanceRequestsLoggedOutView";
 
 
 interface AllMaintenanceDetailsPageProps{
@@ -8,12 +10,7 @@ interface AllMaintenanceDetailsPageProps{
 
 const AllMaintenanceDetailsPage = ({loggedInUser}:AllMaintenanceDetailsPageProps) => {
     return (
-      <Container>
-        <h4>All Maintenance Details Page</h4>
-        <>
-          
-        </>
-      </Container>
+      <>{loggedInUser ? <MaintenanceRequestsLoggedInView /> : <MaintenanceRequestsLoggedOutView />}</>
     );
   };
 
