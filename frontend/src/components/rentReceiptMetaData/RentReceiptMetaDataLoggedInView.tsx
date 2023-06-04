@@ -115,8 +115,9 @@ const RentReceiptMDataDetailsLoggedInView = () => {
         handleOk={handleOk}
         message={message}
       />
-      <h1>RentReceiptMData Details Logged In View</h1>
+      
       <commonImports.Container className={rentReceiptMDataDetailsPageStyle.pageContainer}>
+      <h1 className={rentReceiptMDataDetailsPageStyle.headerStyle}>Detailed View of Rent Receipt Metadata</h1>
         <commonImports.MaterialReactTable
           displayColumnDefOptions={{
             "mrt-row-actions": {
