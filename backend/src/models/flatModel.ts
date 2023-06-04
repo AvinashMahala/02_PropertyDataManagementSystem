@@ -23,7 +23,7 @@ const FlatModelSchemaMain = new Schema({
 type IFlatModelMainModel = InferSchemaType<typeof FlatModelSchemaMain>;
 export default model<IFlatModelMainModel>("FlatSchema", FlatModelSchemaMain);
 export interface IFlatModelCreateModel {
-    flatId: Schema.Types.ObjectId;
+    propertyId: Schema.Types.ObjectId;
     roomName: string;
     roomRent: number;
     roomColorSeparator: string;
@@ -45,7 +45,7 @@ export interface IFlatModelUpdateParamsModel{
     FlatId: string;
 }
 export interface IFlatModelUpdateBodyModel{
-    flatId: Schema.Types.ObjectId;
+    propertyId: Schema.Types.ObjectId;
     roomName: string;
     roomRent: number;
     roomColorSeparator: string;

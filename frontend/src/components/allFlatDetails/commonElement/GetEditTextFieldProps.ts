@@ -1,19 +1,19 @@
 import * as commonImports from "./../../../commonCode/importMRTRelated";
-import * as OwnerDetailsModel from "../../../models/ownerDetails";
+import * as FlatModel from "../../../models/flatModel";
 import * as UserModel from "../../../models/user";
 
 const getEditTextFieldProps = (
-    cell: commonImports.MRT_Cell<OwnerDetailsModel.IOwnerDetailsViewModel>,
+    cell: commonImports.MRT_Cell<FlatModel.IFlatViewModel>,
   validationErrors: { [key: string]: string},
   setValidationErrors: React.Dispatch<React.SetStateAction<{ [key: string]: string}>>,
   options: UserModel.User[]
 ) =>{
     commonImports.useCallback(
         (
-            cell: commonImports.MRT_Cell<OwnerDetailsModel.IOwnerDetailsViewModel>,
+            cell: commonImports.MRT_Cell<FlatModel.IFlatViewModel>,
             validationErrors: { [key: string]: string},
           options: UserModel.User[]
-        ): commonImports.MRT_ColumnDef<OwnerDetailsModel.IOwnerDetailsViewModel>["muiTableBodyCellEditTextFieldProps"] => {
+        ): commonImports.MRT_ColumnDef<FlatModel.IFlatViewModel>["muiTableBodyCellEditTextFieldProps"] => {
           if (cell.column.id === "userId") {
             return {
               select: true,

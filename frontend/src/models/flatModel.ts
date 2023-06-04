@@ -1,6 +1,6 @@
 export interface IFlatViewModel{
     _id:string;
-    flatId: string;
+    propertyId: string;
     roomName: string;
     roomRent: number;
     roomColorSeparator: string;
@@ -22,7 +22,7 @@ export interface IFlatViewModel{
 }
 
 export interface IFlatInputModel{
-    flatId: string;
+    propertyId: string;
     roomName: string;
     roomRent: number;
     roomColorSeparator: string;

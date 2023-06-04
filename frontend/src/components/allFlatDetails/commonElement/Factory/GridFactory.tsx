@@ -1,7 +1,7 @@
 // GridFactory.tsx
 import * as commonImports from "../../../../commonCode/importMRTRelated";
 import React from "react";
-import * as PropertiesModel from "../../../../models/allPropertiesModel";
+import * as FlatModel from "../../../../models/flatModel";
 
 type FieldConfig = {
   header: string;
@@ -16,12 +16,12 @@ export const GridFactory = (
   validationErrors: any,
   setValidationErrors: any
 ) => {
-  const ownerDetailsGridColumns = commonImports.useMemo<
-    commonImports.MRT_ColumnDef<PropertiesModel.IPropertyDetailsViewModel>[]
+  const flatDetailsGridColumns = commonImports.useMemo<
+    commonImports.MRT_ColumnDef<FlatModel.IFlatViewModel>[]
   >(
     () => [
       {
-        header: "Property Id",
+        header: "Flat Id",
         accessorKey: "_id",
         enableColumnOrdering: false, //disable column ordering on this column
         enableSorting: false,
@@ -38,43 +38,120 @@ export const GridFactory = (
         }),
       },
       {
-        header: "ownerId",
-        accessorKey: "ownerId",
+        header: "propertyId",
+        accessorKey: "propertyId",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "rentReceiptMetaDataId",
-        accessorKey: "rentReceiptMetaDataId",
+        header: "roomName",
+        accessorKey: "roomName",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "propertyName",
-        accessorKey: "propertyName",
+        header: "roomRent",
+        accessorKey: "roomRent",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "propertyType",
-        accessorKey: "propertyType",
+        header: "roomColorSeparator",
+        accessorKey: "roomColorSeparator",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "propertyAddress",
-        accessorKey: "propertyAddress",
+        header: "roomType",
+        accessorKey: "roomType",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "propertyTakeRentOf",
-        accessorKey: "propertyTakeRentOf",
+        header: "roomRemarks",
+        accessorKey: "roomRemarks",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "rentCalcMethod",
+        accessorKey: "rentCalcMethod",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "electricityBillType",
+        accessorKey: "electricityBillType",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "electricityBillMeterName",
+        accessorKey: "electricityBillMeterName",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "electricityBillPerUnitCost",
+        accessorKey: "electricityBillPerUnitCost",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "electricityBillMeterReading",
+        accessorKey: "electricityBillMeterReading",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "electricityBillFixedAmtCost",
+        accessorKey: "electricityBillFixedAmtCost",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "waterBillType",
+        accessorKey: "waterBillType",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "waterBillMeterName",
+        accessorKey: "waterBillMeterName",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "waterBillPerUnitCost",
+        accessorKey: "waterBillPerUnitCost",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "waterBillMeterReading",
+        accessorKey: "waterBillMeterReading",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "waterBillFixedAmtCost",
+        accessorKey: "waterBillFixedAmtCost",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
@@ -104,5 +181,5 @@ export const GridFactory = (
     ],
     [getCommonEditTextFieldProps, usersArr]
   );
-  return ownerDetailsGridColumns;
+  return flatDetailsGridColumns;
 };

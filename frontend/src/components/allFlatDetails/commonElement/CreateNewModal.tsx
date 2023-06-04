@@ -1,12 +1,12 @@
 import * as commonImports from "../../../commonCode/importMRTRelated";
 import React from "react";
-import * as PropertiesModel from "../../../models/allPropertiesModel";
+import * as FlatModel from "../../../models/flatModel";
 import * as UserModel from "../../../models/user";
 
 interface CreateModalProps {
-  columns: commonImports.MRT_ColumnDef<PropertiesModel.IPropertyDetailsViewModel>[];
+  columns: commonImports.MRT_ColumnDef<FlatModel.IFlatViewModel>[];
   onClose: () => void;
-  onSubmit: (values: PropertiesModel.IPropertyDetailsViewModel) => void;
+  onSubmit: (values: FlatModel.IFlatViewModel) => void;
   open: boolean;
   usersArr:UserModel.User[];
 }
@@ -27,7 +27,7 @@ export const CreateNewModal = ({
     }, {} as any)
   );
 
-  const [selectedProperty, setSelectedProperty] = commonImports.useState("");
+  const [selectedFlat, setSelectedFlat] = commonImports.useState("");
   const [errors, setErrors] = commonImports.useState<{ [key: string]: string }>(
     {}
   );
@@ -36,12 +36,23 @@ export const CreateNewModal = ({
     let tempErrors = {};
     tempErrors = {
       ...tempErrors,
-      ownerId: values.ownerId ? "" : "This field is required",
-      rentReceiptMetaDataId: values.rentReceiptMetaDataId ? "" : "This field is required",
-      propertyName: values.propertyName ? "" : "This field is required",
-      propertyType: values.propertyType ? "" : "This field is required",
-      propertyAddress: values.propertyAddress ? "" : "This field is required",
-      propertyTakeRentOf: values.propertyTakeRentOf ? "" : "This field is required",
+      propertyId: values.propertyId ? "" : "This field is required",
+      roomName: values.roomName ? "" : "This field is required",
+      roomRent: values.roomRent ? "" : "This field is required",
+      roomColorSeparator: values.roomColorSeparator ? "" : "This field is required",
+      roomType: values.roomType ? "" : "This field is required",
+      roomRemarks: values.roomRemarks ? "" : "This field is required",
+      rentCalcMethod: values.rentCalcMethod ? "" : "This field is required",
+      electricityBillType: values.electricityBillType ? "" : "This field is required",
+      electricityBillMeterName: values.electricityBillMeterName ? "" : "This field is required",
+      electricityBillPerUnitCost: values.electricityBillPerUnitCost ? "" : "This field is required",
+      electricityBillMeterReading: values.electricityBillMeterReading ? "" : "This field is required",
+      electricityBillFixedAmtCost: values.electricityBillFixedAmtCost ? "" : "This field is required",
+      waterBillType: values.waterBillType ? "" : "This field is required",
+      waterBillMeterName: values.waterBillMeterName ? "" : "This field is required",
+      waterBillPerUnitCost: values.waterBillPerUnitCost ? "" : "This field is required",
+      waterBillMeterReading: values.waterBillMeterReading ? "" : "This field is required",
+      waterBillFixedAmtCost: values.waterBillFixedAmtCost ? "" : "This field is required",
     };
     setErrors({
       ...tempErrors,
@@ -61,7 +72,7 @@ export const CreateNewModal = ({
   return (
     <commonImports.Dialog open={open}>
       <commonImports.DialogTitle textAlign="center">
-        Create New Rent Receipt Meta Data
+        Create New Flat
       </commonImports.DialogTitle>
       <commonImports.DialogContent>
         <form onSubmit={(e) => e.preventDefault()}>
@@ -148,7 +159,7 @@ export const CreateNewModal = ({
           onClick={handleSubmit}
           variant="contained"
         >
-          Create New Rent Receipt Meta Data
+          Create New Flat
         </commonImports.Button>
       </commonImports.DialogActions>
     </commonImports.Dialog>

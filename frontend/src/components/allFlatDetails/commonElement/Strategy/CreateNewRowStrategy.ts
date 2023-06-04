@@ -1,28 +1,39 @@
 // CreateNewRowStrategy.ts
 import { ActionStrategy } from './ActionStrategy';
-import * as PropertiesModel from "../../../../models/allPropertiesModel";
-import * as PropertiesApi from "../../../../network/allPropertiesApi";
+import * as FlatModel from "../../../../models/flatModel";
+import * as FlatsApi from "../../../../network/flatDetailsApi";
 
 export class CreateNewRowStrategy implements ActionStrategy {
 
-  async handle(values: PropertiesModel.IPropertyDetailsViewModel, validationErrors: Object, row: any, setMessage: any, setOpen: any): Promise<void> {
-    const propertiesModelInput: PropertiesModel.IPropertyDetailsViewModel = {
+  async handle(values: FlatModel.IFlatViewModel, validationErrors: Object, row: any, setMessage: any, setOpen: any): Promise<void> {
+    const flatDetailsInput: FlatModel.IFlatViewModel = {
       _id: values._id,
-      ownerId: values.ownerId,
-      rentReceiptMetaDataId: values.rentReceiptMetaDataId,
-      propertyName: values.propertyName,
-      propertyType: values.propertyType,
-      propertyAddress: values.propertyAddress,
-      propertyTakeRentOf: values.propertyTakeRentOf,
+      propertyId: values.propertyId,
+      roomName: values.roomName,
+      roomRent: values.roomRent,
+      roomColorSeparator: values.roomColorSeparator,
+      roomType: values.roomType,
+      roomRemarks: values.roomRemarks,
+      rentCalcMethod: values.rentCalcMethod,
+      electricityBillType: values.electricityBillType,
+      electricityBillMeterName: values.electricityBillMeterName,
+      electricityBillPerUnitCost: values.electricityBillPerUnitCost,
+      electricityBillMeterReading: values.electricityBillMeterReading,
+      electricityBillFixedAmtCost: values.electricityBillFixedAmtCost,
+      waterBillType: values.waterBillType,
+      waterBillMeterName: values.waterBillMeterName,
+      waterBillPerUnitCost: values.waterBillPerUnitCost,
+      waterBillMeterReading: values.waterBillMeterReading,
+      waterBillFixedAmtCost: values.waterBillFixedAmtCost,
       createdAt: values.createdAt,
       updatedAt: values.updatedAt,
     };
 
 
     // Send the API request to update the Owner
-    PropertiesApi.createPropertyDetails(propertiesModelInput).then(() => {
+    FlatsApi.createAFlat(flatDetailsInput).then(() => {
       setMessage(
-        `Property with Name : ${propertiesModelInput.propertyName} Added successfully.`
+        `Property with Name : ${flatDetailsInput.roomName} Added successfully.`
       );
       setOpen(true);
     });

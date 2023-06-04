@@ -1,8 +1,8 @@
 //------------------------------------Imports Section------------------------
-import * as AllPropertiesApi from "../../network/allPropertiesApi";
+import * as FlatApi from "../../network/flatDetailsApi";
 import * as UsersApi from "../../network/users_api";
 import * as UserModel from "../../models/user";
-import * as AllPropertiesModel from "../../models/allPropertiesModel";
+import * as FlatModel from "../../models/flatModel";
 import PropertyPageStyles from "../../styles/PropertyPage.module.css";
 import * as commonImports from "../../commonCode/importMRTRelated";
 import {CreateNewModal} from "./commonElement/CreateNewModal";
@@ -22,8 +22,8 @@ import { GridFactory } from './commonElement/Factory/GridFactory'; // Adjust the
 let usersArr: UserModel.User[] = []; //This stores all the users retrieved from the database
 
 const FlatsLoggedInView = () => {
-  const [propertyArr, setPropertyArr] = commonImports.useState<
-  AllPropertiesModel.IPropertyDetailsViewModel[]
+  const [flatsArr, setFlatsArr] = commonImports.useState<
+  FlatModel.IFlatViewModel[]
   >([]);
   const [createModalOpen, setCreateModalOpen] = commonImports.useState(false);
   const [validationErrors, setValidationErrors] = commonImports.useState<{
@@ -37,20 +37,20 @@ const FlatsLoggedInView = () => {
   const deleteRowStrategy = new DeleteRowStrategy();
 
   const handleCreateNewRow = async (
-    values: AllPropertiesModel.IPropertyDetailsViewModel
+    values: FlatModel.IFlatViewModel
   ) => {
-    propertyArr.push(values);
+    flatsArr.push(values);
     createNewRowStrategy.handle(values, {}, null, setMessage, setOpen).then(() => {
-      AllPropertiesApi.getAllPropertyDetails().then((allProperties: AllPropertiesModel.IPropertyDetailsViewModel[]) => {
-        setPropertyArr(allProperties);
+      FlatApi.getAllFlats().then((allFlats: FlatModel.IFlatViewModel[]) => {
+        setFlatsArr(allFlats);
       });
     }).catch((error) => { }).finally(() => { });
   };
 
   //This function is called when the user clicks on the UPDATE button
-  const handleSaveRowEdits: commonImports.MaterialReactTableProps<AllPropertiesModel.IPropertyDetailsViewModel>["onEditingRowSave"] =
+  const handleSaveRowEdits: commonImports.MaterialReactTableProps<FlatModel.IFlatViewModel>["onEditingRowSave"] =
     async ({ exitEditingMode, row, values }) => {
-      propertyArr[row.index] = values;
+      flatsArr[row.index] = values;
       await saveRowEditsStrategy.handle(values, validationErrors, row, setMessage, setOpen, exitEditingMode);
 
     };
@@ -62,19 +62,19 @@ const FlatsLoggedInView = () => {
 
   //This function is called when the user clicks on the DELETE button
   const handleDeleteRow = commonImports.useCallback(
-    async (row: commonImports.MRT_Row<AllPropertiesModel.IPropertyDetailsViewModel>) => {
+    async (row: commonImports.MRT_Row<FlatModel.IFlatViewModel>) => {
       if (
         !window.confirm(
-          `Are you sure you want to delete ${row.getValue("propertyName")}`
+          `Are you sure you want to delete ${row.getValue("roomName")}`
         )
       ) {
         return;
       }
-      propertyArr.splice(row.index, 1);
-      setPropertyArr([...propertyArr]);
+      flatsArr.splice(row.index, 1);
+      setFlatsArr([...flatsArr]);
       await deleteRowStrategy.handle(null, null, row, setMessage, setOpen, null);
     },
-    [propertyArr]
+    [flatsArr]
   );
 
   //This function is called when the user clicks on the EDIT button to set the Edit Modal Properties of The Columns.
@@ -89,19 +89,19 @@ const FlatsLoggedInView = () => {
       usersArr = response;
     });
 
-    AllPropertiesApi.getAllPropertyDetails().then((response) => {
-      setPropertyArr(response);
+    FlatApi.getAllFlats().then((response) => {
+      setFlatsArr(response);
     });
   }, []);
 
   //This is Used to set the columns of the table
-  const propertiesDetailsGridColumns = GridFactory(getEditTextFieldProps, usersArr,validationErrors,setValidationErrors);
+  const flatsGridColumns = GridFactory(getEditTextFieldProps, usersArr,validationErrors,setValidationErrors);
 
   const handleOk = () => {
     // Perform the operation you want when the OK button is clicked
     console.log("OK button has been clicked!");
-    AllPropertiesApi.getAllPropertyDetails().then((allProperties) => {
-      setPropertyArr(allProperties);
+    FlatApi.getAllFlats().then((allFlats) => {
+      setFlatsArr(allFlats);
 
     });
     setOpen(false); // Close the dialog
@@ -126,8 +126,8 @@ const FlatsLoggedInView = () => {
               size: 30,
             },
           }}
-          columns={propertiesDetailsGridColumns}
-          data={propertyArr}
+          columns={flatsGridColumns}
+          data={flatsArr}
         
           enableColumnOrdering
           initialState={{
@@ -165,12 +165,12 @@ const FlatsLoggedInView = () => {
               onClick={() => setCreateModalOpen(true)}
               variant="contained"
             >
-              Create New Property
+              Create New Flat
             </commonImports.Button>
           )}
         />
         <CreateNewModal
-          columns={propertiesDetailsGridColumns}
+          columns={flatsGridColumns}
           open={createModalOpen}
           onClose={() => setCreateModalOpen(false)}
           onSubmit={handleCreateNewRow}
