@@ -1,6 +1,6 @@
 // SaveRowEditsStrategy.ts
 import { ActionStrategy } from './ActionStrategy';
-import * as FlatModel from "../../../../models/flatModel";
+import * as FlatModel from "./../../../../models/flatModel";
 import * as FlatApi from "../../../../network/flatDetailsApi";
 
 export class SaveRowEditsStrategy implements ActionStrategy {

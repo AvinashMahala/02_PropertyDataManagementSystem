@@ -2,7 +2,7 @@
 import * as FlatApi from "../../network/flatDetailsApi";
 import * as UsersApi from "../../network/users_api";
 import * as UserModel from "../../models/user";
-import * as FlatModel from "../../models/flatModel";
+import * as FlatModel from "./../../models/flatModel";
 import PropertyPageStyles from "../../styles/PropertyPage.module.css";
 import * as commonImports from "../../commonCode/importMRTRelated";
 import {CreateNewModal} from "./commonElement/CreateNewModal";

@@ -1,5 +1,5 @@
 import * as commonImports from "./../../../commonCode/importMRTRelated";
-import * as FlatModel from "../../../models/flatModel";
+import * as FlatModel from "./../../../models/flatModel";
 import * as UserModel from "../../../models/user";
 
 const getEditTextFieldProps = (

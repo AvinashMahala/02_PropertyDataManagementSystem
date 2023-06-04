@@ -1,6 +1,5 @@
 import * as commonImports from "../../../commonCode/importMRTRelated";
-import React from "react";
-import * as FlatModel from "../../../models/flatModel";
+import * as FlatModel from "./../../../models/flatModel";
 import * as UserModel from "../../../models/user";
 
 interface CreateModalProps {

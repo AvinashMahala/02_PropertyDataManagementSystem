@@ -1,6 +1,6 @@
 // CreateNewRowStrategy.ts
 import { ActionStrategy } from './ActionStrategy';
-import * as FlatModel from "../../../../models/flatModel";
+import * as FlatModel from "./../../../../models/flatModel";
 import * as FlatsApi from "../../../../network/flatDetailsApi";
 
 export class CreateNewRowStrategy implements ActionStrategy {
