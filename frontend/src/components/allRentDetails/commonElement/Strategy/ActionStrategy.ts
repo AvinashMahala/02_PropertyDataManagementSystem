@@ -1,5 +1,5 @@
-import * as PropertiesModel from "../../../../models/allPropertiesModel";
+import * as AllRentDetailsModel from "../../../../models/allRentDetailsModel";
 
 export interface ActionStrategy {
-  handle(values: PropertiesModel.IPropertyDetailsViewModel, validationErrors: Object, row: any, setMessage: any, setOpen: any, exitEditingMode: any): Promise<void>;
+  handle(values: AllRentDetailsModel.IRentDetailsViewModel, validationErrors: Object, row: any, setMessage: any, setOpen: any, exitEditingMode: any): Promise<void>;
 }

@@ -1,12 +1,12 @@
 import * as commonImports from "../../../commonCode/importMRTRelated";
 import React from "react";
-import * as PropertiesModel from "../../../models/allPropertiesModel";
+import * as AllRentDetailsModel from "../../../models/allRentDetailsModel";
 import * as UserModel from "../../../models/user";
 
 interface CreateModalProps {
-  columns: commonImports.MRT_ColumnDef<PropertiesModel.IPropertyDetailsViewModel>[];
+  columns: commonImports.MRT_ColumnDef<AllRentDetailsModel.IRentDetailsViewModel>[];
   onClose: () => void;
-  onSubmit: (values: PropertiesModel.IPropertyDetailsViewModel) => void;
+  onSubmit: (values: AllRentDetailsModel.IRentDetailsViewModel) => void;
   open: boolean;
   usersArr:UserModel.User[];
 }
@@ -27,7 +27,7 @@ export const CreateNewModal = ({
     }, {} as any)
   );
 
-  const [selectedProperty, setSelectedProperty] = commonImports.useState("");
+  const [selectedRentDetail, setSelectedRentDetail] = commonImports.useState("");
   const [errors, setErrors] = commonImports.useState<{ [key: string]: string }>(
     {}
   );
@@ -36,12 +36,33 @@ export const CreateNewModal = ({
     let tempErrors = {};
     tempErrors = {
       ...tempErrors,
-      ownerId: values.ownerId ? "" : "This field is required",
-      rentReceiptMetaDataId: values.rentReceiptMetaDataId ? "" : "This field is required",
-      propertyName: values.propertyName ? "" : "This field is required",
-      propertyType: values.propertyType ? "" : "This field is required",
-      propertyAddress: values.propertyAddress ? "" : "This field is required",
-      propertyTakeRentOf: values.propertyTakeRentOf ? "" : "This field is required",
+      flatId: values.flatId ? values.flatId : "This field is required",
+      tenantId: values.tenantId ? values.tenantId : "This field is required",
+      rentStartDate: values.rentStartDate ? values.rentStartDate : "This field is required",
+      rentEndDate: values.rentEndDate ? values.rentEndDate : "This field is required",
+      rentAmount: values.rentAmount ? values.rentAmount : "This field is required",
+      buildingMaintenanceAmount: values.buildingMaintenanceAmount ? values.buildingMaintenanceAmount : "This field is required",
+      previousBalance: values.previousBalance ? values.previousBalance : "This field is required",
+      ebillPreviousMeterReading: values.ebillPreviousMeterReading ? values.ebillPreviousMeterReading : "This field is required",
+      ebillPreviousMeterReadingDate: values.ebillPreviousMeterReadingDate ? values.ebillPreviousMeterReadingDate : "This field is required",
+      ebillNewMeterReading: values.ebillNewMeterReading ? values.ebillNewMeterReading : "This field is required",
+      ebillNewMeterReadingDate: values.ebillNewMeterReadingDate ? values.ebillNewMeterReadingDate : "This field is required",
+      ebillMultiplier: values.ebillMultiplier ? values.ebillMultiplier : "This field is required",
+      ebillUnitsConsumed: values.ebillUnitsConsumed ? values.ebillUnitsConsumed : "This field is required",
+      ebillAmount: values.ebillAmount ? values.ebillAmount : "This field is required",
+      totalAmount: values.totalAmount ? values.totalAmount : "This field is required",
+      paidAmount: values.paidAmount ? values.paidAmount : "This field is required",
+      currentBalance: values.currentBalance ? values.currentBalance : "This field is required",
+      paymentDate: values.paymentDate ? values.paymentDate : "This field is required",
+      paymentMode: values.paymentMode ? values.paymentMode : "This field is required",
+      paymentReference: values.paymentReference ? values.paymentReference : "This field is required",
+      paymentRemarks: values.paymentRemarks ? values.paymentRemarks : "This field is required",
+      paymentStatus: values.paymentStatus ? values.paymentStatus : "This field is required",
+      paymentReceipt: values.paymentReceipt ? values.paymentReceipt : "This field is required",
+      paymentReceiptDate: values.paymentReceiptDate ? values.paymentReceiptDate : "This field is required",
+      paymentReceiptRemarks: values.paymentReceiptRemarks ? values.paymentReceiptRemarks : "This field is required",
+      paymentReceiptStatus: values.paymentReceiptStatus ? values.paymentReceiptStatus : "This field is required",
+
     };
     setErrors({
       ...tempErrors,
@@ -61,7 +82,7 @@ export const CreateNewModal = ({
   return (
     <commonImports.Dialog open={open}>
       <commonImports.DialogTitle textAlign="center">
-        Create New Rent Receipt Meta Data
+      Create New Rent Record
       </commonImports.DialogTitle>
       <commonImports.DialogContent>
         <form onSubmit={(e) => e.preventDefault()}>
@@ -148,7 +169,7 @@ export const CreateNewModal = ({
           onClick={handleSubmit}
           variant="contained"
         >
-          Create New Rent Receipt Meta Data
+          Create New Rent Record
         </commonImports.Button>
       </commonImports.DialogActions>
     </commonImports.Dialog>

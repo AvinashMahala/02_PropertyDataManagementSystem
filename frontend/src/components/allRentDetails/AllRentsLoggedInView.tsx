@@ -1,8 +1,8 @@
 //------------------------------------Imports Section------------------------
-import * as AllPropertiesApi from "../../network/allPropertiesApi";
+import * as AllRentDetailsApi from "../../network/allRentDetailsApi";
 import * as UsersApi from "../../network/users_api";
 import * as UserModel from "../../models/user";
-import * as AllPropertiesModel from "../../models/allPropertiesModel";
+import * as AllRentDetailsModel from "../../models/allRentDetailsModel";
 import PropertyPageStyles from "../../styles/PropertyPage.module.css";
 import * as commonImports from "../../commonCode/importMRTRelated";
 import {CreateNewModal} from "./commonElement/CreateNewModal";
@@ -22,8 +22,8 @@ import { GridFactory } from './commonElement/Factory/GridFactory'; // Adjust the
 let usersArr: UserModel.User[] = []; //This stores all the users retrieved from the database
 
 const AllRentsLoggedInView = () => {
-  const [propertyArr, setPropertyArr] = commonImports.useState<
-  AllPropertiesModel.IPropertyDetailsViewModel[]
+  const [rentDetailsArr, setRentDetailsArr] = commonImports.useState<
+  AllRentDetailsModel.IRentDetailsViewModel[]
   >([]);
   const [createModalOpen, setCreateModalOpen] = commonImports.useState(false);
   const [validationErrors, setValidationErrors] = commonImports.useState<{
@@ -37,20 +37,20 @@ const AllRentsLoggedInView = () => {
   const deleteRowStrategy = new DeleteRowStrategy();
 
   const handleCreateNewRow = async (
-    values: AllPropertiesModel.IPropertyDetailsViewModel
+    values: AllRentDetailsModel.IRentDetailsViewModel
   ) => {
-    propertyArr.push(values);
+    rentDetailsArr.push(values);
     createNewRowStrategy.handle(values, {}, null, setMessage, setOpen).then(() => {
-      AllPropertiesApi.getAllPropertyDetails().then((allProperties: AllPropertiesModel.IPropertyDetailsViewModel[]) => {
-        setPropertyArr(allProperties);
+      AllRentDetailsApi.getAllRentDetails().then((allRentDetails: AllRentDetailsModel.IRentDetailsViewModel[]) => {
+        setRentDetailsArr(allRentDetails);
       });
     }).catch((error) => { }).finally(() => { });
   };
 
   //This function is called when the user clicks on the UPDATE button
-  const handleSaveRowEdits: commonImports.MaterialReactTableProps<AllPropertiesModel.IPropertyDetailsViewModel>["onEditingRowSave"] =
+  const handleSaveRowEdits: commonImports.MaterialReactTableProps<AllRentDetailsModel.IRentDetailsViewModel>["onEditingRowSave"] =
     async ({ exitEditingMode, row, values }) => {
-      propertyArr[row.index] = values;
+      rentDetailsArr[row.index] = values;
       await saveRowEditsStrategy.handle(values, validationErrors, row, setMessage, setOpen, exitEditingMode);
 
     };
@@ -62,7 +62,7 @@ const AllRentsLoggedInView = () => {
 
   //This function is called when the user clicks on the DELETE button
   const handleDeleteRow = commonImports.useCallback(
-    async (row: commonImports.MRT_Row<AllPropertiesModel.IPropertyDetailsViewModel>) => {
+    async (row: commonImports.MRT_Row<AllRentDetailsModel.IRentDetailsViewModel>) => {
       if (
         !window.confirm(
           `Are you sure you want to delete ${row.getValue("propertyName")}`
@@ -70,11 +70,11 @@ const AllRentsLoggedInView = () => {
       ) {
         return;
       }
-      propertyArr.splice(row.index, 1);
-      setPropertyArr([...propertyArr]);
+      rentDetailsArr.splice(row.index, 1);
+      setRentDetailsArr([...rentDetailsArr]);
       await deleteRowStrategy.handle(null, null, row, setMessage, setOpen, null);
     },
-    [propertyArr]
+    [rentDetailsArr]
   );
 
   //This function is called when the user clicks on the EDIT button to set the Edit Modal Properties of The Columns.
@@ -89,19 +89,19 @@ const AllRentsLoggedInView = () => {
       usersArr = response;
     });
 
-    AllPropertiesApi.getAllPropertyDetails().then((response) => {
-      setPropertyArr(response);
+    AllRentDetailsApi.getAllRentDetails().then((response) => {
+      setRentDetailsArr(response);
     });
   }, []);
 
   //This is Used to set the columns of the table
-  const propertiesDetailsGridColumns = GridFactory(getEditTextFieldProps, usersArr,validationErrors,setValidationErrors);
+  const rentDetailsDetailsGridColumns = GridFactory(getEditTextFieldProps, usersArr,validationErrors,setValidationErrors);
 
   const handleOk = () => {
     // Perform the operation you want when the OK button is clicked
     console.log("OK button has been clicked!");
-    AllPropertiesApi.getAllPropertyDetails().then((allProperties) => {
-      setPropertyArr(allProperties);
+    AllRentDetailsApi.getAllRentDetails().then((allRentDetails) => {
+      setRentDetailsArr(allRentDetails);
 
     });
     setOpen(false); // Close the dialog
@@ -126,8 +126,8 @@ const AllRentsLoggedInView = () => {
               size: 30,
             },
           }}
-          columns={propertiesDetailsGridColumns}
-          data={propertyArr}
+          columns={rentDetailsDetailsGridColumns}
+          data={rentDetailsArr}
         
           enableColumnOrdering
           initialState={{
@@ -165,12 +165,12 @@ const AllRentsLoggedInView = () => {
               onClick={() => setCreateModalOpen(true)}
               variant="contained"
             >
-              Create New Property
+              Create New Rent Record
             </commonImports.Button>
           )}
         />
         <CreateNewModal
-          columns={propertiesDetailsGridColumns}
+          columns={rentDetailsDetailsGridColumns}
           open={createModalOpen}
           onClose={() => setCreateModalOpen(false)}
           onSubmit={handleCreateNewRow}
