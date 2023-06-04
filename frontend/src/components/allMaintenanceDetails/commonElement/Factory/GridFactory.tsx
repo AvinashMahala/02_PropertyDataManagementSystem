@@ -1,7 +1,7 @@
 // GridFactory.tsx
 import * as commonImports from "../../../../commonCode/importMRTRelated";
 import React from "react";
-import * as PropertiesModel from "../../../../models/allPropertiesModel";
+import * as MaintenanceRequestModel from "../../../../models/maintenanceRequestModel";
 
 type FieldConfig = {
   header: string;
@@ -16,12 +16,12 @@ export const GridFactory = (
   validationErrors: any,
   setValidationErrors: any
 ) => {
-  const ownerDetailsGridColumns = commonImports.useMemo<
-    commonImports.MRT_ColumnDef<PropertiesModel.IPropertyDetailsViewModel>[]
+  const maintenanceRequestsGridColumns = commonImports.useMemo<
+    commonImports.MRT_ColumnDef<MaintenanceRequestModel.IMaintenanceRequestViewModel>[]
   >(
     () => [
       {
-        header: "Property Id",
+        header: "Maintenance Request Id",
         accessorKey: "_id",
         enableColumnOrdering: false, //disable column ordering on this column
         enableSorting: false,
@@ -38,43 +38,64 @@ export const GridFactory = (
         }),
       },
       {
-        header: "ownerId",
-        accessorKey: "ownerId",
+        header: "flatId",
+        accessorKey: "flatId",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "rentReceiptMetaDataId",
-        accessorKey: "rentReceiptMetaDataId",
+        header: "tenantId",
+        accessorKey: "tenantId",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "propertyName",
-        accessorKey: "propertyName",
+        header: "startDate",
+        accessorKey: "startDate",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "propertyType",
-        accessorKey: "propertyType",
+        header: "endDate",
+        accessorKey: "endDate",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "propertyAddress",
-        accessorKey: "propertyAddress",
+        header: "priority",
+        accessorKey: "priority",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "propertyTakeRentOf",
-        accessorKey: "propertyTakeRentOf",
+        header: "amount",
+        accessorKey: "amount",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "status",
+        accessorKey: "status",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "tenantNotes",
+        accessorKey: "tenantNotes",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "ownerNotes",
+        accessorKey: "ownerNotes",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
@@ -104,5 +125,5 @@ export const GridFactory = (
     ],
     [getCommonEditTextFieldProps, usersArr]
   );
-  return ownerDetailsGridColumns;
+  return maintenanceRequestsGridColumns;
 };

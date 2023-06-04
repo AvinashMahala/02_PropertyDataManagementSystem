@@ -1,34 +1,38 @@
 // SaveRowEditsStrategy.ts
 import { ActionStrategy } from './ActionStrategy';
-import * as PropertiesModel from "../../../../models/allPropertiesModel";
-import * as PropertiesApi from "../../../../network/allPropertiesApi";
+import * as MaintenanceRequestModel from "../../../../models/maintenanceRequestModel";
+import * as MaintenanceApi from "../../../../network/maintenanceApi";
 
 export class SaveRowEditsStrategy implements ActionStrategy {
-  async handle(values: PropertiesModel.IPropertyDetailsViewModel, validationErrors: Object, row: any, setMessage: any, setOpen: any, exitEditingMode: any): Promise<void> {
+  async handle(values: MaintenanceRequestModel.IMaintenanceRequestViewModel, validationErrors: Object, row: any, setMessage: any, setOpen: any, exitEditingMode: any): Promise<void> {
 
     if (!Object.keys(validationErrors).length) {
       //send/receive api updates here, then refetch or update local table data for re-render
-      const updatedProperty: PropertiesModel.IPropertyDetailsViewModel = {
+      const updatedMaintenanceRequest: MaintenanceRequestModel.IMaintenanceRequestViewModel = {
         _id: values._id,
-        ownerId: values.ownerId,
-        rentReceiptMetaDataId: values.rentReceiptMetaDataId,
-        propertyName: values.propertyName,
-        propertyType: values.propertyType,
-        propertyAddress: values.propertyAddress,
-        propertyTakeRentOf: values.propertyTakeRentOf,
+        flatId: values.flatId,
+        tenantId: values.tenantId,
+        startDate: values.startDate,
+        endDate: values.endDate,
+        priority: values.priority,
+        amount: values.amount,
+        status: values.status,
+        tenantNotes: values.tenantNotes,
+        ownerNotes: values.ownerNotes,
+
         createdAt: values.createdAt,
         updatedAt: values.updatedAt,
       };
 
       // Send the API request to update the Rent Receipt Meta Data
-      await PropertiesApi.updatePropertyDetails(
-        updatedProperty._id,
-        updatedProperty
+      await MaintenanceApi.updateMaintenanceRequest(
+        updatedMaintenanceRequest._id,
+        updatedMaintenanceRequest
       );
 
-      PropertiesApi.getAllPropertyDetails().then((updatedProperties: PropertiesModel.IPropertyDetailsViewModel[]) => {
+      MaintenanceApi.getAllMaintenanceRequest().then((updatedMaintenanceRequests: MaintenanceRequestModel.IMaintenanceRequestViewModel[]) => {
         setMessage(
-          `Property with Name ${row.getValue("propertyName")} Updated successfully.`
+          `Maintenance Request with ID ${row.getValue("_id")} Updated successfully.`
         );
         setOpen(true);
 

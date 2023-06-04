@@ -1,12 +1,12 @@
 import * as commonImports from "../../../commonCode/importMRTRelated";
 import React from "react";
-import * as PropertiesModel from "../../../models/allPropertiesModel";
+import * as MaintenanceRequestModel from "../../../models/maintenanceRequestModel";
 import * as UserModel from "../../../models/user";
 
 interface CreateModalProps {
-  columns: commonImports.MRT_ColumnDef<PropertiesModel.IPropertyDetailsViewModel>[];
+  columns: commonImports.MRT_ColumnDef<MaintenanceRequestModel.IMaintenanceRequestViewModel>[];
   onClose: () => void;
-  onSubmit: (values: PropertiesModel.IPropertyDetailsViewModel) => void;
+  onSubmit: (values: MaintenanceRequestModel.IMaintenanceRequestViewModel) => void;
   open: boolean;
   usersArr:UserModel.User[];
 }
@@ -27,7 +27,7 @@ export const CreateNewModal = ({
     }, {} as any)
   );
 
-  const [selectedProperty, setSelectedProperty] = commonImports.useState("");
+  const [selectedMaintenanceRequest, setSelectedMaintenanceRequest] = commonImports.useState("");
   const [errors, setErrors] = commonImports.useState<{ [key: string]: string }>(
     {}
   );
@@ -36,12 +36,17 @@ export const CreateNewModal = ({
     let tempErrors = {};
     tempErrors = {
       ...tempErrors,
-      ownerId: values.ownerId ? "" : "This field is required",
-      rentReceiptMetaDataId: values.rentReceiptMetaDataId ? "" : "This field is required",
-      propertyName: values.propertyName ? "" : "This field is required",
-      propertyType: values.propertyType ? "" : "This field is required",
-      propertyAddress: values.propertyAddress ? "" : "This field is required",
-      propertyTakeRentOf: values.propertyTakeRentOf ? "" : "This field is required",
+      flatId: values.flatId ? values.flatId : "This field is required",
+      tenantId: values.tenantId ? values.tenantId : "This field is required",
+      startDate: values.startDate ? values.startDate : "This field is required",
+      endDate: values.endDate ? values.endDate : "This field is required",
+      priority: values.priority ? values.priority : "This field is required",
+      amount: values.amount ? values.amount : "This field is required",
+      status: values.status ? values.status : "This field is required",
+      tenantNotes: values.tenantNotes ? values.tenantNotes : "This field is required",
+      ownerNotes: values.ownerNotes ? values.ownerNotes : "This field is required",
+      createdAt: values.createdAt ? values.createdAt : "This field is required",
+      updatedAt: values.updatedAt ? values.updatedAt : "This field is required"
     };
     setErrors({
       ...tempErrors,
@@ -61,7 +66,7 @@ export const CreateNewModal = ({
   return (
     <commonImports.Dialog open={open}>
       <commonImports.DialogTitle textAlign="center">
-        Create New Rent Receipt Meta Data
+        Create New Maintenance Request
       </commonImports.DialogTitle>
       <commonImports.DialogContent>
         <form onSubmit={(e) => e.preventDefault()}>
@@ -148,7 +153,7 @@ export const CreateNewModal = ({
           onClick={handleSubmit}
           variant="contained"
         >
-          Create New Rent Receipt Meta Data
+          Create New Maintenance Request
         </commonImports.Button>
       </commonImports.DialogActions>
     </commonImports.Dialog>
