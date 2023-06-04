@@ -24,7 +24,7 @@ const MasterViewPage: React.FC<MasterViewPageProps> = ({ children, title, logged
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Row style={{ flex: '1' }}>
-        <Col style={{ maxWidth: '300px' }}>
+        <Col style={{ maxWidth: '250px' }}>
           <NavBar 
             loggedInUser={loggedInUser}
             onSignUpClicked={onSignUpClicked}

@@ -11,6 +11,11 @@ import notesRoutes from "./routes/notes";
 import userRoutes from "./routes/users";
 import ownerDetailsRoutes from "./routes/ownerDetailsRoutes";
 import rentReceiptMetaDataDetailsRoutes from "./routes/rentReceiptMetaDataDetailsRoutes";
+import propertyRoutes from "./routes/allPropertiesRoutes";
+import flatRoutes from "./routes/flatRoutes";
+import tenantRoutes from "./routes/tenantRoutes";
+import allRentDetailsRoutes from "./routes/allRentDetailsRoutes";
+import allMaintenanceDetailsRoutes from "./routes/maintenanceRoutes";
 
 const app = express();
 
@@ -35,6 +40,11 @@ app.use(session({
 app.use("/api/users", userRoutes);
 app.use("/api/ownerDetails", requiresAuth, ownerDetailsRoutes);
 app.use("/api/rentReceiptMetaDataDetails", rentReceiptMetaDataDetailsRoutes);
+app.use("/api/properties", propertyRoutes);
+app.use("/api/flats", flatRoutes);
+app.use("/api/tenants", tenantRoutes);
+app.use("/api/rent", allRentDetailsRoutes);
+app.use("/api/maintenanceRequest", allMaintenanceDetailsRoutes);
 app.use("/api/notes", requiresAuth, notesRoutes);
 
 app.use((req, res, next)=>{

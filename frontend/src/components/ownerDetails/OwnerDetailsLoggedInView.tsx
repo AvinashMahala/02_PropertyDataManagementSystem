@@ -5,19 +5,18 @@ import * as UserModel from "../../models/user";
 import * as OwnerDetailsModel from "../../models/ownerDetails";
 import ownerDetailsPageStyle from "../../styles/OwnerDetailsPage.module.css";
 import * as commonImports from "../../commonCode/importMRTRelated";
-import {CreateNewOwnerDetailsModal} from "./commonElement/CreateNewOwnerDetailsModal";
+import { CreateNewOwnerDetailsModal } from "./commonElement/CreateNewOwnerDetailsModal";
 
 //Strategy DesignPattern Used for the Create, Update and Delete Operations
 import { CreateNewRowStrategy } from "./commonElement/Strategy/CreateNewRowStrategy";
-import { SaveRowEditsStrategy } from './commonElement/Strategy/SaveRowEditsStrategy';
-import { DeleteRowStrategy } from './commonElement/Strategy/DeleteRowStrategy';
+import { SaveRowEditsStrategy } from "./commonElement/Strategy/SaveRowEditsStrategy";
+import { DeleteRowStrategy } from "./commonElement/Strategy/DeleteRowStrategy";
 
-import  getEditTextFieldProps  from './commonElement/GetEditTextFieldProps'; // Adjust the path to your GetEditTextFieldProps file
+import getEditTextFieldProps from "./commonElement/GetEditTextFieldProps"; // Adjust the path to your GetEditTextFieldProps file
 
 //Factory DesignPattern Used for the Main Grid View
-import { GridFactory } from './commonElement/Factory/GridFactory'; // Adjust the path to your GridFactory file
+import { GridFactory } from "./commonElement/Factory/GridFactory"; // Adjust the path to your GridFactory file
 //-------------------------------End of Imports Section---------------------
-
 
 let usersArr: UserModel.User[] = []; //This stores all the users retrieved from the database
 
@@ -40,19 +39,31 @@ const OwnerDetailsLoggedInView = () => {
     values: OwnerDetailsModel.IOwnerDetailsViewModel
   ) => {
     ownerDetailsArr.push(values);
-    createNewRowStrategy.handle(values, {}, null, setMessage, setOpen).then(() => {
-      OwnerDetailsApi.getAllOwnerDetails().then((ownerDetails: OwnerDetailsModel.IOwnerDetailsViewModel[]) => {
-        setOwnerDetailsArr(ownerDetails);
-      });
-    }).catch((error) => { }).finally(() => { });
+    createNewRowStrategy
+      .handle(values, {}, null, setMessage, setOpen)
+      .then(() => {
+        OwnerDetailsApi.getAllOwnerDetails().then(
+          (ownerDetails: OwnerDetailsModel.IOwnerDetailsViewModel[]) => {
+            setOwnerDetailsArr(ownerDetails);
+          }
+        );
+      })
+      .catch((error) => {})
+      .finally(() => {});
   };
 
   //This function is called when the user clicks on the UPDATE button
   const handleSaveRowEdits: commonImports.MaterialReactTableProps<OwnerDetailsModel.IOwnerDetailsViewModel>["onEditingRowSave"] =
     async ({ exitEditingMode, row, values }) => {
       ownerDetailsArr[row.index] = values;
-      await saveRowEditsStrategy.handle(values, validationErrors, row, setMessage, setOpen, exitEditingMode);
-
+      await saveRowEditsStrategy.handle(
+        values,
+        validationErrors,
+        row,
+        setMessage,
+        setOpen,
+        exitEditingMode
+      );
     };
 
   //This function is called when the user clicks on the CANCEL button
@@ -62,7 +73,9 @@ const OwnerDetailsLoggedInView = () => {
 
   //This function is called when the user clicks on the DELETE button
   const handleDeleteRow = commonImports.useCallback(
-    async (row: commonImports.MRT_Row<OwnerDetailsModel.IOwnerDetailsViewModel>) => {
+    async (
+      row: commonImports.MRT_Row<OwnerDetailsModel.IOwnerDetailsViewModel>
+    ) => {
       if (
         !window.confirm(
           `Are you sure you want to delete ${row.getValue("ownerName")}`
@@ -72,16 +85,22 @@ const OwnerDetailsLoggedInView = () => {
       }
       ownerDetailsArr.splice(row.index, 1);
       setOwnerDetailsArr([...ownerDetailsArr]);
-      await deleteRowStrategy.handle(null, null, row, setMessage, setOpen, null);
+      await deleteRowStrategy.handle(
+        null,
+        null,
+        row,
+        setMessage,
+        setOpen,
+        null
+      );
     },
     [ownerDetailsArr]
   );
 
   //This function is called when the user clicks on the EDIT button to set the Edit Modal Properties of The Columns.
-  // const getCommonEditTextFieldProps = getEditTextFieldProps(setValidationErrors, usersArr); 
+  // const getCommonEditTextFieldProps = getEditTextFieldProps(setValidationErrors, usersArr);
 
   //-----------------All the Function Declarations Ends Here-----------------
-
 
   //This useEffect is called when the page is loaded for the first time
   commonImports.useEffect(() => {
@@ -95,14 +114,18 @@ const OwnerDetailsLoggedInView = () => {
   }, []);
 
   //This is Used to set the columns of the table
-  const ownerDetailsGridColumns = GridFactory(getEditTextFieldProps, usersArr,validationErrors,setValidationErrors);
+  const ownerDetailsGridColumns = GridFactory(
+    getEditTextFieldProps,
+    usersArr,
+    validationErrors,
+    setValidationErrors
+  );
 
   const handleOk = () => {
     // Perform the operation you want when the OK button is clicked
     console.log("OK button has been clicked!");
     OwnerDetailsApi.getAllOwnerDetails().then((ownerDetails) => {
       setOwnerDetailsArr(ownerDetails);
-
     });
     setOpen(false); // Close the dialog
   };
@@ -115,8 +138,8 @@ const OwnerDetailsLoggedInView = () => {
         handleOk={handleOk}
         message={message}
       />
-      <h1>Owner Details Logged In View</h1>
       <commonImports.Container className={ownerDetailsPageStyle.pageContainer}>
+        <h1 className={ownerDetailsPageStyle.headerStyle}>Owner Records</h1>
         <commonImports.MaterialReactTable
           displayColumnDefOptions={{
             "mrt-row-actions": {
@@ -128,7 +151,6 @@ const OwnerDetailsLoggedInView = () => {
           }}
           columns={ownerDetailsGridColumns}
           data={ownerDetailsArr}
-        
           enableColumnOrdering
           initialState={{
             columnVisibility: {
@@ -181,8 +203,4 @@ const OwnerDetailsLoggedInView = () => {
   );
 };
 
-
-
-
 export default OwnerDetailsLoggedInView;
-

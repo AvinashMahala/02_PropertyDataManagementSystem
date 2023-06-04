@@ -112,7 +112,7 @@ const NavBar = ({
                   )
                 }
               >
-                <CDBSidebarMenuItem icon="user-shield">
+                <CDBSidebarMenuItem icon="receipt">
                   Rent Receipt MetaData
                 </CDBSidebarMenuItem>
               </Nav.Link>
