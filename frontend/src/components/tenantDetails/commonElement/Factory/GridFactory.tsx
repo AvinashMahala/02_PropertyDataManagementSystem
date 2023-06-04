@@ -1,7 +1,7 @@
 // GridFactory.tsx
 import * as commonImports from "../../../../commonCode/importMRTRelated";
 import React from "react";
-import * as PropertiesModel from "../../../../models/allPropertiesModel";
+import * as TenantModel from "../../../../models/tenantModel";
 
 type FieldConfig = {
   header: string;
@@ -17,11 +17,11 @@ export const GridFactory = (
   setValidationErrors: any
 ) => {
   const ownerDetailsGridColumns = commonImports.useMemo<
-    commonImports.MRT_ColumnDef<PropertiesModel.IPropertyDetailsViewModel>[]
+    commonImports.MRT_ColumnDef<TenantModel.ITenantViewModel>[]
   >(
     () => [
       {
-        header: "Property Id",
+        header: "Tenant Id",
         accessorKey: "_id",
         enableColumnOrdering: false, //disable column ordering on this column
         enableSorting: false,
@@ -38,43 +38,169 @@ export const GridFactory = (
         }),
       },
       {
-        header: "ownerId",
-        accessorKey: "ownerId",
+        header: "flatId",
+        accessorKey: "flatId",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "rentReceiptMetaDataId",
-        accessorKey: "rentReceiptMetaDataId",
+        header: "Photo",
+        accessorKey: "Photo",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "propertyName",
-        accessorKey: "propertyName",
+        header: "Salutation",
+        accessorKey: "Salutation",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "propertyType",
-        accessorKey: "propertyType",
+        header: "Name",
+        accessorKey: "Name",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "propertyAddress",
-        accessorKey: "propertyAddress",
+        header: "Profession",
+        accessorKey: "Profession",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "propertyTakeRentOf",
-        accessorKey: "propertyTakeRentOf",
+        header: "NoOfPeople",
+        accessorKey: "NoOfPeople",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "NativeAddress",
+        accessorKey: "NativeAddress",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "WorkAddress",
+        accessorKey: "WorkAddress",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "PrimaryPhNo",
+        accessorKey: "PrimaryPhNo",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "SecondaryPhNo",
+        accessorKey: "SecondaryPhNo",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "Email",
+        accessorKey: "Email",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "DepositAmount",
+        accessorKey: "DepositAmount",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "DepositPaidDate",
+        accessorKey: "DepositPaidDate",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "Balance",
+        accessorKey: "Balance",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "MoveInDate",
+        accessorKey: "MoveInDate",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "StartRentFromDate",
+        accessorKey: "StartRentFromDate",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "LeaseType",
+        accessorKey: "LeaseType",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "FixedLeaseStartDate",
+        accessorKey: "FixedLeaseStartDate",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "FixedLeasePeriod",
+        accessorKey: "FixedLeasePeriod",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "FixedLeasePeriodType",
+        accessorKey: "FixedLeasePeriodType",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "EmergencyContactName",
+        accessorKey: "EmergencyContactName",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "EmergencyContactNo",
+        accessorKey: "EmergencyContactNo",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "EmergencyContactRelation",
+        accessorKey: "EmergencyContactRelation",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
+        header: "ExtraService",
+        accessorKey: "ExtraService",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),

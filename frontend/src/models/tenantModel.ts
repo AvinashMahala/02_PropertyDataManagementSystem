@@ -53,5 +53,4 @@ export interface ITenantInputModel{
     EmergencyContactNo: number;
     EmergencyContactRelation: string;
     ExtraService: string;//1.Bike Parking 2.Car Parking
-    
 }

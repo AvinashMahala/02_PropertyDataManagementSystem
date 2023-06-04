@@ -1,12 +1,12 @@
 import * as commonImports from "../../../commonCode/importMRTRelated";
 import React from "react";
-import * as PropertiesModel from "../../../models/allPropertiesModel";
+import * as TenantModel from "../../../models/tenantModel";
 import * as UserModel from "../../../models/user";
 
 interface CreateModalProps {
-  columns: commonImports.MRT_ColumnDef<PropertiesModel.IPropertyDetailsViewModel>[];
+  columns: commonImports.MRT_ColumnDef<TenantModel.ITenantViewModel>[];
   onClose: () => void;
-  onSubmit: (values: PropertiesModel.IPropertyDetailsViewModel) => void;
+  onSubmit: (values: TenantModel.ITenantViewModel) => void;
   open: boolean;
   usersArr:UserModel.User[];
 }
@@ -27,7 +27,7 @@ export const CreateNewModal = ({
     }, {} as any)
   );
 
-  const [selectedProperty, setSelectedProperty] = commonImports.useState("");
+  const [selectedTenant, setSelectedTenant] = commonImports.useState("");
   const [errors, setErrors] = commonImports.useState<{ [key: string]: string }>(
     {}
   );
@@ -36,12 +36,32 @@ export const CreateNewModal = ({
     let tempErrors = {};
     tempErrors = {
       ...tempErrors,
-      ownerId: values.ownerId ? "" : "This field is required",
-      rentReceiptMetaDataId: values.rentReceiptMetaDataId ? "" : "This field is required",
-      propertyName: values.propertyName ? "" : "This field is required",
-      propertyType: values.propertyType ? "" : "This field is required",
-      propertyAddress: values.propertyAddress ? "" : "This field is required",
-      propertyTakeRentOf: values.propertyTakeRentOf ? "" : "This field is required",
+      flatId: values.flatId ? "" : "This field is required",
+      Photo: values.Photo ? "" : "This field is required",
+      Salutation: values.Salutation ? "" : "This field is required",
+      Name: values.Name ? "" : "This field is required",
+      Profession: values.Profession ? "" : "This field is required",
+      NoOfPeople: values.NoOfPeople ? "" : "This field is required",
+      NativeAddress: values.NativeAddress ? "" : "This field is required",
+      WorkAddress: values.WorkAddress ? "" : "This field is required",
+      PrimaryPhNo: values.PrimaryPhNo ? "" : "This field is required",
+      SecondaryPhNo: values.SecondaryPhNo ? "" : "This field is required",
+      Email: values.Email ? "" : "This field is required",
+      DepositAmount: values.DepositAmount ? "" : "This field is required",
+      DepositPaidDate: values.DepositPaidDate ? "" : "This field is required",
+      Balance: values.Balance ? "" : "This field is required",
+      MoveInDate: values.MoveInDate ? "" : "This field is required",
+      StartRentFromDate: values.StartRentFromDate ? "" : "This field is required",
+      LeaseType: values.LeaseType ? "" : "This field is required",
+      FixedLeaseStartDate: values.FixedLeaseStartDate ? "" : "This field is required",
+      FixedLeasePeriod: values.FixedLeasePeriod ? "" : "This field is required",
+      FixedLeasePeriodType: values.FixedLeasePeriodType ? "" : "This field is required",
+      EmergencyContactName: values.EmergencyContactName ? "" : "This field is required",
+      EmergencyContactNo: values.EmergencyContactNo ? "" : "This field is required",
+      EmergencyContactRelation: values.EmergencyContactRelation ? "" : "This field is required",
+      ExtraService: values.ExtraService ? "" : "This field is required",
+      createdAt: values.createdAt ? "" : "This field is required",
+      updatedAt: values.updatedAt ? "" : "This field is required",
     };
     setErrors({
       ...tempErrors,
@@ -61,7 +81,7 @@ export const CreateNewModal = ({
   return (
     <commonImports.Dialog open={open}>
       <commonImports.DialogTitle textAlign="center">
-        Create New Rent Receipt Meta Data
+        Create New Tenant
       </commonImports.DialogTitle>
       <commonImports.DialogContent>
         <form onSubmit={(e) => e.preventDefault()}>
@@ -148,7 +168,7 @@ export const CreateNewModal = ({
           onClick={handleSubmit}
           variant="contained"
         >
-          Create New Rent Receipt Meta Data
+          Create New Tenant
         </commonImports.Button>
       </commonImports.DialogActions>
     </commonImports.Dialog>
