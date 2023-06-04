@@ -41,7 +41,7 @@ const MaintenanceRequestsLoggedInView = () => {
   ) => {
     maintenanceRequestsArr.push(values);
     createNewRowStrategy.handle(values, {}, null, setMessage, setOpen).then(() => {
-      MaintenanceApi.getAllMaintenanceRequest().then((allMaintenanceRequests: MaintenanceRequestsModel.IMaintenanceRequestViewModel[]) => {
+      MaintenanceApi.RetrieveAllRecords().then((allMaintenanceRequests: MaintenanceRequestsModel.IMaintenanceRequestViewModel[]) => {
         setmaintenanceRequestsArr(allMaintenanceRequests);
       });
     }).catch((error) => { }).finally(() => { });
@@ -89,7 +89,7 @@ const MaintenanceRequestsLoggedInView = () => {
       usersArr = response;
     });
 
-    MaintenanceApi.getAllMaintenanceRequest().then((response) => {
+    MaintenanceApi.RetrieveAllRecords().then((response) => {
       setmaintenanceRequestsArr(response);
     });
   }, []);
@@ -100,7 +100,7 @@ const MaintenanceRequestsLoggedInView = () => {
   const handleOk = () => {
     // Perform the operation you want when the OK button is clicked
     console.log("OK button has been clicked!");
-    MaintenanceApi.getAllMaintenanceRequest().then((allMaintenanceRequests) => {
+    MaintenanceApi.RetrieveAllRecords().then((allMaintenanceRequests) => {
       setmaintenanceRequestsArr(allMaintenanceRequests);
 
     });

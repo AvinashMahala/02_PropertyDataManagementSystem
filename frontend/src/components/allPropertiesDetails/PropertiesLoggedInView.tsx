@@ -41,7 +41,7 @@ const PropertyLoggedInView = () => {
   ) => {
     propertyArr.push(values);
     createNewRowStrategy.handle(values, {}, null, setMessage, setOpen).then(() => {
-      AllPropertiesApi.getAllPropertyDetails().then((allProperties: AllPropertiesModel.IPropertyDetailsViewModel[]) => {
+      AllPropertiesApi.RetrieveAllRecords().then((allProperties: AllPropertiesModel.IPropertyDetailsViewModel[]) => {
         setPropertyArr(allProperties);
       });
     }).catch((error) => { }).finally(() => { });
@@ -89,7 +89,7 @@ const PropertyLoggedInView = () => {
       usersArr = response;
     });
 
-    AllPropertiesApi.getAllPropertyDetails().then((response) => {
+    AllPropertiesApi.RetrieveAllRecords().then((response) => {
       setPropertyArr(response);
     });
   }, []);
@@ -100,7 +100,7 @@ const PropertyLoggedInView = () => {
   const handleOk = () => {
     // Perform the operation you want when the OK button is clicked
     console.log("OK button has been clicked!");
-    AllPropertiesApi.getAllPropertyDetails().then((allProperties) => {
+    AllPropertiesApi.RetrieveAllRecords().then((allProperties) => {
       setPropertyArr(allProperties);
 
     });

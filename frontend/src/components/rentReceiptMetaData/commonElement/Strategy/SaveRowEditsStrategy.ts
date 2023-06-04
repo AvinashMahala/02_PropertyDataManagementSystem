@@ -29,12 +29,12 @@ export class SaveRowEditsStrategy implements ActionStrategy {
       };
 
       // Send the API request to update the Rent Receipt Meta Data
-      await RentReceiptMDataApi.updateRentReceiptMetaDataDetails(
+      await RentReceiptMDataApi.UpdateOneRecord(
         updatedRentReceiptMDataDetails._id,
         updatedRentReceiptMDataDetails
       );
 
-      RentReceiptMDataApi.getAllRentReceiptMetaDataDetails().then((updatedRentReceiptMDataDetails: RentReceiptMDataModel.IRentReceiptMetaDataDetailsViewModel[]) => {
+      RentReceiptMDataApi.RetrieveAllRecords().then((updatedRentReceiptMDataDetails: RentReceiptMDataModel.IRentReceiptMetaDataDetailsViewModel[]) => {
         setMessage(
           `Rent Receipt Meta Data ${row.getValue("rentReceiptMetaDataRefNm")} Updated successfully.`
         );

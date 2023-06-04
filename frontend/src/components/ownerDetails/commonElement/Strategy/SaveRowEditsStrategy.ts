@@ -20,12 +20,12 @@ export class SaveRowEditsStrategy implements ActionStrategy {
       };
 
       // Send the API request to update the Owner
-      await OwnerDetailsApi.updateOwnerDetails(
+      await OwnerDetailsApi.UpdateOneRecord(
         updatedOwnerDetails._id,
         updatedOwnerDetails
       );
 
-      OwnerDetailsApi.getAllOwnerDetails().then((ownerDetails: OwnerDetailsModel.IOwnerDetailsViewModel[]) => {
+      OwnerDetailsApi.RetrieveAllRecords().then((ownerDetails: OwnerDetailsModel.IOwnerDetailsViewModel[]) => {
         setMessage(
           `Owner ${row.getValue("ownerName")} Updated successfully.`
         );

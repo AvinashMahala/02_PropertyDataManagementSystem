@@ -41,7 +41,7 @@ const FlatsLoggedInView = () => {
   ) => {
     flatsArr.push(values);
     createNewRowStrategy.handle(values, {}, null, setMessage, setOpen).then(() => {
-      FlatApi.getAllFlats().then((allFlats: FlatModel.IFlatViewModel[]) => {
+      FlatApi.RetrieveAllRecords().then((allFlats: FlatModel.IFlatViewModel[]) => {
         setFlatsArr(allFlats);
       });
     }).catch((error) => { }).finally(() => { });
@@ -89,7 +89,7 @@ const FlatsLoggedInView = () => {
       usersArr = response;
     });
 
-    FlatApi.getAllFlats().then((response) => {
+    FlatApi.RetrieveAllRecords().then((response) => {
       setFlatsArr(response);
     });
   }, []);
@@ -100,7 +100,7 @@ const FlatsLoggedInView = () => {
   const handleOk = () => {
     // Perform the operation you want when the OK button is clicked
     console.log("OK button has been clicked!");
-    FlatApi.getAllFlats().then((allFlats) => {
+    FlatApi.RetrieveAllRecords().then((allFlats) => {
       setFlatsArr(allFlats);
 
     });

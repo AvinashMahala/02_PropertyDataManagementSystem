@@ -39,12 +39,12 @@ export class SaveRowEditsStrategy implements ActionStrategy {
       };
 
       // Send the API request to update the Rent Receipt Meta Data
-      await TenantApi.updateTenantDetails(
+      await TenantApi.UpdateOneRecord(
         updatedProperty._id,
         updatedProperty
       );
 
-      TenantApi.getAllTenants().then((updatedProperties: TenantModel.ITenantViewModel[]) => {
+      TenantApi.RetrieveAllRecords().then((updatedProperties: TenantModel.ITenantViewModel[]) => {
         setMessage(
           `Tenant with Name ${row.getValue("Name")} Updated successfully.`
         );

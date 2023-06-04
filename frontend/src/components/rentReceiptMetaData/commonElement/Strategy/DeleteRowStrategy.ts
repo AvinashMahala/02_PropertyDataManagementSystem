@@ -10,7 +10,7 @@ export class DeleteRowStrategy implements ActionStrategy {
 
     //send api delete request here, then refetch or update local table data for re-render
     try {
-      RentReceiptMDataApi.deleteRentReceiptMetaDataDetails(row.getValue("_id")).then(() => {
+      RentReceiptMDataApi.DeleteOneRecord(row.getValue("_id")).then(() => {
         console.log("Rent Receipt Meta Data Deleted!");
         const isDeleted = true;
         if (isDeleted) {

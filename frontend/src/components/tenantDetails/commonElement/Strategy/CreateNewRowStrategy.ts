@@ -38,7 +38,7 @@ export class CreateNewRowStrategy implements ActionStrategy {
 
 
     // Send the API request to update the Owner
-    TenantApi.createTenantDetails(propertiesModelInput).then(() => {
+    TenantApi.CreateOneRecord(propertiesModelInput).then(() => {
       setMessage(
         `Tenant with Name : ${propertiesModelInput.Name} Added successfully.`
       );

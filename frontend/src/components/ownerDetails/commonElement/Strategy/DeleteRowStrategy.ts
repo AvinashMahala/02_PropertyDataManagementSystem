@@ -17,7 +17,7 @@ export class DeleteRowStrategy implements ActionStrategy {
     //   }
     //send api delete request here, then refetch or update local table data for re-render
     try {
-      OwnerDetailsApi.deleteOwnerDetails(row.getValue("_id")).then(() => {
+      OwnerDetailsApi.DeleteOneRecord(row.getValue("_id")).then(() => {
         console.log("Owner Deleted!");
         const isDeleted = true;
         if (isDeleted) {

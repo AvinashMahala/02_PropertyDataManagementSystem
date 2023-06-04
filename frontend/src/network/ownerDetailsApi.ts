@@ -26,21 +26,21 @@ async function apiCall(input: RequestInfo, init?: RequestInit){
 }
 
 //GetAllOwnerDetails
-export async function getAllOwnerDetails():Promise<IOwnerDetailsViewModel[]>{
+export async function RetrieveAllRecords():Promise<IOwnerDetailsViewModel[]>{
     const response=await apiCall("/api/ownerDetails/all",{method:"GET"});
     const ownerDetails=await response.json();
     return ownerDetails;
 }
 
 //GetOneOwnerDetails
-export async function getOneOwnerDetails(ownerId:string):Promise<IOwnerDetailsViewModel>{
+export async function RetrieveOneRecord(ownerId:string):Promise<IOwnerDetailsViewModel>{
     const response=await apiCall("/api/ownerDetails/"+ownerId,{method:"GET"});
     const ownerDetails=await response.json();
     return ownerDetails;
 }
 
 //CreateOwnerDetails
-export async function createOwnerDetails(ownerDetails:IOwnerDetailsInputModel):Promise<IOwnerDetailsViewModel>{
+export async function CreateOneRecord(ownerDetails:IOwnerDetailsInputModel):Promise<IOwnerDetailsViewModel>{
     const response=await apiCall("/api/ownerDetails/create",{
         method:"POST",
         headers:{
@@ -53,7 +53,7 @@ export async function createOwnerDetails(ownerDetails:IOwnerDetailsInputModel):P
 }
 
 //UpdateOwnerDetails
-export async function updateOwnerDetails(ownerId:string,ownerDetails:IOwnerDetailsInputModel):Promise<IOwnerDetailsViewModel>{
+export async function UpdateOneRecord(ownerId:string,ownerDetails:IOwnerDetailsInputModel):Promise<IOwnerDetailsViewModel>{
     const response=await apiCall("/api/ownerDetails/update/"+ownerId,{
         method:"PATCH",
         headers:{
@@ -66,7 +66,7 @@ export async function updateOwnerDetails(ownerId:string,ownerDetails:IOwnerDetai
 }
 
 //DeleteOwnerDetails
-export async function deleteOwnerDetails(ownerId:string){
+export async function DeleteOneRecord(ownerId:string){
     await apiCall("/api/ownerDetails/delete/"+ownerId,{method:"DELETE"});
 }
 

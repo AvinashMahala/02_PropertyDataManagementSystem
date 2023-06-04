@@ -10,7 +10,7 @@ export class DeleteRowStrategy implements ActionStrategy {
 
     //send api delete request here, then refetch or update local table data for re-render
     try {
-      FlatApi.deleteFlatDetails(row.getValue("_id")).then(() => {
+      FlatApi.DeleteOneRecord(row.getValue("_id")).then(() => {
         console.log("Flat Details Deleted!");
         const isDeleted = true;
         if (isDeleted) {

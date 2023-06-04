@@ -26,21 +26,21 @@ async function apiCall(input: RequestInfo, init?: RequestInit){
 }
 
 //getAllFlats
-export async function getAllFlats():Promise<IFlatViewModel[]>{
+export async function RetrieveAllRecords():Promise<IFlatViewModel[]>{
     const response=await apiCall("/api/flats/all",{method:"GET"});
     const flats=await response.json();
     return flats;
 }
 
 //getOneFlat
-export async function getOneFlat(flatId:string):Promise<IFlatViewModel>{
+export async function RetrieveOneRecord(flatId:string):Promise<IFlatViewModel>{
     const response=await apiCall("/api/flats/"+flatId,{method:"GET"});
     const flatDetails=await response.json();
     return flatDetails;
 }
 
 //createAFlat
-export async function createAFlat(flatDetails:IFlatInputModel):Promise<IFlatViewModel>{
+export async function CreateOneRecord(flatDetails:IFlatInputModel):Promise<IFlatViewModel>{
     const response=await apiCall("/api/flats/create",{
         method:"POST",
         headers:{
@@ -53,7 +53,7 @@ export async function createAFlat(flatDetails:IFlatInputModel):Promise<IFlatView
 }
 
 //updateFlatDetails
-export async function updateFlatDetails(flatId:string,flatDetails:IFlatInputModel):Promise<IFlatViewModel>{
+export async function UpdateOneRecord(flatId:string,flatDetails:IFlatInputModel):Promise<IFlatViewModel>{
     const response=await apiCall("/api/flats/update/"+flatId,{
         method:"PATCH",
         headers:{
@@ -66,7 +66,7 @@ export async function updateFlatDetails(flatId:string,flatDetails:IFlatInputMode
 }
 
 //deleteFlatDetails
-export async function deleteFlatDetails(flatId:string){
+export async function DeleteOneRecord(flatId:string){
     await apiCall("/api/flats/delete/"+flatId,{method:"DELETE"});
 }
 
