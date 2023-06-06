@@ -16,7 +16,7 @@ export const GridFactory = (
   validationErrors: any,
   setValidationErrors: any,
   rentReceiptMetaDataArr:any,
-  ownersArr:any
+  ownersArr:any,
 ) => {
   const ownerDetailsGridColumns = commonImports.useMemo<
     commonImports.MRT_ColumnDef<PropertiesModel.IPropertyDetailsViewModel>[]
@@ -35,7 +35,9 @@ export const GridFactory = (
             cell,
             validationErrors,
             setValidationErrors,
-            usersArr
+            usersArr,
+            ownersArr,
+            rentReceiptMetaDataArr
           ),
         }),
       },
@@ -43,14 +45,28 @@ export const GridFactory = (
         header: "propertyName",
         accessorKey: "propertyName",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
-          ...getCommonEditTextFieldProps(cell),
+          ...getCommonEditTextFieldProps(
+            cell,
+            validationErrors,
+            setValidationErrors,
+            usersArr,
+            ownersArr,
+            rentReceiptMetaDataArr
+          ),
         }),
       },
       {
         header: "Owned By",
         accessorKey: "ownerId",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
-          ...getCommonEditTextFieldProps(cell),
+          ...getCommonEditTextFieldProps(
+            cell,
+            validationErrors,
+            setValidationErrors,
+            usersArr,
+            ownersArr,
+            rentReceiptMetaDataArr
+          ),
         }),
         Cell: ({ cell }) => {
           const ownerId = cell.getValue<string>();
@@ -66,7 +82,14 @@ export const GridFactory = (
         header: "Rent Receipt Meta Data",
         accessorKey: "rentReceiptMetaDataId",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
-          ...getCommonEditTextFieldProps(cell),
+          ...getCommonEditTextFieldProps(
+            cell,
+            validationErrors,
+            setValidationErrors,
+            usersArr,
+            ownersArr,
+            rentReceiptMetaDataArr
+          ),
         }),
         Cell: ({ cell }) => {
           const rentReceiptMetaDataId = cell.getValue<string>();
@@ -82,21 +105,42 @@ export const GridFactory = (
         header: "propertyType",
         accessorKey: "propertyType",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
-          ...getCommonEditTextFieldProps(cell),
+          ...getCommonEditTextFieldProps(
+            cell,
+            validationErrors,
+            setValidationErrors,
+            usersArr,
+            ownersArr,
+            rentReceiptMetaDataArr
+          ),
         }),
       },
       {
         header: "propertyAddress",
         accessorKey: "propertyAddress",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
-          ...getCommonEditTextFieldProps(cell),
+          ...getCommonEditTextFieldProps(
+            cell,
+            validationErrors,
+            setValidationErrors,
+            usersArr,
+            ownersArr,
+            rentReceiptMetaDataArr
+          ),
         }),
       },
       {
         header: "propertyTakeRentOf",
         accessorKey: "propertyTakeRentOf",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
-          ...getCommonEditTextFieldProps(cell),
+          ...getCommonEditTextFieldProps(
+            cell,
+            validationErrors,
+            setValidationErrors,
+            usersArr,
+            ownersArr,
+            rentReceiptMetaDataArr
+          ),
         }),
       },
       {
@@ -107,7 +151,14 @@ export const GridFactory = (
           <>{commonImports.formatDate(cell.getValue<string>())}</>
         ),
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
-          ...getCommonEditTextFieldProps(cell),
+          ...getCommonEditTextFieldProps(
+            cell,
+            validationErrors,
+            setValidationErrors,
+            usersArr,
+            ownersArr,
+            rentReceiptMetaDataArr
+          ),
         }),
       },
       {
@@ -118,7 +169,14 @@ export const GridFactory = (
           <>{commonImports.formatDate(cell.getValue<string>())}</>
         ),
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
-          ...getCommonEditTextFieldProps(cell),
+          ...getCommonEditTextFieldProps(
+            cell,
+            validationErrors,
+            setValidationErrors,
+            usersArr,
+            ownersArr,
+            rentReceiptMetaDataArr
+          ),
         }),
       },
     ],
