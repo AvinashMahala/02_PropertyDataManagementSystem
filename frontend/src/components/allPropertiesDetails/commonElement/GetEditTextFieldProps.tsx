@@ -2,6 +2,7 @@ import * as commonImports from "../../../commonCode/importMRTRelated";
 import * as PropertiesModel from "../../../models/allPropertiesModel";
 import * as UserModel from "../../../models/user";
 import { KeyboardDatePicker } from "@material-ui/pickers";
+import {propertyTypeOptions,propertyTakeRentOfOptions} from "./../../../models/allPropertiesModel";
 
 const getEditTextFieldProps = (
   cell: commonImports.MRT_Cell<PropertiesModel.IPropertyDetailsViewModel>,
@@ -71,6 +72,64 @@ const getEditTextFieldProps = (
       },
     };
   }
+  if (cell.column.id === "propertyType") {
+    return {
+      select: true,
+      label: "Property Type",
+      children: propertyTypeOptions.map((option: any) => (
+        <commonImports.MenuItem key={option._id} value={option._id}>
+          {option.name}
+        </commonImports.MenuItem>
+      )),
+      error: !!validationErrors[cell.id],
+      helperText: validationErrors[cell.id],
+      onChange: (e) => {
+        const value = e.target.value;
+        if (!value) {
+          setValidationErrors((prev) => ({
+            ...prev,
+            [cell.id]: "Required",
+          }));
+        } else {
+          setValidationErrors((prev) => {
+            const next = { ...prev };
+            delete next[cell.id];
+            return next;
+          });
+        }
+        // cell.setEditingCellValue(value);
+      },
+    };
+  }
+  if (cell.column.id === "propertyTakeRentOf") {
+    return {
+      select: true,
+      label: "Take Rent Of",
+      children: propertyTakeRentOfOptions.map((option: any) => (
+        <commonImports.MenuItem key={option._id} value={option._id}>
+          {option.name}
+        </commonImports.MenuItem>
+      )),
+      error: !!validationErrors[cell.id],
+      helperText: validationErrors[cell.id],
+      onChange: (e) => {
+        const value = e.target.value;
+        if (!value) {
+          setValidationErrors((prev) => ({
+            ...prev,
+            [cell.id]: "Required",
+          }));
+        } else {
+          setValidationErrors((prev) => {
+            const next = { ...prev };
+            delete next[cell.id];
+            return next;
+          });
+        }
+        // cell.setEditingCellValue(value);
+      },
+    };
+  }
   if (cell.column.id === "createdAt") {
     const rawDate: string = String(cell.getValue());
     const dt:Date=new Date(rawDate);
@@ -81,6 +140,7 @@ const getEditTextFieldProps = (
       value: formattedDate,
       error: !!validationErrors[cell.id],
       helperText: validationErrors[cell.id],
+      disabled:true,
       onChange: (e) => {
         const value = e.target.value;
         if (!value) {
@@ -109,6 +169,7 @@ const getEditTextFieldProps = (
       value: formattedDate,
       error: !!validationErrors[cell.id],
       helperText: validationErrors[cell.id],
+      disabled:true,
       onChange: (e) => {
         const value = e.target.value;
         if (!value) {

@@ -5,6 +5,8 @@ import * as UserModel from "../../../models/user";
 import * as OwnerModel from "../../../models/ownerDetails";
 import * as RentReceiptMetaDataModel from "../../../models/rentReceiptMetaDataDetails";
 
+import {propertyTypeOptions,propertyTakeRentOfOptions} from "./../../../models/allPropertiesModel";
+
 interface CreateModalProps {
   columns: commonImports.MRT_ColumnDef<PropertiesModel.IPropertyDetailsViewModel>[];
   onClose: () => void;
@@ -13,18 +15,6 @@ interface CreateModalProps {
   ownersArr: OwnerModel.IOwnerDetailsViewModel[];
   rentReceiptMetaDataArr: RentReceiptMetaDataModel.IRentReceiptMetaDataDetailsViewModel[];
 }
-
-const propertyTypeOptions=[
-  {"_id":"Apartment","name":"Apartment"},
-  {"_id":"House","name":"House"},
-  {"_id":"Others","name":"Others"},
-];
-
-const propertyTakeRentOfOptions=[
-  {"_id":"Daily","name":"Daily"},
-  {"_id":"Weekly","name":"Weekly"},
-  {"_id":"Monthly","name":"Monthly"},
-];
 
 //example of creating a mui dialog modal for creating new rows
 export const CreateNewModal = ({
