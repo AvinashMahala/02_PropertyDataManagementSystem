@@ -1,11 +1,17 @@
 //------------------------------------Imports Section------------------------
 import * as AllPropertiesApi from "../../network/allPropertiesApi";
+import * as OwnersApi from "./../../network/ownerDetailsApi";
+import * as RentReceiptMetaDataApi from "./../../network/rentReceiptMDataApi";
 import * as UsersApi from "../../network/users_api";
 import * as UserModel from "../../models/user";
 import * as AllPropertiesModel from "../../models/allPropertiesModel";
 import PropertyPageStyles from "../../styles/PropertyPage.module.css";
 import * as commonImports from "../../commonCode/importMRTRelated";
 import {CreateNewModal} from "./commonElement/CreateNewModal";
+
+import {IOwnerDetailsViewModel} from "../../models/ownerDetails";
+import {IRentReceiptMetaDataDetailsViewModel} from "../../models/rentReceiptMetaDataDetails";
+
 
 //Strategy DesignPattern Used for the Create, Update and Delete Operations
 import { CreateNewRowStrategy } from "./commonElement/Strategy/CreateNewRowStrategy";
@@ -20,6 +26,8 @@ import { GridFactory } from './commonElement/Factory/GridFactory'; // Adjust the
 
 
 let usersArr: UserModel.User[] = []; //This stores all the users retrieved from the database
+let ownersArr: IOwnerDetailsViewModel[] = []; //
+let rentReceiptMetaDataArr: IRentReceiptMetaDataDetailsViewModel[] = []; //
 
 const PropertyLoggedInView = () => {
   const [propertyArr, setPropertyArr] = commonImports.useState<
@@ -88,14 +96,19 @@ const PropertyLoggedInView = () => {
     UsersApi.fetchUsers().then((response) => {
       usersArr = response;
     });
-
+    OwnersApi.RetrieveAllRecords().then((response) => {
+      ownersArr = response;
+    });
+    RentReceiptMetaDataApi.RetrieveAllRecords().then((response) => {
+      rentReceiptMetaDataArr = response;
+    });
     AllPropertiesApi.RetrieveAllRecords().then((response) => {
       setPropertyArr(response);
     });
   }, []);
 
   //This is Used to set the columns of the table
-  const propertiesDetailsGridColumns = GridFactory(getEditTextFieldProps, usersArr,validationErrors,setValidationErrors);
+  const propertiesDetailsGridColumns = GridFactory(getEditTextFieldProps, ownersArr,validationErrors,setValidationErrors);
 
   const handleOk = () => {
     // Perform the operation you want when the OK button is clicked
@@ -174,7 +187,8 @@ const PropertyLoggedInView = () => {
           open={createModalOpen}
           onClose={() => setCreateModalOpen(false)}
           onSubmit={handleCreateNewRow}
-          usersArr={usersArr}
+          ownersArr={ownersArr}
+          rentReceiptMetaDataArr={rentReceiptMetaDataArr}
         />
       </commonImports.Container>
     </>

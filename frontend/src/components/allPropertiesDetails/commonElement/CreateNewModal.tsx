@@ -2,14 +2,29 @@ import * as commonImports from "../../../commonCode/importMRTRelated";
 import React from "react";
 import * as PropertiesModel from "../../../models/allPropertiesModel";
 import * as UserModel from "../../../models/user";
+import * as OwnerModel from "../../../models/ownerDetails";
+import * as RentReceiptMetaDataModel from "../../../models/rentReceiptMetaDataDetails";
 
 interface CreateModalProps {
   columns: commonImports.MRT_ColumnDef<PropertiesModel.IPropertyDetailsViewModel>[];
   onClose: () => void;
   onSubmit: (values: PropertiesModel.IPropertyDetailsViewModel) => void;
   open: boolean;
-  usersArr:UserModel.User[];
+  ownersArr: OwnerModel.IOwnerDetailsViewModel[];
+  rentReceiptMetaDataArr: RentReceiptMetaDataModel.IRentReceiptMetaDataDetailsViewModel[];
 }
+
+const propertyTypeOptions=[
+  {"_id":"Apartment","name":"Apartment"},
+  {"_id":"House","name":"House"},
+  {"_id":"Others","name":"Others"},
+];
+
+const propertyTakeRentOfOptions=[
+  {"_id":"Daily","name":"Daily"},
+  {"_id":"Weekly","name":"Weekly"},
+  {"_id":"Monthly","name":"Monthly"},
+];
 
 //example of creating a mui dialog modal for creating new rows
 export const CreateNewModal = ({
@@ -17,8 +32,8 @@ export const CreateNewModal = ({
   columns,
   onClose,
   onSubmit,
-  usersArr
-
+  ownersArr,
+  rentReceiptMetaDataArr,
 }: CreateModalProps) => {
   const [values, setValues] = commonImports.useState<any>(() =>
     columns.reduce((acc, column) => {
@@ -27,7 +42,10 @@ export const CreateNewModal = ({
     }, {} as any)
   );
 
-  const [selectedProperty, setSelectedProperty] = commonImports.useState("");
+  const [selectedOwner, setSelectedOwner] = commonImports.useState("");
+  const [selectedRentReceiptMData, setSelectedRentReceiptMData] = commonImports.useState("");
+  const [selectedPropertyType, setSelectedPropertyType] = commonImports.useState("");
+  const [selectedPropertyTakeRentOf, setSelectedPropertyTakeRentOf] = commonImports.useState("");
   const [errors, setErrors] = commonImports.useState<{ [key: string]: string }>(
     {}
   );
@@ -37,11 +55,15 @@ export const CreateNewModal = ({
     tempErrors = {
       ...tempErrors,
       ownerId: values.ownerId ? "" : "This field is required",
-      rentReceiptMetaDataId: values.rentReceiptMetaDataId ? "" : "This field is required",
+      rentReceiptMetaDataId: values.rentReceiptMetaDataId
+        ? ""
+        : "This field is required",
       propertyName: values.propertyName ? "" : "This field is required",
       propertyType: values.propertyType ? "" : "This field is required",
       propertyAddress: values.propertyAddress ? "" : "This field is required",
-      propertyTakeRentOf: values.propertyTakeRentOf ? "" : "This field is required",
+      propertyTakeRentOf: values.propertyTakeRentOf
+        ? ""
+        : "This field is required",
     };
     setErrors({
       ...tempErrors,
@@ -61,7 +83,7 @@ export const CreateNewModal = ({
   return (
     <commonImports.Dialog open={open}>
       <commonImports.DialogTitle textAlign="center">
-        Create New Rent Receipt Meta Data
+        Create New Property
       </commonImports.DialogTitle>
       <commonImports.DialogContent>
         <form onSubmit={(e) => e.preventDefault()}>
@@ -72,36 +94,42 @@ export const CreateNewModal = ({
               gap: "1.5rem",
             }}
           >
-            {/* {columns
-              .filter((column) => column.accessorKey === "userId")
+            {columns
+              .filter((column) => column.accessorKey === "ownerId")
               .map((column) => (
                 <commonImports.FormControl
                   error={column.accessorKey && !!errors[column.accessorKey]}
                 >
                   <commonImports.Select
-                    label="User Id"
+                  
+                    label="Owner Id"
                     key={column.accessorKey}
                     name={column.accessorKey}
-                    value={selectedOwnerType}
+                    value={selectedOwner}
                     onChange={(event) => {
                       setValues({
                         ...values,
                         [event.target.name]: event.target.value,
                       });
-                      setSelectedOwnerType(event.target.value);
+                      setSelectedOwner(event.target.value);
                     }}
                     displayEmpty
-                    sx={{ minWidth: 120 }}
+                    sx={{ minWidth: 120}}
+                    MenuProps={{
+                      style: {
+                         maxHeight: 500,
+                            },
+                      }}
                   >
                     <commonImports.MenuItem value="" disabled>
-                      Select a User
+                      Select a Owner
                     </commonImports.MenuItem>
-                    {usersArr.map((option) => (
+                    {ownersArr.map((option) => (
                       <commonImports.MenuItem
                         key={option._id}
                         value={option._id}
                       >
-                        {option.username + " - " + option.role}
+                        {option.ownerName}
                       </commonImports.MenuItem>
                     ))}
                   </commonImports.Select>
@@ -112,12 +140,112 @@ export const CreateNewModal = ({
                       : ""}
                   </commonImports.FormHelperText>
                 </commonImports.FormControl>
-              ))} */}
+              ))}
 
+            {columns
+              .filter(
+                (column) => column.accessorKey === "rentReceiptMetaDataId"
+              )
+              .map((column) => (
+                <commonImports.FormControl
+                  error={column.accessorKey && !!errors[column.accessorKey]}
+                >
+                  <commonImports.Select
+                    label="rentReceiptMetaDataId"
+                    key={column.accessorKey}
+                    name={column.accessorKey}
+                    value={selectedRentReceiptMData}
+                    onChange={(event) => {
+                      setValues({
+                        ...values,
+                        [event.target.name]: event.target.value,
+                      });
+                      setSelectedRentReceiptMData(event.target.value);
+                    }}
+                    displayEmpty
+                    sx={{ minWidth: 120 }}
+                    MenuProps={{
+                      style: {
+                         maxHeight: 500,
+                            },
+                      }}
+                  >
+                    <commonImports.MenuItem value="" disabled>
+                      Select a Rent Receipt MetaData
+                    </commonImports.MenuItem>
+                    {rentReceiptMetaDataArr.map((option) => (
+                      <commonImports.MenuItem
+                        key={option._id}
+                        value={option._id}
+                      >
+                        {option.rentReceiptMetaDataRefNm}
+                      </commonImports.MenuItem>
+                    ))}
+                  </commonImports.Select>
+                  <commonImports.FormHelperText>
+                    {column.accessorKey &&
+                    errors.hasOwnProperty(column.accessorKey)
+                      ? errors[column.accessorKey]
+                      : ""}
+                  </commonImports.FormHelperText>
+                </commonImports.FormControl>
+              ))}
+  {columns
+              .filter(
+                (column) => column.accessorKey === "propertyType"
+              )
+              .map((column) => (
+                <commonImports.FormControl
+                  error={column.accessorKey && !!errors[column.accessorKey]}
+                >
+                  <commonImports.Select
+                    label="propertyType"
+                    key={column.accessorKey}
+                    name={column.accessorKey}
+                    value={selectedPropertyType}
+                    onChange={(event) => {
+                      setValues({
+                        ...values,
+                        [event.target.name]: event.target.value,
+                      });
+                      setSelectedPropertyType(event.target.value);
+                    }}
+                    displayEmpty
+                    sx={{ minWidth: 120 }}
+                    MenuProps={{
+                      style: {
+                         maxHeight: 500,
+                            },
+                      }}
+                  >
+                    <commonImports.MenuItem value="" disabled>
+                      Select a Property Type
+                    </commonImports.MenuItem>
+                    {propertyTypeOptions.map((option) => (
+                      <commonImports.MenuItem
+                        key={option._id}
+                        value={option._id}
+                      >
+                        {option.name}
+                      </commonImports.MenuItem>
+                    ))}
+                  </commonImports.Select>
+                  <commonImports.FormHelperText>
+                    {column.accessorKey &&
+                    errors.hasOwnProperty(column.accessorKey)
+                      ? errors[column.accessorKey]
+                      : ""}
+                  </commonImports.FormHelperText>
+                </commonImports.FormControl>
+              ))}
             {columns
               .filter(
                 (column) =>
                   column.accessorKey !== "_id" &&
+                  column.accessorKey !== "ownerId" &&
+                  column.accessorKey !== "rentReceiptMetaDataId" &&
+                  column.accessorKey !== "propertyType" &&
+                  column.accessorKey !== "propertyTakeRentOf" &&
                   column.accessorKey !== "createdAt" &&
                   column.accessorKey !== "updatedAt"
               )
@@ -138,6 +266,54 @@ export const CreateNewModal = ({
                   }
                 />
               ))}
+              {columns
+              .filter(
+                (column) => column.accessorKey === "propertyTakeRentOf"
+              )
+              .map((column) => (
+                <commonImports.FormControl
+                  error={column.accessorKey && !!errors[column.accessorKey]}
+                >
+                  <commonImports.Select
+                    label="propertyTakeRentOf"
+                    key={column.accessorKey}
+                    name={column.accessorKey}
+                    value={selectedPropertyTakeRentOf}
+                    onChange={(event) => {
+                      setValues({
+                        ...values,
+                        [event.target.name]: event.target.value,
+                      });
+                      setSelectedPropertyTakeRentOf(event.target.value);
+                    }}
+                    displayEmpty
+                    sx={{ minWidth: 120 }}
+                    MenuProps={{
+                      style: {
+                         maxHeight: 500,
+                            },
+                      }}
+                  >
+                    <commonImports.MenuItem value="" disabled>
+                      Select a Property Take Rent Of
+                    </commonImports.MenuItem>
+                    {propertyTakeRentOfOptions.map((option) => (
+                      <commonImports.MenuItem
+                        key={option._id}
+                        value={option._id}
+                      >
+                        {option.name}
+                      </commonImports.MenuItem>
+                    ))}
+                  </commonImports.Select>
+                  <commonImports.FormHelperText>
+                    {column.accessorKey &&
+                    errors.hasOwnProperty(column.accessorKey)
+                      ? errors[column.accessorKey]
+                      : ""}
+                  </commonImports.FormHelperText>
+                </commonImports.FormControl>
+              ))}
           </commonImports.Stack>
         </form>
       </commonImports.DialogContent>
@@ -148,7 +324,7 @@ export const CreateNewModal = ({
           onClick={handleSubmit}
           variant="contained"
         >
-          Create New Rent Receipt Meta Data
+          Create New Property
         </commonImports.Button>
       </commonImports.DialogActions>
     </commonImports.Dialog>
