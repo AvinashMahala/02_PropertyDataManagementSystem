@@ -7,6 +7,8 @@ import PropertyPageStyles from "../../styles/PropertyPage.module.css";
 import * as commonImports from "../../commonCode/importMRTRelated";
 import {CreateNewModal} from "./commonElement/CreateNewModal";
 
+import ownerDetailsPageStyle from "./../../styles/OwnerDetailsPage.module.css"
+
 //Strategy DesignPattern Used for the Create, Update and Delete Operations
 import { CreateNewRowStrategy } from "./commonElement/Strategy/CreateNewRowStrategy";
 import { SaveRowEditsStrategy } from './commonElement/Strategy/SaveRowEditsStrategy';
@@ -115,8 +117,9 @@ const FlatsLoggedInView = () => {
         handleOk={handleOk}
         message={message}
       />
-      <h1>Flats Details Logged In View</h1>
+      
       <commonImports.Container className={PropertyPageStyles.pageContainer}>
+      <h1 className={ownerDetailsPageStyle.headerStyle}>Flats Details Logged In View</h1>
         <commonImports.MaterialReactTable
           displayColumnDefOptions={{
             "mrt-row-actions": {
