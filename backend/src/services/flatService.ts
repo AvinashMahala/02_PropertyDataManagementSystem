@@ -37,10 +37,68 @@ export const createFlat: RequestHandler<
   IFlatModelCreateModel,
   unknown
 > = async (req, res, next) => {
-  const flat = req.body;
+  const propertyId=req.body.propertyId;
+  const roomName=req.body.roomName;
+  const roomRent=req.body.roomRent;
+  const roomColorSeparator=req.body.roomColorSeparator;
+  const roomType=req.body.roomType;
+  const roomRemarks=req.body.roomRemarks;
+  const rentCalcMethod=req.body.rentCalcMethod;
+  const electricityBillType=req.body.electricityBillType;
+  const electricityBillMeterName=req.body.electricityBillMeterName;
+  const electricityBillPerUnitCost=req.body.electricityBillPerUnitCost;
+  const electricityBillMeterReading=req.body.electricityBillMeterReading;
+  const electricityBillFixedAmtCost=req.body.electricityBillFixedAmtCost;
+  const waterBillType=req.body.waterBillType;
+  const waterBillMeterName=req.body.waterBillMeterName;
+  const waterBillPerUnitCost=req.body.waterBillPerUnitCost;
+  const waterBillMeterReading=req.body.waterBillMeterReading;
+  const waterBillFixedAmtCost=req.body.waterBillFixedAmtCost;
+
+
 
   try {
-    const newFlat = await IFlatModelMainModel.create(flat);
+    if (
+      !propertyId ||
+      !roomName ||
+      !roomRent ||
+      !roomColorSeparator ||
+      !roomType ||
+      !roomRemarks ||
+      !rentCalcMethod ||
+      !electricityBillType ||
+      !electricityBillMeterName ||
+      !electricityBillPerUnitCost ||
+      !electricityBillMeterReading ||
+      !electricityBillFixedAmtCost ||
+      !waterBillType ||
+      !waterBillMeterName ||
+      !waterBillPerUnitCost ||
+      !waterBillMeterReading ||
+      !waterBillFixedAmtCost
+    ) {
+      throw createHttpError(400, "Parameters Missing!");
+    }
+
+    const newFlat = await IFlatModelMainModel.create({
+      propertyId:propertyId,
+      roomName:roomName,
+      roomRent:roomRent,
+      roomColorSeparator:roomColorSeparator,
+      roomType:roomType,
+      roomRemarks:roomRemarks,
+      rentCalcMethod:rentCalcMethod,
+      electricityBillType:electricityBillType,
+      electricityBillMeterName:electricityBillMeterName,
+      electricityBillPerUnitCost:electricityBillPerUnitCost,
+      electricityBillMeterReading:electricityBillMeterReading,
+      electricityBillFixedAmtCost:electricityBillFixedAmtCost,
+      waterBillType:waterBillType,
+      waterBillMeterName:waterBillMeterName,
+      waterBillPerUnitCost:waterBillPerUnitCost,
+      waterBillMeterReading:waterBillMeterReading,
+      waterBillFixedAmtCost:waterBillFixedAmtCost,
+    });
 
     res.status(201).json(newFlat);
   } catch (error) {
