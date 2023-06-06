@@ -14,7 +14,9 @@ export const GridFactory = (
   getCommonEditTextFieldProps: any,
   usersArr: any[],
   validationErrors: any,
-  setValidationErrors: any
+  setValidationErrors: any,
+  rentReceiptMetaDataArr:any,
+  ownersArr:any
 ) => {
   const ownerDetailsGridColumns = commonImports.useMemo<
     commonImports.MRT_ColumnDef<PropertiesModel.IPropertyDetailsViewModel>[]
@@ -38,25 +40,43 @@ export const GridFactory = (
         }),
       },
       {
-        header: "ownerId",
-        accessorKey: "ownerId",
-        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
-          ...getCommonEditTextFieldProps(cell),
-        }),
-      },
-      {
-        header: "rentReceiptMetaDataId",
-        accessorKey: "rentReceiptMetaDataId",
-        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
-          ...getCommonEditTextFieldProps(cell),
-        }),
-      },
-      {
         header: "propertyName",
         accessorKey: "propertyName",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
+      },
+      {
+        header: "Owned By",
+        accessorKey: "ownerId",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+        Cell: ({ cell }) => {
+          const ownerId = cell.getValue<string>();
+          const ownedBy = ownersArr.find((ownedBy:any) => ownedBy._id === ownerId);
+
+          if (ownedBy) {
+            return <>{ownedBy.ownerName}</>;
+          }
+          return <>{"None"}</>;
+        },
+      },
+      {
+        header: "Rent Receipt Meta Data",
+        accessorKey: "rentReceiptMetaDataId",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+        Cell: ({ cell }) => {
+          const rentReceiptMetaDataId = cell.getValue<string>();
+          const rentReceiptMetaData = rentReceiptMetaDataArr.find((rentReceiptMetaData:any) => rentReceiptMetaData._id === rentReceiptMetaDataId);
+
+          if (rentReceiptMetaData) {
+            return <>{rentReceiptMetaData.rentReceiptMetaDataRefNm}</>;
+          }
+          return <>{"None"}</>;
+        },
       },
       {
         header: "propertyType",
@@ -102,7 +122,7 @@ export const GridFactory = (
         }),
       },
     ],
-    [getCommonEditTextFieldProps, usersArr]
+    [getCommonEditTextFieldProps, usersArr,ownersArr,rentReceiptMetaDataArr]
   );
   return ownerDetailsGridColumns;
 };

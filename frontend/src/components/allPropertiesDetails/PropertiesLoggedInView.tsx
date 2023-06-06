@@ -9,6 +9,8 @@ import PropertyPageStyles from "../../styles/PropertyPage.module.css";
 import * as commonImports from "../../commonCode/importMRTRelated";
 import {CreateNewModal} from "./commonElement/CreateNewModal";
 
+import ownerDetailsPageStyle from "../../styles/OwnerDetailsPage.module.css";
+
 import {IOwnerDetailsViewModel} from "../../models/ownerDetails";
 import {IRentReceiptMetaDataDetailsViewModel} from "../../models/rentReceiptMetaDataDetails";
 
@@ -108,7 +110,14 @@ const PropertyLoggedInView = () => {
   }, []);
 
   //This is Used to set the columns of the table
-  const propertiesDetailsGridColumns = GridFactory(getEditTextFieldProps, ownersArr,validationErrors,setValidationErrors);
+  const propertiesDetailsGridColumns = GridFactory(
+    getEditTextFieldProps, 
+    usersArr,
+    validationErrors,
+    setValidationErrors,
+    rentReceiptMetaDataArr,
+    ownersArr
+    );
 
   const handleOk = () => {
     // Perform the operation you want when the OK button is clicked
@@ -128,8 +137,9 @@ const PropertyLoggedInView = () => {
         handleOk={handleOk}
         message={message}
       />
-      <h1>Property Details Logged In View</h1>
+      
       <commonImports.Container className={PropertyPageStyles.pageContainer}>
+      <h1 className={ownerDetailsPageStyle.headerStyle}>Property Records</h1>
         <commonImports.MaterialReactTable
           displayColumnDefOptions={{
             "mrt-row-actions": {
