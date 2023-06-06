@@ -42,7 +42,7 @@ export const GridFactory = (
         }),
       },
       {
-        header: "propertyName",
+        header: "Name",
         accessorKey: "propertyName",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(
@@ -102,7 +102,7 @@ export const GridFactory = (
         },
       },
       {
-        header: "propertyType",
+        header: "Type",
         accessorKey: "propertyType",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(
@@ -116,7 +116,7 @@ export const GridFactory = (
         }),
       },
       {
-        header: "propertyAddress",
+        header: "Address",
         accessorKey: "propertyAddress",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(
@@ -130,7 +130,7 @@ export const GridFactory = (
         }),
       },
       {
-        header: "propertyTakeRentOf",
+        header: "Take Rent Of",
         accessorKey: "propertyTakeRentOf",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(

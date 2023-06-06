@@ -67,6 +67,14 @@ export const CreateNewModal = ({
     if (validate()) {
       onSubmit(values);
       onClose();
+      setSelectedOwner("");
+      setSelectedRentReceiptMData("");
+      setSelectedPropertyType("");
+      setSelectedPropertyTakeRentOf("");
+      setValues(columns.reduce((acc, column) => {
+        acc[column.accessorKey ?? ""] = "";
+        return acc;
+      }, {} as any));
     }
   };
 

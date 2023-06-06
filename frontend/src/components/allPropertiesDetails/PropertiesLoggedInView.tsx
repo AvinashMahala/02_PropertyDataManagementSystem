@@ -144,7 +144,7 @@ const PropertyLoggedInView = () => {
           displayColumnDefOptions={{
             "mrt-row-actions": {
               muiTableHeadCellProps: {
-                align: "center",
+                align: "left",
               },
               size: 30,
             },
@@ -164,7 +164,7 @@ const PropertyLoggedInView = () => {
           onEditingRowSave={handleSaveRowEdits}
           onEditingRowCancel={handleCancelRowEdits}
           renderRowActions={({ row, table }) => (
-            <commonImports.Box sx={{ display: "flex", gap: "1rem" }}>
+            <commonImports.Box sx={{ display: "flex"}}>
               <commonImports.Tooltip arrow placement="left" title="Edit">
                 <commonImports.IconButton
                   onClick={() => table.setEditingRow(row)}
