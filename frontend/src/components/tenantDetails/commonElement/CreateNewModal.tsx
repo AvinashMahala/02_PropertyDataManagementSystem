@@ -74,9 +74,31 @@ export const CreateNewModal = ({
         ? ""
         : "This field is required",
       ExtraService: values.ExtraService ? "" : "This field is required",
-      createdAt: values.createdAt ? "" : "This field is required",
-      updatedAt: values.updatedAt ? "" : "This field is required",
+      // createdAt: values.createdAt ? "" : "This field is required",
+      // updatedAt: values.updatedAt ? "" : "This field is required",
     };
+
+            // Validate for metered if it is required
+  if (values.LeaseType === "fixedAndDefined" && (!values.FixedLeaseStartDate || !values.FixedLeasePeriod || !values.FixedLeasePeriodType)) {
+    if(!values.FixedLeaseStartDate){
+      tempErrors = {
+        ...tempErrors,
+        FixedLeaseStartDate: "This field is required",
+      };
+    }
+    if(!values.FixedLeasePeriod){
+      tempErrors = {
+        ...tempErrors,
+        FixedLeasePeriod: "This field is required",
+      };
+    }
+    if(!values.FixedLeasePeriodType){
+      tempErrors = {
+        ...tempErrors,
+        FixedLeasePeriodType: "This field is required",
+      };
+    }
+  }
     setErrors({
       ...tempErrors,
     });
@@ -295,11 +317,33 @@ export const CreateNewModal = ({
                 </commonImports.FormControl>
               ))}
 
+{columns
+              .filter(
+                (column) =>
+                  column.accessorKey === "NoOfPeople"
+              )
+              .map((column) => (
+                <commonImports.TextField
+                  key={column.accessorKey}
+                  type="number"
+                  label={column.header}
+                  name={column.accessorKey}
+                  onChange={(e) =>
+                    setValues({ ...values, [e.target.name]: e.target.value })
+                  }
+                  error={column.accessorKey && !!errors[column.accessorKey]}
+                  helperText={
+                    column.accessorKey &&
+                    errors.hasOwnProperty(column.accessorKey)
+                      ? errors[column.accessorKey]
+                      : ""
+                  }
+                />
+              ))}
 
 {columns
               .filter(
                 (column) =>
-                  column.accessorKey === "NoOfPeople" ||
                   column.accessorKey === "NativeAddress" ||
                   column.accessorKey === "WorkAddress" ||
                   column.accessorKey === "PrimaryPhNo" ||
@@ -376,7 +420,9 @@ export const CreateNewModal = ({
                 </commonImports.FormControl>
               ))}
 
-{columns
+{
+  selectedLeaseType==="fixedAndDefined" &&
+  columns
               .filter(
                 (column) =>
                   column.accessorKey === "FixedLeaseStartDate" ||
@@ -398,9 +444,11 @@ export const CreateNewModal = ({
                       : ""
                   }
                 />
-              ))}
+              ))
+}
 
-{columns
+{selectedLeaseType==="fixedAndDefined" && 
+columns
               .filter((column) => column.accessorKey === "FixedLeasePeriodType")
               .map((column) => (
                 <commonImports.FormControl
