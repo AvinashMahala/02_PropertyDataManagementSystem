@@ -193,6 +193,42 @@ export const CreateNewModal = ({
       // waterBillMeterReading: values.waterBillMeterReading ? "" : "This field is required",
       // waterBillFixedAmtCost: values.waterBillFixedAmtCost ? "" : "This field is required",
     };
+
+        // Validate for metered if it is required
+  if (values.electricityBillType === "metered" && !values.electricityBillMeterName && !values.electricityBillPerUnitCost && !values.electricityBillMeterReading) {
+    tempErrors = {
+      ...tempErrors,
+      electricityBillMeterName: "This field is required",
+      electricityBillPerUnitCost: "This field is required",
+      electricityBillMeterReading: "This field is required",
+    };
+  }
+
+    // Validate waterBillFixedAmtCost if it is required
+  if (values.electricityBillType === "fixed" && !values.electricityBillFixedAmtCost) {
+    tempErrors = {
+      ...tempErrors,
+      electricityBillFixedAmtCost: "This field is required",
+    };
+  }
+
+  // Validate for Water Bill metered if it is required
+  if (values.waterBillType === "metered" && !values.waterBillMeterName && !values.waterBillPerUnitCost && !values.waterBillMeterReading) {
+    tempErrors = {
+      ...tempErrors,
+      waterBillMeterName: "This field is required",
+      waterBillPerUnitCost: "This field is required",
+      waterBillMeterReading: "This field is required",
+    };
+  }
+
+    // Validate waterBillFixedAmtCost if it is required
+    if (values.waterBillType === "fixed" && !values.waterBillFixedAmtCost) {
+      tempErrors = {
+        ...tempErrors,
+        waterBillFixedAmtCost: "This field is required",
+      };
+    }
     setErrors({
       ...tempErrors,
     });
@@ -449,6 +485,45 @@ export const CreateNewModal = ({
                 </commonImports.FormControl>
               ))}
 
+              {columns
+              .filter(
+                (column) =>
+                  column.accessorKey !== "_id" &&
+                  column.accessorKey !== "propertyId" &&
+                  column.accessorKey !== "roomColorSeparator" &&
+                  column.accessorKey !== "roomType" &&
+                  column.accessorKey !== "rentCalcMethod" &&
+                  column.accessorKey !== "electricityBillType" &&
+                  column.accessorKey !== "electricityBillMeterName" &&
+                  column.accessorKey !== "electricityBillPerUnitCost" &&
+                  column.accessorKey !== "electricityBillMeterReading" &&
+                  column.accessorKey !== "electricityBillFixedAmtCost" &&
+                  column.accessorKey !== "waterBillType" &&
+                  column.accessorKey !== "waterBillMeterName" &&
+                  column.accessorKey !== "waterBillPerUnitCost" &&
+                  column.accessorKey !== "waterBillMeterReading" &&
+                  column.accessorKey !== "waterBillFixedAmtCost" &&
+                  column.accessorKey !== "createdAt" &&
+                  column.accessorKey !== "updatedAt"
+              )
+              .map((column) => (
+                <commonImports.TextField
+                  key={column.accessorKey}
+                  label={column.header}
+                  name={column.accessorKey}
+                  onChange={(e) =>
+                    setValues({ ...values, [e.target.name]: e.target.value })
+                  }
+                  error={column.accessorKey && !!errors[column.accessorKey]}
+                  helperText={
+                    column.accessorKey &&
+                    errors.hasOwnProperty(column.accessorKey)
+                      ? errors[column.accessorKey]
+                      : ""
+                  }
+                />
+              ))}
+
             {columns
               .filter((column) => column.accessorKey === "electricityBillType")
               .map((column) => (
@@ -494,7 +569,66 @@ export const CreateNewModal = ({
                       : ""}
                   </commonImports.FormHelperText>
                 </commonImports.FormControl>
+            ))}
+
+{/* Render the form fields based on the electricity bill type */}
+{selectedElecBillType === "metered" && (
+  <>
+    {columns
+              .filter(
+                (column) =>
+                  column.accessorKey === "electricityBillMeterName" ||
+                  column.accessorKey === "electricityBillPerUnitCost" ||
+                  column.accessorKey === "electricityBillMeterReading"
+              )
+              .map((column) => (
+                <commonImports.TextField
+                  key={column.accessorKey}
+                  label={column.header}
+                  name={column.accessorKey}
+                  onChange={(e) =>
+                    setValues({ ...values, [e.target.name]: e.target.value })
+                  }
+                  error={column.accessorKey && !!errors[column.accessorKey]}
+                  helperText={
+                    column.accessorKey &&
+                    errors.hasOwnProperty(column.accessorKey)
+                      ? errors[column.accessorKey]
+                      : ""
+                  }
+                />
               ))}
+  </>
+)}
+
+{selectedElecBillType === "fixed" && (
+  <>
+    {columns
+              .filter(
+                (column) =>
+                  column.accessorKey === "electricityBillFixedAmtCost"
+              )
+              .map((column) => (
+                <commonImports.TextField
+                  key={column.accessorKey}
+                  label={column.header}
+                  name={column.accessorKey}
+                  onChange={(e) =>
+                    setValues({ ...values, [e.target.name]: e.target.value })
+                  }
+                  error={column.accessorKey && !!errors[column.accessorKey]}
+                  helperText={
+                    column.accessorKey &&
+                    errors.hasOwnProperty(column.accessorKey)
+                      ? errors[column.accessorKey]
+                      : ""
+                  }
+                />
+              ))}
+  </>
+)}
+
+
 
             {columns
               .filter((column) => column.accessorKey === "waterBillType")
@@ -543,18 +677,15 @@ export const CreateNewModal = ({
                 </commonImports.FormControl>
               ))}
 
-            {columns
+          {/* Render the form fields based on the Water bill type */}
+{selectedWaterBillType === "metered" && (
+  <>
+    {columns
               .filter(
                 (column) =>
-                  column.accessorKey !== "_id" &&
-                  column.accessorKey !== "propertyId" &&
-                  column.accessorKey !== "roomColorSeparator" &&
-                  column.accessorKey !== "roomType" &&
-                  column.accessorKey !== "rentCalcMethod" &&
-                  column.accessorKey !== "electricityBillType" &&
-                  column.accessorKey !== "waterBillType" &&
-                  column.accessorKey !== "createdAt" &&
-                  column.accessorKey !== "updatedAt"
+                  column.accessorKey === "waterBillMeterName" ||
+                  column.accessorKey === "waterBillPerUnitCost" ||
+                  column.accessorKey === "waterBillMeterReading"
               )
               .map((column) => (
                 <commonImports.TextField
@@ -573,6 +704,37 @@ export const CreateNewModal = ({
                   }
                 />
               ))}
+  </>
+)}
+
+{selectedWaterBillType === "fixed" && (
+  <>
+    {columns
+              .filter(
+                (column) =>
+                  column.accessorKey === "waterBillFixedAmtCost"
+              )
+              .map((column) => (
+                <commonImports.TextField
+                  key={column.accessorKey}
+                  label={column.header}
+                  name={column.accessorKey}
+                  onChange={(e) =>
+                    setValues({ ...values, [e.target.name]: e.target.value })
+                  }
+                  error={column.accessorKey && !!errors[column.accessorKey]}
+                  helperText={
+                    column.accessorKey &&
+                    errors.hasOwnProperty(column.accessorKey)
+                      ? errors[column.accessorKey]
+                      : ""
+                  }
+                />
+              ))}
+  </>
+)}
+
+            
           </commonImports.Stack>
         </form>
       </commonImports.DialogContent>
