@@ -2,7 +2,7 @@ import { Container, Nav, Row, Col } from "react-bootstrap";
 import { User } from "../models/user";
 import NavBarLoggedInView from "./NavBarLoggedInView";
 import NavBarLoggedOutView from "./NavBarLoggedOutView";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import PrivacyPage from "./../pages/PrivacyPage";
 import DashboardPage from "./../pages/DashboardPage";
 import OwnerDetailsPage from "../pages/OwnerDetailsPage";
@@ -16,7 +16,7 @@ import {
   CDBSidebarMenu,
   CDBSidebarMenuItem,
 } from "cdbreact";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import { ReactNode, useState } from "react";
 import TenantDetailsPage from "../pages/TenantDetailsPage";
 import AllPropertiesDetailsPage from "../pages/AllPropertiesDetailsPage";
@@ -28,7 +28,7 @@ import ProfilePage from "../pages/ProfilePage";
 import AnalyticsPage from "../pages/AnalyticsPage";
 import AllRentReceiptMetaDataPage from "../pages/AllRentReceiptMetaDataPage";
 import logoImg from "../assets/logo/logo-black.png";
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 interface NavBarProps {
   loggedInUser: User | null;
@@ -49,7 +49,7 @@ const NavBar = ({
   const handleButtonLinkClick = (component: ReactNode) => {
     onButtonLinkClick(component);
   };
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
 
   return (
@@ -97,7 +97,7 @@ const NavBar = ({
                 }
               >
                 <CDBSidebarMenuItem icon="user-shield">
-                  Owner Details
+                  Owners
                 </CDBSidebarMenuItem>
               </Nav.Link>
             ) : (
@@ -113,7 +113,7 @@ const NavBar = ({
                 }
               >
                 <CDBSidebarMenuItem icon="receipt">
-                  Rent Receipt MetaData
+                Payment Record Metadata
                 </CDBSidebarMenuItem>
               </Nav.Link>
             ) : (
@@ -133,7 +133,7 @@ const NavBar = ({
                 <CDBSidebarMenuItem 
                 icon="city"
                 >
-                  All Properties
+                  Properties
                 </CDBSidebarMenuItem>
               </Nav.Link>
             ) : (
@@ -149,7 +149,7 @@ const NavBar = ({
                 }
               >
                 <CDBSidebarMenuItem icon="door-open">
-                  Flat Details
+                  Rooms
                 </CDBSidebarMenuItem>
               </Nav.Link>
             ) : (
@@ -165,7 +165,7 @@ const NavBar = ({
                 }
               >
                 <CDBSidebarMenuItem icon="users">
-                  Tenant Details
+                  Tenants
                 </CDBSidebarMenuItem>
               </Nav.Link>
             ) : (
@@ -181,7 +181,7 @@ const NavBar = ({
                 }
               >
                 <CDBSidebarMenuItem icon="hand-holding-usd">
-                  All Rent Details
+                  Rental Records
                 </CDBSidebarMenuItem>
               </Nav.Link>
             ) : (
@@ -197,7 +197,7 @@ const NavBar = ({
                 }
               >
                 <CDBSidebarMenuItem icon="tools">
-                  Maintenance Details
+                  Maintenance
                 </CDBSidebarMenuItem>
               </Nav.Link>
             ) : (
@@ -233,7 +233,7 @@ const NavBar = ({
                 }
               >
                 <CDBSidebarMenuItem icon="user-check">
-                  Profile
+                  User Profile
                 </CDBSidebarMenuItem>
               </Nav.Link>
             ) : (
