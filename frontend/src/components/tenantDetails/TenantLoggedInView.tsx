@@ -41,7 +41,7 @@ const TenantsLoggedInView = () => {
   ) => {
     tenantArr.push(values);
     createNewRowStrategy.handle(values, {}, null, setMessage, setOpen).then(() => {
-      TenantApi.getAllTenants().then((allTenants: TenantModel.ITenantViewModel[]) => {
+      TenantApi.RetrieveAllRecords().then((allTenants: TenantModel.ITenantViewModel[]) => {
         setTenantArr(allTenants);
       });
     }).catch((error) => { }).finally(() => { });
@@ -89,7 +89,7 @@ const TenantsLoggedInView = () => {
       usersArr = response;
     });
 
-    TenantApi.getAllTenants().then((response) => {
+    TenantApi.RetrieveAllRecords().then((response) => {
       setTenantArr(response);
     });
   }, []);
@@ -100,7 +100,7 @@ const TenantsLoggedInView = () => {
   const handleOk = () => {
     // Perform the operation you want when the OK button is clicked
     console.log("OK button has been clicked!");
-    TenantApi.getAllTenants().then((allTenants) => {
+    TenantApi.RetrieveAllRecords().then((allTenants) => {
       setTenantArr(allTenants);
 
     });

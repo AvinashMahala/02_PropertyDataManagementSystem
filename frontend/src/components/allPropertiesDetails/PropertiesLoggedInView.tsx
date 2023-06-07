@@ -1,11 +1,19 @@
 //------------------------------------Imports Section------------------------
 import * as AllPropertiesApi from "../../network/allPropertiesApi";
+import * as OwnersApi from "./../../network/ownerDetailsApi";
+import * as RentReceiptMetaDataApi from "./../../network/rentReceiptMDataApi";
 import * as UsersApi from "../../network/users_api";
 import * as UserModel from "../../models/user";
 import * as AllPropertiesModel from "../../models/allPropertiesModel";
 import PropertyPageStyles from "../../styles/PropertyPage.module.css";
 import * as commonImports from "../../commonCode/importMRTRelated";
 import {CreateNewModal} from "./commonElement/CreateNewModal";
+
+import ownerDetailsPageStyle from "../../styles/OwnerDetailsPage.module.css";
+
+import {IOwnerDetailsViewModel} from "../../models/ownerDetails";
+import {IRentReceiptMetaDataDetailsViewModel} from "../../models/rentReceiptMetaDataDetails";
+
 
 //Strategy DesignPattern Used for the Create, Update and Delete Operations
 import { CreateNewRowStrategy } from "./commonElement/Strategy/CreateNewRowStrategy";
@@ -20,6 +28,8 @@ import { GridFactory } from './commonElement/Factory/GridFactory'; // Adjust the
 
 
 let usersArr: UserModel.User[] = []; //This stores all the users retrieved from the database
+let ownersArr: IOwnerDetailsViewModel[] = []; //
+let rentReceiptMetaDataArr: IRentReceiptMetaDataDetailsViewModel[] = []; //
 
 const PropertyLoggedInView = () => {
   const [propertyArr, setPropertyArr] = commonImports.useState<
@@ -41,7 +51,7 @@ const PropertyLoggedInView = () => {
   ) => {
     propertyArr.push(values);
     createNewRowStrategy.handle(values, {}, null, setMessage, setOpen).then(() => {
-      AllPropertiesApi.getAllPropertyDetails().then((allProperties: AllPropertiesModel.IPropertyDetailsViewModel[]) => {
+      AllPropertiesApi.RetrieveAllRecords().then((allProperties: AllPropertiesModel.IPropertyDetailsViewModel[]) => {
         setPropertyArr(allProperties);
       });
     }).catch((error) => { }).finally(() => { });
@@ -88,19 +98,31 @@ const PropertyLoggedInView = () => {
     UsersApi.fetchUsers().then((response) => {
       usersArr = response;
     });
-
-    AllPropertiesApi.getAllPropertyDetails().then((response) => {
+    OwnersApi.RetrieveAllRecords().then((response) => {
+      ownersArr = response;
+    });
+    RentReceiptMetaDataApi.RetrieveAllRecords().then((response) => {
+      rentReceiptMetaDataArr = response;
+    });
+    AllPropertiesApi.RetrieveAllRecords().then((response) => {
       setPropertyArr(response);
     });
   }, []);
 
   //This is Used to set the columns of the table
-  const propertiesDetailsGridColumns = GridFactory(getEditTextFieldProps, usersArr,validationErrors,setValidationErrors);
+  const propertiesDetailsGridColumns = GridFactory(
+    getEditTextFieldProps, 
+    usersArr,
+    validationErrors,
+    setValidationErrors,
+    rentReceiptMetaDataArr,
+    ownersArr
+    );
 
   const handleOk = () => {
     // Perform the operation you want when the OK button is clicked
     console.log("OK button has been clicked!");
-    AllPropertiesApi.getAllPropertyDetails().then((allProperties) => {
+    AllPropertiesApi.RetrieveAllRecords().then((allProperties) => {
       setPropertyArr(allProperties);
 
     });
@@ -115,13 +137,14 @@ const PropertyLoggedInView = () => {
         handleOk={handleOk}
         message={message}
       />
-      <h1>Property Details Logged In View</h1>
+      
       <commonImports.Container className={PropertyPageStyles.pageContainer}>
+      <h1 className={ownerDetailsPageStyle.headerStyle}>Property Records</h1>
         <commonImports.MaterialReactTable
           displayColumnDefOptions={{
             "mrt-row-actions": {
               muiTableHeadCellProps: {
-                align: "center",
+                align: "left",
               },
               size: 30,
             },
@@ -141,7 +164,7 @@ const PropertyLoggedInView = () => {
           onEditingRowSave={handleSaveRowEdits}
           onEditingRowCancel={handleCancelRowEdits}
           renderRowActions={({ row, table }) => (
-            <commonImports.Box sx={{ display: "flex", gap: "1rem" }}>
+            <commonImports.Box sx={{ display: "flex"}}>
               <commonImports.Tooltip arrow placement="left" title="Edit">
                 <commonImports.IconButton
                   onClick={() => table.setEditingRow(row)}
@@ -174,7 +197,8 @@ const PropertyLoggedInView = () => {
           open={createModalOpen}
           onClose={() => setCreateModalOpen(false)}
           onSubmit={handleCreateNewRow}
-          usersArr={usersArr}
+          ownersArr={ownersArr}
+          rentReceiptMetaDataArr={rentReceiptMetaDataArr}
         />
       </commonImports.Container>
     </>

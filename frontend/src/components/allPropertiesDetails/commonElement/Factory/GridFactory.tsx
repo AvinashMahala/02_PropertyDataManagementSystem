@@ -14,7 +14,9 @@ export const GridFactory = (
   getCommonEditTextFieldProps: any,
   usersArr: any[],
   validationErrors: any,
-  setValidationErrors: any
+  setValidationErrors: any,
+  rentReceiptMetaDataArr:any,
+  ownersArr:any,
 ) => {
   const ownerDetailsGridColumns = commonImports.useMemo<
     commonImports.MRT_ColumnDef<PropertiesModel.IPropertyDetailsViewModel>[]
@@ -33,50 +35,112 @@ export const GridFactory = (
             cell,
             validationErrors,
             setValidationErrors,
-            usersArr
+            usersArr,
+            ownersArr,
+            rentReceiptMetaDataArr
           ),
         }),
       },
       {
-        header: "ownerId",
-        accessorKey: "ownerId",
-        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
-          ...getCommonEditTextFieldProps(cell),
-        }),
-      },
-      {
-        header: "rentReceiptMetaDataId",
-        accessorKey: "rentReceiptMetaDataId",
-        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
-          ...getCommonEditTextFieldProps(cell),
-        }),
-      },
-      {
-        header: "propertyName",
+        header: "Name",
         accessorKey: "propertyName",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
-          ...getCommonEditTextFieldProps(cell),
+          ...getCommonEditTextFieldProps(
+            cell,
+            validationErrors,
+            setValidationErrors,
+            usersArr,
+            ownersArr,
+            rentReceiptMetaDataArr
+          ),
         }),
       },
       {
-        header: "propertyType",
+        header: "Owned By",
+        accessorKey: "ownerId",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(
+            cell,
+            validationErrors,
+            setValidationErrors,
+            usersArr,
+            ownersArr,
+            rentReceiptMetaDataArr
+          ),
+        }),
+        Cell: ({ cell }) => {
+          const ownerId = cell.getValue<string>();
+          const ownedBy = ownersArr.find((ownedBy:any) => ownedBy._id === ownerId);
+
+          if (ownedBy) {
+            return <>{ownedBy.ownerName}</>;
+          }
+          return <>{"None"}</>;
+        },
+      },
+      {
+        header: "Rent Receipt Meta Data",
+        accessorKey: "rentReceiptMetaDataId",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(
+            cell,
+            validationErrors,
+            setValidationErrors,
+            usersArr,
+            ownersArr,
+            rentReceiptMetaDataArr
+          ),
+        }),
+        Cell: ({ cell }) => {
+          const rentReceiptMetaDataId = cell.getValue<string>();
+          const rentReceiptMetaData = rentReceiptMetaDataArr.find((rentReceiptMetaData:any) => rentReceiptMetaData._id === rentReceiptMetaDataId);
+
+          if (rentReceiptMetaData) {
+            return <>{rentReceiptMetaData.rentReceiptMetaDataRefNm}</>;
+          }
+          return <>{"None"}</>;
+        },
+      },
+      {
+        header: "Type",
         accessorKey: "propertyType",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
-          ...getCommonEditTextFieldProps(cell),
+          ...getCommonEditTextFieldProps(
+            cell,
+            validationErrors,
+            setValidationErrors,
+            usersArr,
+            ownersArr,
+            rentReceiptMetaDataArr
+          ),
         }),
       },
       {
-        header: "propertyAddress",
+        header: "Address",
         accessorKey: "propertyAddress",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
-          ...getCommonEditTextFieldProps(cell),
+          ...getCommonEditTextFieldProps(
+            cell,
+            validationErrors,
+            setValidationErrors,
+            usersArr,
+            ownersArr,
+            rentReceiptMetaDataArr
+          ),
         }),
       },
       {
-        header: "propertyTakeRentOf",
+        header: "Take Rent Of",
         accessorKey: "propertyTakeRentOf",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
-          ...getCommonEditTextFieldProps(cell),
+          ...getCommonEditTextFieldProps(
+            cell,
+            validationErrors,
+            setValidationErrors,
+            usersArr,
+            ownersArr,
+            rentReceiptMetaDataArr
+          ),
         }),
       },
       {
@@ -87,7 +151,14 @@ export const GridFactory = (
           <>{commonImports.formatDate(cell.getValue<string>())}</>
         ),
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
-          ...getCommonEditTextFieldProps(cell),
+          ...getCommonEditTextFieldProps(
+            cell,
+            validationErrors,
+            setValidationErrors,
+            usersArr,
+            ownersArr,
+            rentReceiptMetaDataArr
+          ),
         }),
       },
       {
@@ -98,11 +169,18 @@ export const GridFactory = (
           <>{commonImports.formatDate(cell.getValue<string>())}</>
         ),
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
-          ...getCommonEditTextFieldProps(cell),
+          ...getCommonEditTextFieldProps(
+            cell,
+            validationErrors,
+            setValidationErrors,
+            usersArr,
+            ownersArr,
+            rentReceiptMetaDataArr
+          ),
         }),
       },
     ],
-    [getCommonEditTextFieldProps, usersArr]
+    [getCommonEditTextFieldProps, usersArr,ownersArr,rentReceiptMetaDataArr]
   );
   return ownerDetailsGridColumns;
 };

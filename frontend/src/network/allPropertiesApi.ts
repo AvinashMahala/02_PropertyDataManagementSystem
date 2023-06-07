@@ -26,21 +26,21 @@ async function apiCall(input: RequestInfo, init?: RequestInit){
 }
 
 //GetAllPropertiesDetails
-export async function getAllPropertyDetails():Promise<IPropertyDetailsViewModel[]>{
+export async function RetrieveAllRecords():Promise<IPropertyDetailsViewModel[]>{
     const response=await apiCall("/api/properties/all",{method:"GET"});
     const propertyDetails=await response.json();
     return propertyDetails;
 }
 
 //GetOnePropertyDetails
-export async function getOnePropertyDetails(propertyId:string):Promise<IPropertyDetailsViewModel>{
+export async function RetrieveOneRecord(propertyId:string):Promise<IPropertyDetailsViewModel>{
     const response=await apiCall("/api/properties/"+propertyId,{method:"GET"});
     const propertyDetails=await response.json();
     return propertyDetails;
 }
 
 //CreatePropertyDetails
-export async function createPropertyDetails(propertyDetails:IPropertyDetailsInputModel):Promise<IPropertyDetailsViewModel>{
+export async function CreateOneRecord(propertyDetails:IPropertyDetailsInputModel):Promise<IPropertyDetailsViewModel>{
     const response=await apiCall("/api/properties/create",{
         method:"POST",
         headers:{
@@ -53,7 +53,7 @@ export async function createPropertyDetails(propertyDetails:IPropertyDetailsInpu
 }
 
 //UpdatePropertyDetails
-export async function updatePropertyDetails(propertyId:string,propertyDetails:IPropertyDetailsInputModel):Promise<IPropertyDetailsViewModel>{
+export async function UpdateOneRecord(propertyId:string,propertyDetails:IPropertyDetailsInputModel):Promise<IPropertyDetailsViewModel>{
     const response=await apiCall("/api/properties/update/"+propertyId,{
         method:"PATCH",
         headers:{
@@ -66,7 +66,7 @@ export async function updatePropertyDetails(propertyId:string,propertyDetails:IP
 }
 
 //DeletePropertyDetails
-export async function deletePropertyDetails(propertyId:string){
+export async function DeleteOneRecord(propertyId:string){
     await apiCall("/api/properties/delete/"+propertyId,{method:"DELETE"});
 }
 

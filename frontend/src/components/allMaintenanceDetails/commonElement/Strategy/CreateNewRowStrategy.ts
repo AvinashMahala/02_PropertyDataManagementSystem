@@ -24,7 +24,7 @@ export class CreateNewRowStrategy implements ActionStrategy {
 
 
     // Send the API request to update the Owner
-    MaintenanceApi.createAMaintenanceRequest(maintenanceRequestModelInput).then(() => {
+    MaintenanceApi.CreateOneRecord(maintenanceRequestModelInput).then(() => {
       setMessage(
         `Maintenance Request with ID : ${maintenanceRequestModelInput._id} Added successfully.`
       );

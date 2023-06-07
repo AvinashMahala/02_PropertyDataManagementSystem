@@ -26,21 +26,21 @@ async function apiCall(input: RequestInfo, init?: RequestInit){
 }
 
 //getAllMaintenanceRequest
-export async function getAllMaintenanceRequest():Promise<IMaintenanceRequestViewModel[]>{
+export async function RetrieveAllRecords():Promise<IMaintenanceRequestViewModel[]>{
     const response=await apiCall("/api/maintenanceRequest/all",{method:"GET"});
     const flats=await response.json();
     return flats;
 }
 
 //getOneMaintenanceRequest
-export async function getOneMaintenanceRequest(flatId:string):Promise<IMaintenanceRequestViewModel>{
+export async function RetrieveOneRecord(flatId:string):Promise<IMaintenanceRequestViewModel>{
     const response=await apiCall("/api/maintenanceRequest/"+flatId,{method:"GET"});
     const flatDetails=await response.json();
     return flatDetails;
 }
 
 //createAMaintenanceRequest
-export async function createAMaintenanceRequest(flatDetails:IMaintenanceRequestInputModel):Promise<IMaintenanceRequestViewModel>{
+export async function CreateOneRecord(flatDetails:IMaintenanceRequestInputModel):Promise<IMaintenanceRequestViewModel>{
     const response=await apiCall("/api/maintenanceRequest/create",{
         method:"POST",
         headers:{
@@ -53,7 +53,7 @@ export async function createAMaintenanceRequest(flatDetails:IMaintenanceRequestI
 }
 
 //updateMaintenanceRequest
-export async function updateMaintenanceRequest(flatId:string,flatDetails:IMaintenanceRequestInputModel):Promise<IMaintenanceRequestViewModel>{
+export async function UpdateOneRecord(flatId:string,flatDetails:IMaintenanceRequestInputModel):Promise<IMaintenanceRequestViewModel>{
     const response=await apiCall("/api/maintenanceRequest/update/"+flatId,{
         method:"PATCH",
         headers:{
@@ -66,7 +66,7 @@ export async function updateMaintenanceRequest(flatId:string,flatDetails:IMainte
 }
 
 //deleteMaintenanceRequest
-export async function deleteMaintenanceRequest(flatId:string){
+export async function DeleteOneRecord(flatId:string){
     await apiCall("/api/maintenanceRequest/delete/"+flatId,{method:"DELETE"});
 }
 

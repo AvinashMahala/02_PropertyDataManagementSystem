@@ -20,7 +20,7 @@ export class CreateNewRowStrategy implements ActionStrategy {
 
 
     // Send the API request to update the Owner
-    PropertiesApi.createPropertyDetails(propertiesModelInput).then(() => {
+    PropertiesApi.CreateOneRecord(propertiesModelInput).then(() => {
       setMessage(
         `Property with Name : ${propertiesModelInput.propertyName} Added successfully.`
       );

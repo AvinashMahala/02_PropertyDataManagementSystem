@@ -1,11 +1,14 @@
 //------------------------------------Imports Section------------------------
 import * as FlatApi from "../../network/flatDetailsApi";
-import * as UsersApi from "../../network/users_api";
+import * as PropertiesApi from "../../network/allPropertiesApi";
 import * as UserModel from "../../models/user";
 import * as FlatModel from "./../../models/flatModel";
+import * as PropertyModel from "./../../models/allPropertiesModel";
 import PropertyPageStyles from "../../styles/PropertyPage.module.css";
 import * as commonImports from "../../commonCode/importMRTRelated";
 import {CreateNewModal} from "./commonElement/CreateNewModal";
+
+import ownerDetailsPageStyle from "./../../styles/OwnerDetailsPage.module.css"
 
 //Strategy DesignPattern Used for the Create, Update and Delete Operations
 import { CreateNewRowStrategy } from "./commonElement/Strategy/CreateNewRowStrategy";
@@ -19,7 +22,7 @@ import { GridFactory } from './commonElement/Factory/GridFactory'; // Adjust the
 //-------------------------------End of Imports Section---------------------
 
 
-let usersArr: UserModel.User[] = []; //This stores all the users retrieved from the database
+let propertiesArr: PropertyModel.IPropertyDetailsViewModel[] = []; //This stores all the users retrieved from the database
 
 const FlatsLoggedInView = () => {
   const [flatsArr, setFlatsArr] = commonImports.useState<
@@ -41,7 +44,7 @@ const FlatsLoggedInView = () => {
   ) => {
     flatsArr.push(values);
     createNewRowStrategy.handle(values, {}, null, setMessage, setOpen).then(() => {
-      FlatApi.getAllFlats().then((allFlats: FlatModel.IFlatViewModel[]) => {
+      FlatApi.RetrieveAllRecords().then((allFlats: FlatModel.IFlatViewModel[]) => {
         setFlatsArr(allFlats);
       });
     }).catch((error) => { }).finally(() => { });
@@ -85,22 +88,22 @@ const FlatsLoggedInView = () => {
 
   //This useEffect is called when the page is loaded for the first time
   commonImports.useEffect(() => {
-    UsersApi.fetchUsers().then((response) => {
-      usersArr = response;
+    PropertiesApi.RetrieveAllRecords().then((response) => {
+      propertiesArr = response;
     });
 
-    FlatApi.getAllFlats().then((response) => {
+    FlatApi.RetrieveAllRecords().then((response) => {
       setFlatsArr(response);
     });
   }, []);
 
   //This is Used to set the columns of the table
-  const flatsGridColumns = GridFactory(getEditTextFieldProps, usersArr,validationErrors,setValidationErrors);
+  const flatsGridColumns = GridFactory(getEditTextFieldProps, propertiesArr,validationErrors,setValidationErrors);
 
   const handleOk = () => {
     // Perform the operation you want when the OK button is clicked
     console.log("OK button has been clicked!");
-    FlatApi.getAllFlats().then((allFlats) => {
+    FlatApi.RetrieveAllRecords().then((allFlats) => {
       setFlatsArr(allFlats);
 
     });
@@ -115,8 +118,9 @@ const FlatsLoggedInView = () => {
         handleOk={handleOk}
         message={message}
       />
-      <h1>Flats Details Logged In View</h1>
+      
       <commonImports.Container className={PropertyPageStyles.pageContainer}>
+      <h1 className={ownerDetailsPageStyle.headerStyle}>Flats Details Logged In View</h1>
         <commonImports.MaterialReactTable
           displayColumnDefOptions={{
             "mrt-row-actions": {
@@ -174,7 +178,7 @@ const FlatsLoggedInView = () => {
           open={createModalOpen}
           onClose={() => setCreateModalOpen(false)}
           onSubmit={handleCreateNewRow}
-          usersArr={usersArr}
+          propertiesArr={propertiesArr}
         />
       </commonImports.Container>
     </>

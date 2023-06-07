@@ -41,7 +41,7 @@ const RentReceiptMDataDetailsLoggedInView = () => {
   ) => {
     rentReceiptMDataDetailsArr.push(values);
     createNewRowStrategy.handle(values, {}, null, setMessage, setOpen).then(() => {
-      RentReceiptMDataDetailsApi.getAllRentReceiptMetaDataDetails().then((rentReceiptMDataDetails: RentReceiptMetaDataModel.IRentReceiptMetaDataDetailsViewModel[]) => {
+      RentReceiptMDataDetailsApi.RetrieveAllRecords().then((rentReceiptMDataDetails: RentReceiptMetaDataModel.IRentReceiptMetaDataDetailsViewModel[]) => {
         setRentReceiptMDataDetailsArr(rentReceiptMDataDetails);
       });
     }).catch((error) => { }).finally(() => { });
@@ -89,7 +89,7 @@ const RentReceiptMDataDetailsLoggedInView = () => {
       usersArr = response;
     });
 
-    RentReceiptMDataDetailsApi.getAllRentReceiptMetaDataDetails().then((response) => {
+    RentReceiptMDataDetailsApi.RetrieveAllRecords().then((response) => {
       setRentReceiptMDataDetailsArr(response);
     });
   }, []);
@@ -100,7 +100,7 @@ const RentReceiptMDataDetailsLoggedInView = () => {
   const handleOk = () => {
     // Perform the operation you want when the OK button is clicked
     console.log("OK button has been clicked!");
-    RentReceiptMDataDetailsApi.getAllRentReceiptMetaDataDetails().then((rentReceiptMDataDetails) => {
+    RentReceiptMDataDetailsApi.RetrieveAllRecords().then((rentReceiptMDataDetails) => {
       setRentReceiptMDataDetailsArr(rentReceiptMDataDetails);
 
     });

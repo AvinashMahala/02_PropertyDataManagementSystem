@@ -40,7 +40,7 @@ export class CreateNewRowStrategy implements ActionStrategy {
 
 
     // Send the API request to update the Owner
-    AllRentDetailsApi.createARentDetail(rentDetailsInput).then(() => {
+    AllRentDetailsApi.CreateOneRecord(rentDetailsInput).then(() => {
       setMessage(
         `Rent Details with ID : ${rentDetailsInput._id} Added successfully.`
       );

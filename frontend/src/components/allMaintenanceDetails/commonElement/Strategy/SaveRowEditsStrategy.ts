@@ -25,12 +25,12 @@ export class SaveRowEditsStrategy implements ActionStrategy {
       };
 
       // Send the API request to update the Rent Receipt Meta Data
-      await MaintenanceApi.updateMaintenanceRequest(
+      await MaintenanceApi.UpdateOneRecord(
         updatedMaintenanceRequest._id,
         updatedMaintenanceRequest
       );
 
-      MaintenanceApi.getAllMaintenanceRequest().then((updatedMaintenanceRequests: MaintenanceRequestModel.IMaintenanceRequestViewModel[]) => {
+      MaintenanceApi.RetrieveAllRecords().then((updatedMaintenanceRequests: MaintenanceRequestModel.IMaintenanceRequestViewModel[]) => {
         setMessage(
           `Maintenance Request with ID ${row.getValue("_id")} Updated successfully.`
         );

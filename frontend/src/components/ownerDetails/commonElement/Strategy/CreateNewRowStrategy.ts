@@ -19,7 +19,7 @@ export class CreateNewRowStrategy implements ActionStrategy {
 
 
     // Send the API request to update the Owner
-    OwnerDetailsApi.createOwnerDetails(insertOwnerDetailsInput).then(() => {
+    OwnerDetailsApi.CreateOneRecord(insertOwnerDetailsInput).then(() => {
       setMessage(
         `Owner ${insertOwnerDetailsInput.ownerName} Added successfully.`
       );

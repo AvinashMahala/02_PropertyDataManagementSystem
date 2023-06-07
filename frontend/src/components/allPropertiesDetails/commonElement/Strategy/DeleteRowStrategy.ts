@@ -10,7 +10,7 @@ export class DeleteRowStrategy implements ActionStrategy {
 
     //send api delete request here, then refetch or update local table data for re-render
     try {
-      PropertiesApi.deletePropertyDetails(row.getValue("_id")).then(() => {
+      PropertiesApi.DeleteOneRecord(row.getValue("_id")).then(() => {
         console.log("Property Details Deleted!");
         const isDeleted = true;
         if (isDeleted) {

@@ -26,21 +26,21 @@ async function apiCall(input: RequestInfo, init?: RequestInit){
 }
 
 //getAllRentDetails
-export async function getAllRentDetails():Promise<IRentDetailsViewModel[]>{
+export async function RetrieveAllRecords():Promise<IRentDetailsViewModel[]>{
     const response=await apiCall("/api/rent/all",{method:"GET"});
     const rentDetailsArr=await response.json();
     return rentDetailsArr;
 }
 
 //getOneRentDetails
-export async function getOneRentDetails(rentId:string):Promise<IRentDetailsViewModel>{
+export async function RetrieveOneRecord(rentId:string):Promise<IRentDetailsViewModel>{
     const response=await apiCall("/api/rent/"+rentId,{method:"GET"});
     const rentDetails=await response.json();
     return rentDetails;
 }
 
 //createARentDetail
-export async function createARentDetail(rentDetails:IRentDetailsInputModel):Promise<IRentDetailsInputModel>{
+export async function CreateOneRecord(rentDetails:IRentDetailsInputModel):Promise<IRentDetailsInputModel>{
     const response=await apiCall("/api/rent/create",{
         method:"POST",
         headers:{
@@ -53,7 +53,7 @@ export async function createARentDetail(rentDetails:IRentDetailsInputModel):Prom
 }
 
 //updateARentDetail
-export async function updateARentDetail(rentId:string,rentDetails:IRentDetailsInputModel):Promise<IRentDetailsViewModel>{
+export async function UpdateOneRecord(rentId:string,rentDetails:IRentDetailsInputModel):Promise<IRentDetailsViewModel>{
     const response=await apiCall("/api/rent/update/"+rentId,{
         method:"PATCH",
         headers:{
@@ -66,7 +66,7 @@ export async function updateARentDetail(rentId:string,rentDetails:IRentDetailsIn
 }
 
 //deleteARentDetail
-export async function deleteARentDetail(rentId:string){
+export async function DeleteOneRecord(rentId:string){
     await apiCall("/api/rent/delete/"+rentId,{method:"DELETE"});
 }
 

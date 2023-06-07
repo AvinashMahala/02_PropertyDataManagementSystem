@@ -31,7 +31,7 @@ export class CreateNewRowStrategy implements ActionStrategy {
 
 
     // Send the API request to update the Owner
-    FlatsApi.createAFlat(flatDetailsInput).then(() => {
+    FlatsApi.CreateOneRecord(flatDetailsInput).then(() => {
       setMessage(
         `Property with Name : ${flatDetailsInput.roomName} Added successfully.`
       );

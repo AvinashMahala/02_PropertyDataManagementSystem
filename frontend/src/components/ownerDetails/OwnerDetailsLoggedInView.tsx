@@ -42,7 +42,7 @@ const OwnerDetailsLoggedInView = () => {
     createNewRowStrategy
       .handle(values, {}, null, setMessage, setOpen)
       .then(() => {
-        OwnerDetailsApi.getAllOwnerDetails().then(
+        OwnerDetailsApi.RetrieveAllRecords().then(
           (ownerDetails: OwnerDetailsModel.IOwnerDetailsViewModel[]) => {
             setOwnerDetailsArr(ownerDetails);
           }
@@ -108,7 +108,7 @@ const OwnerDetailsLoggedInView = () => {
       usersArr = response;
     });
 
-    OwnerDetailsApi.getAllOwnerDetails().then((response) => {
+    OwnerDetailsApi.RetrieveAllRecords().then((response) => {
       setOwnerDetailsArr(response);
     });
   }, []);
@@ -124,7 +124,7 @@ const OwnerDetailsLoggedInView = () => {
   const handleOk = () => {
     // Perform the operation you want when the OK button is clicked
     console.log("OK button has been clicked!");
-    OwnerDetailsApi.getAllOwnerDetails().then((ownerDetails) => {
+    OwnerDetailsApi.RetrieveAllRecords().then((ownerDetails) => {
       setOwnerDetailsArr(ownerDetails);
     });
     setOpen(false); // Close the dialog

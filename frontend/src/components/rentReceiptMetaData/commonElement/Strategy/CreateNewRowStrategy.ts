@@ -28,7 +28,7 @@ export class CreateNewRowStrategy implements ActionStrategy {
 
 
     // Send the API request to update the Owner
-    RentReceiptMDataApi.createRentReceiptMetaDataDetails(insertRentReceiptMDataDetailsInput).then(() => {
+    RentReceiptMDataApi.CreateOneRecord(insertRentReceiptMDataDetailsInput).then(() => {
       setMessage(
         `Rent Receipt Meta Data ${insertRentReceiptMDataDetailsInput.rentReceiptMetaDataRefNm} Added successfully.`
       );

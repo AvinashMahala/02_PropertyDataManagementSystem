@@ -26,21 +26,21 @@ async function apiCall(input: RequestInfo, init?: RequestInit){
 }
 
 //getAllTenants
-export async function getAllTenants():Promise<ITenantViewModel[]>{
+export async function RetrieveAllRecords():Promise<ITenantViewModel[]>{
     const response=await apiCall("/api/tenants/all",{method:"GET"});
     const tenantDetailsArr=await response.json();
     return tenantDetailsArr;
 }
 
 //getOneTenantDetails
-export async function getOneTenantDetails(Id:string):Promise<ITenantViewModel>{
+export async function RetrieveOneRecord(Id:string):Promise<ITenantViewModel>{
     const response=await apiCall("/api/tenants/"+Id,{method:"GET"});
     const tenantDetails=await response.json();
     return tenantDetails;
 }
 
 //createTenantDetails
-export async function createTenantDetails(tenantDetails:ITenantInputModel):Promise<ITenantViewModel>{
+export async function CreateOneRecord(tenantDetails:ITenantInputModel):Promise<ITenantViewModel>{
     const response=await apiCall("/api/tenants/create",{
         method:"POST",
         headers:{
@@ -53,7 +53,7 @@ export async function createTenantDetails(tenantDetails:ITenantInputModel):Promi
 }
 
 //updateTenantDetails
-export async function updateTenantDetails(Id:string,tenantDetails:ITenantInputModel):Promise<ITenantViewModel>{
+export async function UpdateOneRecord(Id:string,tenantDetails:ITenantInputModel):Promise<ITenantViewModel>{
     const response=await apiCall("/api/tenants/update/"+Id,{
         method:"PATCH",
         headers:{
@@ -66,6 +66,6 @@ export async function updateTenantDetails(Id:string,tenantDetails:ITenantInputMo
 }
 
 //deleteTenantDetails
-export async function deleteTenantDetails(Id:string){
+export async function DeleteOneRecord(Id:string){
     await apiCall("/api/tenants/delete/"+Id,{method:"DELETE"});
 }

@@ -26,21 +26,21 @@ async function apiCall(input: RequestInfo, init?: RequestInit){
 }
 
 //GetAllRentReceiptMetaDataDetails
-export async function getAllRentReceiptMetaDataDetails():Promise<IRentReceiptMetaDataDetailsViewModel[]>{
+export async function RetrieveAllRecords():Promise<IRentReceiptMetaDataDetailsViewModel[]>{
     const response=await apiCall("/api/rentReceiptMetaDataDetails/all",{method:"GET"});
     const rentReceiptMetaDataDetailsArr=await response.json();
     return rentReceiptMetaDataDetailsArr;
 }
 
 //GetOneRentReceiptMetaDataDetails
-export async function getOneRentReceiptMetaDataDetails(Id:string):Promise<IRentReceiptMetaDataDetailsViewModel>{
+export async function RetrieveOneRecord(Id:string):Promise<IRentReceiptMetaDataDetailsViewModel>{
     const response=await apiCall("/api/rentReceiptMetaDataDetails/"+Id,{method:"GET"});
     const rentReceiptMetaDataDetails=await response.json();
     return rentReceiptMetaDataDetails;
 }
 
 //CreateRentReceiptMetaDataDetails
-export async function createRentReceiptMetaDataDetails(rentReceiptMetaDataDetails:IRentReceiptMetaDataDetailsInputModel):Promise<IRentReceiptMetaDataDetailsViewModel>{
+export async function CreateOneRecord(rentReceiptMetaDataDetails:IRentReceiptMetaDataDetailsInputModel):Promise<IRentReceiptMetaDataDetailsViewModel>{
     const response=await apiCall("/api/rentReceiptMetaDataDetails/create",{
         method:"POST",
         headers:{
@@ -53,7 +53,7 @@ export async function createRentReceiptMetaDataDetails(rentReceiptMetaDataDetail
 }
 
 //UpdateRentReceiptMetaDataDetails
-export async function updateRentReceiptMetaDataDetails(Id:string,rentReceiptMetaDataDetails:IRentReceiptMetaDataDetailsInputModel):Promise<IRentReceiptMetaDataDetailsViewModel>{
+export async function UpdateOneRecord(Id:string,rentReceiptMetaDataDetails:IRentReceiptMetaDataDetailsInputModel):Promise<IRentReceiptMetaDataDetailsViewModel>{
     const response=await apiCall("/api/rentReceiptMetaDataDetails/update/"+Id,{
         method:"PATCH",
         headers:{
@@ -66,7 +66,7 @@ export async function updateRentReceiptMetaDataDetails(Id:string,rentReceiptMeta
 }
 
 //DeleteRentReceiptMetaDataDetails
-export async function deleteRentReceiptMetaDataDetails(Id:string){
+export async function DeleteOneRecord(Id:string){
     await apiCall("/api/rentReceiptMetaDataDetails/delete/"+Id,{method:"DELETE"});
 }
 

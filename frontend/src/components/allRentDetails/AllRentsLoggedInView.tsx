@@ -41,7 +41,7 @@ const AllRentsLoggedInView = () => {
   ) => {
     rentDetailsArr.push(values);
     createNewRowStrategy.handle(values, {}, null, setMessage, setOpen).then(() => {
-      AllRentDetailsApi.getAllRentDetails().then((allRentDetails: AllRentDetailsModel.IRentDetailsViewModel[]) => {
+      AllRentDetailsApi.RetrieveAllRecords().then((allRentDetails: AllRentDetailsModel.IRentDetailsViewModel[]) => {
         setRentDetailsArr(allRentDetails);
       });
     }).catch((error) => { }).finally(() => { });
@@ -89,7 +89,7 @@ const AllRentsLoggedInView = () => {
       usersArr = response;
     });
 
-    AllRentDetailsApi.getAllRentDetails().then((response) => {
+    AllRentDetailsApi.RetrieveAllRecords().then((response) => {
       setRentDetailsArr(response);
     });
   }, []);
@@ -100,7 +100,7 @@ const AllRentsLoggedInView = () => {
   const handleOk = () => {
     // Perform the operation you want when the OK button is clicked
     console.log("OK button has been clicked!");
-    AllRentDetailsApi.getAllRentDetails().then((allRentDetails) => {
+    AllRentDetailsApi.RetrieveAllRecords().then((allRentDetails) => {
       setRentDetailsArr(allRentDetails);
 
     });

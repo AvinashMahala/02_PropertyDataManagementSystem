@@ -12,7 +12,7 @@ type FieldConfig = {
 
 export const GridFactory = (
   getCommonEditTextFieldProps: any,
-  usersArr: any[],
+  propertiesArr: any[],
   validationErrors: any,
   setValidationErrors: any
 ) => {
@@ -33,124 +33,124 @@ export const GridFactory = (
             cell,
             validationErrors,
             setValidationErrors,
-            usersArr
+            propertiesArr
           ),
         }),
       },
       {
-        header: "propertyId",
+        header: "Property Name",
         accessorKey: "propertyId",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "roomName",
+        header: "Room Name",
         accessorKey: "roomName",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "roomRent",
+        header: "Room Rent",
         accessorKey: "roomRent",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "roomColorSeparator",
+        header: "Room Color Separator",
         accessorKey: "roomColorSeparator",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "roomType",
+        header: "Room Type",
         accessorKey: "roomType",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "roomRemarks",
+        header: "Room Remarks",
         accessorKey: "roomRemarks",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "rentCalcMethod",
+        header: "Rent Calculation Method",
         accessorKey: "rentCalcMethod",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "electricityBillType",
+        header: "Electricity Bill Type",
         accessorKey: "electricityBillType",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "electricityBillMeterName",
+        header: "Electricity Bill Meter Name",
         accessorKey: "electricityBillMeterName",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "electricityBillPerUnitCost",
+        header: "Electricity Bill Per Unit Cost",
         accessorKey: "electricityBillPerUnitCost",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "electricityBillMeterReading",
+        header: "Electricity Bill Meter Reading",
         accessorKey: "electricityBillMeterReading",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "electricityBillFixedAmtCost",
+        header: "Electricity Bill Fixed Amount",
         accessorKey: "electricityBillFixedAmtCost",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "waterBillType",
+        header: "Water Bill Type",
         accessorKey: "waterBillType",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "waterBillMeterName",
+        header: "Water Bill Meter Name",
         accessorKey: "waterBillMeterName",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "waterBillPerUnitCost",
+        header: "Water Bill Per Unit Cost",
         accessorKey: "waterBillPerUnitCost",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "waterBillMeterReading",
+        header: "Water Bill Meter Reading",
         accessorKey: "waterBillMeterReading",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "waterBillFixedAmtCost",
+        header: "Water Bill Fixed Cost",
         accessorKey: "waterBillFixedAmtCost",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
@@ -179,7 +179,7 @@ export const GridFactory = (
         }),
       },
     ],
-    [getCommonEditTextFieldProps, usersArr]
+    [getCommonEditTextFieldProps, propertiesArr]
   );
   return flatDetailsGridColumns;
 };

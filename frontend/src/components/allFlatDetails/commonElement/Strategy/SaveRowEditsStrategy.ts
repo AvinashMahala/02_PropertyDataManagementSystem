@@ -32,12 +32,12 @@ export class SaveRowEditsStrategy implements ActionStrategy {
       };
 
       // Send the API request to update the Rent Receipt Meta Data
-      await FlatApi.updateFlatDetails(
+      await FlatApi.UpdateOneRecord(
         updatedProperty._id,
         updatedProperty
       );
 
-      FlatApi.getAllFlats().then((updateFlat: FlatModel.IFlatViewModel[]) => {
+      FlatApi.RetrieveAllRecords().then((updateFlat: FlatModel.IFlatViewModel[]) => {
         setMessage(
           `Flat with Name ${row.getValue("roomName")} Updated successfully.`
         );

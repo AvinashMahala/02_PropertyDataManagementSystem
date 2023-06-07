@@ -18,3 +18,16 @@ export interface IPropertyDetailsInputModel{
     propertyAddress: string;
     propertyTakeRentOf: string;
 }
+
+
+export const propertyTypeOptions=[
+    {"_id":"Apartment","name":"Apartment"},
+    {"_id":"House","name":"House"},
+    {"_id":"Others","name":"Others"},
+  ];
+  
+export const propertyTakeRentOfOptions=[
+    {"_id":"Daily","name":"Daily"},
+    {"_id":"Weekly","name":"Weekly"},
+    {"_id":"Monthly","name":"Monthly"},
+  ];
