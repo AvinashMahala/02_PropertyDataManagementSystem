@@ -1,8 +1,9 @@
 //------------------------------------Imports Section------------------------
 import * as FlatApi from "../../network/flatDetailsApi";
-import * as UsersApi from "../../network/users_api";
+import * as PropertiesApi from "../../network/allPropertiesApi";
 import * as UserModel from "../../models/user";
 import * as FlatModel from "./../../models/flatModel";
+import * as PropertyModel from "./../../models/allPropertiesModel";
 import PropertyPageStyles from "../../styles/PropertyPage.module.css";
 import * as commonImports from "../../commonCode/importMRTRelated";
 import {CreateNewModal} from "./commonElement/CreateNewModal";
@@ -21,7 +22,7 @@ import { GridFactory } from './commonElement/Factory/GridFactory'; // Adjust the
 //-------------------------------End of Imports Section---------------------
 
 
-let usersArr: UserModel.User[] = []; //This stores all the users retrieved from the database
+let propertiesArr: PropertyModel.IPropertyDetailsViewModel[] = []; //This stores all the users retrieved from the database
 
 const FlatsLoggedInView = () => {
   const [flatsArr, setFlatsArr] = commonImports.useState<
@@ -87,8 +88,8 @@ const FlatsLoggedInView = () => {
 
   //This useEffect is called when the page is loaded for the first time
   commonImports.useEffect(() => {
-    UsersApi.fetchUsers().then((response) => {
-      usersArr = response;
+    PropertiesApi.RetrieveAllRecords().then((response) => {
+      propertiesArr = response;
     });
 
     FlatApi.RetrieveAllRecords().then((response) => {
@@ -97,7 +98,7 @@ const FlatsLoggedInView = () => {
   }, []);
 
   //This is Used to set the columns of the table
-  const flatsGridColumns = GridFactory(getEditTextFieldProps, usersArr,validationErrors,setValidationErrors);
+  const flatsGridColumns = GridFactory(getEditTextFieldProps, propertiesArr,validationErrors,setValidationErrors);
 
   const handleOk = () => {
     // Perform the operation you want when the OK button is clicked
@@ -177,7 +178,7 @@ const FlatsLoggedInView = () => {
           open={createModalOpen}
           onClose={() => setCreateModalOpen(false)}
           onSubmit={handleCreateNewRow}
-          usersArr={usersArr}
+          propertiesArr={propertiesArr}
         />
       </commonImports.Container>
     </>
