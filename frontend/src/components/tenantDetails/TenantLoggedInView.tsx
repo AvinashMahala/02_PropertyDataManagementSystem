@@ -123,7 +123,7 @@ const TenantsLoggedInView = () => {
       />
       
       <commonImports.Container className={PropertyPageStyles.pageContainer}>
-      <h1 className={PropertyPageStyles.headerStyle}>Tenants Logged In View</h1>
+      <h1 className={PropertyPageStyles.headerStyle}>Tenant Records</h1>
         <commonImports.MaterialReactTable
           displayColumnDefOptions={{
             "mrt-row-actions": {
