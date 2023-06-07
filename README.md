@@ -312,7 +312,6 @@ Distributed under the MIT License. See [LICENSE](https://github.com/AvinashMahal
 ## Authors
 
 * **Avinash Mahala** - *Computer Science Student* - [Avinash Mahala](https://github.com/AvinashMahala) - *PDMS Project*
-* **Debashish Kar** - *Computer Science Student* - [Debashish Kar](https://github.com/kardebkar) - *PDMS Project*
 
 ## Acknowledgements
 
