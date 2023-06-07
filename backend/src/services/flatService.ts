@@ -64,18 +64,9 @@ export const createFlat: RequestHandler<
       !roomRent ||
       !roomColorSeparator ||
       !roomType ||
-      !roomRemarks ||
       !rentCalcMethod ||
       !electricityBillType ||
-      !electricityBillMeterName ||
-      !electricityBillPerUnitCost ||
-      !electricityBillMeterReading ||
-      !electricityBillFixedAmtCost ||
-      !waterBillType ||
-      !waterBillMeterName ||
-      !waterBillPerUnitCost ||
-      !waterBillMeterReading ||
-      !waterBillFixedAmtCost
+      !waterBillType
     ) {
       throw createHttpError(400, "Parameters Missing!");
     }
