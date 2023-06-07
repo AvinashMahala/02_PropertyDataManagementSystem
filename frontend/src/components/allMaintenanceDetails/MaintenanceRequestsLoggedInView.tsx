@@ -115,8 +115,9 @@ const MaintenanceRequestsLoggedInView = () => {
         handleOk={handleOk}
         message={message}
       />
-      <h1>Maintenance Details Logged In View</h1>
+      
       <commonImports.Container className={PropertyPageStyles.pageContainer}>
+      <h1 className={PropertyPageStyles.headerStyle}>Maintenance Records</h1>
         <commonImports.MaterialReactTable
           displayColumnDefOptions={{
             "mrt-row-actions": {

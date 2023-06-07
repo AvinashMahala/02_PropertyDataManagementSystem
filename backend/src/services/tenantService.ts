@@ -37,10 +37,84 @@ export const createTenant: RequestHandler<
   ITenantCreateModel,
   unknown
 > = async (req, res, next) => {
-  const body = req.body;
+  const flatId=req.body.flatId;
+  const Photo=req.body.Photo;
+  const Salutation=req.body.Salutation;
+  const Name=req.body.Name;
+  const Profession=req.body.Profession;
+  const NoOfPeople=req.body.NoOfPeople;
+  const NativeAddress=req.body.NativeAddress;
+  const WorkAddress=req.body.WorkAddress;
+  const PrimaryPhNo=req.body.PrimaryPhNo;
+  const SecondaryPhNo=req.body.SecondaryPhNo;
+  const Email=req.body.Email;
+  const DepositAmount=req.body.DepositAmount;
+  const DepositPaidDate=req.body.DepositPaidDate;
+  const Balance=req.body.Balance;
+  const MoveInDate=req.body.MoveInDate;
+  const StartRentFromDate=req.body.StartRentFromDate;
+  const LeaseType=req.body.LeaseType;
+  const FixedLeaseStartDate=req.body.FixedLeaseStartDate;
+  const FixedLeasePeriod=req.body.FixedLeasePeriod;
+  const FixedLeasePeriodType=req.body.FixedLeasePeriodType;
+  const EmergencyContactName=req.body.EmergencyContactName;
+  const EmergencyContactNo=req.body.EmergencyContactNo;
+  const EmergencyContactRelation=req.body.EmergencyContactRelation;
+  const ExtraService=req.body.ExtraService;
+
+
 
   try {
-    const newTenant = await ITenantMainModel.create(body);
+    if (
+      !flatId ||
+      !Salutation ||
+      !Name ||
+      !Profession ||
+      !NoOfPeople ||
+      !NativeAddress ||
+      !WorkAddress ||
+      !PrimaryPhNo ||
+      !Email ||
+      !DepositAmount ||
+      !DepositPaidDate ||
+      !Balance ||
+      !MoveInDate ||
+      !StartRentFromDate ||
+      !LeaseType ||
+      !EmergencyContactName ||
+      !EmergencyContactNo ||
+      !EmergencyContactRelation ||
+      !ExtraService
+    ) {
+      throw createHttpError(400, "Parameters Missing!");
+    }
+
+    const newTenant = await ITenantMainModel.create({
+      flatId:flatId,
+      Photo:Photo,
+      Salutation:Salutation,
+      Name:Name,
+      Profession:Profession,
+      NoOfPeople:NoOfPeople,
+      NativeAddress:NativeAddress,
+      WorkAddress:WorkAddress,
+      PrimaryPhNo:PrimaryPhNo,
+      SecondaryPhNo:SecondaryPhNo,
+      Email:Email,
+      DepositAmount:DepositAmount,
+      DepositPaidDate:DepositPaidDate,
+      Balance:Balance,
+      MoveInDate:MoveInDate,
+      StartRentFromDate:StartRentFromDate,
+      LeaseType:LeaseType,
+      FixedLeaseStartDate:FixedLeaseStartDate,
+      FixedLeasePeriod:FixedLeasePeriod,
+      FixedLeasePeriodType:FixedLeasePeriodType,
+      EmergencyContactName:EmergencyContactName,
+      EmergencyContactNo:EmergencyContactNo,
+      EmergencyContactRelation:EmergencyContactRelation,
+      ExtraService:ExtraService,
+    });
 
     res.status(201).json(newTenant);
   } catch (error) {
