@@ -1,6 +1,6 @@
 import { User } from "../models/user";
-import OwnerDetailsLoggedOutView from "../components/ownerDetails/OwnerDetailsLoggedOutView";
-import OwnerDetailsLoggedInView from "../components/ownerDetails/OwnerDetailsLoggedInView";
+import OwnerDetailsLoggedOutView from "../components/owners/OwnerDetailsLoggedOutView";
+import OwnerDetailsLoggedInView from "../components/owners/OwnerDetailsLoggedInView";
 
 interface OwnerDetailsPageProps{
     loggedInUser:User | null,

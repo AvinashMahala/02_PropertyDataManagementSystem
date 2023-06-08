@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap";
 import { User } from "../models/user";
-import RentReceiptMetaDataLoggedInView from "../components/rentReceiptMetaData/RentReceiptMetaDataLoggedInView";
-import RentReceiptMetaDataLoggedOutView from "../components/rentReceiptMetaData/RentReceiptMetaDataLoggedOutView";
+import RentReceiptMetaDataLoggedInView from "../components/paymentMetaData/RentReceiptMetaDataLoggedInView";
+import RentReceiptMetaDataLoggedOutView from "../components/paymentMetaData/RentReceiptMetaDataLoggedOutView";
 
 
 interface AllRentReceiptMetaDataPageProps{

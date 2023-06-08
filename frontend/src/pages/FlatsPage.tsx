@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap";
 import { User } from "../models/user";
-import FlatsLoggedInView from "../components/allFlatDetails/FlatsLoggedInView";
-import FlatsLoggedOutView from "../components/allFlatDetails/FlatsLoggedOutView";
+import FlatsLoggedInView from "../components/flats/FlatsLoggedInView";
+import FlatsLoggedOutView from "../components/flats/FlatsLoggedOutView";
 
 
 interface AllFlatDetailsPageProps{

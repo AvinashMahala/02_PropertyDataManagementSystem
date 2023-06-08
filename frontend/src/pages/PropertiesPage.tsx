@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap";
 import { User } from "../models/user";
-import PropertyLoggedInView from "../components/allPropertiesDetails/PropertiesLoggedInView";
-import PropertiesLoggedOutView from "../components/allPropertiesDetails/PropertiesLoggedOutView";
+import PropertyLoggedInView from "../components/properties/PropertiesLoggedInView";
+import PropertiesLoggedOutView from "../components/properties/PropertiesLoggedOutView";
 
 interface AllPropertiesDetailsPageProps {
   loggedInUser: User | null;

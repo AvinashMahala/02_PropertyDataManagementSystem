@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap";
 import { User } from "../models/user";
-import MaintenanceRequestsLoggedInView from "../components/allMaintenanceDetails/MaintenanceRequestsLoggedInView";
-import MaintenanceRequestsLoggedOutView from "../components/allMaintenanceDetails/MaintenanceRequestsLoggedOutView";
+import MaintenanceRequestsLoggedInView from "../components/maintenanceRequests/MaintenanceRequestsLoggedInView";
+import MaintenanceRequestsLoggedOutView from "../components/maintenanceRequests/MaintenanceRequestsLoggedOutView";
 
 
 interface AllMaintenanceDetailsPageProps{

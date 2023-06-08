@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap";
 import { User } from "../models/user";
-import TenantsLoggedInView from "../components/tenantDetails/TenantLoggedInView";
-import TenantsLoggedOutView from "../components/tenantDetails/TenantLoggedOutView";
+import TenantsLoggedInView from "../components/tenants/TenantLoggedInView";
+import TenantsLoggedOutView from "../components/tenants/TenantLoggedOutView";
 
 
 interface TenantDetailsPageProps{
