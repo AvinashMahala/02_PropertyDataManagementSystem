@@ -2,9 +2,11 @@
 import * as TenantApi from "../../network/tenantApi";
 import * as UsersApi from "../../network/users_api";
 import * as FlatsApi from "../../network/flatDetailsApi";
+import * as PropertiesApi from "../../network/allPropertiesApi";
 import * as UserModel from "../../models/user";
 import * as TenantModel from "../../models/tenantModel";
 import * as FlatsModel from "../../models/flatModel";
+import * as PropertiesModel from "../../models/allPropertiesModel";
 import PropertyPageStyles from "../../styles/PropertyPage.module.css";
 import * as commonImports from "../../commonCode/CommonImports";
 import {CreateNewModal} from "./commonElement/CreateNewModal";
@@ -23,6 +25,7 @@ import { GridFactory } from './commonElement/Factory/GridFactory'; // Adjust the
 
 let usersArr: UserModel.User[] = []; //This stores all the users retrieved from the database
 let flatsArr: FlatsModel.IFlatViewModel[] = []; 
+let propertiesArr:PropertiesModel.IPropertyDetailsViewModel[]=[];
 
 const TenantsLoggedInView = () => {
   const [tenantArr, setTenantArr] = commonImports.useState<
@@ -93,6 +96,10 @@ const TenantsLoggedInView = () => {
     });
     FlatsApi.RetrieveAllRecords().then((response) => {
       flatsArr = response;
+    });
+
+    PropertiesApi.RetrieveAllRecords().then((response) => {
+      propertiesArr = response;
     });
 
     TenantApi.RetrieveAllRecords().then((response) => {
@@ -181,6 +188,7 @@ const TenantsLoggedInView = () => {
           open={createModalOpen}
           onClose={() => setCreateModalOpen(false)}
           onSubmit={handleCreateNewRow}
+          propertiesArr={propertiesArr}
           flatsArr={flatsArr}
         />
       </commonImports.Container>

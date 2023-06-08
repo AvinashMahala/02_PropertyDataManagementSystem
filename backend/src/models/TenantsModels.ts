@@ -1,6 +1,7 @@
 import { InferSchemaType, Schema, model } from "mongoose";
 
 const TenantModelSchemaMain = new Schema({
+    propertyId:{type: Schema.Types.ObjectId, required: true},
     flatId: {type: Schema.Types.ObjectId, required: true},
     Photo: {type: String, required: false},
     Salutation: {type: String, required: true},
@@ -30,6 +31,7 @@ const TenantModelSchemaMain = new Schema({
 type ITenantMainModel = InferSchemaType<typeof TenantModelSchemaMain>;
 export default model<ITenantMainModel>("Tenants", TenantModelSchemaMain);
 export interface ITenantCreateModel {
+    propertyId:Schema.Types.ObjectId;
     flatId: Schema.Types.ObjectId;
     Photo: string;
     Salutation: string;
@@ -60,6 +62,7 @@ export interface ITenantUpdateParamsModel{
     TenantId:string;
 }
 export interface ITenantUpdateBodyModel{
+    propertyId:Schema.Types.ObjectId;
     flatId: Schema.Types.ObjectId;
     Photo: string;
     Salutation: string;

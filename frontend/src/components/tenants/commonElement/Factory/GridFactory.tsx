@@ -38,6 +38,13 @@ export const GridFactory = (
         }),
       },
       {
+        header: "Property Name",
+        accessorKey: "propertyId",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
+      },
+      {
         header: "Flat Name",
         accessorKey: "flatId",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({

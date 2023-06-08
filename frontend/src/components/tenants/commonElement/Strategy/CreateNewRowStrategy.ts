@@ -8,6 +8,7 @@ export class CreateNewRowStrategy implements ActionStrategy {
   async handle(values: TenantModel.ITenantViewModel, validationErrors: Object, row: any, setMessage: any, setOpen: any): Promise<void> {
     const propertiesModelInput: TenantModel.ITenantViewModel = {
       _id: values._id,
+      propertyId:values.propertyId,
       flatId: values.flatId,
       Photo: values.Photo,
       Salutation: values.Salutation,

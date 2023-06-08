@@ -3,12 +3,14 @@ import React from "react";
 import * as TenantModel from "../../../models/tenantModel";
 import * as UserModel from "../../../models/user";
 import * as FlatsModel from "../../../models/flatModel";
+import * as PropertiesModel from "../../../models/allPropertiesModel";
 
 interface CreateModalProps {
   columns: commonImports.MRT_ColumnDef<TenantModel.ITenantViewModel>[];
   onClose: () => void;
   onSubmit: (values: TenantModel.ITenantViewModel) => void;
   open: boolean;
+  propertiesArr:PropertiesModel.IPropertyDetailsViewModel[];
   flatsArr: FlatsModel.IFlatViewModel[];
 }
 
@@ -18,6 +20,7 @@ export const CreateNewModal = ({
   columns,
   onClose,
   onSubmit,
+  propertiesArr,
   flatsArr,
 }: CreateModalProps) => {
   const [values, setValues] = commonImports.useState<any>(() =>
@@ -27,6 +30,7 @@ export const CreateNewModal = ({
     }, {} as any)
   );
 
+  const [selectedProperty, setSelectedProperty]=commonImports.useState("");
   const [selectedFlat, setSelectedFlat] = commonImports.useState("");
   const [selectedSalutation, setSelectedSalutation] = commonImports.useState("");
   const [selectedProfession, setSelectedProfession] = commonImports.useState("");
@@ -128,24 +132,25 @@ export const CreateNewModal = ({
               gap: "1.5rem",
             }}
           >
-
             {columns
-              .filter((column) => column.accessorKey === "flatId")
+              .filter((column) => column.accessorKey === "propertyId")
               .map((column) => (
                 <commonImports.FormControl
                   error={column.accessorKey && !!errors[column.accessorKey]}
                 >
                   <commonImports.Select
-                    label="Room Id"
+                    label="Property Id"
                     key={column.accessorKey}
                     name={column.accessorKey}
-                    value={selectedFlat}
+                    value={selectedProperty}
                     onChange={(event) => {
                       setValues({
                         ...values,
                         [event.target.name]: event.target.value,
+                        flatId: "", // Reset the flatId column
                       });
-                      setSelectedFlat(event.target.value);
+                      setSelectedProperty(event.target.value);
+                      setSelectedFlat("");
                     }}
                     displayEmpty
                     sx={{ minWidth: 120 }}
@@ -156,14 +161,14 @@ export const CreateNewModal = ({
                     }}
                   >
                     <commonImports.MenuItem value="" disabled>
-                      Select a Room of A Property
+                      Select a Property
                     </commonImports.MenuItem>
-                    {flatsArr.map((option) => (
+                    {propertiesArr.map((option) => (
                       <commonImports.MenuItem
                         key={option._id}
                         value={option._id}
                       >
-                        {option.roomName}
+                        {option.propertyName}
                       </commonImports.MenuItem>
                     ))}
                   </commonImports.Select>
@@ -175,6 +180,59 @@ export const CreateNewModal = ({
                   </commonImports.FormHelperText>
                 </commonImports.FormControl>
               ))}
+
+{selectedProperty !== "" && (
+  columns
+    .filter((column) => column.accessorKey === "flatId")
+    .map((column) => {
+      const filteredFlats = flatsArr.filter(
+        (room) => room.propertyId === selectedProperty
+      );
+
+      return (
+        <commonImports.FormControl
+          error={column.accessorKey && !!errors[column.accessorKey]}
+        >
+          <commonImports.Select
+            label="Room Id"
+            key={column.accessorKey}
+            name={column.accessorKey}
+            value={selectedFlat}
+            onChange={(event) => {
+              setValues({
+                ...values,
+                [event.target.name]: event.target.value,
+              });
+              setSelectedFlat(event.target.value);
+            }}
+            displayEmpty
+            sx={{ minWidth: 120 }}
+            MenuProps={{
+              style: {
+                maxHeight: 500,
+              },
+            }}
+          >
+            <commonImports.MenuItem value="" disabled>
+              Select a Room of A Property
+            </commonImports.MenuItem>
+            {filteredFlats.map((option) => (
+              <commonImports.MenuItem key={option._id} value={option._id}>
+                {option.roomName}
+              </commonImports.MenuItem>
+            ))}
+          </commonImports.Select>
+          <commonImports.FormHelperText>
+            {column.accessorKey &&
+            errors.hasOwnProperty(column.accessorKey)
+              ? errors[column.accessorKey]
+              : ""}
+          </commonImports.FormHelperText>
+        </commonImports.FormControl>
+      );
+    })
+)}
+
 
 {columns
               .filter(
