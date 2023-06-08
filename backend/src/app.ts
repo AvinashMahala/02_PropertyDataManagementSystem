@@ -7,15 +7,15 @@ import env from "./util/validateenv";
 import MongoStore  from "connect-mongo";
 import { requiresAuth } from "./middleware/auth";
 
-import notesRoutes from "./routes/notes";
-import userRoutes from "./routes/users";
-import ownerDetailsRoutes from "./routes/ownerDetailsRoutes";
-import rentReceiptMetaDataDetailsRoutes from "./routes/rentReceiptMetaDataDetailsRoutes";
-import propertyRoutes from "./routes/allPropertiesRoutes";
-import flatRoutes from "./routes/flatRoutes";
-import tenantRoutes from "./routes/tenantRoutes";
-import allRentDetailsRoutes from "./routes/allRentDetailsRoutes";
-import allMaintenanceDetailsRoutes from "./routes/maintenanceRoutes";
+import notesRoutes from "./routes/NotesRoutes";
+import userRoutes from "./routes/UsersRoutes";
+import ownerDetailsRoutes from "./routes/OwnersRoutes";
+import rentReceiptMetaDataDetailsRoutes from "./routes/PaymentMetaDataRoutes";
+import propertyRoutes from "./routes/PropertiesRoutes";
+import flatRoutes from "./routes/FlatsRoutes";
+import tenantRoutes from "./routes/TenantsRoutes";
+import allRentDetailsRoutes from "./routes/RentalRecordsRoutes";
+import allMaintenanceDetailsRoutes from "./routes/MaintenanceRequestsRoutes";
 
 const app = express();
 
