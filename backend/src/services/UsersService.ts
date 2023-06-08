@@ -1,7 +1,7 @@
 import  { RequestHandler } from "express";
 import createHttpError from "http-errors";
 import bcrypt from "bcrypt";
-import { assertIsDefined } from "../util/assertIsDefined";
+import { assertIsDefined } from "../util/AssertIsDefinedUtil";
 import mongoose from "mongoose";
 
 import IUserMainModel, { IUserCreateModel, IUserLoginBodyModel, IUserUpdateParamsModel, IUserUpdateBodyModel } from "../models/UsersModels";

@@ -3,7 +3,7 @@ import express, { Request, Response, NextFunction } from "express";
 import morgan from "morgan";
 import createHttpError, { isHttpError } from "http-errors";
 import session from "express-session";
-import env from "./util/validateenv";
+import env from "./util/ValidateEnvUtil";
 import MongoStore  from "connect-mongo";
 import { requiresAuth } from "./middleware/auth";
 

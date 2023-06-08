@@ -2,7 +2,7 @@ import  { RequestHandler } from "express";
 import createHttpError from "http-errors";
 import UserModel from "../models/UsersModels";
 import bcrypt from "bcrypt";
-import { assertIsDefined } from "../util/assertIsDefined";
+import { assertIsDefined } from "../util/AssertIsDefinedUtil";
 import mongoose from "mongoose";
 
 

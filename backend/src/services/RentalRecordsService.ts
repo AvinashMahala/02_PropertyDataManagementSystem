@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 import createHttpError from "http-errors";
-import { assertIsDefined } from "../util/assertIsDefined";
+import { assertIsDefined } from "../util/AssertIsDefinedUtil";
 
 import IRentMainModel, {
   IRentCreateModel,

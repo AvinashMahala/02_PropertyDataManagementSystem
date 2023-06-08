@@ -2,7 +2,7 @@ import { RequestHandler } from "express";
 import NoteModel from "../models/NotesModels";
 import createHttpError from "http-errors";
 import mongoose from "mongoose";
-import { assertIsDefined } from "../util/assertIsDefined";
+import { assertIsDefined } from "../util/AssertIsDefinedUtil";
 
 export const getNotes:RequestHandler = async (req, res, next)=>{
     const authenticatedUserId=req.session.userId;
