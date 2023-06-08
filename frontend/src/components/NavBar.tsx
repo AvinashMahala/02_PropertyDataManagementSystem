@@ -5,7 +5,7 @@ import NavBarLoggedOutView from "./NavBarLoggedOutView";
 // import { Link } from "react-router-dom";
 import PrivacyPage from "./../pages/PrivacyPage";
 import DashboardPage from "./../pages/DashboardPage";
-import OwnerDetailsPage from "../pages/OwnerDetailsPage";
+import OwnerDetailsPage from "../pages/OwnersPage";
 
 import {
   CDBBadge,
@@ -18,15 +18,15 @@ import {
 } from "cdbreact";
 // import { NavLink } from "react-router-dom";
 import { ReactNode, useState } from "react";
-import TenantDetailsPage from "../pages/TenantDetailsPage";
-import AllPropertiesDetailsPage from "../pages/AllPropertiesDetailsPage";
-import AllFlatDetailsPage from "../pages/AllFlatsDetailsPage";
-import AllRentDetailsPage from "../pages/AllRentDetailsPage";
-import AllMaintenanceDetailsPage from "../pages/AllMaintenanceDetailsPage";
+import TenantDetailsPage from "../pages/TenantsPage";
+import AllPropertiesDetailsPage from "../pages/PropertiesPage";
+import AllFlatDetailsPage from "../pages/FlatsPage";
+import AllRentDetailsPage from "../pages/RentalRecordsPage";
+import AllMaintenanceDetailsPage from "../pages/MaintenanceRequestsPage";
 import NotificationsPage from "../pages/NotificationsPage";
 import ProfilePage from "../pages/ProfilePage";
 import AnalyticsPage from "../pages/AnalyticsPage";
-import AllRentReceiptMetaDataPage from "../pages/AllRentReceiptMetaDataPage";
+import AllRentReceiptMetaDataPage from "../pages/PaymentMetaDataPage";
 import logoImg from "../assets/logo/logo-black.png";
 // import { useNavigate } from 'react-router-dom';
 

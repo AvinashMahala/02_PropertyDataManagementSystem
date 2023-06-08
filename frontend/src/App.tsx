@@ -15,7 +15,7 @@ import styles from "./styles/App.module.css";
 import MasterViewPage from "./pages/MasterViewPage";
 
 import AdminDashboardPage from "./pages/AdminDashboardPage";
-import OwnerDetailsPage from "./pages/OwnerDetailsPage";
+import OwnerDetailsPage from "./pages/OwnersPage";
 import DashboardPageLoggedInView from "./components/dashboard/DashboardPageLoggedInView";
 
 function App() {
