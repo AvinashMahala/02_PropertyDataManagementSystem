@@ -1,5 +1,5 @@
 import express from "express";
-import * as UsersController from "../controllers/users";
+import * as UsersController from "../controllers/UsersController";
 import { requiresAuth } from "../middleware/auth";
 
 

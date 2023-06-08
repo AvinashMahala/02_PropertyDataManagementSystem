@@ -1,5 +1,5 @@
 import express from "express";
-import * as MaintenanceController from "../controllers/maintenanceController";
+import * as MaintenanceController from "../controllers/MaintenanceRequestsController";
 
 
 const router = express.Router();

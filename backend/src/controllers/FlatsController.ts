@@ -1,5 +1,5 @@
 import {RequestHandler} from 'express';
-import * as FlatService  from '../services/flatService';
+import * as FlatService  from '../services/FlatsService';
 import { IFlatModelCreateModel, IFlatModelUpdateBodyModel, IFlatModelUpdateParamsModel } from '../models/flatModel';
 
 

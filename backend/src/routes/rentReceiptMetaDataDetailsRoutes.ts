@@ -1,5 +1,5 @@
 import express from "express";
-import * as RentReceiptMetaDataDetailsController from "../controllers/rentReceiptMetaDataDetailsController";
+import * as RentReceiptMetaDataDetailsController from "../controllers/PaymentMetaDataController";
 
 
 const router = express.Router();

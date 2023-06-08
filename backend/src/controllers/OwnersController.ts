@@ -1,5 +1,5 @@
 import {RequestHandler} from 'express';
-import * as OwnerDetailsService  from '../services/ownerDetailsService';
+import * as OwnerDetailsService  from '../services/OwnersService';
 import { IOwnerDetailsCreateModel, IOwnerDetailsUpdateBodyModel, IOwnerDetailsUpdateParamsModel } from '../models/ownerDetails';
 
 

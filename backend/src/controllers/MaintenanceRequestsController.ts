@@ -1,5 +1,5 @@
 import {RequestHandler} from 'express';
-import * as MaintenanceRequestService  from '../services/maintenanceRequestService';
+import * as MaintenanceRequestService  from '../services/MaintenanceRequestsService';
 import { IMaintenanceRequestsCreateModel, IMaintenanceRequestsUpdateParamsModel, IMaintenanceRequestsUpdateBodyModel } from '../models/maintenanceRequestsModel';
 
 

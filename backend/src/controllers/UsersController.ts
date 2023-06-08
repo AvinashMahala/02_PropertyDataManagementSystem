@@ -1,5 +1,5 @@
 import {RequestHandler} from 'express';
-import * as UserService  from '../services/userService';
+import * as UserService  from '../services/UsersService';
 import { IUserCreateModel, IUserLoginBodyModel, IUserUpdateParamsModel, IUserUpdateBodyModel } from "../models/user";
 
 

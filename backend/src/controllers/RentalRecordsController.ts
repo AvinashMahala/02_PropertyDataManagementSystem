@@ -1,5 +1,5 @@
 import {RequestHandler} from 'express';
-import * as RentService  from '../services/rentService';
+import * as RentService  from '../services/RentalRecordsService';
 import { IRentCreateModel, IRentUpdateParamsModel, IRentUpdateBodyModel } from '../models/allRentDetailsModel';
 
 export const getAllRents:RequestHandler = async(req,res,next)=>{

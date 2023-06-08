@@ -1,5 +1,5 @@
 import {RequestHandler} from 'express';
-import * as RentReceiptMetaDataDetailsService  from '../services/rentReceiptMetaDataDetailsService';
+import * as RentReceiptMetaDataDetailsService  from '../services/PaymentMetaDataService';
 import { IRentReceiptMetaDataDetailsCreateModel, IRentReceiptMetaDataDetailsUpdateBodyModel, IRentReceiptMetaDataDetailsUpdateParamsModel } from '../models/rentReceiptMetaDataDetails';
 
 

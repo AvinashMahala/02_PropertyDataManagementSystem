@@ -1,5 +1,5 @@
 import express from "express";
-import * as FlatController from "../controllers/flatController";
+import * as FlatController from "../controllers/FlatsController";
 
 const router = express.Router();
 

@@ -1,5 +1,5 @@
 import {RequestHandler} from 'express';
-import * as AllPropertiesService  from '../services/allPropertiesService';
+import * as AllPropertiesService  from '../services/PropertiesService';
 import { IPropertyModelCreateModel, IPropertyModelUpdateBodyModel, IPropertyModelUpdateParamsModel } from '../models/allPropertiesModel';
 
 

@@ -1,5 +1,5 @@
 import {RequestHandler} from 'express';
-import * as TenantService  from '../services/tenantService';
+import * as TenantService  from '../services/TenantsService';
 import { ITenantCreateModel, ITenantUpdateParamsModel, ITenantUpdateBodyModel } from '../models/tenantModel';
 
 

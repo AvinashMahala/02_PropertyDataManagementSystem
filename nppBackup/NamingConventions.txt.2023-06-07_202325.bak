@@ -12,25 +12,7 @@ PropertyDataManagementSystem
 				-OwnersController.ts
 				-PaymentMetaDataController.ts
 				-PropertiesController.ts
-				-RentalRecordsController.ts
-				-TenantsController.ts
-				-UsersController.ts
-			-errors
-			-logging
-			-middleware
-			-models
-			-routes
-			-services
-				-FlatsService.ts
-				-MaintenanceRequestsService.ts
-				-NotesService.ts
-				-OwnersService.ts
-				-PaymentMetaDataService.ts
-				-PropertiesService.ts
-				-RentalRecordsService.ts
-				-TenantsService.ts
-				-UsersService.ts
-			-util
+				-
 
 
 
