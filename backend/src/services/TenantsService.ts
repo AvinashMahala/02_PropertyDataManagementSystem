@@ -9,7 +9,7 @@ import ITenantMainModel, {
 } from "../models/TenantsModels";
 import mongoose from "mongoose";
 
-export const getAllTenants: RequestHandler = async (req, res, next) => {
+export const RetrieveAllRecords: RequestHandler = async (req, res, next) => {
   const authenticatedUserId = req.session.userId;
   try {
     assertIsDefined(authenticatedUserId);
@@ -21,7 +21,7 @@ export const getAllTenants: RequestHandler = async (req, res, next) => {
   }
 };
 
-export const getOneTenant: RequestHandler = async (req, res, next) => {
+export const RetrieveOneRecord: RequestHandler = async (req, res, next) => {
   const tenantId = req.params.tenantId;
   try {
     const tenant = await ITenantMainModel.findById(tenantId).exec();
@@ -31,7 +31,7 @@ export const getOneTenant: RequestHandler = async (req, res, next) => {
   }
 };
 
-export const createTenant: RequestHandler<
+export const CreateOneRecord: RequestHandler<
   unknown,
   unknown,
   ITenantCreateModel,
@@ -122,7 +122,7 @@ export const createTenant: RequestHandler<
   }
 };
 
-export const updateTenant: RequestHandler<
+export const UpdateOneRecord: RequestHandler<
   ITenantUpdateParamsModel,
   unknown,
   ITenantUpdateBodyModel,
@@ -151,7 +151,7 @@ export const updateTenant: RequestHandler<
   }
 };
 
-export const deleteTenant: RequestHandler = async (req, res, next) => {
+export const DeleteOneRecord: RequestHandler = async (req, res, next) => {
   const paramsTenantId = req.params.tenantId;
   const authenticatedUserId = req.session.userId;
   try {

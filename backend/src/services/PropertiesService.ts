@@ -9,7 +9,7 @@ import IPropertyModelMainModel, {
 } from "../models/PropertiesModels";
 import mongoose from "mongoose";
 
-export const getAllPropertyModels: RequestHandler = async (req, res, next) => {
+export const RetrieveAllRecords: RequestHandler = async (req, res, next) => {
   const authenticatedUserId = req.session.userId;
   try {
     assertIsDefined(authenticatedUserId);
@@ -21,7 +21,7 @@ export const getAllPropertyModels: RequestHandler = async (req, res, next) => {
   }
 };
 
-export const getOnePropertyModel: RequestHandler = async (req, res, next) => {
+export const RetrieveOneRecord: RequestHandler = async (req, res, next) => {
   const propertyId = req.params.propertyId;
   try {
     const propertyModel = await IPropertyModelMainModel.findById(propertyId).exec();
@@ -31,7 +31,7 @@ export const getOnePropertyModel: RequestHandler = async (req, res, next) => {
   }
 };
 
-export const createPropertyModel: RequestHandler<
+export const CreateOneRecord: RequestHandler<
   unknown,
   unknown,
   IPropertyModelCreateModel,
@@ -71,7 +71,7 @@ export const createPropertyModel: RequestHandler<
   }
 };
 
-export const updatePropertyModel: RequestHandler<
+export const UpdateOneRecord: RequestHandler<
   IPropertyModelUpdateParamsModel,
   unknown,
   IPropertyModelUpdateBodyModel,
@@ -112,7 +112,7 @@ export const updatePropertyModel: RequestHandler<
   }
 };
 
-export const deletePropertyModel: RequestHandler = async (req, res, next) => {
+export const DeleteOneRecord: RequestHandler = async (req, res, next) => {
   const paramsPropertyId = req.params.propertyId;
   const authenticatedUserId = req.session.userId;
   try {

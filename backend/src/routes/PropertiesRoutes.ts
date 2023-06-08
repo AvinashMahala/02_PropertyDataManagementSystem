@@ -4,12 +4,12 @@ import * as AllPropertiesController from "../controllers/PropertiesController";
 
 const router = express.Router();
 
-router.get("/all",AllPropertiesController.getAllPropertiesDetails);
-router.get("/one/:propertyId",AllPropertiesController.getOnePropertiesDetails);
-router.post("/create",AllPropertiesController.createPropertyDetails);
-// router.post("/createArr",AllPropertiesController.createOwnerDetailsArr);
-router.patch("/update/:propertyId",AllPropertiesController.updatePropertyDetails);
-router.delete("/delete/:propertyId",AllPropertiesController.deletePropertyDetails);
+router.get("/all",AllPropertiesController.RetrieveAllRecords);
+router.get("/one/:propertyId",AllPropertiesController.RetrieveOneRecord);
+router.post("/create",AllPropertiesController.CreateOneRecord);
+// router.post("/createArr",AllPropertiesController.CreateMultipleRecords);
+router.patch("/update/:propertyId",AllPropertiesController.UpdateOneRecord);
+router.delete("/delete/:propertyId",AllPropertiesController.DeleteOneRecord);
 
 
 

@@ -9,7 +9,7 @@ import IMaintenanceRequestsMainModel, {
 } from "../models/MaintenanceRequestsModels";
 import mongoose from "mongoose";
 
-export const getAllMaintenanceRequests: RequestHandler = async (req, res, next) => {
+export const RetrieveAllRecords: RequestHandler = async (req, res, next) => {
   const authenticatedUserId = req.session.userId;
   try {
     assertIsDefined(authenticatedUserId);
@@ -20,7 +20,7 @@ export const getAllMaintenanceRequests: RequestHandler = async (req, res, next) 
   }
 };
 
-export const getOneMaintenanceRequest: RequestHandler = async (req, res, next) => {
+export const RetrieveOneRecord: RequestHandler = async (req, res, next) => {
   const maintenanceRequestId = req.params.maintenanceRequestId;
   try {
     const maintenanceRequest = await IMaintenanceRequestsMainModel.findById(maintenanceRequestId).exec();
@@ -30,7 +30,7 @@ export const getOneMaintenanceRequest: RequestHandler = async (req, res, next) =
   }
 };
 
-export const createMaintenanceRequest: RequestHandler<
+export const CreateOneRecord: RequestHandler<
   unknown,
   unknown,
   IMaintenanceRequestsCreateModel,
@@ -70,7 +70,7 @@ export const createMaintenanceRequest: RequestHandler<
   }
 };
 
-export const updateMaintenanceRequest: RequestHandler<
+export const UpdateOneRecord: RequestHandler<
   IMaintenanceRequestsUpdateParamsModel,
   unknown,
   IMaintenanceRequestsUpdateBodyModel,
@@ -95,7 +95,7 @@ export const updateMaintenanceRequest: RequestHandler<
   }
 };
 
-export const deleteMaintenanceRequest: RequestHandler = async (req, res, next) => {
+export const DeleteOneRecord: RequestHandler = async (req, res, next) => {
   const maintenanceRequestId = req.params.maintenanceRequestId;
   const authenticatedUserId = req.session.userId;
 

@@ -9,7 +9,7 @@ import IRentMainModel, {
 } from "../models/RentalRecordsModels";
 import mongoose from "mongoose";
 
-export const getAllRents: RequestHandler = async (req, res, next) => {
+export const RetrieveAllRecords: RequestHandler = async (req, res, next) => {
   const authenticatedUserId = req.session.userId;
   try {
     assertIsDefined(authenticatedUserId);
@@ -21,7 +21,7 @@ export const getAllRents: RequestHandler = async (req, res, next) => {
   }
 };
 
-export const getOneRent: RequestHandler = async (req, res, next) => {
+export const RetrieveOneRecord: RequestHandler = async (req, res, next) => {
   const rentId = req.params.rentId;
   try {
     const rent = await IRentMainModel.findById(rentId).exec();
@@ -31,7 +31,7 @@ export const getOneRent: RequestHandler = async (req, res, next) => {
   }
 };
 
-export const createRent: RequestHandler<
+export const CreateOneRecord: RequestHandler<
   unknown,
   unknown,
   IRentCreateModel,
@@ -45,7 +45,7 @@ export const createRent: RequestHandler<
   }
 };
 
-export const createRentArr: RequestHandler<
+export const CreateMultipleRecords: RequestHandler<
   unknown,
   unknown,
   IRentCreateModel[],
@@ -64,7 +64,7 @@ export const createRentArr: RequestHandler<
   res.status(201).json(rentsCreatedArr);
 };
 
-export const updateRent: RequestHandler<
+export const UpdateOneRecord: RequestHandler<
   IRentUpdateParamsModel,
   unknown,
   IRentUpdateBodyModel,
@@ -88,7 +88,7 @@ export const updateRent: RequestHandler<
   }
 };
 
-export const deleteRent: RequestHandler = async (req, res, next) => {
+export const DeleteOneRecord: RequestHandler = async (req, res, next) => {
   const paramsRentId = req.params.rentId;
   const authenticatedUserId = req.session.userId;
   try {

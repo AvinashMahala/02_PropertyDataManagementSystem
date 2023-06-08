@@ -1,13 +1,13 @@
 import express from "express";
-import * as FlatController from "../controllers/FlatsController";
+import * as FlatsController from "../controllers/FlatsController";
 
 const router = express.Router();
 
-router.get("/all",FlatController.getAllFlats);
-router.get("/one/:flatId",FlatController.getOneFlatDetails);
-router.post("/create",FlatController.createFlatDetails);
-// router.post("/createArr",FlatController.createOwnerDetailsArr);
-router.patch("/update/:flatId",FlatController.updateFlatDetails);
-router.delete("/delete/:flatId",FlatController.deleteFlatDetails);
+router.get("/all",FlatsController.RetrieveAllRecords);
+router.get("/one/:flatId",FlatsController.RetrieveOneRecord);
+router.post("/create",FlatsController.CreateOneRecord);
+// router.post("/createArr",FlatsController.CreateFlatDetailsArr);
+router.patch("/update/:flatId",FlatsController.UpdateOneRecord);
+router.delete("/delete/:flatId",FlatsController.DeleteOneRecord);
 
 export default router;

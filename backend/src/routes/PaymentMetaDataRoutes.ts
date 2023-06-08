@@ -4,12 +4,12 @@ import * as RentReceiptMetaDataDetailsController from "../controllers/PaymentMet
 
 const router = express.Router();
 
-router.get("/all",RentReceiptMetaDataDetailsController.getAllRentReceiptMetaDataDetails);
-router.get("/one/:rentReceiptMetaDataId",RentReceiptMetaDataDetailsController.getOneRentReceiptMetaDataDetails);
-router.post("/create",RentReceiptMetaDataDetailsController.createRentReceiptMetaDataDetails);
-router.post("/createArr",RentReceiptMetaDataDetailsController.createRentReceiptMetaDataDetailsArr);
-router.patch("/update/:rentReceiptMetaDataId",RentReceiptMetaDataDetailsController.updateRentReceiptMetaDataDetails);
-router.delete("/delete/:rentReceiptMetaDataId",RentReceiptMetaDataDetailsController.deleteRentReceiptMetaDataDetails);
+router.get("/all",RentReceiptMetaDataDetailsController.RetrieveAllRecords);
+router.get("/one/:rentReceiptMetaDataId",RentReceiptMetaDataDetailsController.RetrieveOneRecord);
+router.post("/create",RentReceiptMetaDataDetailsController.CreateOneRecord);
+router.post("/createArr",RentReceiptMetaDataDetailsController.CreateMultipleRecords);
+router.patch("/update/:rentReceiptMetaDataId",RentReceiptMetaDataDetailsController.UpdateOneRecord);
+router.delete("/delete/:rentReceiptMetaDataId",RentReceiptMetaDataDetailsController.DeleteOneRecord);
 
 
 

@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 import IUserMainModel, { IUserCreateModel, IUserLoginBodyModel, IUserUpdateParamsModel, IUserUpdateBodyModel } from "../models/UsersModels";
 
 
-export const getAllUsers:RequestHandler = async(req,res,next)=>{
+export const RetrieveAllRecords:RequestHandler = async(req,res,next)=>{
     const authenticatedUserId=req.session.userId;
     try {
         assertIsDefined(authenticatedUserId);

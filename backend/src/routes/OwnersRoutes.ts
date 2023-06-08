@@ -4,12 +4,12 @@ import * as OwnerDetailsController from "../controllers/OwnersController";
 
 const router = express.Router();
 
-router.get("/all",OwnerDetailsController.getAllOwnerDetails);
-router.get("/one/:ownerId",OwnerDetailsController.getOneOwnerDetails);
-router.post("/create",OwnerDetailsController.createOwnerDetails);
-router.post("/createArr",OwnerDetailsController.createOwnerDetailsArr);
-router.patch("/update/:ownerId",OwnerDetailsController.updateOwnerDetails);
-router.delete("/delete/:ownerId",OwnerDetailsController.deleteOwnerDetails);
+router.get("/all",OwnerDetailsController.RetrieveAllRecords);
+router.get("/one/:ownerId",OwnerDetailsController.RetrieveOneRecord);
+router.post("/create",OwnerDetailsController.CreateOneRecord);
+router.post("/createArr",OwnerDetailsController.CreateMultipleRecords);
+router.patch("/update/:ownerId",OwnerDetailsController.UpdateOneRecord);
+router.delete("/delete/:ownerId",OwnerDetailsController.DeleteOneRecord);
 
 
 

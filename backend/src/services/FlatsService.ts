@@ -9,7 +9,7 @@ import IFlatModelMainModel, {
 } from "../models/FlatsModels";
 import mongoose from "mongoose";
 
-export const getAllFlats: RequestHandler = async (req, res, next) => {
+export const RetrieveAllRecords: RequestHandler = async (req, res, next) => {
   const authenticatedUserId = req.session.userId;
   try {
     assertIsDefined(authenticatedUserId);
@@ -21,7 +21,7 @@ export const getAllFlats: RequestHandler = async (req, res, next) => {
   }
 };
 
-export const getOneFlat: RequestHandler = async (req, res, next) => {
+export const RetrieveOneRecord: RequestHandler = async (req, res, next) => {
   const flatId = req.params.flatId;
   try {
     const flat = await IFlatModelMainModel.findById(flatId).exec();
@@ -31,7 +31,7 @@ export const getOneFlat: RequestHandler = async (req, res, next) => {
   }
 };
 
-export const createFlat: RequestHandler<
+export const CreateOneRecord: RequestHandler<
   unknown,
   unknown,
   IFlatModelCreateModel,
@@ -97,7 +97,7 @@ export const createFlat: RequestHandler<
   }
 };
 
-export const updateFlat: RequestHandler<
+export const UpdateOneRecord: RequestHandler<
   IFlatModelUpdateParamsModel,
   unknown,
   IFlatModelUpdateBodyModel,
@@ -125,7 +125,7 @@ export const updateFlat: RequestHandler<
   }
 };
 
-export const deleteFlat: RequestHandler = async (req, res, next) => {
+export const DeleteOneRecord: RequestHandler = async (req, res, next) => {
   const paramsFlatId = req.params.flatId;
   const authenticatedUserId = req.session.userId;
   try {

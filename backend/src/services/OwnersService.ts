@@ -9,7 +9,7 @@ import IOwnerDetailsMainModel, {
 } from "../models/OwnersModels";
 import mongoose from "mongoose";
 
-export const getAllOwnerDetails: RequestHandler = async (req, res, next) => {
+export const RetrieveAllRecords: RequestHandler = async (req, res, next) => {
   const authenticatedUserId = req.session.userId;
   try {
     assertIsDefined(authenticatedUserId);
@@ -20,7 +20,7 @@ export const getAllOwnerDetails: RequestHandler = async (req, res, next) => {
     next(error);
   }
 };
-export const getOneOwnerDetails: RequestHandler = async (req, res, next) => {
+export const RetrieveOneRecord: RequestHandler = async (req, res, next) => {
   const ownerId = req.params.ownerId;
   try {
     const ownerDetails = await IOwnerDetailsMainModel.findById(ownerId).exec();
@@ -29,7 +29,7 @@ export const getOneOwnerDetails: RequestHandler = async (req, res, next) => {
     next(error);
   }
 };
-export const createOwnerDetails: RequestHandler<
+export const CreateOneRecord: RequestHandler<
   unknown,
   unknown,
   IOwnerDetailsCreateModel,
@@ -80,7 +80,7 @@ export const createOwnerDetails: RequestHandler<
     next(error);
   }
 };
-export const createOwnerDetailsArr: RequestHandler<
+export const CreateMultipleRecords: RequestHandler<
   unknown,
   unknown,
   IOwnerDetailsCreateModel[],
@@ -139,7 +139,7 @@ export const createOwnerDetailsArr: RequestHandler<
   });
   res.status(201).json(ownersCreatedArr);
 };
-export const updateOwnerDetails: RequestHandler<
+export const UpdateOneRecord: RequestHandler<
   IOwnerDetailsUpdateParamsModel,
   unknown,
   IOwnerDetailsUpdateBodyModel,
@@ -173,7 +173,7 @@ export const updateOwnerDetails: RequestHandler<
     next(error);
   }
 };
-export const deleteOwnerDetails: RequestHandler = async (req, res, next) => {
+export const DeleteOneRecord: RequestHandler = async (req, res, next) => {
   const paramsOwnerId = req.params.ownerId;
   const authenticatedUserId = req.session.userId;
   try {

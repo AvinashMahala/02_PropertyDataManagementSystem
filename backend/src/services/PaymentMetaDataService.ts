@@ -9,7 +9,7 @@ import IRentReceiptMetaDataDetailsMainModel, {
 } from "../models/PaymentMetaDataModels";
 import mongoose from "mongoose";
 
-export const getAllRentReceiptMetaDataDetails: RequestHandler = async (req, res, next) => {
+export const RetrieveAllRecords: RequestHandler = async (req, res, next) => {
   const authenticatedUserId = req.session.userId;
   try {
     assertIsDefined(authenticatedUserId);
@@ -21,7 +21,7 @@ export const getAllRentReceiptMetaDataDetails: RequestHandler = async (req, res,
   }
 };
 
-export const getOneRentReceiptMetaDataDetails: RequestHandler = async (req, res, next) => {
+export const RetrieveOneRecord: RequestHandler = async (req, res, next) => {
   const rentReceiptMetaDataId = req.params.rentReceiptMetaDataId;
   try {
     const rentReceiptMetaDataDetails = await IRentReceiptMetaDataDetailsMainModel.findById(rentReceiptMetaDataId).exec();
@@ -31,7 +31,7 @@ export const getOneRentReceiptMetaDataDetails: RequestHandler = async (req, res,
   }
 };
 
-export const createRentReceiptMetaDataDetails: RequestHandler<
+export const CreateOneRecord: RequestHandler<
   unknown,
   unknown,
   IRentReceiptMetaDataDetailsCreateModel,
@@ -110,7 +110,7 @@ export const createRentReceiptMetaDataDetails: RequestHandler<
 };
 
 
-export const createRentReceiptMetaDataDetailsArr: RequestHandler<
+export const CreateMultipleRecords: RequestHandler<
   unknown,
   unknown,
   IRentReceiptMetaDataDetailsCreateModel[],
@@ -201,7 +201,7 @@ export const createRentReceiptMetaDataDetailsArr: RequestHandler<
 
 };
 
-export const updateRentReceiptMetaDataDetails: RequestHandler<
+export const UpdateOneRecord: RequestHandler<
   IRentReceiptMetaDataDetailsUpdateParamsModel,
   unknown,
   IRentReceiptMetaDataDetailsUpdateBodyModel,
@@ -261,7 +261,7 @@ export const updateRentReceiptMetaDataDetails: RequestHandler<
   }
 };
 
-export const deleteRentReceiptMetaDataDetails: RequestHandler = async (req, res, next) => {
+export const DeleteOneRecord: RequestHandler = async (req, res, next) => {
   const paramsRentReceiptMetaDataId = req.params.rentReceiptMetaDataId;
   const authenticatedUserId = req.session.userId;
   try {

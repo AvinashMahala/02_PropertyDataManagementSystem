@@ -4,12 +4,12 @@ import * as RentController from "../controllers/RentalRecordsController";
 
 const router = express.Router();
 
-router.get("/all",RentController.getAllRents);
-router.get("/one/:rentId",RentController.getOneRent);
-router.post("/create",RentController.createRent);
-router.post("/createArr",RentController.createRentArr);
-router.patch("/update/:rentId",RentController.updateRent);
-router.delete("/delete/:rentId",RentController.deleteRent);
+router.get("/all",RentController.RetrieveAllRecords);
+router.get("/one/:rentId",RentController.RetrieveOneRecord);
+router.post("/create",RentController.CreateOneRecord);
+router.post("/createArr",RentController.CreateMultipleRecords);
+router.patch("/update/:rentId",RentController.UpdateOneRecord);
+router.delete("/delete/:rentId",RentController.DeleteOneRecord);
 
 
 

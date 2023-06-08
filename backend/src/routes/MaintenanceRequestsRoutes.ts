@@ -4,12 +4,12 @@ import * as MaintenanceController from "../controllers/MaintenanceRequestsContro
 
 const router = express.Router();
 
-router.get("/all",MaintenanceController.getAllMaintenanceRequests);
-router.get("/one/:maintenanceId",MaintenanceController.getOneMaintenanceRequest);
-router.post("/create",MaintenanceController.createMaintenanceRequest);
-// router.post("/createArr",MaintenanceController.createRentArr);
-router.patch("/update/:maintenanceId",MaintenanceController.updateMaintenanceRequest);
-router.delete("/delete/:maintenanceId",MaintenanceController.deleteMaintenanceRequest);
+router.get("/all",MaintenanceController.RetrieveAllRecords);
+router.get("/one/:maintenanceId",MaintenanceController.RetrieveOneRecord);
+router.post("/create",MaintenanceController.CreateOneRecord);
+// router.post("/createArr",MaintenanceController.CreateMultipleRecords);
+router.patch("/update/:maintenanceId",MaintenanceController.UpdateOneRecord);
+router.delete("/delete/:maintenanceId",MaintenanceController.DeleteOneRecord);
 
 
 

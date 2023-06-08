@@ -55,12 +55,11 @@ PropertyDataManagementSystem
 
 
 
-RetrieveAllRecords
-RetrieveOneRecord
-CreateOneRecord
-CreateMultipleRecords
-UpdateOneRecord
-DeleteOneRecord
+
+
+
+
+
 
 
 

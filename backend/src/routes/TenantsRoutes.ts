@@ -3,11 +3,11 @@ import * as TenantController from "../controllers/TenantsController";
 
 const router = express.Router();
 
-router.get("/all",TenantController.getAllTenants);
-router.get("/one/:tenantId",TenantController.getOneTenant);
-router.post("/create",TenantController.createTenant);
-// router.post("/createArr",TenantController.createOwnerDetailsArr);
-router.patch("/update/:tenantId",TenantController.updateTenant);
-router.delete("/delete/:tenantId",TenantController.deleteTenant);
+router.get("/all",TenantController.RetrieveAllRecords);
+router.get("/one/:tenantId",TenantController.RetrieveOneRecord);
+router.post("/create",TenantController.CreateOneRecord);
+// router.post("/createArr",TenantController.CreateMultipleRecords);
+router.patch("/update/:tenantId",TenantController.UpdateOneRecord);
+router.delete("/delete/:tenantId",TenantController.DeleteOneRecord);
 
 export default router;

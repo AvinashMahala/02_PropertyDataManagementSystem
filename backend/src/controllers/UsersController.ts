@@ -4,7 +4,7 @@ import { IUserCreateModel, IUserLoginBodyModel, IUserUpdateParamsModel, IUserUpd
 
 
 export const getAllUsers:RequestHandler = async(req,res,next)=>{
-    await UserService.getAllUsers(req,res,next);
+    await UserService.RetrieveAllRecords(req,res,next);
 }
 
 export const getAuthenticatedUser: RequestHandler = async(req, res, next)=>{
