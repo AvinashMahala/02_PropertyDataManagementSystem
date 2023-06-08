@@ -115,6 +115,19 @@ export const CreateNewModal = ({
     if (validate()) {
       onSubmit(values);
       onClose();
+      setSelectedProperty("");
+      setSelectedFlat("");
+      setSelectedSalutation("");
+      setSelectedProfession("");
+      setSelectedLeaseType("");
+      setSelectedLeasePeriodType("");
+      setSelectedExtraService("");
+      setValues(
+        columns.reduce((acc, column) => {
+          acc[column.accessorKey ?? ""] = "";
+          return acc;
+        }, {} as any)
+      );
     }
   };
 
@@ -630,6 +643,7 @@ columns
               .filter(
                 (column) =>
                   column.accessorKey !== "_id" &&
+                  column.accessorKey !== "propertyId" &&
                   column.accessorKey !== "flatId" &&
                   column.accessorKey !== "Photo" &&
                   column.accessorKey !== "Salutation" &&

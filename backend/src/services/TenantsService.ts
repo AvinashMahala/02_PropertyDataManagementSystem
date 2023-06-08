@@ -37,6 +37,7 @@ export const CreateOneRecord: RequestHandler<
   ITenantCreateModel,
   unknown
 > = async (req, res, next) => {
+  const propertyId=req.body.propertyId;
   const flatId=req.body.flatId;
   const Photo=req.body.Photo;
   const Salutation=req.body.Salutation;
@@ -66,6 +67,7 @@ export const CreateOneRecord: RequestHandler<
 
   try {
     if (
+      !propertyId ||
       !flatId ||
       !Salutation ||
       !Name ||
@@ -90,6 +92,7 @@ export const CreateOneRecord: RequestHandler<
     }
 
     const newTenant = await ITenantMainModel.create({
+      propertyId:propertyId,
       flatId:flatId,
       Photo:Photo,
       Salutation:Salutation,
