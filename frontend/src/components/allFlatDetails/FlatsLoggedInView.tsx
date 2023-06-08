@@ -5,7 +5,7 @@ import * as UserModel from "../../models/user";
 import * as FlatModel from "./../../models/flatModel";
 import * as PropertyModel from "./../../models/allPropertiesModel";
 import PropertyPageStyles from "../../styles/PropertyPage.module.css";
-import * as commonImports from "../../commonCode/importMRTRelated";
+import * as commonImports from "../../commonCode/CommonImports";
 import {CreateNewModal} from "./commonElement/CreateNewModal";
 
 import ownerDetailsPageStyle from "./../../styles/OwnerDetailsPage.module.css"

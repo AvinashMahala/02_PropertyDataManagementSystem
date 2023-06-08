@@ -6,7 +6,7 @@ import * as UsersApi from "../../network/users_api";
 import * as UserModel from "../../models/user";
 import * as AllPropertiesModel from "../../models/allPropertiesModel";
 import PropertyPageStyles from "../../styles/PropertyPage.module.css";
-import * as commonImports from "../../commonCode/importMRTRelated";
+import * as commonImports from "../../commonCode/CommonImports";
 import {CreateNewModal} from "./commonElement/CreateNewModal";
 
 import ownerDetailsPageStyle from "../../styles/OwnerDetailsPage.module.css";

@@ -1,4 +1,4 @@
-import * as commonImports from "./../../../commonCode/importMRTRelated";
+import * as commonImports from "../../../commonCode/CommonImports";
 import * as OwnerDetailsModel from "../../../models/ownerDetails";
 import * as UserModel from "../../../models/user";
 

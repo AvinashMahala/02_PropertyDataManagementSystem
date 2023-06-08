@@ -4,7 +4,7 @@ import * as UsersApi from "../../network/users_api";
 import * as UserModel from "../../models/user";
 import * as RentReceiptMetaDataModel from "../../models/rentReceiptMetaDataDetails";
 import rentReceiptMDataDetailsPageStyle from "../../styles/RentReceiptMetaDataDetailsPage.module.css";
-import * as commonImports from "../../commonCode/importMRTRelated";
+import * as commonImports from "../../commonCode/CommonImports";
 import {CreateNewModal} from "./commonElement/CreateNewModal";
 
 //Strategy DesignPattern Used for the Create, Update and Delete Operations

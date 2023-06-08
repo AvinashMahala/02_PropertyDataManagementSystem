@@ -1,4 +1,4 @@
-import * as commonImports from "../../../commonCode/importMRTRelated";
+import * as commonImports from "../../../commonCode/CommonImports";
 import React from "react";
 import * as PropertiesModel from "../../../models/allPropertiesModel";
 import * as UserModel from "../../../models/user";

@@ -1,7 +1,7 @@
 // DeleteRowStrategy.ts
 import { ActionStrategy } from './ActionStrategy';
 import * as MaintenanceRequestModel from "../../../../models/maintenanceRequestModel";
-import * as commonImports from "../../../../commonCode/importMRTRelated";
+import * as commonImports from "../../../../commonCode/CommonImports";
 import * as MaintenanceApi from "../../../../network/maintenanceApi";
 
 export class DeleteRowStrategy implements ActionStrategy {

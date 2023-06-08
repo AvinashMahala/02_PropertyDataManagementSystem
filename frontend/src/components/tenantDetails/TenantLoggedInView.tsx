@@ -6,7 +6,7 @@ import * as UserModel from "../../models/user";
 import * as TenantModel from "../../models/tenantModel";
 import * as FlatsModel from "../../models/flatModel";
 import PropertyPageStyles from "../../styles/PropertyPage.module.css";
-import * as commonImports from "../../commonCode/importMRTRelated";
+import * as commonImports from "../../commonCode/CommonImports";
 import {CreateNewModal} from "./commonElement/CreateNewModal";
 
 //Strategy DesignPattern Used for the Create, Update and Delete Operations

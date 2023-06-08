@@ -1,7 +1,7 @@
 // DeleteRowStrategy.ts
 import { ActionStrategy } from './ActionStrategy';
 import * as RentReceiptMDataModel from "../../../../models/rentReceiptMetaDataDetails";
-import * as commonImports from "../../../../commonCode/importMRTRelated";
+import * as commonImports from "../../../../commonCode/CommonImports";
 import * as RentReceiptMDataApi from "../../../../network/rentReceiptMDataApi";
 
 export class DeleteRowStrategy implements ActionStrategy {

@@ -1,7 +1,7 @@
 // DeleteRowStrategy.ts
 import { ActionStrategy } from './ActionStrategy';
 import * as FlatModel from "./../../../../models/flatModel";
-import * as commonImports from "../../../../commonCode/importMRTRelated";
+import * as commonImports from "../../../../commonCode/CommonImports";
 import * as FlatApi from "../../../../network/flatDetailsApi";
 
 export class DeleteRowStrategy implements ActionStrategy {

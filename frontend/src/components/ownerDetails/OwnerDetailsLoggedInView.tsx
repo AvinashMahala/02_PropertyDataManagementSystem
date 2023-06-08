@@ -4,7 +4,7 @@ import * as UsersApi from "../../network/users_api";
 import * as UserModel from "../../models/user";
 import * as OwnerDetailsModel from "../../models/ownerDetails";
 import ownerDetailsPageStyle from "../../styles/OwnerDetailsPage.module.css";
-import * as commonImports from "../../commonCode/importMRTRelated";
+import * as commonImports from "../../commonCode/CommonImports";
 import { CreateNewOwnerDetailsModal } from "./commonElement/CreateNewOwnerDetailsModal";
 
 //Strategy DesignPattern Used for the Create, Update and Delete Operations
