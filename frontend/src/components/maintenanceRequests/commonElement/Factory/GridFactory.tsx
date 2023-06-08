@@ -38,70 +38,70 @@ export const GridFactory = (
         }),
       },
       {
-        header: "flatId",
+        header: "Flat Name",
         accessorKey: "flatId",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "tenantId",
+        header: "Tenant Name",
         accessorKey: "tenantId",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "startDate",
+        header: "Work Done From",
         accessorKey: "startDate",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "endDate",
+        header: "Work Done Till",
         accessorKey: "endDate",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "priority",
+        header: "Priority",
         accessorKey: "priority",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "amount",
+        header: "Total Amount",
         accessorKey: "amount",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "status",
+        header: "Current Status",
         accessorKey: "status",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "tenantNotes",
+        header: "Tenant Notes",
         accessorKey: "tenantNotes",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "ownerNotes",
+        header: "Owner Notes",
         accessorKey: "ownerNotes",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "Created Date",
+        header: "Created At",
         accessorKey: "createdAt",
         //customize normal cell render on normal non-aggregated rows
         Cell: ({ cell }) => (
@@ -112,7 +112,7 @@ export const GridFactory = (
         }),
       },
       {
-        header: "Updated Date",
+        header: "Updated At",
         accessorKey: "updatedAt",
         //customize normal cell render on normal non-aggregated rows
         Cell: ({ cell }) => (

@@ -6,7 +6,7 @@ import { PieChart, Pie, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 interface DashboardPageLoggedInViewProps {
   title: string;
-  loggedInUser: any; // replace with the actual type of user
+  loggedInUser: any;
 }
 
 // Styles

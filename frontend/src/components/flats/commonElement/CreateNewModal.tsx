@@ -3,6 +3,9 @@ import * as FlatModel from "./../../../models/flatModel";
 import * as UserModel from "../../../models/user";
 import * as PropertiesModel from "../../../models/allPropertiesModel";
 import { ListItemIcon } from "@material-ui/core";
+import { SelectChangeEvent } from "@mui/material";
+import { ChangeEvent } from "react";
+import FlatsModuleStyles from "../../../styles/flats.module.css";
 // import { Apartment, House, LocalCafe } from "@material-ui/icons";
 import {
   electricityBillType,
@@ -55,7 +58,7 @@ import {
 } from "@material-ui/icons";
 
 // Helper function to get the corresponding icon based on the room type
-const getOptionIcon = (roomType:string) => {
+const getOptionIcon = (roomType: string) => {
   switch (roomType) {
     case "1bhk":
       return <HomeIcon />;
@@ -129,7 +132,8 @@ const getOptionIcon = (roomType:string) => {
     default:
       return null;
   }
-}
+};
+
 interface CreateModalProps {
   columns: commonImports.MRT_ColumnDef<FlatModel.IFlatViewModel>[];
   onClose: () => void;
@@ -194,33 +198,46 @@ export const CreateNewModal = ({
       // waterBillFixedAmtCost: values.waterBillFixedAmtCost ? "" : "This field is required",
     };
 
-        // Validate for metered if it is required
-  if (values.electricityBillType === "metered" && !values.electricityBillMeterName && !values.electricityBillPerUnitCost && !values.electricityBillMeterReading) {
-    tempErrors = {
-      ...tempErrors,
-      electricityBillMeterName: "This field is required",
-      electricityBillPerUnitCost: "This field is required",
-      electricityBillMeterReading: "This field is required",
-    };
-  }
+    // Validate for metered if it is required
+    if (
+      values.electricityBillType === "metered" &&
+      !values.electricityBillMeterName &&
+      !values.electricityBillPerUnitCost &&
+      !values.electricityBillMeterReading
+    ) {
+      tempErrors = {
+        ...tempErrors,
+        electricityBillMeterName: "This field is required",
+        electricityBillPerUnitCost: "This field is required",
+        electricityBillMeterReading: "This field is required",
+      };
+    }
 
     // Validate waterBillFixedAmtCost if it is required
-  if (values.electricityBillType === "fixed" && !values.electricityBillFixedAmtCost) {
-    tempErrors = {
-      ...tempErrors,
-      electricityBillFixedAmtCost: "This field is required",
-    };
-  }
+    if (
+      values.electricityBillType === "fixed" &&
+      !values.electricityBillFixedAmtCost
+    ) {
+      tempErrors = {
+        ...tempErrors,
+        electricityBillFixedAmtCost: "This field is required",
+      };
+    }
 
-  // Validate for Water Bill metered if it is required
-  if (values.waterBillType === "metered" && !values.waterBillMeterName && !values.waterBillPerUnitCost && !values.waterBillMeterReading) {
-    tempErrors = {
-      ...tempErrors,
-      waterBillMeterName: "This field is required",
-      waterBillPerUnitCost: "This field is required",
-      waterBillMeterReading: "This field is required",
-    };
-  }
+    // Validate for Water Bill metered if it is required
+    if (
+      values.waterBillType === "metered" &&
+      !values.waterBillMeterName &&
+      !values.waterBillPerUnitCost &&
+      !values.waterBillMeterReading
+    ) {
+      tempErrors = {
+        ...tempErrors,
+        waterBillMeterName: "This field is required",
+        waterBillPerUnitCost: "This field is required",
+        waterBillMeterReading: "This field is required",
+      };
+    }
 
     // Validate waterBillFixedAmtCost if it is required
     if (values.waterBillType === "fixed" && !values.waterBillFixedAmtCost) {
@@ -271,473 +288,677 @@ export const CreateNewModal = ({
     }
   };
 
+  const getSelectedValue = (accessorKey: string) => {
+    return values[accessorKey];
+  };
+
+  // const handleSelectChange = (
+  //   event: React.ChangeEvent<{ name: string; value: unknown }>,
+  //   accessorKey: string
+  // ) => {
+  //   setValues({
+  //     ...values,
+  //     [event.target.name]: event.target.value,
+  //   });
+  // };
+  // Define the options based on the accessorKey
+  let options: any[] = [];
+  const getOptions = (accessorKey: string) => {
+    if (accessorKey === "propertyId") {
+      options = propertiesArr.map((option) => ({
+        value: option._id,
+        label: option.propertyName,
+      }));
+    } else if (accessorKey === "roomColorSeparator") {
+      options = roomColorSeparator.map((option) => ({
+        value: option.value,
+        label: (
+          <>
+            <span
+              style={{
+                backgroundColor: option.value,
+                width: "100%",
+                height: "20px",
+                display: "inline-block",
+                marginRight: "5px",
+              }}
+            ></span>
+            {option.label}
+          </>
+        ),
+      }));
+    } else if (accessorKey === "roomType") {
+      options = roomType.map((option) => ({
+        value: option.value,
+        label: (
+          <>
+            <ListItemIcon>{getOptionIcon(option.value)}</ListItemIcon>
+            {option.label}
+          </>
+        ),
+      }));
+    } else if (accessorKey === "rentCalcMethod") {
+      options = rentCalcMethod.map((option) => ({
+        value: option.value,
+        label: option.label,
+      }));
+    } else if (accessorKey === "electricityBillType") {
+      options = electricityBillType.map((option) => ({
+        value: option.value,
+        label: option.label,
+      }));
+    } else if (accessorKey === "waterBillType") {
+      options = waterBillType.map((option) => ({
+        value: option.value,
+        label: option.label,
+      }));
+    }
+    return options;
+  };
+
+  const getOptionLabel = (value: string) => {
+    // Return the label for the provided value
+    const option = options.find((option) => option.value === value);
+    return option ? option.label : "";
+  };
+  const handleSelectChange = (
+    e: SelectChangeEvent<any>,
+    accessorKey?: string
+  ) => {
+    if (accessorKey) {
+      const { name, value } = e.target;
+      const updatedValues = {
+        ...values,
+        [accessorKey]: value,
+      };
+      setValues(updatedValues);
+    }
+  };
+
+  const handleInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    accessorKey?: string
+  ) => {
+    if (accessorKey) {
+      const { name, value } = e.target;
+      const updatedValues = {
+        ...values,
+        [accessorKey]: value,
+      };
+      setValues(updatedValues);
+    }
+  };
+
   return (
-    <commonImports.Dialog open={open}>
+    <commonImports.Dialog open={open}
+    PaperProps={{
+      sx: {
+        width: "100%",
+        maxWidth: "85%!important",
+      },
+    }}    
+    >
       <commonImports.DialogTitle textAlign="center">
         Create New Flat
       </commonImports.DialogTitle>
-      <commonImports.DialogContent>
+      <commonImports.DialogContent >
         <form onSubmit={(e) => e.preventDefault()}>
           <commonImports.Stack
             sx={{
-              width: "100%",
-              minWidth: { xs: "300px", sm: "360px", md: "400px" },
+              width: "85%",
+              minWidth: "85%",
               gap: "1.5rem",
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
             }}
           >
-            {columns
+             {columns
               .filter((column) => column.accessorKey === "propertyId")
               .map((column) => (
-                <commonImports.FormControl
-                  error={column.accessorKey && !!errors[column.accessorKey]}
-                >
-                  <commonImports.Select
-                    label="Property Id"
-                    key={column.accessorKey}
-                    name={column.accessorKey}
-                    value={selectedProperty}
-                    onChange={(event) => {
-                      setValues({
-                        ...values,
-                        [event.target.name]: event.target.value,
-                      });
-                      setSelectedProperty(event.target.value);
-                    }}
-                    displayEmpty
-                    sx={{ minWidth: 120 }}
-                    MenuProps={{
-                      style: {
-                        maxHeight: 500,
-                      },
-                    }}
-                  >
-                    <commonImports.MenuItem value="" disabled>
-                      Select a Property
-                    </commonImports.MenuItem>
-                    {propertiesArr.map((option) => (
-                      <commonImports.MenuItem
-                        key={option._id}
-                        value={option._id}
-                      >
-                        {option.propertyName}
+              <commonImports.FormControl
+                key={column.accessorKey}
+                error={column.accessorKey && !!errors[column.accessorKey]}
+              >
+                {
+                  column.accessorKey === "propertyId" &&
+                  (
+                    <commonImports.Select
+                      label={column.header}
+                      name={column.accessorKey}
+                      value={getSelectedValue(column.accessorKey)}
+                      onChange={(event) =>{
+                        handleSelectChange(event, column.accessorKey);
+                        setSelectedProperty(event.target.value as string);
+                      }
+                        
+                      }
+                      displayEmpty
+                      sx={{ minWidth: 120 }}
+                      MenuProps={{
+                        style: {
+                          maxHeight: 500,
+                        },
+                      }}
+                    >
+                      <commonImports.MenuItem value="" disabled>
+                        {column.header}
                       </commonImports.MenuItem>
-                    ))}
-                  </commonImports.Select>
-                  <commonImports.FormHelperText>
-                    {column.accessorKey &&
-                    errors.hasOwnProperty(column.accessorKey)
-                      ? errors[column.accessorKey]
-                      : ""}
-                  </commonImports.FormHelperText>
-                </commonImports.FormControl>
-              ))}
+                      {getOptions(column.accessorKey).map((option) => (
+                        <commonImports.MenuItem
+                          key={option.value}
+                          value={option.value}
+                        >
+                          {getOptionLabel(option.value)}
+                        </commonImports.MenuItem>
+                      ))}
+                    </commonImports.Select>
+                  )
+                }
+                <commonImports.FormHelperText>
+                  {column.accessorKey &&
+                  errors.hasOwnProperty(column.accessorKey)
+                    ? errors[column.accessorKey]
+                    : ""}
+                </commonImports.FormHelperText>
+              </commonImports.FormControl>
+            ))}
 
-            {columns
+{columns
+              .filter((column) => column.accessorKey === "roomName" || column.accessorKey === "roomRent")
+              .map((column) => (
+              <commonImports.FormControl
+                key={column.accessorKey}
+                error={column.accessorKey && !!errors[column.accessorKey]}
+              >
+                {
+                  (column.accessorKey === "roomName" || column.accessorKey === "roomRent")
+                   &&
+                  (
+                    <commonImports.TextField
+                      label={column.header}
+                      name={column.accessorKey}
+                      value={values[column.accessorKey as keyof typeof values]}
+                      onChange={(event) =>
+                        handleInputChange(event, column.accessorKey)
+                      }
+                      error={column.accessorKey && !!errors[column.accessorKey]}
+                      helperText={
+                        column.accessorKey &&
+                        errors.hasOwnProperty(column.accessorKey)
+                          ? errors[column.accessorKey]
+                          : ""
+                      }
+                    />
+                  )
+                }
+                <commonImports.FormHelperText>
+                  {column.accessorKey &&
+                  errors.hasOwnProperty(column.accessorKey)
+                    ? errors[column.accessorKey]
+                    : ""}
+                </commonImports.FormHelperText>
+              </commonImports.FormControl>
+            ))}
+
+{columns
               .filter((column) => column.accessorKey === "roomColorSeparator")
               .map((column) => (
-                <commonImports.FormControl
-                  error={column.accessorKey && !!errors[column.accessorKey]}
-                >
-                  <commonImports.Select
-                    label="Room Color Separator"
-                    key={column.accessorKey}
-                    name={column.accessorKey}
-                    value={selectedRoomColorSeparator}
-                    onChange={(event) => {
-                      setValues({
-                        ...values,
-                        [event.target.name]: event.target.value,
-                      });
-                      setSelectedRoomColorSeparator(event.target.value);
-                    }}
-                    displayEmpty
-                    sx={{ minWidth: 120 }}
-                    MenuProps={{
-                      style: {
-                        maxHeight: 500,
-                      },
-                    }}
-                  >
-                    <commonImports.MenuItem value="" disabled>
-                      Select a Room Color Separator
-                    </commonImports.MenuItem>
-                    {roomColorSeparator.map((option) => (
-                      <commonImports.MenuItem
-                        key={option.value}
-                        value={option.value}
-                      >
-                        <span
-                          style={{
-                            backgroundColor: option.value,
-                            width: "100%",
-                            height: "20px",
-                            display: "inline-block",
-                            marginRight: "5px",
-                          }}
-                        ></span>
-                        {option.label}
+              <commonImports.FormControl
+                key={column.accessorKey}
+                error={column.accessorKey && !!errors[column.accessorKey]}
+              >
+                {
+                  (column.accessorKey === "roomColorSeparator") &&
+                  (
+                    <commonImports.Select
+                      label={column.header}
+                      name={column.accessorKey}
+                      value={getSelectedValue(column.accessorKey)}
+                      onChange={(event) =>{
+                        handleSelectChange(event, column.accessorKey);
+                        setSelectedRoomColorSeparator(event.target.value as string);
+                      }
+                      }
+                      displayEmpty
+                      sx={{ minWidth: 120 }}
+                      MenuProps={{
+                        style: {
+                          maxHeight: 500,
+                        },
+                      }}
+                    >
+                      <commonImports.MenuItem value="" disabled>
+                        {column.header}
                       </commonImports.MenuItem>
-                    ))}
-                  </commonImports.Select>
-                  <commonImports.FormHelperText>
-                    {column.accessorKey &&
-                    errors.hasOwnProperty(column.accessorKey)
-                      ? errors[column.accessorKey]
-                      : ""}
-                  </commonImports.FormHelperText>
-                </commonImports.FormControl>
-              ))}
-
-            {columns
+                      {getOptions(column.accessorKey).map((option) => (
+                        <commonImports.MenuItem
+                          key={option.value}
+                          value={option.value}
+                        >
+                          {getOptionLabel(option.value)}
+                        </commonImports.MenuItem>
+                      ))}
+                    </commonImports.Select>
+                  )
+                }
+                <commonImports.FormHelperText>
+                  {column.accessorKey &&
+                  errors.hasOwnProperty(column.accessorKey)
+                    ? errors[column.accessorKey]
+                    : ""}
+                </commonImports.FormHelperText>
+              </commonImports.FormControl>
+            ))}
+{columns
               .filter((column) => column.accessorKey === "roomType")
               .map((column) => (
-                <commonImports.FormControl
-                  error={column.accessorKey && !!errors[column.accessorKey]}
-                >
-                  <commonImports.Select
-                    label="Room Type"
-                    key={column.accessorKey}
-                    name={column.accessorKey}
-                    value={selectedRoomType}
-                    onChange={(event) => {
-                      setValues({
-                        ...values,
-                        [event.target.name]: event.target.value,
-                      });
-                      setSelectedRoomType(event.target.value);
-                    }}
-                    displayEmpty
-                    sx={{ minWidth: 120 }}
-                    MenuProps={{
-                      style: {
-                        maxHeight: 500,
-                      },
-                    }}
-                  >
-                    <commonImports.MenuItem value="" disabled>
-                      Select a Room Type
-                    </commonImports.MenuItem>
-                    {roomType.map((option) => (
-                      <commonImports.MenuItem
-                        key={option.value}
-                        value={option.value}
-                      >
-                        <ListItemIcon>
-                        {getOptionIcon(option.value)}
-                        </ListItemIcon>
-                        {option.label}
+              <commonImports.FormControl
+                key={column.accessorKey}
+                error={column.accessorKey && !!errors[column.accessorKey]}
+              >
+                {
+                  (column.accessorKey === "roomType") &&
+                  (
+                    <commonImports.Select
+                      label={column.header}
+                      name={column.accessorKey}
+                      value={getSelectedValue(column.accessorKey)}
+                      onChange={(event) =>{
+                        setSelectedRoomType(event.target.value as string);
+                        handleSelectChange(event, column.accessorKey);
+                      }
+                      }
+                      displayEmpty
+                      sx={{ minWidth: 120 }}
+                      MenuProps={{
+                        style: {
+                          maxHeight: 500,
+                        },
+                      }}
+                    >
+                      <commonImports.MenuItem value="" disabled>
+                        {column.header}
                       </commonImports.MenuItem>
-                    ))}
-                  </commonImports.Select>
-                  <commonImports.FormHelperText>
-                    {column.accessorKey &&
-                    errors.hasOwnProperty(column.accessorKey)
-                      ? errors[column.accessorKey]
-                      : ""}
-                  </commonImports.FormHelperText>
-                </commonImports.FormControl>
-              ))}
+                      {getOptions(column.accessorKey).map((option) => (
+                        <commonImports.MenuItem
+                          key={option.value}
+                          value={option.value}
+                        >
+                          {getOptionLabel(option.value)}
+                        </commonImports.MenuItem>
+                      ))}
+                    </commonImports.Select>
+                  )
+                }
+                <commonImports.FormHelperText>
+                  {column.accessorKey &&
+                  errors.hasOwnProperty(column.accessorKey)
+                    ? errors[column.accessorKey]
+                    : ""}
+                </commonImports.FormHelperText>
+              </commonImports.FormControl>
+            ))}
+
+{columns
+              .filter((column) => column.accessorKey === "roomRemarks")
+              .map((column) => (
+              <commonImports.FormControl
+                key={column.accessorKey}
+                error={column.accessorKey && !!errors[column.accessorKey]}
+              >
+                {
+                  (column.accessorKey === "roomRemarks")
+                   &&
+                  (
+                    <commonImports.TextField
+                      label={column.header}
+                      name={column.accessorKey}
+                      value={values[column.accessorKey as keyof typeof values]}
+                      onChange={(event) =>
+                        handleInputChange(event, column.accessorKey)
+                      }
+                      error={column.accessorKey && !!errors[column.accessorKey]}
+                      helperText={
+                        column.accessorKey &&
+                        errors.hasOwnProperty(column.accessorKey)
+                          ? errors[column.accessorKey]
+                          : ""
+                      }
+                    />
+                  )
+                }
+                <commonImports.FormHelperText>
+                  {column.accessorKey &&
+                  errors.hasOwnProperty(column.accessorKey)
+                    ? errors[column.accessorKey]
+                    : ""}
+                </commonImports.FormHelperText>
+              </commonImports.FormControl>
+            ))}
 
             {columns
               .filter((column) => column.accessorKey === "rentCalcMethod")
               .map((column) => (
-                <commonImports.FormControl
-                  error={column.accessorKey && !!errors[column.accessorKey]}
-                >
-                  <commonImports.Select
-                    label="Rent Calculation Method"
-                    key={column.accessorKey}
-                    name={column.accessorKey}
-                    value={selectedRentCalcMethod}
-                    onChange={(event) => {
-                      setValues({
-                        ...values,
-                        [event.target.name]: event.target.value,
-                      });
-                      setSelectedRentCalcMethod(event.target.value);
-                    }}
-                    displayEmpty
-                    sx={{ minWidth: 120 }}
-                    MenuProps={{
-                      style: {
-                        maxHeight: 500,
-                      },
-                    }}
-                  >
-                    <commonImports.MenuItem value="" disabled>
-                      Rent Calculation Method
-                    </commonImports.MenuItem>
-                    {rentCalcMethod.map((option) => (
-                      <commonImports.MenuItem
-                        key={option.value}
-                        value={option.value}
-                      >
-                        {option.label}
+              <commonImports.FormControl
+                key={column.accessorKey}
+                error={column.accessorKey && !!errors[column.accessorKey]}
+              >
+                {
+                  (column.accessorKey === "rentCalcMethod") &&
+                  (
+                    <commonImports.Select
+                      label={column.header}
+                      name={column.accessorKey}
+                      value={getSelectedValue(column.accessorKey)}
+                      onChange={(event) =>{
+                        setSelectedRentCalcMethod(event.target.value as string);
+                        handleSelectChange(event, column.accessorKey);
+                      }
+                      }
+                      displayEmpty
+                      sx={{ minWidth: 120 }}
+                      MenuProps={{
+                        style: {
+                          maxHeight: 500,
+                        },
+                      }}
+                    >
+                      <commonImports.MenuItem value="" disabled>
+                        {column.header}
                       </commonImports.MenuItem>
-                    ))}
-                  </commonImports.Select>
-                  <commonImports.FormHelperText>
-                    {column.accessorKey &&
-                    errors.hasOwnProperty(column.accessorKey)
-                      ? errors[column.accessorKey]
-                      : ""}
-                  </commonImports.FormHelperText>
-                </commonImports.FormControl>
-              ))}
-
-              {columns
-              .filter(
-                (column) =>
-                  column.accessorKey !== "_id" &&
-                  column.accessorKey !== "propertyId" &&
-                  column.accessorKey !== "roomColorSeparator" &&
-                  column.accessorKey !== "roomType" &&
-                  column.accessorKey !== "rentCalcMethod" &&
-                  column.accessorKey !== "electricityBillType" &&
-                  column.accessorKey !== "electricityBillMeterName" &&
-                  column.accessorKey !== "electricityBillPerUnitCost" &&
-                  column.accessorKey !== "electricityBillMeterReading" &&
-                  column.accessorKey !== "electricityBillFixedAmtCost" &&
-                  column.accessorKey !== "waterBillType" &&
-                  column.accessorKey !== "waterBillMeterName" &&
-                  column.accessorKey !== "waterBillPerUnitCost" &&
-                  column.accessorKey !== "waterBillMeterReading" &&
-                  column.accessorKey !== "waterBillFixedAmtCost" &&
-                  column.accessorKey !== "createdAt" &&
-                  column.accessorKey !== "updatedAt"
-              )
-              .map((column) => (
-                <commonImports.TextField
-                  key={column.accessorKey}
-                  label={column.header}
-                  name={column.accessorKey}
-                  onChange={(e) =>
-                    setValues({ ...values, [e.target.name]: e.target.value })
-                  }
-                  error={column.accessorKey && !!errors[column.accessorKey]}
-                  helperText={
-                    column.accessorKey &&
-                    errors.hasOwnProperty(column.accessorKey)
-                      ? errors[column.accessorKey]
-                      : ""
-                  }
-                />
-              ))}
-
-            {columns
-              .filter((column) => column.accessorKey === "electricityBillType")
-              .map((column) => (
-                <commonImports.FormControl
-                  error={column.accessorKey && !!errors[column.accessorKey]}
-                >
-                  <commonImports.Select
-                    label="Electricity Bill Type"
-                    key={column.accessorKey}
-                    name={column.accessorKey}
-                    value={selectedElecBillType}
-                    onChange={(event) => {
-                      setValues({
-                        ...values,
-                        [event.target.name]: event.target.value,
-                      });
-                      setSelectedElecBillType(event.target.value);
-                    }}
-                    displayEmpty
-                    sx={{ minWidth: 120 }}
-                    MenuProps={{
-                      style: {
-                        maxHeight: 500,
-                      },
-                    }}
-                  >
-                    <commonImports.MenuItem value="" disabled>
-                      Electricity Bill Type
-                    </commonImports.MenuItem>
-                    {electricityBillType.map((option) => (
-                      <commonImports.MenuItem
-                        key={option.value}
-                        value={option.value}
-                      >
-                        {option.label}
-                      </commonImports.MenuItem>
-                    ))}
-                  </commonImports.Select>
-                  <commonImports.FormHelperText>
-                    {column.accessorKey &&
-                    errors.hasOwnProperty(column.accessorKey)
-                      ? errors[column.accessorKey]
-                      : ""}
-                  </commonImports.FormHelperText>
-                </commonImports.FormControl>
+                      {getOptions(column.accessorKey).map((option) => (
+                        <commonImports.MenuItem
+                          key={option.value}
+                          value={option.value}
+                        >
+                          {getOptionLabel(option.value)}
+                        </commonImports.MenuItem>
+                      ))}
+                    </commonImports.Select>
+                  )
+                }
+                <commonImports.FormHelperText>
+                  {column.accessorKey &&
+                  errors.hasOwnProperty(column.accessorKey)
+                    ? errors[column.accessorKey]
+                    : ""}
+                </commonImports.FormHelperText>
+              </commonImports.FormControl>
             ))}
 
-{/* Render the form fields based on the electricity bill type */}
-{selectedElecBillType === "metered" && (
-  <>
-    {columns
+{columns
+              .filter((column) => column.accessorKey === "electricityBillType")
+              .map((column) => (
+              <commonImports.FormControl
+                key={column.accessorKey}
+                error={column.accessorKey && !!errors[column.accessorKey]}
+              >
+                {
+                  (column.accessorKey === "electricityBillType") &&
+                  (
+                    <commonImports.Select
+                      label={column.header}
+                      name={column.accessorKey}
+                      value={getSelectedValue(column.accessorKey)}
+                      onChange={(event) =>{
+                        handleSelectChange(event, column.accessorKey);
+                        setSelectedElecBillType(event.target.value);
+                      }
+                      }
+                      displayEmpty
+                      sx={{ minWidth: 120 }}
+                      MenuProps={{
+                        style: {
+                          maxHeight: 500,
+                        },
+                      }}
+                    >
+                      <commonImports.MenuItem value="" disabled>
+                        {column.header}
+                      </commonImports.MenuItem>
+                      {getOptions(column.accessorKey).map((option) => (
+                        <commonImports.MenuItem
+                          key={option.value}
+                          value={option.value}
+                        >
+                          {getOptionLabel(option.value)}
+                        </commonImports.MenuItem>
+                      ))}
+                    </commonImports.Select>
+                  )
+                }
+                <commonImports.FormHelperText>
+                  {column.accessorKey &&
+                  errors.hasOwnProperty(column.accessorKey)
+                    ? errors[column.accessorKey]
+                    : ""}
+                </commonImports.FormHelperText>
+              </commonImports.FormControl>
+            ))}
+
+{(selectedElecBillType==="metered") && columns
               .filter(
-                (column) =>
-                  column.accessorKey === "electricityBillMeterName" ||
+                (column) => column.accessorKey === "electricityBillMeterName" ||
+                column.accessorKey === "electricityBillPerUnitCost" ||
+                column.accessorKey === "electricityBillMeterReading"
+                )
+              .map((column) => (
+              <commonImports.FormControl
+                key={column.accessorKey}
+                error={column.accessorKey && !!errors[column.accessorKey]}
+              >
+                {
+                  (column.accessorKey === "electricityBillMeterName" ||
                   column.accessorKey === "electricityBillPerUnitCost" ||
                   column.accessorKey === "electricityBillMeterReading"
-              )
-              .map((column) => (
-                <commonImports.TextField
-                  key={column.accessorKey}
-                  label={column.header}
-                  name={column.accessorKey}
-                  onChange={(e) =>
-                    setValues({ ...values, [e.target.name]: e.target.value })
-                  }
-                  error={column.accessorKey && !!errors[column.accessorKey]}
-                  helperText={
-                    column.accessorKey &&
-                    errors.hasOwnProperty(column.accessorKey)
-                      ? errors[column.accessorKey]
-                      : ""
-                  }
-                />
-              ))}
-  </>
-)}
+                  )
+                   &&
+                  (
+                    <commonImports.TextField
+                      label={column.header}
+                      name={column.accessorKey}
+                      value={values[column.accessorKey as keyof typeof values]}
+                      onChange={(event) =>
+                        handleInputChange(event, column.accessorKey)
+                      }
+                      error={column.accessorKey && !!errors[column.accessorKey]}
+                      helperText={
+                        column.accessorKey &&
+                        errors.hasOwnProperty(column.accessorKey)
+                          ? errors[column.accessorKey]
+                          : ""
+                      }
+                    />
+                  )
+                }
+                <commonImports.FormHelperText>
+                  {column.accessorKey &&
+                  errors.hasOwnProperty(column.accessorKey)
+                    ? errors[column.accessorKey]
+                    : ""}
+                </commonImports.FormHelperText>
+              </commonImports.FormControl>
+            ))}
 
-{selectedElecBillType === "fixed" && (
-  <>
-    {columns
+{(selectedElecBillType==="fixed") && columns
               .filter(
-                (column) =>
-                  column.accessorKey === "electricityBillFixedAmtCost"
-              )
+                (column) => column.accessorKey === "electricityBillFixedAmtCost"
+                )
               .map((column) => (
-                <commonImports.TextField
-                  key={column.accessorKey}
-                  label={column.header}
-                  name={column.accessorKey}
-                  onChange={(e) =>
-                    setValues({ ...values, [e.target.name]: e.target.value })
-                  }
-                  error={column.accessorKey && !!errors[column.accessorKey]}
-                  helperText={
-                    column.accessorKey &&
-                    errors.hasOwnProperty(column.accessorKey)
-                      ? errors[column.accessorKey]
-                      : ""
-                  }
-                />
-              ))}
-  </>
-)}
+              <commonImports.FormControl
+                key={column.accessorKey}
+                error={column.accessorKey && !!errors[column.accessorKey]}
+              >
+                {
+                  (column.accessorKey === "electricityBillFixedAmtCost"
+                  )
+                   &&
+                  (
+                    <commonImports.TextField
+                      label={column.header}
+                      name={column.accessorKey}
+                      value={values[column.accessorKey as keyof typeof values]}
+                      onChange={(event) =>
+                        handleInputChange(event, column.accessorKey)
+                      }
+                      error={column.accessorKey && !!errors[column.accessorKey]}
+                      helperText={
+                        column.accessorKey &&
+                        errors.hasOwnProperty(column.accessorKey)
+                          ? errors[column.accessorKey]
+                          : ""
+                      }
+                    />
+                  )
+                }
+                <commonImports.FormHelperText>
+                  {column.accessorKey &&
+                  errors.hasOwnProperty(column.accessorKey)
+                    ? errors[column.accessorKey]
+                    : ""}
+                </commonImports.FormHelperText>
+              </commonImports.FormControl>
+            ))}
 
-
-
-            {columns
+{columns
               .filter((column) => column.accessorKey === "waterBillType")
               .map((column) => (
-                <commonImports.FormControl
-                  error={column.accessorKey && !!errors[column.accessorKey]}
-                >
-                  <commonImports.Select
-                    label="Water Bill Type"
-                    key={column.accessorKey}
-                    name={column.accessorKey}
-                    value={selectedWaterBillType}
-                    onChange={(event) => {
-                      setValues({
-                        ...values,
-                        [event.target.name]: event.target.value,
-                      });
-                      setSelectedWaterBillType(event.target.value);
-                    }}
-                    displayEmpty
-                    sx={{ minWidth: 120 }}
-                    MenuProps={{
-                      style: {
-                        maxHeight: 500,
-                      },
-                    }}
-                  >
-                    <commonImports.MenuItem value="" disabled>
-                      Water Bill Type
-                    </commonImports.MenuItem>
-                    {waterBillType.map((option) => (
-                      <commonImports.MenuItem
-                        key={option.value}
-                        value={option.value}
-                      >
-                        {option.label}
+              <commonImports.FormControl
+                key={column.accessorKey}
+                error={column.accessorKey && !!errors[column.accessorKey]}
+              >
+                {
+                  (column.accessorKey === "waterBillType") &&
+                  (
+                    <commonImports.Select
+                      label={column.header}
+                      name={column.accessorKey}
+                      value={getSelectedValue(column.accessorKey)}
+                      onChange={(event) =>{
+                        handleSelectChange(event, column.accessorKey);
+                        setSelectedWaterBillType(event.target.value);
+                      }
+                      }
+                      displayEmpty
+                      sx={{ minWidth: 120 }}
+                      MenuProps={{
+                        style: {
+                          maxHeight: 500,
+                        },
+                      }}
+                    >
+                      <commonImports.MenuItem value="" disabled>
+                        {column.header}
                       </commonImports.MenuItem>
-                    ))}
-                  </commonImports.Select>
-                  <commonImports.FormHelperText>
-                    {column.accessorKey &&
-                    errors.hasOwnProperty(column.accessorKey)
-                      ? errors[column.accessorKey]
-                      : ""}
-                  </commonImports.FormHelperText>
-                </commonImports.FormControl>
-              ))}
+                      {getOptions(column.accessorKey).map((option) => (
+                        <commonImports.MenuItem
+                          key={option.value}
+                          value={option.value}
+                        >
+                          {getOptionLabel(option.value)}
+                        </commonImports.MenuItem>
+                      ))}
+                    </commonImports.Select>
+                  )
+                }
+                <commonImports.FormHelperText>
+                  {column.accessorKey &&
+                  errors.hasOwnProperty(column.accessorKey)
+                    ? errors[column.accessorKey]
+                    : ""}
+                </commonImports.FormHelperText>
+              </commonImports.FormControl>
+            ))}
 
-          {/* Render the form fields based on the Water bill type */}
-{selectedWaterBillType === "metered" && (
-  <>
-    {columns
+{(selectedWaterBillType==="metered") && columns
               .filter(
-                (column) =>
-                  column.accessorKey === "waterBillMeterName" ||
+                (column) => column.accessorKey === "waterBillMeterName" ||
+                column.accessorKey === "waterBillPerUnitCost" ||
+                column.accessorKey === "waterBillMeterReading"
+                )
+              .map((column) => (
+              <commonImports.FormControl
+                key={column.accessorKey}
+                error={column.accessorKey && !!errors[column.accessorKey]}
+              >
+                {
+                  (column.accessorKey === "waterBillMeterName" ||
                   column.accessorKey === "waterBillPerUnitCost" ||
                   column.accessorKey === "waterBillMeterReading"
-              )
-              .map((column) => (
-                <commonImports.TextField
-                  key={column.accessorKey}
-                  label={column.header}
-                  name={column.accessorKey}
-                  onChange={(e) =>
-                    setValues({ ...values, [e.target.name]: e.target.value })
-                  }
-                  error={column.accessorKey && !!errors[column.accessorKey]}
-                  helperText={
-                    column.accessorKey &&
-                    errors.hasOwnProperty(column.accessorKey)
-                      ? errors[column.accessorKey]
-                      : ""
-                  }
-                />
-              ))}
-  </>
-)}
+                  )
+                   &&
+                  (
+                    <commonImports.TextField
+                      label={column.header}
+                      name={column.accessorKey}
+                      value={values[column.accessorKey as keyof typeof values]}
+                      onChange={(event) =>
+                        handleInputChange(event, column.accessorKey)
+                      }
+                      error={column.accessorKey && !!errors[column.accessorKey]}
+                      helperText={
+                        column.accessorKey &&
+                        errors.hasOwnProperty(column.accessorKey)
+                          ? errors[column.accessorKey]
+                          : ""
+                      }
+                    />
+                  )
+                }
+                <commonImports.FormHelperText>
+                  {column.accessorKey &&
+                  errors.hasOwnProperty(column.accessorKey)
+                    ? errors[column.accessorKey]
+                    : ""}
+                </commonImports.FormHelperText>
+              </commonImports.FormControl>
+            ))}
 
-{selectedWaterBillType === "fixed" && (
-  <>
-    {columns
+{(selectedWaterBillType==="fixed") && columns
               .filter(
-                (column) =>
-                  column.accessorKey === "waterBillFixedAmtCost"
-              )
+                (column) => column.accessorKey === "waterBillFixedAmtCost"
+                )
               .map((column) => (
-                <commonImports.TextField
-                  key={column.accessorKey}
-                  label={column.header}
-                  name={column.accessorKey}
-                  onChange={(e) =>
-                    setValues({ ...values, [e.target.name]: e.target.value })
-                  }
-                  error={column.accessorKey && !!errors[column.accessorKey]}
-                  helperText={
-                    column.accessorKey &&
-                    errors.hasOwnProperty(column.accessorKey)
-                      ? errors[column.accessorKey]
-                      : ""
-                  }
-                />
-              ))}
-  </>
-)}
+              <commonImports.FormControl
+                key={column.accessorKey}
+                error={column.accessorKey && !!errors[column.accessorKey]}
+              >
+                {
+                  (column.accessorKey === "waterBillFixedAmtCost"
+                  )
+                   &&
+                  (
+                    <commonImports.TextField
+                      label={column.header}
+                      name={column.accessorKey}
+                      value={values[column.accessorKey as keyof typeof values]}
+                      onChange={(event) =>
+                        handleInputChange(event, column.accessorKey)
+                      }
+                      error={column.accessorKey && !!errors[column.accessorKey]}
+                      helperText={
+                        column.accessorKey &&
+                        errors.hasOwnProperty(column.accessorKey)
+                          ? errors[column.accessorKey]
+                          : ""
+                      }
+                    />
+                  )
+                }
+                <commonImports.FormHelperText>
+                  {column.accessorKey &&
+                  errors.hasOwnProperty(column.accessorKey)
+                    ? errors[column.accessorKey]
+                    : ""}
+                </commonImports.FormHelperText>
+              </commonImports.FormControl>
+            ))}
 
-            
+
           </commonImports.Stack>
         </form>
       </commonImports.DialogContent>
+
       <commonImports.DialogActions sx={{ p: "1.25rem" }}>
         <commonImports.Button onClick={onClose}>Cancel</commonImports.Button>
         <commonImports.Button

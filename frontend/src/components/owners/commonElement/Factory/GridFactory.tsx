@@ -21,7 +21,7 @@ export const GridFactory = (
   >(
     () => [
       {
-        header: "Owner Details Id",
+        header: "Owner Id",
         accessorKey: "_id",
         enableColumnOrdering: false, //disable column ordering on this column
         enableSorting: false,
@@ -56,35 +56,35 @@ export const GridFactory = (
         }),
       },
       {
-        header: "Owner Details Name",
+        header: "Owner Name",
         accessorKey: "ownerName",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "Owner Details Phone",
+        header: "Owner Phone",
         accessorKey: "ownerMobileNo",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "Owner Details Email",
+        header: "Owner Email",
         accessorKey: "ownerEmail",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "Owner Details Website",
+        header: "Owner Website",
         accessorKey: "ownerWebsite",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "Created Date",
+        header: "Created At",
         accessorKey: "createdAt",
         //customize normal cell render on normal non-aggregated rows
         Cell: ({ cell }) => (
@@ -95,7 +95,7 @@ export const GridFactory = (
         }),
       },
       {
-        header: "Updated Date",
+        header: "Updated At",
         accessorKey: "updatedAt",
         //customize normal cell render on normal non-aggregated rows
         Cell: ({ cell }) => (

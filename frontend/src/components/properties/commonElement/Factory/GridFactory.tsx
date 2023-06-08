@@ -1,4 +1,3 @@
-// GridFactory.tsx
 import * as commonImports from "../../../../commonCode/CommonImports";
 import React from "react";
 import * as PropertiesModel from "../../../../models/allPropertiesModel";
@@ -42,7 +41,7 @@ export const GridFactory = (
         }),
       },
       {
-        header: "Name",
+        header: "Property Name",
         accessorKey: "propertyName",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(
@@ -79,7 +78,7 @@ export const GridFactory = (
         },
       },
       {
-        header: "Rent Receipt Meta Data",
+        header: "Payment Meta Data",
         accessorKey: "rentReceiptMetaDataId",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(
@@ -144,7 +143,7 @@ export const GridFactory = (
         }),
       },
       {
-        header: "Created Date",
+        header: "Created At",
         accessorKey: "createdAt",
         //customize normal cell render on normal non-aggregated rows
         Cell: ({ cell }) => (
@@ -162,7 +161,7 @@ export const GridFactory = (
         }),
       },
       {
-        header: "Updated Date",
+        header: "Updated At",
         accessorKey: "updatedAt",
         //customize normal cell render on normal non-aggregated rows
         Cell: ({ cell }) => (

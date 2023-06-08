@@ -21,7 +21,7 @@ export const GridFactory = (
   >(
     () => [
       {
-        header: "Rent Receipt Meta Data Details Id",
+        header: "Payment Meta Data Id",
         accessorKey: "_id",
         enableColumnOrdering: false, //disable column ordering on this column
         enableSorting: false,
@@ -136,7 +136,7 @@ export const GridFactory = (
         }),
       },
       {
-        header: "Created Date",
+        header: "Created At",
         accessorKey: "createdAt",
         //customize normal cell render on normal non-aggregated rows
         Cell: ({ cell }) => (
@@ -147,7 +147,7 @@ export const GridFactory = (
         }),
       },
       {
-        header: "Updated Date",
+        header: "Updated At",
         accessorKey: "updatedAt",
         //customize normal cell render on normal non-aggregated rows
         Cell: ({ cell }) => (

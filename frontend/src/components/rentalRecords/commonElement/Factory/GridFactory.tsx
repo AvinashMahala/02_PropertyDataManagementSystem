@@ -21,7 +21,7 @@ export const GridFactory = (
   >(
     () => [
       {
-        header: "Property Id",
+        header: "Rental Record ID",
         accessorKey: "_id",
         enableColumnOrdering: false, //disable column ordering on this column
         enableSorting: false,
@@ -38,189 +38,189 @@ export const GridFactory = (
         }),
       },
       {
-        header: "flatId",
+        header: "Flat Name",
         accessorKey: "flatId",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "tenantId",
+        header: "Tenant Name",
         accessorKey: "tenantId",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "rentStartDate",
+        header: "Rent Start Date",
         accessorKey: "rentStartDate",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "rentEndDate",
+        header: "Rent End Date",
         accessorKey: "rentEndDate",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "rentAmount",
+        header: "Rent Amount",
         accessorKey: "rentAmount",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "buildingMaintenanceAmount",
+        header: "Building Maintenance Amount",
         accessorKey: "buildingMaintenanceAmount",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "previousBalance",
+        header: "Previous Balance",
         accessorKey: "previousBalance",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "ebillPreviousMeterReading",
+        header: "Ebill Prev Meter Reading",
         accessorKey: "ebillPreviousMeterReading",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "ebillPreviousMeterReadingDate",
+        header: "Ebill Prev Meter Reading Date",
         accessorKey: "ebillPreviousMeterReadingDate",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "ebillNewMeterReading",
+        header: "Ebill Current Meter Reading",
         accessorKey: "ebillNewMeterReading",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "ebillNewMeterReadingDate",
+        header: "Ebill Current Meter Reading Date",
         accessorKey: "ebillNewMeterReadingDate",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "ebillMultiplier",
+        header: "Ebill Multiplier",
         accessorKey: "ebillMultiplier",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "ebillUnitsConsumed",
+        header: "Ebill Units Consumed",
         accessorKey: "ebillUnitsConsumed",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "ebillAmount",
+        header: "Total Ebill Amount",
         accessorKey: "ebillAmount",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "totalAmount",
+        header: "Total Amount To Be Paid",
         accessorKey: "totalAmount",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "paidAmount",
+        header: "Paid Amount",
         accessorKey: "paidAmount",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "currentBalance",
+        header: "Current Balance",
         accessorKey: "currentBalance",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "paymentDate",
+        header: "Payment Date",
         accessorKey: "paymentDate",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "paymentMode",
+        header: "Payment Mode",
         accessorKey: "paymentMode",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "paymentReference",
+        header: "Payment Reference",
         accessorKey: "paymentReference",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "paymentRemarks",
+        header: "Payment Remarks",
         accessorKey: "paymentRemarks",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "paymentStatus",
+        header: "Payment Status",
         accessorKey: "paymentStatus",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "paymentReceipt",
+        header: "Payment Receipt",
         accessorKey: "paymentReceipt",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "paymentReceiptDate",
+        header: "Payment Receipt Date",
         accessorKey: "paymentReceiptDate",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "paymentReceiptRemarks",
+        header: "Payment Receipt Remarks",
         accessorKey: "paymentReceiptRemarks",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "paymentReceiptStatus",
+        header: "Payment Receipt Status",
         accessorKey: "paymentReceiptStatus",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "Created Date",
+        header: "Created At",
         accessorKey: "createdAt",
         //customize normal cell render on normal non-aggregated rows
         Cell: ({ cell }) => (
@@ -231,7 +231,7 @@ export const GridFactory = (
         }),
       },
       {
-        header: "Updated Date",
+        header: "Updated At",
         accessorKey: "updatedAt",
         //customize normal cell render on normal non-aggregated rows
         Cell: ({ cell }) => (

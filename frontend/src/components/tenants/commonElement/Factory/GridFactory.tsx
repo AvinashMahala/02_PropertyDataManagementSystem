@@ -38,7 +38,7 @@ export const GridFactory = (
         }),
       },
       {
-        header: "flatId",
+        header: "Flat Name",
         accessorKey: "flatId",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
@@ -73,35 +73,35 @@ export const GridFactory = (
         }),
       },
       {
-        header: "NoOfPeople",
+        header: "Occupants",
         accessorKey: "NoOfPeople",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "NativeAddress",
+        header: "Native Address",
         accessorKey: "NativeAddress",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "WorkAddress",
+        header: "Work Address",
         accessorKey: "WorkAddress",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "PrimaryPhNo",
+        header: "Primary Ph No",
         accessorKey: "PrimaryPhNo",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "SecondaryPhNo",
+        header: "Secondary Ph No",
         accessorKey: "SecondaryPhNo",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
@@ -115,14 +115,14 @@ export const GridFactory = (
         }),
       },
       {
-        header: "DepositAmount",
+        header: "Deposit Amount",
         accessorKey: "DepositAmount",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "DepositPaidDate",
+        header: "Deposit Paid Date",
         accessorKey: "DepositPaidDate",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
@@ -136,77 +136,77 @@ export const GridFactory = (
         }),
       },
       {
-        header: "MoveInDate",
+        header: "MoveIn Date",
         accessorKey: "MoveInDate",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "StartRentFromDate",
+        header: "Start Rent From Date",
         accessorKey: "StartRentFromDate",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "LeaseType",
+        header: "Lease Type",
         accessorKey: "LeaseType",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "FixedLeaseStartDate",
+        header: "Fixed Lease Start Date",
         accessorKey: "FixedLeaseStartDate",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "FixedLeasePeriod",
+        header: "Fixed Lease Period",
         accessorKey: "FixedLeasePeriod",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "FixedLeasePeriodType",
+        header: "Fixed Lease Period Type",
         accessorKey: "FixedLeasePeriodType",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "EmergencyContactName",
+        header: "Emergency Contact Name",
         accessorKey: "EmergencyContactName",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "EmergencyContactNo",
+        header: "Emergency Contact No",
         accessorKey: "EmergencyContactNo",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "EmergencyContactRelation",
+        header: "Emergency Contact Relation",
         accessorKey: "EmergencyContactRelation",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "ExtraService",
+        header: "Parking ?",
         accessorKey: "ExtraService",
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
       },
       {
-        header: "Created Date",
+        header: "Created At",
         accessorKey: "createdAt",
         //customize normal cell render on normal non-aggregated rows
         Cell: ({ cell }) => (
@@ -217,7 +217,7 @@ export const GridFactory = (
         }),
       },
       {
-        header: "Updated Date",
+        header: "Updated At",
         accessorKey: "updatedAt",
         //customize normal cell render on normal non-aggregated rows
         Cell: ({ cell }) => (
