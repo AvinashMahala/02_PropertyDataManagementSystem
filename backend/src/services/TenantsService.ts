@@ -6,7 +6,7 @@ import ITenantMainModel, {
   ITenantCreateModel,
   ITenantUpdateParamsModel,
   ITenantUpdateBodyModel,
-} from "../models/tenantModel";
+} from "../models/TenantsModels";
 import mongoose from "mongoose";
 
 export const getAllTenants: RequestHandler = async (req, res, next) => {

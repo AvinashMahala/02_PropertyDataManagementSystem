@@ -6,7 +6,7 @@ import IMaintenanceRequestsMainModel, {
   IMaintenanceRequestsCreateModel,
   IMaintenanceRequestsUpdateParamsModel,
   IMaintenanceRequestsUpdateBodyModel,
-} from "../models/maintenanceRequestsModel";
+} from "../models/MaintenanceRequestsModels";
 import mongoose from "mongoose";
 
 export const getAllMaintenanceRequests: RequestHandler = async (req, res, next) => {

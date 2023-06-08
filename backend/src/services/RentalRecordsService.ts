@@ -6,7 +6,7 @@ import IRentMainModel, {
   IRentCreateModel,
   IRentUpdateParamsModel,
   IRentUpdateBodyModel,
-} from "../models/allRentDetailsModel";
+} from "../models/RentalRecordsModels";
 import mongoose from "mongoose";
 
 export const getAllRents: RequestHandler = async (req, res, next) => {

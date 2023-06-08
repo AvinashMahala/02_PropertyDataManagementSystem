@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import { assertIsDefined } from "../util/assertIsDefined";
 import mongoose from "mongoose";
 
-import IUserMainModel, { IUserCreateModel, IUserLoginBodyModel, IUserUpdateParamsModel, IUserUpdateBodyModel } from "../models/user";
+import IUserMainModel, { IUserCreateModel, IUserLoginBodyModel, IUserUpdateParamsModel, IUserUpdateBodyModel } from "../models/UsersModels";
 
 
 export const getAllUsers:RequestHandler = async(req,res,next)=>{

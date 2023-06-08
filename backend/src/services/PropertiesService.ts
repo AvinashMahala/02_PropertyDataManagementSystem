@@ -6,7 +6,7 @@ import IPropertyModelMainModel, {
   IPropertyModelCreateModel,
   IPropertyModelUpdateParamsModel,
   IPropertyModelUpdateBodyModel,
-} from "../models/allPropertiesModel";
+} from "../models/PropertiesModels";
 import mongoose from "mongoose";
 
 export const getAllPropertyModels: RequestHandler = async (req, res, next) => {

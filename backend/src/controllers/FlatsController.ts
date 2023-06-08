@@ -1,6 +1,6 @@
 import {RequestHandler} from 'express';
 import * as FlatService  from '../services/FlatsService';
-import { IFlatModelCreateModel, IFlatModelUpdateBodyModel, IFlatModelUpdateParamsModel } from '../models/flatModel';
+import { IFlatModelCreateModel, IFlatModelUpdateBodyModel, IFlatModelUpdateParamsModel } from '../models/FlatsModels';
 
 
 export const getAllFlats:RequestHandler = async(req,res,next)=>{

@@ -1,6 +1,6 @@
 import {RequestHandler} from 'express';
 import * as AllPropertiesService  from '../services/PropertiesService';
-import { IPropertyModelCreateModel, IPropertyModelUpdateBodyModel, IPropertyModelUpdateParamsModel } from '../models/allPropertiesModel';
+import { IPropertyModelCreateModel, IPropertyModelUpdateBodyModel, IPropertyModelUpdateParamsModel } from '../models/PropertiesModels';
 
 
 export const getAllPropertiesDetails:RequestHandler = async(req,res,next)=>{

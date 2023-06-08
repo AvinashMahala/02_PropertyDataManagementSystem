@@ -1,6 +1,6 @@
 import {RequestHandler} from 'express';
 import * as UserService  from '../services/UsersService';
-import { IUserCreateModel, IUserLoginBodyModel, IUserUpdateParamsModel, IUserUpdateBodyModel } from "../models/user";
+import { IUserCreateModel, IUserLoginBodyModel, IUserUpdateParamsModel, IUserUpdateBodyModel } from "../models/UsersModels";
 
 
 export const getAllUsers:RequestHandler = async(req,res,next)=>{

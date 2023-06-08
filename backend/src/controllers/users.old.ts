@@ -1,6 +1,6 @@
 import  { RequestHandler } from "express";
 import createHttpError from "http-errors";
-import UserModel from "../models/user";
+import UserModel from "../models/UsersModels";
 import bcrypt from "bcrypt";
 import { assertIsDefined } from "../util/assertIsDefined";
 import mongoose from "mongoose";

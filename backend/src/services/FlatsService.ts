@@ -6,7 +6,7 @@ import IFlatModelMainModel, {
   IFlatModelCreateModel,
   IFlatModelUpdateParamsModel,
   IFlatModelUpdateBodyModel,
-} from "../models/flatModel";
+} from "../models/FlatsModels";
 import mongoose from "mongoose";
 
 export const getAllFlats: RequestHandler = async (req, res, next) => {

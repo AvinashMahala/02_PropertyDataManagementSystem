@@ -6,7 +6,7 @@ import IRentReceiptMetaDataDetailsMainModel, {
   IRentReceiptMetaDataDetailsCreateModel,
   IRentReceiptMetaDataDetailsUpdateParamsModel,
   IRentReceiptMetaDataDetailsUpdateBodyModel,
-} from "../models/rentReceiptMetaDataDetails";
+} from "../models/PaymentMetaDataModels";
 import mongoose from "mongoose";
 
 export const getAllRentReceiptMetaDataDetails: RequestHandler = async (req, res, next) => {

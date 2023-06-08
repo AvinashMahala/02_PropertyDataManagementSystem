@@ -1,6 +1,6 @@
 import {RequestHandler} from 'express';
 import * as RentService  from '../services/RentalRecordsService';
-import { IRentCreateModel, IRentUpdateParamsModel, IRentUpdateBodyModel } from '../models/allRentDetailsModel';
+import { IRentCreateModel, IRentUpdateParamsModel, IRentUpdateBodyModel } from '../models/RentalRecordsModels';
 
 export const getAllRents:RequestHandler = async(req,res,next)=>{
     await RentService.getAllRents(req,res,next);

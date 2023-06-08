@@ -1,6 +1,6 @@
 import {RequestHandler} from 'express';
 import * as MaintenanceRequestService  from '../services/MaintenanceRequestsService';
-import { IMaintenanceRequestsCreateModel, IMaintenanceRequestsUpdateParamsModel, IMaintenanceRequestsUpdateBodyModel } from '../models/maintenanceRequestsModel';
+import { IMaintenanceRequestsCreateModel, IMaintenanceRequestsUpdateParamsModel, IMaintenanceRequestsUpdateBodyModel } from '../models/MaintenanceRequestsModels';
 
 
 export const getAllMaintenanceRequests:RequestHandler = async(req,res,next)=>{

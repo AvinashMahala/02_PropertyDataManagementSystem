@@ -1,6 +1,6 @@
 import {RequestHandler} from 'express';
 import * as RentReceiptMetaDataDetailsService  from '../services/PaymentMetaDataService';
-import { IRentReceiptMetaDataDetailsCreateModel, IRentReceiptMetaDataDetailsUpdateBodyModel, IRentReceiptMetaDataDetailsUpdateParamsModel } from '../models/rentReceiptMetaDataDetails';
+import { IRentReceiptMetaDataDetailsCreateModel, IRentReceiptMetaDataDetailsUpdateBodyModel, IRentReceiptMetaDataDetailsUpdateParamsModel } from '../models/PaymentMetaDataModels';
 
 
 export const getAllRentReceiptMetaDataDetails:RequestHandler = async(req,res,next)=>{

@@ -6,7 +6,7 @@ import IOwnerDetailsMainModel, {
   IOwnerDetailsCreateModel,
   IOwnerDetailsUpdateParamsModel,
   IOwnerDetailsUpdateBodyModel,
-} from "../models/ownerDetails";
+} from "../models/OwnersModels";
 import mongoose from "mongoose";
 
 export const getAllOwnerDetails: RequestHandler = async (req, res, next) => {

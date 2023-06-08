@@ -1,6 +1,6 @@
 import {RequestHandler} from 'express';
 import * as TenantService  from '../services/TenantsService';
-import { ITenantCreateModel, ITenantUpdateParamsModel, ITenantUpdateBodyModel } from '../models/tenantModel';
+import { ITenantCreateModel, ITenantUpdateParamsModel, ITenantUpdateBodyModel } from '../models/TenantsModels';
 
 
 export const getAllTenants:RequestHandler = async(req,res,next)=>{

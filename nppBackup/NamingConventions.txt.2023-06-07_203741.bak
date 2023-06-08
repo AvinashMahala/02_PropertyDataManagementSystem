@@ -19,15 +19,15 @@ PropertyDataManagementSystem
 			-logging
 			-middleware
 			-models
-				-FlatsModels.ts
-				-MaintenanceRequestsModels.ts
-				-NotesModels.ts
-				-OwnersModels.ts
-				-PaymentMetaDataModels.ts
-				-PropertiesModels.ts
-				-RentalRecordsModels.ts
-				-TenantsModels.ts
-				-UsersModels.ts
+				-FlatsRoutes.ts
+				-MaintenanceRequestsRoutes.ts
+				-NotesRoutes.ts
+				-OwnersRoutes.ts
+				-PaymentMetaDataRoutes.ts
+				-PropertiesRoutes.ts
+				-RentalRecordsRoutes.ts
+				-TenantsRoutes.ts
+				-UsersRoutes.ts
 			-routes
 				-FlatsRoutes.ts
 				-MaintenanceRequestsRoutes.ts

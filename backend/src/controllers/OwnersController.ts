@@ -1,6 +1,6 @@
 import {RequestHandler} from 'express';
 import * as OwnerDetailsService  from '../services/OwnersService';
-import { IOwnerDetailsCreateModel, IOwnerDetailsUpdateBodyModel, IOwnerDetailsUpdateParamsModel } from '../models/ownerDetails';
+import { IOwnerDetailsCreateModel, IOwnerDetailsUpdateBodyModel, IOwnerDetailsUpdateParamsModel } from '../models/OwnersModels';
 
 
 export const getAllOwnerDetails:RequestHandler = async(req,res,next)=>{
