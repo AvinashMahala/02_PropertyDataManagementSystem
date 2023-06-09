@@ -34,6 +34,11 @@ export const CreateNewModal = ({
   const [selectedFlatModel, setSelectedFlatModel] = commonImports.useState<FlatsModel.IFlatViewModel>();
   const [selectedTenant, setSelectedTenant] = commonImports.useState<TenantModel.ITenantViewModel>();
   const [selectedRentDetail, setSelectedRentDetail] = commonImports.useState("");
+
+  const [selectedEbillUnitsConsumed, setSelectedEbillUnitsConsumed] = commonImports.useState("");
+  const [selectedTotalEbillAmount, setSelectedTotalEbillAmount] = commonImports.useState("");
+  const [selectedTotalAmountToBePaid, setSelectedTotalAmountToBePaid] = commonImports.useState("");
+
   const [errors, setErrors] = commonImports.useState<{ [key: string]: string }>(
     {}
   );
@@ -190,7 +195,12 @@ export const CreateNewModal = ({
                       setValues({
                         ...values,
                         [event.target.name]: event.target.value,
-                        tenantId:tenantsArr.filter((tenant)=>tenant.propertyId===selectedProperty && tenant.flatId===event.target.value)[0]._id
+                        tenantId:tenantsArr.filter((tenant)=>tenant.propertyId===selectedProperty && tenant.flatId===event.target.value)[0]._id,
+                        rentAmount:flatsArr.filter((room)=>room._id===event.target.value)[0].roomRent,
+                        previousBalance:tenantsArr.filter((tenant)=>tenant.propertyId===selectedProperty && tenant.flatId===event.target.value)[0].Balance,
+                        ebillPreviousMeterReading:flatsArr.filter((room)=>room._id===event.target.value)[0].electricityBillMeterReading,
+                        ebillMultiplier:flatsArr.filter((room)=>room._id===event.target.value)[0].electricityBillPerUnitCost
+
                         
                       });
                       setSelectedFlatModel(flatsArr.filter((flat)=>flat._id===event.target.value)[0]);
@@ -297,11 +307,59 @@ export const CreateNewModal = ({
                 />
               ))}
 
+{selectedFlatModel!==undefined && columns
+              .filter(
+                (column) =>
+                  column.accessorKey === "rentAmount"
+              )
+              .map((column) => (
+                <commonImports.TextField
+                  key={column.accessorKey}
+                  // label={column.header}
+                  type="text"
+                  name={column.accessorKey}
+                  value={selectedFlatModel.roomRent}
+                  disabled
+                  onChange={(e) =>
+                    setValues({ ...values, [e.target.name]: e.target.value })
+                  }
+                  error={column.accessorKey && !!errors[column.accessorKey]}
+                  helperText={
+                    column.accessorKey &&
+                    errors.hasOwnProperty(column.accessorKey)
+                      ? errors[column.accessorKey]
+                      : "Rent Amount"
+                  }
+                />
+              ))}
+
+
 {columns
               .filter(
                 (column) =>
-                  column.accessorKey === "rentAmount" ||
-                  column.accessorKey === "buildingMaintenanceAmount" ||
+                  column.accessorKey === "buildingMaintenanceAmount"
+              )
+              .map((column) => (
+                <commonImports.TextField
+                  key={column.accessorKey}
+                  label={column.header}
+                  type="text"
+                  name={column.accessorKey}
+                  onChange={(e) =>
+                    setValues({ ...values, [e.target.name]: e.target.value })
+                  }
+                  error={column.accessorKey && !!errors[column.accessorKey]}
+                  helperText={
+                    column.accessorKey &&
+                    errors.hasOwnProperty(column.accessorKey)
+                      ? errors[column.accessorKey]
+                      : ""
+                  }
+                />
+              ))}
+{selectedTenant!==undefined && columns
+              .filter(
+                (column) =>
                   column.accessorKey === "previousBalance"
               )
               .map((column) => (
@@ -309,6 +367,8 @@ export const CreateNewModal = ({
                   key={column.accessorKey}
                   label={column.header}
                   type="text"
+                  value={selectedTenant.Balance}
+                  disabled
                   name={column.accessorKey}
                   onChange={(e) =>
                     setValues({ ...values, [e.target.name]: e.target.value })
@@ -331,9 +391,11 @@ export const CreateNewModal = ({
               .map((column) => (
                 <commonImports.TextField
                   key={column.accessorKey}
-                  label={column.header}
+                  // label={column.header}
                   type="text"
                   name={column.accessorKey}
+                  value={selectedFlatModel.electricityBillMeterReading}
+                  disabled
                   onChange={(e) =>
                     setValues({ ...values, [e.target.name]: e.target.value })
                   }
@@ -342,7 +404,7 @@ export const CreateNewModal = ({
                     column.accessorKey &&
                     errors.hasOwnProperty(column.accessorKey)
                       ? errors[column.accessorKey]
-                      : ""
+                      : "Ebill Prev Meter Reading"
                   }
                 />
               ))}
@@ -382,8 +444,21 @@ export const CreateNewModal = ({
                   label={column.header}
                   type="text"
                   name={column.accessorKey}
-                  onChange={(e) =>
-                    setValues({ ...values, [e.target.name]: e.target.value })
+                  onChange={(e) =>{
+                    
+                    const EbillUnitsConsumed:number=Number.parseFloat(e.target.value)-selectedFlatModel.electricityBillMeterReading;
+                    setSelectedEbillUnitsConsumed(EbillUnitsConsumed.toString());
+                    const TotalEbillAmount=(EbillUnitsConsumed*selectedFlatModel.electricityBillPerUnitCost);
+                    setSelectedTotalEbillAmount(TotalEbillAmount.toString());
+                    const TotalAmountToBePaid=selectedFlatModel.roomRent+TotalEbillAmount;
+                    setSelectedTotalAmountToBePaid(TotalAmountToBePaid.toString());
+                    setValues({ ...values,
+                      [e.target.name]: e.target.value,
+                      ebillUnitsConsumed:EbillUnitsConsumed,
+                      ebillAmount:TotalEbillAmount,
+                      totalAmount:TotalAmountToBePaid
+                     });
+                  }
                   }
                   error={column.accessorKey && !!errors[column.accessorKey]}
                   helperText={
@@ -418,11 +493,35 @@ export const CreateNewModal = ({
                   }
                 />
               ))}
+{selectedFlatModel?.electricityBillType==="metered" && columns
+              .filter(
+                (column) =>
+                  column.accessorKey === "ebillMultiplier"
+              )
+              .map((column) => (
+                <commonImports.TextField
+                  key={column.accessorKey}
+                  // label={column.header}
+                  type="text"
+                  name={column.accessorKey}
+                  value={selectedFlatModel.electricityBillPerUnitCost}
+                  disabled
+                  onChange={(e) =>
+                    setValues({ ...values, [e.target.name]: e.target.value })
+                  }
+                  error={column.accessorKey && !!errors[column.accessorKey]}
+                  helperText={
+                    column.accessorKey &&
+                    errors.hasOwnProperty(column.accessorKey)
+                      ? errors[column.accessorKey]
+                      : "Ebill Multiplier"
+                  }
+                />
+              ))}
 
 {selectedFlatModel?.electricityBillType==="metered" && columns
               .filter(
                 (column) =>
-                  column.accessorKey === "ebillMultiplier" ||
                   column.accessorKey === "ebillUnitsConsumed"
               )
               .map((column) => (
@@ -431,8 +530,11 @@ export const CreateNewModal = ({
                   label={column.header}
                   type="text"
                   name={column.accessorKey}
-                  onChange={(e) =>
-                    setValues({ ...values, [e.target.name]: e.target.value })
+                  value={selectedEbillUnitsConsumed}
+                  disabled
+                  onChange={(e) =>{
+                    setValues({ ...values, [e.target.name]: e.target.value });
+                  }
                   }
                   error={column.accessorKey && !!errors[column.accessorKey]}
                   helperText={
@@ -453,6 +555,8 @@ export const CreateNewModal = ({
                   key={column.accessorKey}
                   label={column.header}
                   type="text"
+                  value={selectedTotalEbillAmount}
+                  disabled
                   name={column.accessorKey}
                   onChange={(e) =>
                     setValues({ ...values, [e.target.name]: e.target.value })
@@ -490,11 +594,34 @@ export const CreateNewModal = ({
                   }
                 />
               ))}
-
 {columns
               .filter(
                 (column) =>
-                  column.accessorKey === "totalAmount" ||
+                  column.accessorKey === "totalAmount"
+              )
+              .map((column) => (
+                <commonImports.TextField
+                  key={column.accessorKey}
+                  // label={column.header}
+                  type="text"
+                  value={selectedTotalAmountToBePaid}
+                  disabled
+                  name={column.accessorKey}
+                  onChange={(e) =>
+                    setValues({ ...values, [e.target.name]: e.target.value })
+                  }
+                  error={column.accessorKey && !!errors[column.accessorKey]}
+                  helperText={
+                    column.accessorKey &&
+                    errors.hasOwnProperty(column.accessorKey)
+                      ? errors[column.accessorKey]
+                      : "Total Amount To Be Paid"
+                  }
+                />
+              ))}
+{columns
+              .filter(
+                (column) =>
                   column.accessorKey === "paidAmount" ||
                   column.accessorKey === "currentBalance"
               )
