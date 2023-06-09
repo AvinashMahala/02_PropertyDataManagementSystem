@@ -34,10 +34,14 @@ export const CreateNewModal = ({
   const [selectedFlatModel, setSelectedFlatModel] = commonImports.useState<FlatsModel.IFlatViewModel>();
   const [selectedTenant, setSelectedTenant] = commonImports.useState<TenantModel.ITenantViewModel>();
   const [selectedRentDetail, setSelectedRentDetail] = commonImports.useState("");
+  const [selectedBuildingMaintenanceAmt, setSelectedBuildingMaintenanceAmt] = commonImports.useState(0);
 
   const [selectedEbillUnitsConsumed, setSelectedEbillUnitsConsumed] = commonImports.useState("");
   const [selectedTotalEbillAmount, setSelectedTotalEbillAmount] = commonImports.useState("");
-  const [selectedTotalAmountToBePaid, setSelectedTotalAmountToBePaid] = commonImports.useState("");
+
+  const [selectedTotalAmountToBePaid, setSelectedTotalAmountToBePaid] = commonImports.useState(0);
+  const [selectedAmountPaid, setSelectedAmountPaid] = commonImports.useState(0);
+  const [selectedCurrentBalance, setSelectedCurrentBalance] = commonImports.useState(0);
 
   const [errors, setErrors] = commonImports.useState<{ [key: string]: string }>(
     {}
@@ -344,9 +348,14 @@ export const CreateNewModal = ({
                   key={column.accessorKey}
                   label={column.header}
                   type="text"
+                  defaultValue={0}
                   name={column.accessorKey}
-                  onChange={(e) =>
-                    setValues({ ...values, [e.target.name]: e.target.value })
+                  onChange={(e) =>{
+                    setValues({ ...values, [e.target.name]: e.target.value,
+                      buildingMaintenanceAmount:e.target.value                    
+                    });
+                    setSelectedBuildingMaintenanceAmt(Number.parseFloat(e.target.value));
+                  }
                   }
                   error={column.accessorKey && !!errors[column.accessorKey]}
                   helperText={
@@ -433,7 +442,7 @@ export const CreateNewModal = ({
                 />
               ))}
 
-{selectedFlatModel?.electricityBillType==="metered" && columns
+{selectedTenant!==undefined && selectedFlatModel?.electricityBillType==="metered" && columns
               .filter(
                 (column) =>
                   column.accessorKey === "ebillNewMeterReading"
@@ -450,8 +459,8 @@ export const CreateNewModal = ({
                     setSelectedEbillUnitsConsumed(EbillUnitsConsumed.toString());
                     const TotalEbillAmount=(EbillUnitsConsumed*selectedFlatModel.electricityBillPerUnitCost);
                     setSelectedTotalEbillAmount(TotalEbillAmount.toString());
-                    const TotalAmountToBePaid=selectedFlatModel.roomRent+TotalEbillAmount;
-                    setSelectedTotalAmountToBePaid(TotalAmountToBePaid.toString());
+                    const TotalAmountToBePaid=selectedFlatModel.roomRent+TotalEbillAmount+selectedBuildingMaintenanceAmt+selectedTenant.Balance;
+                    setSelectedTotalAmountToBePaid(TotalAmountToBePaid);
                     setValues({ ...values,
                       [e.target.name]: e.target.value,
                       ebillUnitsConsumed:EbillUnitsConsumed,
@@ -619,17 +628,50 @@ export const CreateNewModal = ({
                   }
                 />
               ))}
+              {columns
+              .filter(
+                (column) =>
+                  column.accessorKey === "paidAmount"
+              )
+              .map((column) => (
+                <commonImports.TextField
+                  key={column.accessorKey}
+                  // label={column.header}
+                  type="text"
+                  value={selectedAmountPaid}
+                  name={column.accessorKey}
+                  onChange={(e) =>{
+                    
+                    setSelectedAmountPaid(Number.parseFloat(e.target.value));
+                    setSelectedCurrentBalance(selectedTotalAmountToBePaid-Number.parseFloat(e.target.value));
+                    setValues({
+                       ...values, 
+                       [e.target.name]: e.target.value,
+                       currentBalance:(selectedTotalAmountToBePaid-Number.parseFloat(e.target.value)).toString()
+                      });
+                  }
+                  }
+                  error={column.accessorKey && !!errors[column.accessorKey]}
+                  helperText={
+                    column.accessorKey &&
+                    errors.hasOwnProperty(column.accessorKey)
+                      ? errors[column.accessorKey]
+                      : "Paid Amount"
+                  }
+                />
+              ))}
+
 {columns
               .filter(
                 (column) =>
-                  column.accessorKey === "paidAmount" ||
                   column.accessorKey === "currentBalance"
               )
               .map((column) => (
                 <commonImports.TextField
                   key={column.accessorKey}
-                  label={column.header}
+                  // label={column.header}
                   type="text"
+                  value={selectedCurrentBalance}
                   name={column.accessorKey}
                   onChange={(e) =>
                     setValues({ ...values, [e.target.name]: e.target.value })
@@ -639,7 +681,7 @@ export const CreateNewModal = ({
                     column.accessorKey &&
                     errors.hasOwnProperty(column.accessorKey)
                       ? errors[column.accessorKey]
-                      : ""
+                      : "Current Balance"
                   }
                 />
               ))}

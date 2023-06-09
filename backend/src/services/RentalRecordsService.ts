@@ -37,9 +37,79 @@ export const CreateOneRecord: RequestHandler<
   IRentCreateModel,
   unknown
 > = async (req, res, next) => {
+  const propertyId = req.body.propertyId;
+  const flatId = req.body.flatId;
+  const tenantId = req.body.tenantId;
+  const rentStartDate = req.body.rentStartDate;
+  const rentEndDate = req.body.rentEndDate;
+  const rentAmount = req.body.rentAmount;
+
+  const buildingMaintenanceAmount = req.body.buildingMaintenanceAmount;
+  const previousBalance = req.body.previousBalance;
+  const ebillPreviousMeterReading = req.body.ebillPreviousMeterReading;
+  const ebillPreviousMeterReadingDate = req.body.ebillPreviousMeterReadingDate;
+  const ebillNewMeterReading = req.body.ebillNewMeterReading;
+  const ebillNewMeterReadingDate = req.body.ebillNewMeterReadingDate;
+  const ebillMultiplier = req.body.ebillMultiplier;
+  const ebillUnitsConsumed = req.body.ebillUnitsConsumed;
+  const ebillAmount = req.body.ebillAmount;
+  const totalAmount = req.body.totalAmount;
+  const paidAmount = req.body.paidAmount;
+  const currentBalance = req.body.currentBalance;
+  const paymentDate = req.body.paymentDate;
+  const paymentMode = req.body.paymentMode;
+  const paymentReference = req.body.paymentReference;
+  const paymentRemarks = req.body.paymentRemarks;
+  const paymentStatus = req.body.paymentStatus;
+  const paymentReceipt = req.body.paymentReceipt;
+  const paymentReceiptDate = req.body.paymentReceiptDate;
+  const paymentReceiptRemarks = req.body.paymentReceiptRemarks;
+  const paymentReceiptStatus = req.body.paymentReceiptStatus;
+
+
   try {
-    const newRent = await IRentMainModel.create(req.body);
-    res.status(201).json(newRent);
+    if (
+      !propertyId ||
+      !flatId ||
+      !tenantId ||
+      !rentStartDate ||
+      !rentEndDate ||
+      !rentAmount
+    ) {
+      throw createHttpError(400, "Parameters Missing!");
+    }
+
+    const newPropertyModel = await IRentMainModel.create({
+      propertyId: propertyId,
+      flatId: flatId,
+      tenantId: tenantId,
+      rentStartDate: rentStartDate,
+      rentEndDate: rentEndDate,
+      rentAmount: rentAmount,
+      buildingMaintenanceAmount: buildingMaintenanceAmount,
+      previousBalance: previousBalance,
+      ebillPreviousMeterReading: ebillPreviousMeterReading,
+      ebillPreviousMeterReadingDate: ebillPreviousMeterReadingDate,
+      ebillNewMeterReading: ebillNewMeterReading,
+      ebillNewMeterReadingDate: ebillNewMeterReadingDate,
+      ebillMultiplier: ebillMultiplier,
+      ebillUnitsConsumed: ebillUnitsConsumed,
+      ebillAmount: ebillAmount,
+      totalAmount: totalAmount,
+      paidAmount: paidAmount,
+      currentBalance: currentBalance,
+      paymentDate: paymentDate,
+      paymentMode: paymentMode,
+      paymentReference: paymentReference,
+      paymentRemarks: paymentRemarks,
+      paymentStatus: paymentStatus,
+      paymentReceipt: paymentReceipt,
+      paymentReceiptDate: paymentReceiptDate,
+      paymentReceiptRemarks: paymentReceiptRemarks,
+      paymentReceiptStatus: paymentReceiptStatus,
+    });
+
+    res.status(201).json(newPropertyModel);
   } catch (error) {
     next(error);
   }

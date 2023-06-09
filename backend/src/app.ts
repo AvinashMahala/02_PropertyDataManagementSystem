@@ -52,15 +52,15 @@ app.use((req, res, next)=>{
 });
 
 
-app.use((error:unknown, req:Request, res:Response, next:NextFunction)=>{
-    //console.log(error);
-    let errorMessage="An Unknown Error Occurred!";
-    let statusCode=500;
-    if(isHttpError(error)){
-        statusCode=error.status;
-        errorMessage=error.message;
-    }
-    res.status(statusCode).json({error: errorMessage});
-});
+// app.use((error:unknown, req:Request, res:Response, next:NextFunction)=>{
+//     //console.log(error);
+//     let errorMessage="An Unknown Error Occurred!";
+//     let statusCode=500;
+//     if(isHttpError(error)){
+//         statusCode=error.status;
+//         errorMessage=error.message;
+//     }
+//     res.status(statusCode).json({error: errorMessage});
+// });
 
 export default app;

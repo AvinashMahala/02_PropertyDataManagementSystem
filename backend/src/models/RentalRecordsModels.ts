@@ -33,9 +33,9 @@ const RentModelSchemaMain = new Schema({
 type IRentMainModel = InferSchemaType<typeof RentModelSchemaMain>;
 export default model<IRentMainModel>("Rent", RentModelSchemaMain);
 export interface IRentCreateModel {
-    propertyId: Schema.Types.ObjectId;
-    flatId: Schema.Types.ObjectId;
-    tenantId: Schema.Types.ObjectId;
+    propertyId: string;
+    flatId: string;
+    tenantId: string;
     rentStartDate: Date;
     rentEndDate: Date;
     rentAmount: number;
