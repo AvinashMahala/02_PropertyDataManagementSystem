@@ -1,7 +1,13 @@
 //------------------------------------Imports Section------------------------
 import * as AllRentDetailsApi from "../../network/allRentDetailsApi";
 import * as UsersApi from "../../network/users_api";
+import * as FlatsApi from "../../network/flatDetailsApi";
+import * as PropertiesApi from "../../network/allPropertiesApi";
+import * as TenantsApi from "../../network/tenantApi";
 import * as UserModel from "../../models/user";
+import * as TenantModel from "../../models/tenantModel";
+import * as FlatsModel from "../../models/flatModel";
+import * as PropertiesModel from "../../models/allPropertiesModel";
 import * as AllRentDetailsModel from "../../models/allRentDetailsModel";
 import PropertyPageStyles from "../../styles/PropertyPage.module.css";
 import * as commonImports from "../../commonCode/CommonImports";
@@ -20,6 +26,10 @@ import { GridFactory } from './commonElement/Factory/GridFactory'; // Adjust the
 
 
 let usersArr: UserModel.User[] = []; //This stores all the users retrieved from the database
+let flatsArr: FlatsModel.IFlatViewModel[] = []; 
+let propertiesArr:PropertiesModel.IPropertyDetailsViewModel[]=[];
+let tenantsArr:TenantModel.ITenantViewModel[]=[];
+
 
 const AllRentsLoggedInView = () => {
   const [rentDetailsArr, setRentDetailsArr] = commonImports.useState<
@@ -87,6 +97,15 @@ const AllRentsLoggedInView = () => {
   commonImports.useEffect(() => {
     UsersApi.fetchUsers().then((response) => {
       usersArr = response;
+    });
+    PropertiesApi.RetrieveAllRecords().then((response) => {
+      propertiesArr = response;
+    });
+    FlatsApi.RetrieveAllRecords().then((response) => {
+      flatsArr = response;
+    });
+    TenantsApi.RetrieveAllRecords().then((response) => {
+      tenantsArr = response;
     });
 
     AllRentDetailsApi.RetrieveAllRecords().then((response) => {
@@ -175,7 +194,9 @@ const AllRentsLoggedInView = () => {
           open={createModalOpen}
           onClose={() => setCreateModalOpen(false)}
           onSubmit={handleCreateNewRow}
-          usersArr={usersArr}
+          propertiesArr={propertiesArr}
+          flatsArr={flatsArr}
+          tenantsArr={tenantsArr}
         />
       </commonImports.Container>
     </>

@@ -1,5 +1,6 @@
 export interface IRentDetailsViewModel{
     _id:string;
+    propertyId:string;
     flatId: string;
     tenantId: string;
     rentStartDate: Date;
@@ -31,6 +32,7 @@ export interface IRentDetailsViewModel{
 }
 
 export interface IRentDetailsInputModel{
+    propertyId:string;
     flatId: string;
     tenantId: string;
     rentStartDate: Date;

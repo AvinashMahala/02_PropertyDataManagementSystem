@@ -8,6 +8,7 @@ export class CreateNewRowStrategy implements ActionStrategy {
   async handle(values: AllRentDetailsModel.IRentDetailsViewModel, validationErrors: Object, row: any, setMessage: any, setOpen: any): Promise<void> {
     const rentDetailsInput: AllRentDetailsModel.IRentDetailsViewModel = {
       _id: values._id,
+      propertyId:values.propertyId,
       flatId: values.flatId,
       tenantId: values.tenantId,
       rentStartDate: values.rentStartDate,

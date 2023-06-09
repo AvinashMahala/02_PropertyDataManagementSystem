@@ -10,6 +10,7 @@ export class SaveRowEditsStrategy implements ActionStrategy {
       //send/receive api updates here, then refetch or update local table data for re-render
       const updatedRent: RentDetailsModel.IRentDetailsViewModel = {
         _id: values._id,
+        propertyId:values.propertyId,
         flatId: values.flatId,
         tenantId: values.tenantId,
         rentStartDate: values.rentStartDate,

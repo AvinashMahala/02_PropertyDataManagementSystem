@@ -1,6 +1,7 @@
 import { InferSchemaType, Schema, model } from "mongoose";
 
 const RentModelSchemaMain = new Schema({
+    propertyId:{type: Schema.Types.ObjectId, required: true},
     flatId: {type: Schema.Types.ObjectId, required: true},
     tenantId: {type: Schema.Types.ObjectId, required: true},
     rentStartDate: {type: Date, required: true},
@@ -32,6 +33,7 @@ const RentModelSchemaMain = new Schema({
 type IRentMainModel = InferSchemaType<typeof RentModelSchemaMain>;
 export default model<IRentMainModel>("Rent", RentModelSchemaMain);
 export interface IRentCreateModel {
+    propertyId: Schema.Types.ObjectId;
     flatId: Schema.Types.ObjectId;
     tenantId: Schema.Types.ObjectId;
     rentStartDate: Date;
@@ -63,6 +65,7 @@ export interface IRentUpdateParamsModel{
     rentId:string;
 }
 export interface IRentUpdateBodyModel{
+    propertyId: Schema.Types.ObjectId;
     flatId: Schema.Types.ObjectId;
     tenantId: Schema.Types.ObjectId;
     rentStartDate: Date;
