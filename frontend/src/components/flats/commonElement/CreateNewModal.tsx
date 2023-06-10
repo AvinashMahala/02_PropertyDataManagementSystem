@@ -16,119 +16,102 @@ import {
 } from "./../../../models/flatModel";
 
 import {
-  Home as HomeIcon,
-  Hotel as HotelIcon,
-  BusinessCenter as BusinessCenterIcon,
-  Bathtub as BathtubIcon,
-  KingBed as KingBedIcon,
-  KingBed as DoubleBedIcon,
-  Apartment as ApartmentIcon,
-  LocalCafe as LocalCafeIcon,
-  Restaurant as RestaurantIcon,
-  Store as StoreIcon,
-  Business as BusinessIcon,
-  DirectionsCar as DirectionsCarIcon,
-  Storage as StorageIcon,
-  MeetingRoom as MeetingRoomIcon,
-  LocalDrink as LocalDrinkIcon,
-  FitnessCenter as FitnessCenterIcon,
-  SportsBasketball as SportsBasketballIcon,
-  LocalLibrary as LocalLibraryIcon,
-  EmojiPeople as EmojiPeopleIcon,
-  LocalMall as LocalMallIcon,
-  BusinessCenterOutlined as BusinessCenterOutlinedIcon,
-  LocalGasStation as LocalGasStationIcon,
-  Pets as PetsIcon,
-  Casino as CasinoIcon,
-  EventSeat as EventSeatIcon,
-  HotelOutlined as HotelOutlinedIcon,
-  BusinessOutlined as BusinessOutlinedIcon,
-  Spa as SpaIcon,
-  AccountBalance as AccountBalanceIcon,
-  BeachAccess as BeachAccessIcon,
-  School as SchoolIcon,
-  LocalGroceryStore as LocalGroceryStoreIcon,
-  ApartmentOutlined as ApartmentOutlinedIcon,
-  BeachAccessOutlined as BeachAccessOutlinedIcon,
-  Pool as PoolIcon,
-  BusinessCenterTwoTone as BusinessCenterTwoToneIcon,
-  ApartmentTwoTone as ApartmentTwoToneIcon,
-  LocalHotel as LocalHotelIcon,
-  BusinessTwoTone as BusinessTwoToneIcon,
-} from "@material-ui/icons";
+  MdHome,
+  MdHotel,
+  MdBusinessCenter,
+  MdBathtub,
+  MdApartment,
+  MdLocalCafe,
+  MdRestaurant,
+  MdStore,
+  MdDirectionsCar,
+  MdStorage,
+  MdMeetingRoom,
+  MdLocalDrink,
+  MdFitnessCenter,
+  MdSportsBasketball,
+  MdLocalLibrary,
+  MdEmojiPeople,
+  MdLocalMall,
+  MdBusiness,
+  MdPets,
+  MdCasino,
+  MdEventSeat,
+  MdSpa,
+  MdAccountBalance,
+  MdBeachAccess,
+  MdSchool,
+  MdLocalGroceryStore,
+  MdLocalHotel,
+} from 'react-icons/md';
 
 // Helper function to get the corresponding icon based on the room type
 const getOptionIcon = (roomType: string) => {
   switch (roomType) {
-    case "1bhk":
-      return <HomeIcon />;
-    case "1rk":
-      return <HomeIcon />;
-    case "2bhk":
-      return <DoubleBedIcon />;
-    case "2rk":
-      return <DoubleBedIcon />;
-    case "3bhk":
-      return <ApartmentIcon />;
-    case "3rk":
-      return <ApartmentIcon />;
-    case "4bhk":
-      return <ApartmentIcon />;
-    case "attic":
-      return <EmojiPeopleIcon />;
-    case "bar":
-      return <LocalDrinkIcon />;
-    case "basement":
-      return <StorageIcon />;
-    case "bungalow":
-      return <HomeIcon />;
-    case "cabin":
-      return <MeetingRoomIcon />;
-    case "castle":
-      return <AccountBalanceIcon />;
-    case "cellar":
-      return <StorageIcon />;
-    case "cubicle":
-      return <BusinessCenterOutlinedIcon />;
-    case "duplex":
-      return <ApartmentTwoToneIcon />;
-    case "garage":
-      return <DirectionsCarIcon />;
-    case "guesthouse":
-      return <HotelIcon />;
-    case "hall":
-      return <EventSeatIcon />;
-    case "hotel":
-      return <HotelIcon />;
-    case "hostel":
-      return <HotelOutlinedIcon />;
-    case "loft":
-      return <ApartmentIcon />;
-    case "mansion":
-      return <AccountBalanceIcon />;
-    case "motel":
-      return <HotelOutlinedIcon />;
-    case "office":
-      return <BusinessIcon />;
-    case "palace":
-      return <AccountBalanceIcon />;
-    case "penthouse":
-      return <ApartmentTwoToneIcon />;
-    case "resort":
-      return <BeachAccessIcon />;
-    case "restaurant":
-      return <RestaurantIcon />;
-    case "shop":
-      return <StoreIcon />;
-    case "stall":
-      return <BusinessCenterTwoToneIcon />;
-    case "studio":
-      return <ApartmentIcon />;
-    case "villa":
-      return <HomeIcon />;
-    case "warehouse":
-      return <BusinessTwoToneIcon />;
-    // Add more cases for other room types and their respective icons
+    case '1bhk':
+    case '1rk':
+      return <MdHome />;
+    case '2bhk':
+    case '2rk':
+      return <MdApartment />;
+    case '3bhk':
+    case '3rk':
+    case '4bhk':
+      return <MdApartment />;
+    case 'attic':
+      return <MdEmojiPeople />;
+    case 'bar':
+      return <MdLocalDrink />;
+    case 'basement':
+      return <MdStorage />;
+    case 'bungalow':
+      return <MdHome />;
+    case 'cabin':
+      return <MdMeetingRoom />;
+    case 'castle':
+      return <MdAccountBalance />;
+    case 'cellar':
+      return <MdStorage />;
+    case 'cubicle':
+      return <MdBusinessCenter />;
+    case 'duplex':
+      return <MdApartment />;
+    case 'garage':
+      return <MdDirectionsCar />;
+    case 'guesthouse':
+      return <MdHotel />;
+    case 'hall':
+      return <MdEventSeat />;
+    case 'hotel':
+      return <MdHotel />;
+    case 'hostel':
+      return <MdHotel />;
+    case 'loft':
+      return <MdApartment />;
+    case 'mansion':
+      return <MdAccountBalance />;
+    case 'motel':
+      return <MdHotel />;
+    case 'office':
+      return <MdBusiness />;
+    case 'palace':
+      return <MdAccountBalance />;
+    case 'penthouse':
+      return <MdApartment />;
+    case 'resort':
+      return <MdBeachAccess />;
+    case 'restaurant':
+      return <MdRestaurant />;
+    case 'shop':
+      return <MdStore />;
+    case 'stall':
+      return <MdBusinessCenter />;
+    case 'studio':
+      return <MdApartment />;
+    case 'villa':
+      return <MdHome />;
+    case 'warehouse':
+      return <MdBusiness />;
     default:
       return null;
   }

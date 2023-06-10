@@ -102,6 +102,9 @@ export const GridFactory = (
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
+        Cell: ({ cell }) => (
+          <>{cell.getValue<number>().toLocaleString("en-US", { style: "currency", currency: "INR" })}</>
+        ),
       },
       {
         header: "Building Maintenance Amount",
@@ -109,6 +112,9 @@ export const GridFactory = (
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
+        Cell: ({ cell }) => (
+          <>{cell.getValue<number>().toLocaleString("en-US", { style: "currency", currency: "INR" })}</>
+        ),
       },
       {
         header: "Previous Balance",
@@ -116,6 +122,9 @@ export const GridFactory = (
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
+        Cell: ({ cell }) => (
+          <>{cell.getValue<number>().toLocaleString("en-US", { style: "currency", currency: "INR" })}</>
+        ),
       },
       {
         header: "Ebill Prev Meter Reading",
@@ -173,6 +182,9 @@ export const GridFactory = (
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
+        Cell: ({ cell }) => (
+          <>{cell.getValue<number>().toLocaleString("en-US", { style: "currency", currency: "INR" })}</>
+        ),
       },
       {
         header: "Total Amount To Be Paid",
@@ -180,6 +192,9 @@ export const GridFactory = (
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
+        Cell: ({ cell }) => (
+          <>{cell.getValue<number>().toLocaleString("en-US", { style: "currency", currency: "INR" })}</>
+        ),
       },
       {
         header: "Paid Amount",
@@ -187,6 +202,9 @@ export const GridFactory = (
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
+        Cell: ({ cell }) => (
+          <>{cell.getValue<number>().toLocaleString("en-US", { style: "currency", currency: "INR" })}</>
+        ),
       },
       {
         header: "Current Balance",
@@ -194,6 +212,9 @@ export const GridFactory = (
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
+        Cell: ({ cell }) => (
+          <>{cell.getValue<number>().toLocaleString("en-US", { style: "currency", currency: "INR" })}</>
+        ),
       },
       {
         header: "Payment Date",

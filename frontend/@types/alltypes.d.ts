@@ -6,3 +6,4 @@ declare module 'react-router-dom';
 declare module 'react-router-redux';
 declare module 'react-redux';
 declare module 'mui-material';
+declare module 'react-pdf-renderer';

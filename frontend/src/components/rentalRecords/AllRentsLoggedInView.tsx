@@ -11,29 +11,35 @@ import * as PropertiesModel from "../../models/allPropertiesModel";
 import * as AllRentDetailsModel from "../../models/allRentDetailsModel";
 import PropertyPageStyles from "../../styles/PropertyPage.module.css";
 import * as commonImports from "../../commonCode/CommonImports";
-import {CreateNewModal} from "./commonElement/CreateNewModal";
+import { CreateNewModal } from "./commonElement/CreateNewModal";
+
+import { generateRentReceipt } from "./ReceiptGenerationLogic";
+
+import { ReceiptOutlined } from "@mui/icons-material";
+
+import PdfModal from "./PdfModal";
 
 //Strategy DesignPattern Used for the Create, Update and Delete Operations
 import { CreateNewRowStrategy } from "./commonElement/Strategy/CreateNewRowStrategy";
-import { SaveRowEditsStrategy } from './commonElement/Strategy/SaveRowEditsStrategy';
-import { DeleteRowStrategy } from './commonElement/Strategy/DeleteRowStrategy';
+import { SaveRowEditsStrategy } from "./commonElement/Strategy/SaveRowEditsStrategy";
+import { DeleteRowStrategy } from "./commonElement/Strategy/DeleteRowStrategy";
 
-import  getEditTextFieldProps  from './commonElement/GetEditTextFieldProps'; // Adjust the path to your GetEditTextFieldProps file
+import getEditTextFieldProps from "./commonElement/GetEditTextFieldProps"; // Adjust the path to your GetEditTextFieldProps file
 
 //Factory DesignPattern Used for the Main Grid View
-import { GridFactory } from './commonElement/Factory/GridFactory'; // Adjust the path to your GridFactory file
+import { GridFactory } from "./commonElement/Factory/GridFactory"; // Adjust the path to your GridFactory file
 //-------------------------------End of Imports Section---------------------
 
 
-let usersArr: UserModel.User[] = []; //This stores all the users retrieved from the database
-let flatsArr: FlatsModel.IFlatViewModel[] = []; 
-let propertiesArr:PropertiesModel.IPropertyDetailsViewModel[]=[];
-let tenantsArr:TenantModel.ITenantViewModel[]=[];
 
+let usersArr: UserModel.User[] = []; //This stores all the users retrieved from the database
+let flatsArr: FlatsModel.IFlatViewModel[] = [];
+let propertiesArr: PropertiesModel.IPropertyDetailsViewModel[] = [];
+let tenantsArr: TenantModel.ITenantViewModel[] = [];
 
 const AllRentsLoggedInView = () => {
   const [rentDetailsArr, setRentDetailsArr] = commonImports.useState<
-  AllRentDetailsModel.IRentDetailsViewModel[]
+    AllRentDetailsModel.IRentDetailsViewModel[]
   >([]);
   const [createModalOpen, setCreateModalOpen] = commonImports.useState(false);
   const [validationErrors, setValidationErrors] = commonImports.useState<{
@@ -42,27 +48,45 @@ const AllRentsLoggedInView = () => {
   const [open, setOpen] = commonImports.useState(false);
   const [message, setMessage] = commonImports.useState("");
 
+  const [pdfModalVisible, setPdfModalVisible] = commonImports.useState(false);
+
   const createNewRowStrategy = new CreateNewRowStrategy();
   const saveRowEditsStrategy = new SaveRowEditsStrategy();
   const deleteRowStrategy = new DeleteRowStrategy();
+
+  const togglePdfModal = () => {
+    setPdfModalVisible(!pdfModalVisible);
+  };
 
   const handleCreateNewRow = async (
     values: AllRentDetailsModel.IRentDetailsViewModel
   ) => {
     rentDetailsArr.push(values);
-    createNewRowStrategy.handle(values, {}, null, setMessage, setOpen).then(() => {
-      AllRentDetailsApi.RetrieveAllRecords().then((allRentDetails: AllRentDetailsModel.IRentDetailsViewModel[]) => {
-        setRentDetailsArr(allRentDetails);
-      });
-    }).catch((error) => { }).finally(() => { });
+    createNewRowStrategy
+      .handle(values, {}, null, setMessage, setOpen)
+      .then(() => {
+        AllRentDetailsApi.RetrieveAllRecords().then(
+          (allRentDetails: AllRentDetailsModel.IRentDetailsViewModel[]) => {
+            setRentDetailsArr(allRentDetails);
+          }
+        );
+      })
+      .catch((error) => {})
+      .finally(() => {});
   };
 
   //This function is called when the user clicks on the UPDATE button
   const handleSaveRowEdits: commonImports.MaterialReactTableProps<AllRentDetailsModel.IRentDetailsViewModel>["onEditingRowSave"] =
     async ({ exitEditingMode, row, values }) => {
       rentDetailsArr[row.index] = values;
-      await saveRowEditsStrategy.handle(values, validationErrors, row, setMessage, setOpen, exitEditingMode);
-
+      await saveRowEditsStrategy.handle(
+        values,
+        validationErrors,
+        row,
+        setMessage,
+        setOpen,
+        exitEditingMode
+      );
     };
 
   //This function is called when the user clicks on the CANCEL button
@@ -72,7 +96,9 @@ const AllRentsLoggedInView = () => {
 
   //This function is called when the user clicks on the DELETE button
   const handleDeleteRow = commonImports.useCallback(
-    async (row: commonImports.MRT_Row<AllRentDetailsModel.IRentDetailsViewModel>) => {
+    async (
+      row: commonImports.MRT_Row<AllRentDetailsModel.IRentDetailsViewModel>
+    ) => {
       if (
         !window.confirm(
           `Are you sure you want to delete ${row.getValue("propertyName")}`
@@ -82,16 +108,22 @@ const AllRentsLoggedInView = () => {
       }
       rentDetailsArr.splice(row.index, 1);
       setRentDetailsArr([...rentDetailsArr]);
-      await deleteRowStrategy.handle(null, null, row, setMessage, setOpen, null);
+      await deleteRowStrategy.handle(
+        null,
+        null,
+        row,
+        setMessage,
+        setOpen,
+        null
+      );
     },
     [rentDetailsArr]
   );
 
   //This function is called when the user clicks on the EDIT button to set the Edit Modal Properties of The Columns.
-  // const getCommonEditTextFieldProps = getEditTextFieldProps(setValidationErrors, usersArr); 
+  // const getCommonEditTextFieldProps = getEditTextFieldProps(setValidationErrors, usersArr);
 
   //-----------------All the Function Declarations Ends Here-----------------
-
 
   //This useEffect is called when the page is loaded for the first time
   commonImports.useEffect(() => {
@@ -122,14 +154,13 @@ const AllRentsLoggedInView = () => {
     propertiesArr,
     flatsArr,
     tenantsArr
-    );
+  );
 
   const handleOk = () => {
     // Perform the operation you want when the OK button is clicked
     console.log("OK button has been clicked!");
     AllRentDetailsApi.RetrieveAllRecords().then((allRentDetails) => {
       setRentDetailsArr(allRentDetails);
-
     });
     setOpen(false); // Close the dialog
   };
@@ -142,9 +173,9 @@ const AllRentsLoggedInView = () => {
         handleOk={handleOk}
         message={message}
       />
-      
+
       <commonImports.Container className={PropertyPageStyles.pageContainer}>
-      <h1 className={PropertyPageStyles.headerStyle}>Rental Records</h1>
+        <h1 className={PropertyPageStyles.headerStyle}>Rental Records</h1>
         <commonImports.MaterialReactTable
           displayColumnDefOptions={{
             "mrt-row-actions": {
@@ -156,7 +187,6 @@ const AllRentsLoggedInView = () => {
           }}
           columns={rentDetailsDetailsGridColumns}
           data={rentDetailsArr}
-        
           enableColumnOrdering
           initialState={{
             columnVisibility: {
@@ -185,6 +215,14 @@ const AllRentsLoggedInView = () => {
                   <commonImports.Delete />
                 </commonImports.IconButton>
               </commonImports.Tooltip>
+              <commonImports.Tooltip arrow placement="right" title="Receipt">
+                <commonImports.IconButton
+                  color="primary"
+                  onClick={togglePdfModal}
+                >
+                  <ReceiptOutlined />
+                </commonImports.IconButton>
+              </commonImports.Tooltip>
             </commonImports.Box>
           )}
           renderTopToolbarCustomActions={() => (
@@ -197,6 +235,17 @@ const AllRentsLoggedInView = () => {
             </commonImports.Button>
           )}
         />
+        <PdfModal
+          isOpen={pdfModalVisible}
+          onClose={togglePdfModal}
+          propertyDetails="Property ABC"
+          billNumber="123"
+          generatedOn="2023-06-30"
+          rentDetails="Rent details..."
+          tenantDetails="Tenant details..."
+          paymentOptions={["Option 1", "Option 2"]}
+        />
+
         <CreateNewModal
           columns={rentDetailsDetailsGridColumns}
           open={createModalOpen}
@@ -211,8 +260,4 @@ const AllRentsLoggedInView = () => {
   );
 };
 
-
-
-
 export default AllRentsLoggedInView;
-
