@@ -4,7 +4,6 @@ import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/render
 
 import propManageLogo from "./../../assets/propManageLogo.png";
 // Define your styles
-// Define your styles
 const styles = StyleSheet.create({
   page: {
     fontFamily: 'Helvetica',
@@ -25,27 +24,43 @@ const styles = StyleSheet.create({
   content: {
     marginBottom: 20,
   },
-  footer: {
-    borderTop: '1pt solid black',
-    paddingTop: 10,
+  section: {
+    marginBottom: 20,
   },
   title: {
     textAlign: 'center',
     fontSize: 18,
     marginBottom: 20,
   },
-  section: {
+  subtitle: {
+    fontSize: 14,
     marginBottom: 10,
   },
-  row: {
-    display: 'flex',
-    flexDirection: 'row',
-    borderBottom: '1pt solid black',
-    paddingBottom: 5,
+  label: {
+    fontWeight: 'bold',
+    marginBottom: 5,
   },
-  cell: {
-    flex: 1,
+  value: {
+    marginBottom: 10,
+  },
+  table: {
+    display: 'flex',
+    width: '100%',
+    borderCollapse: 'collapse',
+  },
+  tableRow: {
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderBottomColor: 'black',
+    borderBottomStyle: 'solid',
+  },
+  tableCell: {
+    width: '25%',
     padding: 5,
+  },
+  footer: {
+    borderTop: '1pt solid black',
+    paddingTop: 10,
   },
 });
 
@@ -87,66 +102,67 @@ const RentReceipt: React.FC<RentReceiptProps> = ({
       <View style={styles.content}>
         <Text style={styles.title}>Rent Receipt</Text>
         <View style={styles.section}>
-          <View style={styles.row}>
-            <View style={styles.cell}>
-              <Text>Bill Number:</Text>
-              <Text>Generated On:</Text>
-              <Text>Month:</Text>
-              <Text>Room Number:</Text>
-              <Text>Tenant Name:</Text>
+          <Text style={styles.subtitle}>Bill Details</Text>
+          <View style={styles.table}>
+            <View style={styles.tableRow}>
+              <Text style={styles.tableCell}>Bill Number</Text>
+              <Text style={styles.tableCell}>Generated On</Text>
+              <Text style={styles.tableCell}>Month</Text>
+              <Text style={styles.tableCell}>Room Number</Text>
+              <Text style={styles.tableCell}>Tenant Name</Text>
             </View>
-            <View style={styles.cell}>
-              <Text>ABC123</Text>
-              <Text>June 10, 2023</Text>
-              <Text>June 2023</Text>
-              <Text>101</Text>
-              <Text>John Doe</Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.section}>
-          <Text>Electricity Details:</Text>
-          <View style={styles.row}>
-            <View style={styles.cell}>
-              <Text>Meter Number:</Text>
-              <Text>Per Unit Cost:</Text>
-              <Text>Old Meter Reading:</Text>
-              <Text>New Meter Reading:</Text>
-              <Text>Total Units Consumed:</Text>
-              <Text>Total Electricity Bill Cost:</Text>
-            </View>
-            <View style={styles.cell}>
-              <Text>12345</Text>
-              <Text>$0.10</Text>
-              <Text>1000</Text>
-              <Text>1050</Text>
-              <Text>50</Text>
-              <Text>$5.00</Text>
+            <View style={styles.tableRow}>
+              <Text style={styles.tableCell}>ABC123</Text>
+              <Text style={styles.tableCell}>June 10, 2023</Text>
+              <Text style={styles.tableCell}>June 2023</Text>
+              <Text style={styles.tableCell}>101</Text>
+              <Text style={styles.tableCell}>John Doe</Text>
             </View>
           </View>
         </View>
         <View style={styles.section}>
-          <Text>Payment Details:</Text>
-          <View style={styles.row}>
-            <View style={styles.cell}>
-              <Text>Total Rent:</Text>
-              <Text>Period:</Text>
-              <Text>Total Electricity Bill:</Text>
-              <Text>Old Balance:</Text>
-              <Text>Expenses Added:</Text>
-              <Text>Total Due Amount:</Text>
-              <Text>Total Amount Paid:</Text>
-              <Text>Balance Due:</Text>
+          <Text style={styles.subtitle}>Electricity Details</Text>
+          <View style={styles.table}>
+            <View style={styles.tableRow}>
+              <Text style={styles.tableCell}>Meter Number</Text>
+              <Text style={styles.tableCell}>Per Unit Cost</Text>
+              <Text style={styles.tableCell}>Old Meter Reading</Text>
+              <Text style={styles.tableCell}>New Meter Reading</Text>
+              <Text style={styles.tableCell}>Total Units Consumed</Text>
+              <Text style={styles.tableCell}>Total Electricity Bill Cost</Text>
             </View>
-            <View style={styles.cell}>
-              <Text>$1000.00</Text>
-              <Text>June 1, 2023 - June 30, 2023</Text>
-              <Text>$5.00</Text>
-              <Text>$0.00</Text>
-              <Text>$0.00</Text>
-              <Text>$1005.00</Text>
-              <Text>$1000.00</Text>
-              <Text>$5.00</Text>
+            <View style={styles.tableRow}>
+              <Text style={styles.tableCell}>12345</Text>
+              <Text style={styles.tableCell}>$0.10</Text>
+              <Text style={styles.tableCell}>1000</Text>
+              <Text style={styles.tableCell}>1050</Text>
+              <Text style={styles.tableCell}>50</Text>
+              <Text style={styles.tableCell}>$5.00</Text>
+            </View>
+          </View>
+        </View>
+        <View style={styles.section}>
+          <Text style={styles.subtitle}>Payment Details</Text>
+          <View style={styles.table}>
+            <View style={styles.tableRow}>
+              <Text style={styles.tableCell}>Total Rent</Text>
+              <Text style={styles.tableCell}>Period</Text>
+              <Text style={styles.tableCell}>Total Electricity Bill</Text>
+              <Text style={styles.tableCell}>Old Balance</Text>
+              <Text style={styles.tableCell}>Expenses Added</Text>
+              <Text style={styles.tableCell}>Total Due Amount</Text>
+              <Text style={styles.tableCell}>Total Amount Paid</Text>
+              <Text style={styles.tableCell}>Balance Due</Text>
+            </View>
+            <View style={styles.tableRow}>
+              <Text style={styles.tableCell}>$1000.00</Text>
+              <Text style={styles.tableCell}>June 1, 2023 - June 30, 2023</Text>
+              <Text style={styles.tableCell}>$5.00</Text>
+              <Text style={styles.tableCell}>$0.00</Text>
+              <Text style={styles.tableCell}>$0.00</Text>
+              <Text style={styles.tableCell}>$1005.00</Text>
+              <Text style={styles.tableCell}>$1000.00</Text>
+              <Text style={styles.tableCell}>$5.00</Text>
             </View>
           </View>
         </View>
