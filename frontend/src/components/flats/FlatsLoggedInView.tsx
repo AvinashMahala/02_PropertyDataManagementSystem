@@ -98,7 +98,13 @@ const FlatsLoggedInView = () => {
   }, []);
 
   //This is Used to set the columns of the table
-  const flatsGridColumns = GridFactory(getEditTextFieldProps, propertiesArr,validationErrors,setValidationErrors);
+  const flatsGridColumns = GridFactory(
+    getEditTextFieldProps, 
+    propertiesArr,
+    validationErrors,
+    setValidationErrors,
+    flatsArr    
+    );
 
   const handleOk = () => {
     // Perform the operation you want when the OK button is clicked

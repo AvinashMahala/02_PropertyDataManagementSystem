@@ -2,6 +2,10 @@
 import * as commonImports from "../../../../commonCode/CommonImports";
 import React from "react";
 import * as FlatModel from "./../../../../models/flatModel";
+import * as CommonUtils from "../../../../utils/commonUtils";
+import * as CommonUIRenderers from "../../../../utils/CommonUiRenderers";
+
+import flatsModuleCss from "./../../../../styles/flats.module.css"; 
 
 type FieldConfig = {
   header: string;
@@ -10,12 +14,15 @@ type FieldConfig = {
   renderCell?: (cell: any) => JSX.Element;
 };
 
+
 export const GridFactory = (
   getCommonEditTextFieldProps: any,
   propertiesArr: any[],
   validationErrors: any,
-  setValidationErrors: any
+  setValidationErrors: any,
+  flatsArr:any
 ) => {
+
   const flatDetailsGridColumns = commonImports.useMemo<
     commonImports.MRT_ColumnDef<FlatModel.IFlatViewModel>[]
   >(
@@ -40,9 +47,14 @@ export const GridFactory = (
       {
         header: "Property Name",
         accessorKey: "propertyId",
+        fontsize: '20px', // Define the desired font size for this column
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
+        //customize normal cell render on normal non-aggregated rows
+        Cell: ({ cell }) => (
+          <>{CommonUtils.formatColumnFromArr("_id",cell.getValue<string>(),propertiesArr,"propertyName")}</>
+        ),
       },
       {
         header: "Room Name",
@@ -50,6 +62,7 @@ export const GridFactory = (
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
+        
       },
       {
         header: "Room Rent",
@@ -64,6 +77,13 @@ export const GridFactory = (
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
+         //customize normal cell render on normal non-aggregated rows
+         Cell: ({ cell }) => (
+          <><div>
+          {/* Render the color div */}
+          {CommonUIRenderers.convertToColorDiv(cell.getValue<string>())}
+        </div></>
+        ),
       },
       {
         header: "Room Type",
@@ -71,6 +91,15 @@ export const GridFactory = (
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
+        //customize normal cell render on normal non-aggregated rows
+        Cell: ({ cell }) => (
+          <><div className={flatsModuleCss.roomTypeGridCol}>
+          {/* Render the color div */}
+          {CommonUIRenderers.getRoomTypeIcon(cell.getValue<string>())}
+          <span className={flatsModuleCss.roomTypeGridColValue}>{cell.getValue<string>()}</span>
+          
+        </div></>
+        ),
       },
       {
         header: "Room Remarks",
@@ -179,7 +208,7 @@ export const GridFactory = (
         }),
       },
     ],
-    [getCommonEditTextFieldProps, propertiesArr]
+    [getCommonEditTextFieldProps, propertiesArr,flatsArr]
   );
   return flatDetailsGridColumns;
 };

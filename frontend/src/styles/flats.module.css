@@ -2,3 +2,15 @@
     min-width:85%;
     width:85%;
 }
+
+.roomTypeGridCol{
+    
+}
+
+.roomTypeGridColValue{
+    margin-left: 1%;
+}
+
+.roomTypeGridColIcon{
+    margin-bottom:2%;
+}

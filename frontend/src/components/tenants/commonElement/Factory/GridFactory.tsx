@@ -2,6 +2,7 @@
 import * as commonImports from "../../../../commonCode/CommonImports";
 import React from "react";
 import * as TenantModel from "../../../../models/tenantModel";
+import * as CommonUtils from "../../../../utils/commonUtils";
 
 type FieldConfig = {
   header: string;
@@ -14,7 +15,9 @@ export const GridFactory = (
   getCommonEditTextFieldProps: any,
   usersArr: any[],
   validationErrors: any,
-  setValidationErrors: any
+  setValidationErrors: any,
+  propertiesArr:any,
+  flatsArr:any
 ) => {
   const ownerDetailsGridColumns = commonImports.useMemo<
     commonImports.MRT_ColumnDef<TenantModel.ITenantViewModel>[]
@@ -43,6 +46,10 @@ export const GridFactory = (
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
+        //customize normal cell render on normal non-aggregated rows
+        Cell: ({ cell }) => (
+          <>{CommonUtils.formatColumnFromArr("_id",cell.getValue<string>(),propertiesArr,"propertyName")}</>
+        ),
       },
       {
         header: "Flat Name",
@@ -50,6 +57,10 @@ export const GridFactory = (
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
+        //customize normal cell render on normal non-aggregated rows
+        Cell: ({ cell }) => (
+          <>{CommonUtils.formatColumnFromArr("_id",cell.getValue<string>(),flatsArr,"roomName")}</>
+        ),
       },
       {
         header: "Photo",

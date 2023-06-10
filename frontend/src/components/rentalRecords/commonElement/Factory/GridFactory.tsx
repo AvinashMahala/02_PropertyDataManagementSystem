@@ -2,7 +2,7 @@
 import * as commonImports from "../../../../commonCode/CommonImports";
 import React from "react";
 import * as RentDetailsModel from "../../../../models/allRentDetailsModel";
-
+import * as CommonUtils from "../../../../utils/commonUtils";
 type FieldConfig = {
   header: string;
   accessorKey: string;
@@ -14,7 +14,10 @@ export const GridFactory = (
   getCommonEditTextFieldProps: any,
   usersArr: any[],
   validationErrors: any,
-  setValidationErrors: any
+  setValidationErrors: any,
+  propertiesArr:any,
+  flatsArr:any,
+  tenantsArr:any,
 ) => {
   const rentDetailsGridColumns = commonImports.useMemo<
     commonImports.MRT_ColumnDef<RentDetailsModel.IRentDetailsViewModel>[]
@@ -43,6 +46,10 @@ export const GridFactory = (
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
+        //customize normal cell render on normal non-aggregated rows
+        Cell: ({ cell }) => (
+          <>{CommonUtils.formatColumnFromArr("_id",cell.getValue<string>(),propertiesArr,"propertyName")}</>
+        ),
       },
       {
         header: "Flat Name",
@@ -50,6 +57,10 @@ export const GridFactory = (
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
+        //customize normal cell render on normal non-aggregated rows
+        Cell: ({ cell }) => (
+          <>{CommonUtils.formatColumnFromArr("_id",cell.getValue<string>(),flatsArr,"roomName")}</>
+        ),
       },
       {
         header: "Tenant Name",
@@ -57,6 +68,10 @@ export const GridFactory = (
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
+        //customize normal cell render on normal non-aggregated rows
+        Cell: ({ cell }) => (
+          <>{CommonUtils.formatColumnFromArr("_id",cell.getValue<string>(),tenantsArr,"Name")}</>
+        ),
       },
       {
         header: "Rent Start Date",
@@ -64,6 +79,11 @@ export const GridFactory = (
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
+        //customize normal cell render on normal non-aggregated rows
+        Cell: ({ cell }) => (
+          <>{commonImports.formatDate(cell.getValue<string>())}</>
+        ),
+        
       },
       {
         header: "Rent End Date",
@@ -71,6 +91,10 @@ export const GridFactory = (
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
+       //customize normal cell render on normal non-aggregated rows
+       Cell: ({ cell }) => (
+        <>{commonImports.formatDate(cell.getValue<string>())}</>
+      ),
       },
       {
         header: "Rent Amount",
@@ -106,6 +130,10 @@ export const GridFactory = (
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
+         //customize normal cell render on normal non-aggregated rows
+         Cell: ({ cell }) => (
+          <>{commonImports.formatDate(cell.getValue<string>())}</>
+        ),
       },
       {
         header: "Ebill Current Meter Reading",
@@ -120,6 +148,10 @@ export const GridFactory = (
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
+         //customize normal cell render on normal non-aggregated rows
+         Cell: ({ cell }) => (
+          <>{commonImports.formatDate(cell.getValue<string>())}</>
+        ),
       },
       {
         header: "Ebill Multiplier",
@@ -169,6 +201,10 @@ export const GridFactory = (
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
+         //customize normal cell render on normal non-aggregated rows
+         Cell: ({ cell }) => (
+          <>{commonImports.formatDate(cell.getValue<string>())}</>
+        ),
       },
       {
         header: "Payment Mode",
@@ -211,6 +247,10 @@ export const GridFactory = (
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
         }),
+         //customize normal cell render on normal non-aggregated rows
+         Cell: ({ cell }) => (
+          <>{commonImports.formatDate(cell.getValue<string>())}</>
+        ),
       },
       {
         header: "Payment Receipt Remarks",
@@ -229,24 +269,24 @@ export const GridFactory = (
       {
         header: "Created At",
         accessorKey: "createdAt",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
         //customize normal cell render on normal non-aggregated rows
         Cell: ({ cell }) => (
           <>{commonImports.formatDate(cell.getValue<string>())}</>
         ),
-        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
-          ...getCommonEditTextFieldProps(cell),
-        }),
       },
       {
         header: "Updated At",
         accessorKey: "updatedAt",
+        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+          ...getCommonEditTextFieldProps(cell),
+        }),
         //customize normal cell render on normal non-aggregated rows
         Cell: ({ cell }) => (
           <>{commonImports.formatDate(cell.getValue<string>())}</>
         ),
-        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
-          ...getCommonEditTextFieldProps(cell),
-        }),
       },
     ],
     [getCommonEditTextFieldProps, usersArr]

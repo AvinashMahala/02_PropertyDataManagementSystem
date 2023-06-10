@@ -108,7 +108,14 @@ const TenantsLoggedInView = () => {
   }, []);
 
   //This is Used to set the columns of the table
-  const tenantGridColumns = GridFactory(getEditTextFieldProps, usersArr,validationErrors,setValidationErrors);
+  const tenantGridColumns = GridFactory(
+    getEditTextFieldProps,
+    usersArr,
+    validationErrors,
+    setValidationErrors,
+    propertiesArr,
+    flatsArr
+    );
 
   const handleOk = () => {
     // Perform the operation you want when the OK button is clicked
