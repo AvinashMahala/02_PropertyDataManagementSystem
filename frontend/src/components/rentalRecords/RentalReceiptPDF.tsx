@@ -1,6 +1,6 @@
 import React from 'react';
 import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer';
-
+import * as RentReceiptModel from "./../../models/RentReceiptModel";
 
 import propManageLogo from "./../../assets/propManageLogo.png";
 // Define your styles
@@ -11,30 +11,30 @@ const styles = StyleSheet.create({
     padding: 40,
   },
   header: {
-    marginBottom: 20,
+    marginBottom: 10,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
   },
   headerText: {
-    marginLeft: 10,
-    fontSize: 10,
+    marginLeft: 'auto',
+    fontSize: 10
   },
   logo: {
     height: 50,
     width: 50,
   },
   content: {
-    marginBottom: 20,
+    marginBottom: 10,
   },
   section: {
-    marginBottom: 20,
+    marginBottom: 10,
   },
   title: {
     textAlign: 'center',
     fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: 10,
   },
   subtitle: {
     fontSize: 14,
@@ -83,24 +83,22 @@ const styles = StyleSheet.create({
 });
 
 type RentReceiptProps = {
-  propertyDetails: string;
-  billNumber: string;
-  generatedOn: string;
-  rentDetails: string;
-  tenantDetails: string;
-  paymentOptions: string[];
+  propertyDetails: RentReceiptModel.IRentReceiptPropertyDetailsModel;
+  billDetails:RentReceiptModel.IRentReceiptBillDetailsModel
+  electricityDetails:RentReceiptModel.IRentReceiptEBillDetailsModel
+  paymentDetails:RentReceiptModel.IRentReceiptPaymentDetailsModel
+  paymentOptionDetails:RentReceiptModel.IRentReceiptPaymentOptionsModel
 };
 
 const RentReceipt: React.FC<RentReceiptProps> = ({
   propertyDetails,
-  billNumber,
-  generatedOn,
-  rentDetails,
-  tenantDetails,
-  paymentOptions,
+  billDetails,
+  electricityDetails,
+  paymentDetails,
+  paymentOptionDetails,
 }: RentReceiptProps) => (
   <Document
-    title={billNumber}
+    title={""}
     author="Rent Receipt Generator"
     subject="Rent Receipt"
     keywords="rent receipt, rent receipt generator, rent receipt pdf"
@@ -108,13 +106,14 @@ const RentReceipt: React.FC<RentReceiptProps> = ({
     producer="Rent Receipt Generator"
   >
     <Page style={styles.page}>
+    <Text style={styles.title}>{(propertyDetails)===undefined?"":propertyDetails.propertyName}</Text>
       <View style={styles.header}>
       <Image src={propManageLogo} style={{ height: 100, width: 100 }}/>
       <View>
-          <Text style={styles.headerText}>Address</Text>
-          <Text style={styles.headerText}>Contact Number</Text>
-          <Text style={styles.headerText}>Email</Text>
-          <Text style={styles.headerText}>Owner Name</Text>
+          <Text style={[styles.headerText, { textAlign: 'right' }]}>Address</Text>
+          <Text style={[styles.headerText, { textAlign: 'right' }]}>Contact Number</Text>
+          <Text style={[styles.headerText, { textAlign: 'right' }]}>Email</Text>
+          <Text style={[styles.headerText, { textAlign: 'right' }]}>Owner Name</Text>
         </View>
       </View>
       <View style={styles.content}>

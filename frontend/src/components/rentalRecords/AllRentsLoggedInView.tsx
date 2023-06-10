@@ -241,12 +241,9 @@ const AllRentsLoggedInView = () => {
           isOpen={pdfModalVisible}
           onClose={() => togglePdfModal(rowValue)}
           rowValue={rowValue}
-          propertyDetails="Property ABC"
-          billNumber="123"
-          generatedOn="2023-06-30"
-          rentDetails="Rent details..."
-          tenantDetails="Tenant details..."
-          paymentOptions={["Option 1", "Option 2"]}
+          propertiesArr={propertiesArr}
+          flatsArr={flatsArr}
+          tenantsArr={tenantsArr}
         />
         
 
