@@ -12,13 +12,8 @@ const styles = StyleSheet.create({
   },
   header: {
     marginBottom: 20,
-    borderBottom: '1pt solid black',
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
   },
   headerText: {
-    marginLeft: 10,
     fontSize: 10,
   },
   content: {
@@ -44,22 +39,24 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   table: {
-    width: '100%',
     marginBottom: 10,
   },
   tableRow: {
+    display: 'flex',
     flexDirection: 'row',
-    borderBottom: '1pt solid black',
     alignItems: 'center',
     height: 24,
   },
   tableCell: {
-    width: '20%',
+    flex: 1,
     padding: 4,
   },
   footer: {
     borderTop: '1pt solid black',
     paddingTop: 10,
+  },
+  footerText: {
+    fontSize: 10,
   },
 });
 
@@ -90,52 +87,51 @@ const RentReceipt: React.FC<RentReceiptProps> = ({
   >
     <Page style={styles.page}>
       <View style={styles.header}>
-        <Image src={propManageLogo} style={{ height: 100, width: 100 }}/>
         <View>
-          <Text style={styles.headerText}>House Name</Text>
-          <Text style={styles.headerText}>Owner Details</Text>
-          <Text style={styles.headerText}>Property Details</Text>
+        <Image src={propManageLogo} style={{ height: 100, width: 100 }}/>
+          <Text style={styles.headerText}>Adarsa Nibasa</Text>
+          <Text style={styles.headerText}>Address</Text>
           <Text style={styles.headerText}>Contact Number</Text>
+          <Text style={styles.headerText}>Email</Text>
+          <Text style={styles.headerText}>Owner Name</Text>
         </View>
       </View>
       <View style={styles.content}>
         <Text style={styles.title}>Rent Receipt</Text>
         <View style={styles.section}>
-          <Text style={styles.subtitle}>Bill Details</Text>
-          <View style={styles.table}>
-            <View style={styles.tableRow}>
-              <Text style={styles.tableCell}>Bill Number</Text>
-              <Text style={styles.tableCell}>Generated On</Text>
-              <Text style={styles.tableCell}>Month</Text>
-              <Text style={styles.tableCell}>Room Number</Text>
-              <Text style={styles.tableCell}>Tenant Name</Text>
-            </View>
-            <View style={styles.tableRow}>
-              <Text style={styles.tableCell}>ABC123</Text>
-              <Text style={styles.tableCell}>June 10, 2023</Text>
-              <Text style={styles.tableCell}>June 2023</Text>
-              <Text style={styles.tableCell}>101</Text>
-              <Text style={styles.tableCell}>John Doe</Text>
-            </View>
+          <View style={styles.tableRow}>
+            <Text style={[styles.label, { marginRight: 10 }]}>Bill No:</Text>
+            <Text style={styles.value}>216</Text>
+            <Text style={styles.title}>Rent Receipt</Text>
+            <Text style={styles.value}>Generated On:</Text>
+            <Text style={styles.value}>May, 2023</Text>
           </View>
-        </View>
-        <View style={styles.section}>
-          <Text style={styles.subtitle}>Electricity Details</Text>
+          <View style={styles.tableRow}>
+            <Text style={[styles.label, { marginRight: 10 }]}>Room Number:</Text>
+            <Text style={styles.value}>101</Text>
+            <Text style={[styles.label, { marginRight: 10 }]}>Tenant Name:</Text>
+            <Text style={styles.value}>John Doe</Text>
+          </View>
+          <View style={styles.tableRow}>
+            <Text style={styles.label}>Electricity Details</Text>
+          </View>
           <View style={styles.table}>
             <View style={styles.tableRow}>
-              <Text style={styles.tableCell}>Meter Number</Text>
-              <Text style={styles.tableCell}>Per Unit Cost</Text>
-              <Text style={styles.tableCell}>Old Meter Reading</Text>
-              <Text style={styles.tableCell}>New Meter Reading</Text>
-              <Text style={styles.tableCell}>Total Units Consumed</Text>
-              <Text style={styles.tableCell}>Total Electricity Bill Cost</Text>
+              <Text style={styles.tableCell}>Meter No:</Text>
+              <Text style={styles.tableCell}>12345</Text>
+              <Text style={styles.tableCell}>Per Unit Cost:</Text>
+              <Text style={styles.tableCell}>$0.10</Text>
             </View>
             <View style={styles.tableRow}>
-              <Text style={styles.tableCell}>12345</Text>
-              <Text style={styles.tableCell}>$0.10</Text>
+              <Text style={styles.tableCell}>Old Reading:</Text>
               <Text style={styles.tableCell}>1000</Text>
+              <Text style={styles.tableCell}>New Reading:</Text>
               <Text style={styles.tableCell}>1050</Text>
+            </View>
+            <View style={styles.tableRow}>
+              <Text style={styles.tableCell}>Units Consumed:</Text>
               <Text style={styles.tableCell}>50</Text>
+              <Text style={styles.tableCell}>Total Elec. Cost:</Text>
               <Text style={styles.tableCell}>$5.00</Text>
             </View>
           </View>
@@ -144,37 +140,46 @@ const RentReceipt: React.FC<RentReceiptProps> = ({
           <Text style={styles.subtitle}>Payment Details</Text>
           <View style={styles.table}>
             <View style={styles.tableRow}>
-              <Text style={styles.tableCell}>Total Rent</Text>
-              <Text style={styles.tableCell}>Period</Text>
-              <Text style={styles.tableCell}>Total Electricity Bill</Text>
-              <Text style={styles.tableCell}>Old Balance</Text>
-              <Text style={styles.tableCell}>Expenses Added</Text>
-              <Text style={styles.tableCell}>Total Due Amount</Text>
-              <Text style={styles.tableCell}>Total Amount Paid</Text>
-              <Text style={styles.tableCell}>Balance Due</Text>
+              <Text style={styles.tableCell}>Rent[From Date- To Date]</Text>
+              <Text style={styles.tableCell}>+5100</Text>
             </View>
             <View style={styles.tableRow}>
-              <Text style={styles.tableCell}>$1000.00</Text>
-              <Text style={styles.tableCell}>June 1, 2023 - June 30, 2023</Text>
-              <Text style={styles.tableCell}>$5.00</Text>
-              <Text style={styles.tableCell}>$0.00</Text>
-              <Text style={styles.tableCell}>$0.00</Text>
-              <Text style={styles.tableCell}>$1005.00</Text>
-              <Text style={styles.tableCell}>$1000.00</Text>
-              <Text style={styles.tableCell}>$5.00</Text>
+              <Text style={styles.tableCell}>Electricity</Text>
+              <Text style={styles.tableCell}>+396</Text>
+            </View>
+            <View style={styles.tableRow}>
+              <Text style={styles.tableCell}>Old Balance</Text>
+              <Text style={styles.tableCell}>+0</Text>
+            </View>
+            <View style={styles.tableRow}>
+              <Text style={styles.tableCell}>Expense Added</Text>
+              <Text style={styles.tableCell}>+0</Text>
+            </View>
+            <View style={[styles.tableRow, { backgroundColor: 'black', color: 'white' }]}>
+              <Text style={[styles.tableCell, { fontWeight: 'bold' }]}>Total Due Amount</Text>
+              <Text style={[styles.tableCell, { fontWeight: 'bold' }]}>5496</Text>
+            </View>
+            <View style={[styles.tableRow, { border: '1pt solid black' }]}>
+              <Text style={[styles.tableCell, { borderRight: '1pt solid black' }]}>Total Amount Paid</Text>
+              <Text style={styles.tableCell}>----</Text>
+            </View>
+            <View style={[styles.tableRow, { border: '1pt solid black' }]}>
+              <Text style={[styles.tableCell, { borderRight: '1pt solid black' }]}>Balance Due</Text>
+              <Text style={styles.tableCell}>----</Text>
             </View>
           </View>
+          <Text style={{ textAlign: 'right' }}>Signature</Text>
         </View>
       </View>
       <View style={styles.footer}>
-        <Text>Payment Options:</Text>
-        <Text>Bank Details: Bank XYZ</Text>
-        <Text>UPI Options: UPI ABC</Text>
-        <Text>Bank Name: Bank XYZ</Text>
-        <Text>Bank Address: Address XYZ</Text>
-        <Text>Bank Account Number: 1234567890</Text>
-        <Text>IFSC Code: ABCD1234</Text>
-        <Text>Account Holder Name: John Doe</Text>
+        <Text style={styles.footerText}>Payment Options</Text>
+        <Text style={styles.footerText}>[Net Banking Logo] Bank Name:</Text>
+        <Text style={styles.footerText}>Address | Account Number:</Text>
+        <Text style={styles.footerText}>IFSC Code:</Text>
+        <Text style={styles.footerText}>Account Holder Name:</Text>
+        <Text style={styles.footerText}>UPI QR:</Text>
+        <Text style={styles.footerText}>UPI ID:</Text>
+        <Text style={styles.footerText}>Made By Property Data Management System</Text>
       </View>
     </Page>
   </Document>
