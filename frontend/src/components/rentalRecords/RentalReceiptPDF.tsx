@@ -44,19 +44,18 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   table: {
-    display: 'flex',
     width: '100%',
-    borderCollapse: 'collapse',
+    marginBottom: 10,
   },
   tableRow: {
     flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderBottomColor: 'black',
-    borderBottomStyle: 'solid',
+    borderBottom: '1pt solid black',
+    alignItems: 'center',
+    height: 24,
   },
   tableCell: {
-    width: '25%',
-    padding: 5,
+    width: '20%',
+    padding: 4,
   },
   footer: {
     borderTop: '1pt solid black',
