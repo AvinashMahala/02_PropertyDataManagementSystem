@@ -49,12 +49,14 @@ const AllRentsLoggedInView = () => {
   const [message, setMessage] = commonImports.useState("");
 
   const [pdfModalVisible, setPdfModalVisible] = commonImports.useState(false);
+  const [rowValue, setRowValue] = commonImports.useState();
 
   const createNewRowStrategy = new CreateNewRowStrategy();
   const saveRowEditsStrategy = new SaveRowEditsStrategy();
   const deleteRowStrategy = new DeleteRowStrategy();
 
-  const togglePdfModal = () => {
+  const togglePdfModal = (row:any) => {
+    setRowValue(row);
     setPdfModalVisible(!pdfModalVisible);
   };
 
@@ -218,7 +220,7 @@ const AllRentsLoggedInView = () => {
               <commonImports.Tooltip arrow placement="right" title="Receipt">
                 <commonImports.IconButton
                   color="primary"
-                  onClick={togglePdfModal}
+                  onClick={() => togglePdfModal(row)}
                 >
                   <ReceiptOutlined />
                 </commonImports.IconButton>
@@ -237,7 +239,8 @@ const AllRentsLoggedInView = () => {
         />
         <PdfModal
           isOpen={pdfModalVisible}
-          onClose={togglePdfModal}
+          onClose={() => togglePdfModal(rowValue)}
+          rowValue={rowValue}
           propertyDetails="Property ABC"
           billNumber="123"
           generatedOn="2023-06-30"
@@ -245,6 +248,7 @@ const AllRentsLoggedInView = () => {
           tenantDetails="Tenant details..."
           paymentOptions={["Option 1", "Option 2"]}
         />
+        
 
         <CreateNewModal
           columns={rentDetailsDetailsGridColumns}

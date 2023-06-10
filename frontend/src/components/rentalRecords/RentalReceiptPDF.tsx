@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
   },
   header: {
     marginBottom: 20,
-    borderBottom: '1pt solid black',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -20,6 +19,10 @@ const styles = StyleSheet.create({
   headerText: {
     marginLeft: 10,
     fontSize: 10,
+  },
+  logo: {
+    height: 50,
+    width: 50,
   },
   content: {
     marginBottom: 20,
@@ -30,6 +33,7 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     fontSize: 18,
+    fontWeight: 'bold',
     marginBottom: 20,
   },
   subtitle: {
@@ -60,7 +64,21 @@ const styles = StyleSheet.create({
   },
   footer: {
     borderTop: '1pt solid black',
-    paddingTop: 10,
+    paddingTop: 5,
+  },
+  footerPart1: {
+    marginBottom: 10,
+  },
+  footerPart2: {
+    fontSize: 10,
+    textAlign: 'center',
+    fontStyle: 'italic',
+    marginTop: 10,
+  },
+  copyRight: {
+    fontSize: 8,
+    textAlign: 'center',
+    marginTop: 10,
   },
 });
 
@@ -93,7 +111,6 @@ const RentReceipt: React.FC<RentReceiptProps> = ({
       <View style={styles.header}>
       <Image src={propManageLogo} style={{ height: 100, width: 100 }}/>
       <View>
-          <Text style={styles.headerText}>Adarsa Nibasa</Text>
           <Text style={styles.headerText}>Address</Text>
           <Text style={styles.headerText}>Contact Number</Text>
           <Text style={styles.headerText}>Email</Text>
@@ -179,14 +196,18 @@ const RentReceipt: React.FC<RentReceiptProps> = ({
         </View>
       </View>
       <View style={styles.footer}>
-        <Text>Payment Options:</Text>
-        <Text>Bank Details: Bank XYZ</Text>
-        <Text>UPI Options: UPI ABC</Text>
-        <Text>Bank Name: Bank XYZ</Text>
-        <Text>Bank Address: Address XYZ</Text>
-        <Text>Bank Account Number: 1234567890</Text>
-        <Text>IFSC Code: ABCD1234</Text>
-        <Text>Account Holder Name: John Doe</Text>
+        <View style={styles.footerPart1}>
+          <Text style={styles.label}>Payment Options</Text>
+          <Text>[Net Banking Logo] Bank Name:, Address | Account Number:</Text>
+          <Text>IFSC Code: | Account Holder Name:</Text>
+          <Text>UPI QR: | UPI ID:</Text>
+        </View>
+        <Text style={styles.footerPart2}>
+          Made By Property Data Management System
+        </Text>
+        <Text style={styles.copyRight}>
+          © 2023 All rights reserved. This document is for informational purposes only.
+        </Text>
       </View>
     </Page>
   </Document>

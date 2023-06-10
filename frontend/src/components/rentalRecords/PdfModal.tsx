@@ -7,6 +7,7 @@ import * as commonImports from "./../../commonCode/CommonImports";
 type RentReceiptProps = {
   isOpen: boolean;
   onClose: () => void;
+  rowValue:any;
   propertyDetails: string;
   billNumber: string;
   generatedOn: string;
@@ -18,6 +19,7 @@ type RentReceiptProps = {
 const PdfModal: React.FC<RentReceiptProps> = ({
   isOpen,
   onClose,
+  rowValue,
   propertyDetails,
   billNumber,
   generatedOn,
@@ -54,6 +56,8 @@ const PdfModal: React.FC<RentReceiptProps> = ({
       </Button>
     </DialogActions>
   </commonImports.Dialog>
+
+  
 );
 
 export default PdfModal;
