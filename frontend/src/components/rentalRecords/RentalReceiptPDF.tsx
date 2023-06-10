@@ -12,8 +12,13 @@ const styles = StyleSheet.create({
   },
   header: {
     marginBottom: 20,
+    borderBottom: '1pt solid black',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   headerText: {
+    marginLeft: 10,
     fontSize: 10,
   },
   content: {
@@ -30,6 +35,7 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 14,
     marginBottom: 10,
+    textDecoration: 'underline',
   },
   label: {
     fontWeight: 'bold',
@@ -44,6 +50,7 @@ const styles = StyleSheet.create({
   tableRow: {
     display: 'flex',
     flexDirection: 'row',
+    borderBottom: '1pt solid black',
     alignItems: 'center',
     height: 24,
   },
@@ -54,9 +61,6 @@ const styles = StyleSheet.create({
   footer: {
     borderTop: '1pt solid black',
     paddingTop: 10,
-  },
-  footerText: {
-    fontSize: 10,
   },
 });
 
@@ -87,8 +91,8 @@ const RentReceipt: React.FC<RentReceiptProps> = ({
   >
     <Page style={styles.page}>
       <View style={styles.header}>
-        <View>
-        <Image src={propManageLogo} style={{ height: 100, width: 100 }}/>
+      <Image src={propManageLogo} style={{ height: 100, width: 100 }}/>
+      <View>
           <Text style={styles.headerText}>Adarsa Nibasa</Text>
           <Text style={styles.headerText}>Address</Text>
           <Text style={styles.headerText}>Contact Number</Text>
@@ -99,22 +103,25 @@ const RentReceipt: React.FC<RentReceiptProps> = ({
       <View style={styles.content}>
         <Text style={styles.title}>Rent Receipt</Text>
         <View style={styles.section}>
-          <View style={styles.tableRow}>
-            <Text style={[styles.label, { marginRight: 10 }]}>Bill No:</Text>
-            <Text style={styles.value}>216</Text>
-            <Text style={styles.title}>Rent Receipt</Text>
-            <Text style={styles.value}>Generated On:</Text>
-            <Text style={styles.value}>May, 2023</Text>
+          <Text style={styles.subtitle}>Bill Details</Text>
+          <View style={styles.table}>
+            <View style={styles.tableRow}>
+              <Text style={[styles.label, { marginRight: 10 }]}>Bill No:</Text>
+              <Text style={styles.value}>216</Text>
+              <Text style={styles.title}>Rent Receipt</Text>
+              <Text style={styles.value}>Generated On:</Text>
+              <Text style={styles.value}>May, 2023</Text>
+            </View>
+            <View style={styles.tableRow}>
+              <Text style={[styles.label, { marginRight: 10 }]}>Room Number:</Text>
+              <Text style={styles.value}>101</Text>
+              <Text style={[styles.label, { marginRight: 10 }]}>Tenant Name:</Text>
+              <Text style={styles.value}>John Doe</Text>
+            </View>
           </View>
-          <View style={styles.tableRow}>
-            <Text style={[styles.label, { marginRight: 10 }]}>Room Number:</Text>
-            <Text style={styles.value}>101</Text>
-            <Text style={[styles.label, { marginRight: 10 }]}>Tenant Name:</Text>
-            <Text style={styles.value}>John Doe</Text>
-          </View>
-          <View style={styles.tableRow}>
-            <Text style={styles.label}>Electricity Details</Text>
-          </View>
+        </View>
+        <View style={styles.section}>
+          <Text style={styles.subtitle}>Electricity Details</Text>
           <View style={styles.table}>
             <View style={styles.tableRow}>
               <Text style={styles.tableCell}>Meter No:</Text>
@@ -172,14 +179,14 @@ const RentReceipt: React.FC<RentReceiptProps> = ({
         </View>
       </View>
       <View style={styles.footer}>
-        <Text style={styles.footerText}>Payment Options</Text>
-        <Text style={styles.footerText}>[Net Banking Logo] Bank Name:</Text>
-        <Text style={styles.footerText}>Address | Account Number:</Text>
-        <Text style={styles.footerText}>IFSC Code:</Text>
-        <Text style={styles.footerText}>Account Holder Name:</Text>
-        <Text style={styles.footerText}>UPI QR:</Text>
-        <Text style={styles.footerText}>UPI ID:</Text>
-        <Text style={styles.footerText}>Made By Property Data Management System</Text>
+        <Text>Payment Options:</Text>
+        <Text>Bank Details: Bank XYZ</Text>
+        <Text>UPI Options: UPI ABC</Text>
+        <Text>Bank Name: Bank XYZ</Text>
+        <Text>Bank Address: Address XYZ</Text>
+        <Text>Bank Account Number: 1234567890</Text>
+        <Text>IFSC Code: ABCD1234</Text>
+        <Text>Account Holder Name: John Doe</Text>
       </View>
     </Page>
   </Document>
