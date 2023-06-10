@@ -1,11 +1,12 @@
 import React from 'react';
-import { PDFViewer } from '@react-pdf/renderer';
-
 import RentReceipt from './RentalReceiptPDF';
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@material-ui/core';
+import { PDFViewer } from '@react-pdf/renderer';
+import * as commonImports from "./../../commonCode/CommonImports";
 
 type RentReceiptProps = {
-  isOpen: any;
-  onClose: any;
+  isOpen: boolean;
+  onClose: () => void;
   propertyDetails: string;
   billNumber: string;
   generatedOn: string;
@@ -24,10 +25,19 @@ const PdfModal: React.FC<RentReceiptProps> = ({
   tenantDetails,
   paymentOptions,
 }: RentReceiptProps) => (
-  <div className="pdf-modal" style={{ display: isOpen ? 'block' : 'none' }}>
-    <div className="pdf-modal-content">
-      <button className="pdf-modal-close" onClick={onClose}>Close</button>
-      <PDFViewer width="100%" height="500px">
+  <commonImports.Dialog open={isOpen} onClose={onClose} maxWidth="md" fullWidth
+  PaperProps={{
+    sx: {
+      width: "100%",
+      maxWidth: "85%!important",
+      height:"100%",
+      maxHeight:"95%!important",
+    },
+  }} 
+  >
+    <DialogTitle>Rent Receipt</DialogTitle>
+    <DialogContent>
+      <PDFViewer width="100%" height="98%">
         <RentReceipt
           propertyDetails={propertyDetails}
           billNumber={billNumber}
@@ -37,8 +47,13 @@ const PdfModal: React.FC<RentReceiptProps> = ({
           paymentOptions={paymentOptions}
         />
       </PDFViewer>
-    </div>
-  </div>
+    </DialogContent>
+    <DialogActions>
+      <Button onClick={onClose} color="primary">
+        Close
+      </Button>
+    </DialogActions>
+  </commonImports.Dialog>
 );
 
 export default PdfModal;
