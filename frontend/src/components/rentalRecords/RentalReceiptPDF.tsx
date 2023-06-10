@@ -42,8 +42,19 @@ const RentReceipt: React.FC<RentReceiptProps> = ({
   tenantDetails,
   paymentOptions,
 }: RentReceiptProps) => (
-  <Document>
-    <Page style={styles.page}>
+  <Document 
+  title={billNumber}
+  author="Rent Receipt Generator"
+  subject="Rent Receipt"
+  keywords="rent receipt, rent receipt generator, rent receipt pdf"
+  creator="Rent Receipt Generator"
+  producer="Rent Receipt Generator"
+  
+  >
+    <Page 
+    style={styles.page}
+    size="A4"
+    >
       <View style={styles.header}>
         <Text>Property Details: {propertyDetails}</Text>
       </View>
