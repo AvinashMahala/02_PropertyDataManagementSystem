@@ -1,5 +1,6 @@
 export interface ITenantViewModel{
     _id:string;
+    propertyId:string;
     flatId: string;
     Photo: string;
     Salutation: string;
@@ -29,6 +30,7 @@ export interface ITenantViewModel{
 }
 
 export interface ITenantInputModel{
+    propertyId:string;
     flatId: string;
     Photo: string;
     Salutation: string;

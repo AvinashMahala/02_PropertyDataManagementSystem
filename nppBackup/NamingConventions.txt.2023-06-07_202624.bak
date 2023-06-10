@@ -1,0 +1,65 @@
+Backend Naming Conventions
+--------------------------------------------------
+PropertyDataManagementSystem
+	-.github
+	-.vscode
+	-backend
+		-src
+			-controllers
+				-FlatsController.ts
+				-MaintenanceRequestsController.ts
+				-NotesController.ts
+				-OwnersController.ts
+				-PaymentMetaDataController.ts
+				-PropertiesController.ts
+				-RentalRecordsController.ts
+				-TenantsController.ts
+				-UsersController.ts
+			-errors
+			-logging
+			-middleware
+			-models
+			-routes
+			-services
+				-FlatsController.ts
+				-MaintenanceRequestsController.ts
+				-NotesController.ts
+				-OwnersController.ts
+				-PaymentMetaDataController.ts
+				-PropertiesController.ts
+				-RentalRecordsController.ts
+				-TenantsController.ts
+				-UsersController.ts
+			-util
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------
+FrontEnd Naming Conventions
+--------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------

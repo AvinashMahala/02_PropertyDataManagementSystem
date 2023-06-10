@@ -3,19 +3,19 @@ import express, { Request, Response, NextFunction } from "express";
 import morgan from "morgan";
 import createHttpError, { isHttpError } from "http-errors";
 import session from "express-session";
-import env from "./util/validateenv";
+import env from "./util/ValidateEnvUtil";
 import MongoStore  from "connect-mongo";
 import { requiresAuth } from "./middleware/auth";
 
-import notesRoutes from "./routes/notes";
-import userRoutes from "./routes/users";
-import ownerDetailsRoutes from "./routes/ownerDetailsRoutes";
-import rentReceiptMetaDataDetailsRoutes from "./routes/rentReceiptMetaDataDetailsRoutes";
-import propertyRoutes from "./routes/allPropertiesRoutes";
-import flatRoutes from "./routes/flatRoutes";
-import tenantRoutes from "./routes/tenantRoutes";
-import allRentDetailsRoutes from "./routes/allRentDetailsRoutes";
-import allMaintenanceDetailsRoutes from "./routes/maintenanceRoutes";
+import notesRoutes from "./routes/NotesRoutes";
+import userRoutes from "./routes/UsersRoutes";
+import ownerDetailsRoutes from "./routes/OwnersRoutes";
+import rentReceiptMetaDataDetailsRoutes from "./routes/PaymentMetaDataRoutes";
+import propertyRoutes from "./routes/PropertiesRoutes";
+import flatRoutes from "./routes/FlatsRoutes";
+import tenantRoutes from "./routes/TenantsRoutes";
+import allRentDetailsRoutes from "./routes/RentalRecordsRoutes";
+import allMaintenanceDetailsRoutes from "./routes/MaintenanceRequestsRoutes";
 
 const app = express();
 
@@ -52,15 +52,15 @@ app.use((req, res, next)=>{
 });
 
 
-app.use((error:unknown, req:Request, res:Response, next:NextFunction)=>{
-    //console.log(error);
-    let errorMessage="An Unknown Error Occurred!";
-    let statusCode=500;
-    if(isHttpError(error)){
-        statusCode=error.status;
-        errorMessage=error.message;
-    }
-    res.status(statusCode).json({error: errorMessage});
-});
+// app.use((error:unknown, req:Request, res:Response, next:NextFunction)=>{
+//     //console.log(error);
+//     let errorMessage="An Unknown Error Occurred!";
+//     let statusCode=500;
+//     if(isHttpError(error)){
+//         statusCode=error.status;
+//         errorMessage=error.message;
+//     }
+//     res.status(statusCode).json({error: errorMessage});
+// });
 
 export default app;

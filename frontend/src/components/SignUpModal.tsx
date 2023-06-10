@@ -93,9 +93,6 @@ const SignUpModal = ({ onDismiss, onSignUpSuccessful }: SignUpModalProps) => {
                 />
               </Form>
             </Col>
-          </Row>
-
-          <Row>
             <Col xs={6} md={4}>
               <Form onSubmit={handleSubmit(onSubmit)}>
                 <TextInputField
@@ -135,9 +132,6 @@ const SignUpModal = ({ onDismiss, onSignUpSuccessful }: SignUpModalProps) => {
                 />
               </Form>
             </Col>
-          </Row>
-
-          <Row>
             <Col xs={6} md={4}>
               <Form onSubmit={handleSubmit(onSubmit)}>
                 <TextInputField

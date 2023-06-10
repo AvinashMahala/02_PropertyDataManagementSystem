@@ -1,0 +1,85 @@
+Backend Naming Conventions
+--------------------------------------------------
+PropertyDataManagementSystem
+	-.github
+	-.vscode
+	-backend
+		-src
+			-controllers
+				-FlatsController.ts
+				-MaintenanceRequestsController.ts
+				-NotesController.ts
+				-OwnersController.ts
+				-PaymentMetaDataController.ts
+				-PropertiesController.ts
+				-RentalRecordsController.ts
+				-TenantsController.ts
+				-UsersController.ts
+			-errors
+			-logging
+			-middleware
+			-models
+				-FlatsModels.ts
+				-MaintenanceRequestsModels.ts
+				-NotesModels.ts
+				-OwnersModels.ts
+				-PaymentMetaDataModels.ts
+				-PropertiesModels.ts
+				-RentalRecordsModels.ts
+				-TenantsModels.ts
+				-UsersModels.ts
+			-routes
+				-FlatsRoutes.ts
+				-MaintenanceRequestsRoutes.ts
+				-NotesRoutes.ts
+				-OwnersRoutes.ts
+				-PaymentMetaDataRoutes.ts
+				-PropertiesRoutes.ts
+				-RentalRecordsRoutes.ts
+				-TenantsRoutes.ts
+				-UsersRoutes.ts
+			-services
+				-FlatsService.ts
+				-MaintenanceRequestsService.ts
+				-NotesService.ts
+				-OwnersService.ts
+				-PaymentMetaDataService.ts
+				-PropertiesService.ts
+				-RentalRecordsService.ts
+				-TenantsService.ts
+				-UsersService.ts
+			-util
+				-AssertIsDefinedUtil.ts
+				-ValidateEnvUtil.ts
+
+
+
+
+RetrieveAllRecords
+RetrieveOneRecord
+CreateOneRecord
+UpdateOneRecord
+DeleteOneRecord
+
+
+
+
+
+--------------------------------------------------
+FrontEnd Naming Conventions
+--------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------
