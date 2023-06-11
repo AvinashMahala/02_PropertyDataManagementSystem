@@ -5,6 +5,7 @@ import { PDFViewer } from '@react-pdf/renderer';
 import * as commonImports from "./../../commonCode/CommonImports";
 import * as ReceiptGenUtility from "./../../utils/ReceiptGenUtility";
 import * as OwnerModel from "./../../models/ownerDetails";
+import * as PaymentMetaDataModel from "./../../models/rentReceiptMetaDataDetails";
 
 type RentReceiptProps = {
   isOpen: boolean;
@@ -14,6 +15,7 @@ type RentReceiptProps = {
   flatsArr:any;
   tenantsArr:any;
   ownersArr:OwnerModel.IOwnerDetailsViewModel[];
+  paymentMetaDataArr:PaymentMetaDataModel.IRentReceiptMetaDataDetailsViewModel[];
 };
 
 const PdfModal: React.FC<RentReceiptProps> = ({
@@ -23,7 +25,8 @@ const PdfModal: React.FC<RentReceiptProps> = ({
   propertiesArr,
   flatsArr,
   tenantsArr,
-  ownersArr
+  ownersArr,
+  paymentMetaDataArr
 }: RentReceiptProps) => (
   <commonImports.Dialog open={isOpen} onClose={onClose} maxWidth="md" fullWidth
   PaperProps={{
@@ -41,9 +44,9 @@ const PdfModal: React.FC<RentReceiptProps> = ({
         <RentReceipt
           propertyDetails={ReceiptGenUtility.RetrievePropertyDetails(rowValue,propertiesArr,ownersArr)}
           billDetails={ReceiptGenUtility.RetrieveBillDetails(rowValue,flatsArr,tenantsArr)}
-          electricityDetails={ReceiptGenUtility.RetrieveElectricityDetails(rowValue,propertiesArr)}
-          paymentDetails={ReceiptGenUtility.RetrievePaymentDetails(rowValue,propertiesArr)}
-          paymentOptionDetails={ReceiptGenUtility.RetrievePaymentOptionDetails(rowValue,propertiesArr)}
+          electricityDetails={ReceiptGenUtility.RetrieveElectricityDetails(rowValue,flatsArr)}
+          paymentDetails={ReceiptGenUtility.RetrievePaymentDetails(rowValue)}
+          paymentOptionDetails={ReceiptGenUtility.RetrievePaymentOptionDetails(rowValue,propertiesArr,paymentMetaDataArr)}
         />
       </PDFViewer>
     </DialogContent>

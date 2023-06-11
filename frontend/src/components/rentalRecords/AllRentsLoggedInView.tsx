@@ -5,10 +5,12 @@ import * as FlatsApi from "../../network/flatDetailsApi";
 import * as PropertiesApi from "../../network/allPropertiesApi";
 import * as TenantsApi from "../../network/tenantApi";
 import * as OwnersApi from "../../network/ownerDetailsApi";
+import * as PaymentMetaDataApi from "../../network/rentReceiptMDataApi";
 import * as UserModel from "../../models/user";
 import * as TenantModel from "../../models/tenantModel";
 import * as OwnerModel from "../../models/ownerDetails";
 import * as FlatsModel from "../../models/flatModel";
+import * as PaymentMetaDataModel from "../../models/rentReceiptMetaDataDetails";
 import * as PropertiesModel from "../../models/allPropertiesModel";
 import * as AllRentDetailsModel from "../../models/allRentDetailsModel";
 import PropertyPageStyles from "../../styles/PropertyPage.module.css";
@@ -39,6 +41,7 @@ let flatsArr: FlatsModel.IFlatViewModel[] = [];
 let propertiesArr: PropertiesModel.IPropertyDetailsViewModel[] = [];
 let tenantsArr: TenantModel.ITenantViewModel[] = [];
 let ownersArr: OwnerModel.IOwnerDetailsViewModel[] = [];
+let paymentMetaDataArr: PaymentMetaDataModel.IRentReceiptMetaDataDetailsViewModel[] = [];
 
 const AllRentsLoggedInView = () => {
   const [rentDetailsArr, setRentDetailsArr] = commonImports.useState<
@@ -149,6 +152,10 @@ const AllRentsLoggedInView = () => {
       ownersArr = response;
     });
 
+    PaymentMetaDataApi.RetrieveAllRecords().then((response) => {
+      paymentMetaDataArr = response;
+    });
+
 
     AllRentDetailsApi.RetrieveAllRecords().then((response) => {
       setRentDetailsArr(response);
@@ -253,6 +260,7 @@ const AllRentsLoggedInView = () => {
           flatsArr={flatsArr}
           tenantsArr={tenantsArr}
           ownersArr={ownersArr}
+          paymentMetaDataArr={paymentMetaDataArr}
         />
         
 
