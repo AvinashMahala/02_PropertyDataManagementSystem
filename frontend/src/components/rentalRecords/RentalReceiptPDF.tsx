@@ -16,6 +16,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  headerPropertyDetails: {
+    marginBottom: 10,
+    textAlign: 'left'
+  },
   headerText: {
     marginLeft: 'auto',
     fontSize: 10
@@ -108,12 +112,12 @@ const RentReceipt: React.FC<RentReceiptProps> = ({
     <Page style={styles.page}>
     <Text style={styles.title}>{(propertyDetails)===undefined?"":propertyDetails.propertyName}</Text>
       <View style={styles.header}>
-      <Image src={propManageLogo} style={{ height: 100, width: 100 }}/>
-      <View>
-          <Text style={[styles.headerText, { textAlign: 'right' }]}>Address</Text>
-          <Text style={[styles.headerText, { textAlign: 'right' }]}>Contact Number</Text>
-          <Text style={[styles.headerText, { textAlign: 'right' }]}>Email</Text>
-          <Text style={[styles.headerText, { textAlign: 'right' }]}>Owner Name</Text>
+        <Image src={propManageLogo} style={{ height: 100, width: 100 }}/>
+        <View style={styles.headerPropertyDetails}>
+          <Text style={[styles.headerText]}>Property Address: {(propertyDetails)===undefined?"":propertyDetails.propertyAddress}</Text>
+          <Text style={[styles.headerText]}>Contact Number: {(propertyDetails)===undefined?"":propertyDetails.contactNumber}</Text>
+          <Text style={[styles.headerText]}>Email: {(propertyDetails)===undefined?"":propertyDetails.emailId}</Text>
+          <Text style={[styles.headerText]}>Owner Name: {(propertyDetails)===undefined?"":propertyDetails.ownerName}</Text>
         </View>
       </View>
       <View style={styles.content}>
@@ -122,16 +126,16 @@ const RentReceipt: React.FC<RentReceiptProps> = ({
           <Text style={styles.subtitle}>Bill Details</Text>
           <View style={styles.table}>
             <View style={styles.tableRow}>
-              <Text style={[styles.label, { marginRight: 10 }]}>Bill No:</Text>
+              <Text style={[styles.label, { marginRight: 10 }]}>Bill No: {(billDetails)===undefined?"":billDetails.billNumber}</Text>
               <Text style={styles.value}>216</Text>
               <Text style={styles.title}>Rent Receipt</Text>
               <Text style={styles.value}>Generated On:</Text>
               <Text style={styles.value}>May, 2023</Text>
             </View>
             <View style={styles.tableRow}>
-              <Text style={[styles.label, { marginRight: 10 }]}>Room Number:</Text>
+              <Text style={[styles.label, { marginRight: 10 }]}>Room Number: {(billDetails)===undefined?"":billDetails.roomNumber}</Text>
               <Text style={styles.value}>101</Text>
-              <Text style={[styles.label, { marginRight: 10 }]}>Tenant Name:</Text>
+              <Text style={[styles.label, { marginRight: 10 }]}>Tenant Name: {(billDetails)===undefined?"":billDetails.tenantName}</Text>
               <Text style={styles.value}>John Doe</Text>
             </View>
           </View>
@@ -141,21 +145,21 @@ const RentReceipt: React.FC<RentReceiptProps> = ({
           <View style={styles.table}>
             <View style={styles.tableRow}>
               <Text style={styles.tableCell}>Meter No:</Text>
-              <Text style={styles.tableCell}>12345</Text>
+              <Text style={styles.tableCell}>{(electricityDetails)===undefined?"":electricityDetails.meterNo}</Text>
               <Text style={styles.tableCell}>Per Unit Cost:</Text>
-              <Text style={styles.tableCell}>$0.10</Text>
+              <Text style={styles.tableCell}>{(electricityDetails)===undefined?"":electricityDetails.perUnitCost}</Text>
             </View>
             <View style={styles.tableRow}>
               <Text style={styles.tableCell}>Old Reading:</Text>
-              <Text style={styles.tableCell}>1000</Text>
+              <Text style={styles.tableCell}>{(electricityDetails)===undefined?"":electricityDetails.oldReading}</Text>
               <Text style={styles.tableCell}>New Reading:</Text>
-              <Text style={styles.tableCell}>1050</Text>
+              <Text style={styles.tableCell}>{(electricityDetails)===undefined?"":electricityDetails.newReading}</Text>
             </View>
             <View style={styles.tableRow}>
               <Text style={styles.tableCell}>Units Consumed:</Text>
-              <Text style={styles.tableCell}>50</Text>
+              <Text style={styles.tableCell}>{(electricityDetails)===undefined?"":electricityDetails.unitsConsumed}</Text>
               <Text style={styles.tableCell}>Total Elec. Cost:</Text>
-              <Text style={styles.tableCell}>$5.00</Text>
+              <Text style={styles.tableCell}>{(electricityDetails)===undefined?"":electricityDetails.totalElecCost}</Text>
             </View>
           </View>
         </View>
@@ -164,42 +168,42 @@ const RentReceipt: React.FC<RentReceiptProps> = ({
           <View style={styles.table}>
             <View style={styles.tableRow}>
               <Text style={styles.tableCell}>Rent[From Date- To Date]</Text>
-              <Text style={styles.tableCell}>+5100</Text>
+              <Text style={styles.tableCell}>+ {(paymentDetails)===undefined?"":paymentDetails.totalRent}</Text>
             </View>
             <View style={styles.tableRow}>
               <Text style={styles.tableCell}>Electricity</Text>
-              <Text style={styles.tableCell}>+396</Text>
+              <Text style={styles.tableCell}>+ {(paymentDetails)===undefined?"":paymentDetails.totalElectricity}</Text>
             </View>
             <View style={styles.tableRow}>
               <Text style={styles.tableCell}>Old Balance</Text>
-              <Text style={styles.tableCell}>+0</Text>
+              <Text style={styles.tableCell}>+ {(paymentDetails)===undefined?"":paymentDetails.oldBalance}</Text>
             </View>
             <View style={styles.tableRow}>
               <Text style={styles.tableCell}>Expense Added</Text>
-              <Text style={styles.tableCell}>+0</Text>
+              <Text style={styles.tableCell}>+ {(paymentDetails)===undefined?"":paymentDetails.expenseAdded}</Text>
             </View>
             <View style={[styles.tableRow, { backgroundColor: 'black', color: 'white' }]}>
               <Text style={[styles.tableCell, { fontWeight: 'bold' }]}>Total Due Amount</Text>
-              <Text style={[styles.tableCell, { fontWeight: 'bold' }]}>5496</Text>
+              <Text style={[styles.tableCell, { fontWeight: 'bold' }]}>{(paymentDetails)===undefined?"":paymentDetails.totalDueAmount}</Text>
             </View>
             <View style={[styles.tableRow, { border: '1pt solid black' }]}>
               <Text style={[styles.tableCell, { borderRight: '1pt solid black' }]}>Total Amount Paid</Text>
-              <Text style={styles.tableCell}>----</Text>
+              <Text style={styles.tableCell}>{(paymentDetails)===undefined?"":paymentDetails.amountPaid}</Text>
             </View>
             <View style={[styles.tableRow, { border: '1pt solid black' }]}>
               <Text style={[styles.tableCell, { borderRight: '1pt solid black' }]}>Balance Due</Text>
-              <Text style={styles.tableCell}>----</Text>
+              <Text style={styles.tableCell}>{(paymentDetails)===undefined?"":paymentDetails.balance}</Text>
             </View>
           </View>
-          <Text style={{ textAlign: 'right' }}>Signature</Text>
+          <Text style={{ textAlign: 'right' }}>{(paymentOptionDetails)===undefined?"Sample Signature": paymentOptionDetails.payment_signature}</Text>
         </View>
       </View>
       <View style={styles.footer}>
         <View style={styles.footerPart1}>
           <Text style={styles.label}>Payment Options</Text>
-          <Text>[Net Banking Logo] Bank Name:, Address | Account Number:</Text>
-          <Text>IFSC Code: | Account Holder Name:</Text>
-          <Text>UPI QR: | UPI ID:</Text>
+          <Text>[{(paymentOptionDetails)===undefined?"Sample LOGO":paymentOptionDetails.logo}] Bank Name: {(paymentOptionDetails)===undefined?"Sample Bank Name":paymentOptionDetails.bk_details_bk_name}, Address {"Sample Bank Address"} | Account Number: {(paymentOptionDetails)===undefined?"Sample ACC No.":paymentOptionDetails.bk_details_bk_acc_number}</Text>
+          <Text>IFSC Code: {(paymentOptionDetails)===undefined?"Sample IFSC": paymentOptionDetails.bk_details_bk_ifsc} | Account Holder Name: {(paymentOptionDetails)===undefined?"Sample Account Holder": paymentOptionDetails.bk_details_acc_holder_name}</Text>
+          <Text>UPI QR: {(paymentOptionDetails)===undefined?"Sample QR": paymentOptionDetails.payment_qr_code} | UPI ID: {(paymentOptionDetails)===undefined?"Sample UPI ID": paymentOptionDetails.wallet_details_upi_id}</Text>
         </View>
         <Text style={styles.footerPart2}>
           Made By Property Data Management System

@@ -1,15 +1,19 @@
-
 import * as ReceiptGenUtility from "./../models/RentReceiptModel";
+import * as OwnersModel from "./../models/ownerDetails";
+import * as PaymentRecordMetaDataModel from "./../models/rentReceiptMetaDataDetails";
 import * as PropertiesModel from "./../models/allPropertiesModel";
+import * as RoomsModel from "./../models/flatModel";
+import * as TenantModel from "./../models/tenantModel";
 
-export function RetrievePropertyDetails(rowValue:any,propertiesArr:PropertiesModel.IPropertyDetailsViewModel[]):ReceiptGenUtility.IRentReceiptPropertyDetailsModel{
-    if(rowValue!==undefined){
+export function RetrievePropertyDetails(rowValue:any,propertiesArr:PropertiesModel.IPropertyDetailsViewModel[],ownersArr:OwnersModel.IOwnerDetailsViewModel[]):ReceiptGenUtility.IRentReceiptPropertyDetailsModel{
+        
+    if(rowValue){
         return {
             propertyName:propertiesArr.filter((prop)=>prop._id===rowValue.original.propertyId)[0]?.propertyName,
             propertyAddress:propertiesArr.filter((prop)=>prop._id===rowValue.original.propertyId)[0]?.propertyAddress,
-            contactNumber:"",
-            emailId:"",
-            ownerName:""
+            contactNumber:ownersArr.filter((owner)=>owner._id===propertiesArr.filter((prop)=>prop._id===rowValue.original.propertyId)[0]?.ownerId)[0].ownerMobileNo,
+            emailId:ownersArr.filter((owner)=>owner._id===propertiesArr.filter((prop)=>prop._id===rowValue.original.propertyId)[0]?.ownerId)[0].ownerEmail,
+            ownerName:ownersArr.filter((owner)=>owner._id===propertiesArr.filter((prop)=>prop._id===rowValue.original.propertyId)[0]?.ownerId)[0].ownerName
         };
     }
     else{

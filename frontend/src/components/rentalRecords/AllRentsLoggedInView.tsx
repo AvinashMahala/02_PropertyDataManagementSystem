@@ -4,8 +4,10 @@ import * as UsersApi from "../../network/users_api";
 import * as FlatsApi from "../../network/flatDetailsApi";
 import * as PropertiesApi from "../../network/allPropertiesApi";
 import * as TenantsApi from "../../network/tenantApi";
+import * as OwnersApi from "../../network/ownerDetailsApi";
 import * as UserModel from "../../models/user";
 import * as TenantModel from "../../models/tenantModel";
+import * as OwnerModel from "../../models/ownerDetails";
 import * as FlatsModel from "../../models/flatModel";
 import * as PropertiesModel from "../../models/allPropertiesModel";
 import * as AllRentDetailsModel from "../../models/allRentDetailsModel";
@@ -36,6 +38,7 @@ let usersArr: UserModel.User[] = []; //This stores all the users retrieved from 
 let flatsArr: FlatsModel.IFlatViewModel[] = [];
 let propertiesArr: PropertiesModel.IPropertyDetailsViewModel[] = [];
 let tenantsArr: TenantModel.ITenantViewModel[] = [];
+let ownersArr: OwnerModel.IOwnerDetailsViewModel[] = [];
 
 const AllRentsLoggedInView = () => {
   const [rentDetailsArr, setRentDetailsArr] = commonImports.useState<
@@ -142,6 +145,11 @@ const AllRentsLoggedInView = () => {
       tenantsArr = response;
     });
 
+    OwnersApi.RetrieveAllRecords().then((response) => {
+      ownersArr = response;
+    });
+
+
     AllRentDetailsApi.RetrieveAllRecords().then((response) => {
       setRentDetailsArr(response);
     });
@@ -244,6 +252,7 @@ const AllRentsLoggedInView = () => {
           propertiesArr={propertiesArr}
           flatsArr={flatsArr}
           tenantsArr={tenantsArr}
+          ownersArr={ownersArr}
         />
         
 
