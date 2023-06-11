@@ -40,7 +40,7 @@ const PdfModal: React.FC<RentReceiptProps> = ({
       <PDFViewer width="100%" height="98%">
         <RentReceipt
           propertyDetails={ReceiptGenUtility.RetrievePropertyDetails(rowValue,propertiesArr,ownersArr)}
-          billDetails={ReceiptGenUtility.RetrieveBillDetails(rowValue,propertiesArr)}
+          billDetails={ReceiptGenUtility.RetrieveBillDetails(rowValue,flatsArr,tenantsArr)}
           electricityDetails={ReceiptGenUtility.RetrieveElectricityDetails(rowValue,propertiesArr)}
           paymentDetails={ReceiptGenUtility.RetrievePaymentDetails(rowValue,propertiesArr)}
           paymentOptionDetails={ReceiptGenUtility.RetrievePaymentOptionDetails(rowValue,propertiesArr)}

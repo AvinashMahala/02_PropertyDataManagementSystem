@@ -126,17 +126,16 @@ const RentReceipt: React.FC<RentReceiptProps> = ({
           <Text style={styles.subtitle}>Bill Details</Text>
           <View style={styles.table}>
             <View style={styles.tableRow}>
-              <Text style={[styles.label, { marginRight: 10 }]}>Bill No: {(billDetails)===undefined?"":billDetails.billNumber}</Text>
-              <Text style={styles.value}>216</Text>
-              <Text style={styles.title}>Rent Receipt</Text>
-              <Text style={styles.value}>Generated On:</Text>
-              <Text style={styles.value}>May, 2023</Text>
+              <Text style={styles.tableCell}>Bill No: </Text>
+              <Text style={styles.tableCell}>{(billDetails)===undefined?"":billDetails.billNumber}</Text>
+              <Text style={styles.tableCell}>Generated On: </Text>
+              <Text style={styles.tableCell}>{"May, 2023"}</Text>
             </View>
             <View style={styles.tableRow}>
-              <Text style={[styles.label, { marginRight: 10 }]}>Room Number: {(billDetails)===undefined?"":billDetails.roomNumber}</Text>
-              <Text style={styles.value}>101</Text>
-              <Text style={[styles.label, { marginRight: 10 }]}>Tenant Name: {(billDetails)===undefined?"":billDetails.tenantName}</Text>
-              <Text style={styles.value}>John Doe</Text>
+              <Text style={styles.tableCell}>Room Number: </Text>
+              <Text style={styles.tableCell}>{(billDetails)===undefined?"":billDetails.roomNumber}</Text>
+              <Text style={styles.tableCell}>Tenant Name: </Text>
+              <Text style={styles.tableCell}>{(billDetails)===undefined?"":billDetails.tenantName}</Text>
             </View>
           </View>
         </View>

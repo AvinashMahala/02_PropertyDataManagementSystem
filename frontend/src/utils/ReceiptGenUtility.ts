@@ -4,6 +4,7 @@ import * as PaymentRecordMetaDataModel from "./../models/rentReceiptMetaDataDeta
 import * as PropertiesModel from "./../models/allPropertiesModel";
 import * as RoomsModel from "./../models/flatModel";
 import * as TenantModel from "./../models/tenantModel";
+import * as FlatsModel from "./../models/flatModel";
 
 export function RetrievePropertyDetails(rowValue:any,propertiesArr:PropertiesModel.IPropertyDetailsViewModel[],ownersArr:OwnersModel.IOwnerDetailsViewModel[]):ReceiptGenUtility.IRentReceiptPropertyDetailsModel{
         
@@ -27,12 +28,21 @@ export function RetrievePropertyDetails(rowValue:any,propertiesArr:PropertiesMod
     }
     
 }
-export function RetrieveBillDetails(rowValue:any,propertiesArr:any):ReceiptGenUtility.IRentReceiptBillDetailsModel{
-    return {
-        billNumber:"",
-        roomNumber:"",
-        tenantName:""
-    };
+export function RetrieveBillDetails(rowValue:any,flatsArr:FlatsModel.IFlatViewModel[],tenantsArr:TenantModel.ITenantViewModel[]):ReceiptGenUtility.IRentReceiptBillDetailsModel{
+    if(rowValue){
+        return {
+            billNumber:rowValue.original._id,
+            roomNumber:flatsArr.filter((room)=>room._id===rowValue.original.flatId)[0].roomName,
+            tenantName:tenantsArr.filter((tenant)=>tenant._id===rowValue.original.tenantId)[0].Name
+        };
+    }
+    else{
+        return {
+            billNumber:"",
+            roomNumber:"",
+            tenantName:""
+        };
+    }   
 }
 export function RetrieveElectricityDetails(rowValue:any,propertiesArr:any):ReceiptGenUtility.IRentReceiptEBillDetailsModel{
     return {
