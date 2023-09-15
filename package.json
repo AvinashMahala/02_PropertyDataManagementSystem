@@ -1,0 +1,30 @@
+{
+    "name": "mern-deploy",
+    "version": "1.0.0",
+    "description": "MERN stack for deployment",
+    "main": "index.js",
+    "scripts": {
+        "install-server": "cd backend && npm install",
+        "build-server": "cd backend && npm run build",
+        "start-server": "cd backend && node dist/server.js",
+        "install-client": "cd frontend && npm install",
+        "build-client": "cd frontend && npm run build",
+        "start": "concurrently \"npm run start-server\" \"npm run start-client\""
+    },
+    "keywords": [
+        "mern",
+        "react",
+        "express",
+        "mongodb",
+        "node",
+        "deployment"
+    ],
+    "author": "Avinash Mahala",
+    "license": "MIT",
+    "dependencies": {
+       
+    },
+    "devDependencies": {
+        
+    }
+}
