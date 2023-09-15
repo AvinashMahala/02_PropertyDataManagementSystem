@@ -4,8 +4,7 @@
     "description": "MERN stack for deployment",
     "main": "index.js",
     "scripts": {
-        "install-server": "cd backend && npm install",
-        "build-server": "cd backend && npm run build",
+        "install-build-server": "cd backend && npm install && npm run build && tsc -p tsconfig.json",
         "start-server": "cd backend && node dist/server.js",
         "install-client": "cd frontend && npm install",
         "build-client": "cd frontend && npm run build",
