@@ -6,8 +6,7 @@
     "scripts": {
         "install-build-server": "cd backend && npm install && npm run build",
         "start-server": "cd backend && node dist/server.js",
-        "install-client": "cd frontend && npm install",
-        "build-client":"cd frontend && npm run build",
+        "install-build-client": "cd frontend && npm install && npm run build",
         "start-client": "npm run start"
     },
     "keywords": [
