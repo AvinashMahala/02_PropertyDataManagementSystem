@@ -6,7 +6,6 @@
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
-    "@fortawesome/react-fontawesome": "github:fortawesome/react-fontawesome",
     "@material-ui/core": "^4.12.4",
     "@material-ui/pickers": "^3.3.10",
     "@mui/icons-material": "^5.11.16",
