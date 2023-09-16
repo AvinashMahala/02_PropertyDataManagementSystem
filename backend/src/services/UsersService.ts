@@ -23,7 +23,7 @@ export const getAuthenticatedUser: RequestHandler = async(req, res, next)=>{
 
     try {
         //Print req
-        console.log("req.session:"+req.session);
+        console.log("req.session:"+req.session.userId);
         const user = await IUserMainModel.findById(req.session.userId).select("+email").exec();
         res.status(200).json(user);
     } catch (error) {
