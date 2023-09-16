@@ -11,6 +11,9 @@ import mongoose from "mongoose";
 
 export const RetrieveAllRecords: RequestHandler = async (req, res, next) => {
   const authenticatedUserId = req.session.userId;
+  console.log("req.session:"+req.session);
+  console.log("\nreq:"+req);
+  console.log("\nreq.session.userId:"+req.session.userId);
   try {
     assertIsDefined(authenticatedUserId);
     const allOwnersDetails = await IOwnerDetailsMainModel.find().exec();
