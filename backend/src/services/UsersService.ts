@@ -8,6 +8,7 @@ import IUserMainModel, { IUserCreateModel, IUserLoginBodyModel, IUserUpdateParam
 
 
 export const RetrieveAllRecords:RequestHandler = async(req,res,next)=>{
+    console.log("req.session.userId:"+req.session.userId);
     const authenticatedUserId=req.session.userId;
     try {
         assertIsDefined(authenticatedUserId);
