@@ -24,9 +24,11 @@ const corsOption={
 const app = express();
 app.use(morgan("dev"));
 app.use(express.json());
+app.set("trust proxy", 1); // trust first proxy
 app.use(session({
+    name:'PdmsWebAppCookie',
     secret: env.SESSION_SECRET,
-    resave: true,
+    resave: false,
     saveUninitialized: false,
     cookie:{
         maxAge: 60 * 60 * 1000,
