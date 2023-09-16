@@ -1,47 +1,69 @@
-import { ConflictError, UnauthorizedError } from "../errors/http_errors";
 import { User } from "../models/user";
 import { IMaintenanceRequestInputModel, IMaintenanceRequestViewModel } from "../models/maintenanceRequestModel";
 
 
-async function apiCall(input: RequestInfo, init?: RequestInit){
-    const response = await fetch(input, init);
-    if(response.ok){
-        return response;
-    }
-    else{
-        const errorBody=await response.json();
-        const errorMessage=errorBody.error;
+const customAPIBaseUrl = "https://pdms-web-api-service.onrender.com";
 
-        if(response.status===401){
-            throw new UnauthorizedError(errorMessage);
-        }
-        else if(response.status===409){
-            throw new ConflictError(errorMessage);
-        }
-        else{
-            throw Error("Request failed with status: "+response.status+" message: "+errorMessage);
-        }
+class UnauthorizedError extends Error {
+  constructor(message: string | undefined) {
+    super(message);
+    this.name = "UnauthorizedError";
+  }
+}
 
+class ConflictError extends Error {
+  constructor(message: string | undefined) {
+    super(message);
+    this.name = "ConflictError";
+  }
+}
+
+async function apiCall(
+  baseURL: string | URL | undefined,
+  input: string | URL,
+  init = {}
+) {
+  const url = new URL(input, baseURL); // Combine base URL and request URL
+  const response = await fetch(url.href, init);
+
+  if (response.ok) {
+    return response;
+  } else {
+    const errorBody = await response.json();
+    const errorMessage = errorBody.error;
+
+    if (response.status === 401) {
+      throw new UnauthorizedError(errorMessage);
+    } else if (response.status === 409) {
+      throw new ConflictError(errorMessage);
+    } else {
+      throw Error(
+        "Request failed with status: " +
+          response.status +
+          " message: " +
+          errorMessage
+      );
     }
+  }
 }
 
 //getAllMaintenanceRequest
 export async function RetrieveAllRecords():Promise<IMaintenanceRequestViewModel[]>{
-    const response=await apiCall("/api/maintenanceRequest/all",{method:"GET"});
+    const response=await apiCall(customAPIBaseUrl,"/api/maintenanceRequest/all",{method:"GET"});
     const flats=await response.json();
     return flats;
 }
 
 //getOneMaintenanceRequest
 export async function RetrieveOneRecord(flatId:string):Promise<IMaintenanceRequestViewModel>{
-    const response=await apiCall("/api/maintenanceRequest/"+flatId,{method:"GET"});
+    const response=await apiCall(customAPIBaseUrl,"/api/maintenanceRequest/"+flatId,{method:"GET"});
     const flatDetails=await response.json();
     return flatDetails;
 }
 
 //createAMaintenanceRequest
 export async function CreateOneRecord(flatDetails:IMaintenanceRequestInputModel):Promise<IMaintenanceRequestViewModel>{
-    const response=await apiCall("/api/maintenanceRequest/create",{
+    const response=await apiCall(customAPIBaseUrl,"/api/maintenanceRequest/create",{
         method:"POST",
         headers:{
             "Content-Type":"application/json"
@@ -54,7 +76,7 @@ export async function CreateOneRecord(flatDetails:IMaintenanceRequestInputModel)
 
 //updateMaintenanceRequest
 export async function UpdateOneRecord(flatId:string,flatDetails:IMaintenanceRequestInputModel):Promise<IMaintenanceRequestViewModel>{
-    const response=await apiCall("/api/maintenanceRequest/update/"+flatId,{
+    const response=await apiCall(customAPIBaseUrl,"/api/maintenanceRequest/update/"+flatId,{
         method:"PATCH",
         headers:{
             "Content-Type":"application/json"
@@ -67,7 +89,7 @@ export async function UpdateOneRecord(flatId:string,flatDetails:IMaintenanceRequ
 
 //deleteMaintenanceRequest
 export async function DeleteOneRecord(flatId:string){
-    await apiCall("/api/maintenanceRequest/delete/"+flatId,{method:"DELETE"});
+    await apiCall(customAPIBaseUrl,"/api/maintenanceRequest/delete/"+flatId,{method:"DELETE"});
 }
 
 

@@ -1,47 +1,69 @@
-import { ConflictError, UnauthorizedError } from "../errors/http_errors";
 import { User } from "../models/user";
 import { ITenantInputModel, ITenantViewModel } from "../models/tenantModel";
 
 
-async function apiCall(input: RequestInfo, init?: RequestInit){
-    const response = await fetch(input, init);
-    if(response.ok){
-        return response;
-    }
-    else{
-        const errorBody=await response.json();
-        const errorMessage=errorBody.error;
+const customAPIBaseUrl = "https://pdms-web-api-service.onrender.com";
 
-        if(response.status===401){
-            throw new UnauthorizedError(errorMessage);
-        }
-        else if(response.status===409){
-            throw new ConflictError(errorMessage);
-        }
-        else{
-            throw Error("Request failed with status: "+response.status+" message: "+errorMessage);
-        }
+class UnauthorizedError extends Error {
+  constructor(message: string | undefined) {
+    super(message);
+    this.name = "UnauthorizedError";
+  }
+}
 
+class ConflictError extends Error {
+  constructor(message: string | undefined) {
+    super(message);
+    this.name = "ConflictError";
+  }
+}
+
+async function apiCall(
+  baseURL: string | URL | undefined,
+  input: string | URL,
+  init = {}
+) {
+  const url = new URL(input, baseURL); // Combine base URL and request URL
+  const response = await fetch(url.href, init);
+
+  if (response.ok) {
+    return response;
+  } else {
+    const errorBody = await response.json();
+    const errorMessage = errorBody.error;
+
+    if (response.status === 401) {
+      throw new UnauthorizedError(errorMessage);
+    } else if (response.status === 409) {
+      throw new ConflictError(errorMessage);
+    } else {
+      throw Error(
+        "Request failed with status: " +
+          response.status +
+          " message: " +
+          errorMessage
+      );
     }
+  }
 }
 
 //getAllTenants
 export async function RetrieveAllRecords():Promise<ITenantViewModel[]>{
-    const response=await apiCall("/api/tenants/all",{method:"GET"});
+    const response=await apiCall(customAPIBaseUrl,"/api/tenants/all",{method:"GET"});
     const tenantDetailsArr=await response.json();
     return tenantDetailsArr;
 }
 
 //getOneTenantDetails
 export async function RetrieveOneRecord(Id:string):Promise<ITenantViewModel>{
-    const response=await apiCall("/api/tenants/"+Id,{method:"GET"});
+    const response=await apiCall(customAPIBaseUrl,"/api/tenants/"+Id,{method:"GET"});
     const tenantDetails=await response.json();
     return tenantDetails;
 }
 
 //createTenantDetails
 export async function CreateOneRecord(tenantDetails:ITenantInputModel):Promise<ITenantViewModel>{
-    const response=await apiCall("/api/tenants/create",{
+    const response=await apiCall(customAPIBaseUrl,"/api/tenants/create",{
         method:"POST",
         headers:{
             "Content-Type":"application/json"
@@ -54,7 +76,7 @@ export async function CreateOneRecord(tenantDetails:ITenantInputModel):Promise<I
 
 //updateTenantDetails
 export async function UpdateOneRecord(Id:string,tenantDetails:ITenantInputModel):Promise<ITenantViewModel>{
-    const response=await apiCall("/api/tenants/update/"+Id,{
+    const response=await apiCall(customAPIBaseUrl,"/api/tenants/update/"+Id,{
         method:"PATCH",
         headers:{
             "Content-Type":"application/json"
@@ -67,5 +89,5 @@ export async function UpdateOneRecord(Id:string,tenantDetails:ITenantInputModel)
 
 //deleteTenantDetails
 export async function DeleteOneRecord(Id:string){
-    await apiCall("/api/tenants/delete/"+Id,{method:"DELETE"});
+    await apiCall(customAPIBaseUrl,"/api/tenants/delete/"+Id,{method:"DELETE"});
 }
