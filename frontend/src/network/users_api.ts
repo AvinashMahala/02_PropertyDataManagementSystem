@@ -1,7 +1,49 @@
-import { ConflictError, UnauthorizedError } from "../errors/http_errors";
 import { User } from "../models/user";
 
+const customAPIBaseUrl = "https://pdms-web-api-service.onrender.com";
 
+class UnauthorizedError extends Error {
+  constructor(message: string | undefined) {
+    super(message);
+    this.name = "UnauthorizedError";
+  }
+}
+
+class ConflictError extends Error {
+  constructor(message: string | undefined) {
+    super(message);
+    this.name = "ConflictError";
+  }
+}
+
+async function fetchData(
+  baseURL: string | URL | undefined,
+  input: string | URL,
+  init = {}
+) {
+  const url = new URL(input, baseURL); // Combine base URL and request URL
+  const response = await fetch(url.href, init);
+
+  if (response.ok) {
+    return response;
+  } else {
+    const errorBody = await response.json();
+    const errorMessage = errorBody.error;
+
+    if (response.status === 401) {
+      throw new UnauthorizedError(errorMessage);
+    } else if (response.status === 409) {
+      throw new ConflictError(errorMessage);
+    } else {
+      throw Error(
+        "Request failed with status: " +
+          response.status +
+          " message: " +
+          errorMessage
+      );
+    }
+  }
+}
 
 export interface SignUpCredentials{
     username: string,
@@ -24,7 +66,7 @@ export interface SignUpCredentials{
 }
 
 export async function signUp(credentials: SignUpCredentials): Promise<User>{
-    const response = await fetchData("/api/users/signup",{
+    const response = await fetchData(customAPIBaseUrl,"/api/users/signup",{
         method:"POST",
         headers:{
             "Content-Type": "application/json",
@@ -35,30 +77,9 @@ export async function signUp(credentials: SignUpCredentials): Promise<User>{
 }
 
 
-async function fetchData(input: RequestInfo, init?: RequestInit){
-    const response = await fetch(input, init);
-    if(response.ok){
-        return response;
-    }
-    else{
-        const errorBody=await response.json();
-        const errorMessage=errorBody.error;
-
-        if(response.status===401){
-            throw new UnauthorizedError(errorMessage);
-        }
-        else if(response.status===409){
-            throw new ConflictError(errorMessage);
-        }
-        else{
-            throw Error("Request failed with status: "+response.status+" message: "+errorMessage);
-        }
-
-    }
-}
 
 export async function fetchUsers(): Promise<User[]>{
-    const response=await fetchData("/api/users/all",{method:"GET"});
+    const response=await fetchData(customAPIBaseUrl,"/api/users/all",{method:"GET"});
     return response.json();
 }
 
@@ -94,7 +115,7 @@ export async function fetchUsers(): Promise<User[]>{
 
 
 export async function deleteUser(userId: string){
-    await fetchData("/api/users/"+userId, {method: "DELETE"});
+    await fetchData(customAPIBaseUrl,"/api/users/"+userId, {method: "DELETE"});
 }
 
 
@@ -152,7 +173,7 @@ export interface UserInput{
 
 
 export async function updateUser(_id: string, user: UserInput): Promise<User>{
-    const response = await fetchData("/api/users/"+_id,{
+    const response = await fetchData(customAPIBaseUrl,"/api/users/"+_id,{
         method:"PATCH",
         headers:{
             "Content-Type":"application/json",
@@ -161,18 +182,3 @@ export async function updateUser(_id: string, user: UserInput): Promise<User>{
     });
     return response.json();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
