@@ -201,6 +201,9 @@ export const login: RequestHandler<unknown, unknown, IUserLoginBodyModel, unknow
     const username = req.body.username;
     const password = req.body.password;
 
+    console.log("req.body.username"+req.body.username);
+    console.log("req.body.password"+req.body.password);
+
     try{
         if(!username || !password){
             throw createHttpError(400, "Parameters missing.");
@@ -216,8 +219,11 @@ export const login: RequestHandler<unknown, unknown, IUserLoginBodyModel, unknow
         if(!passwordMatch){
             throw createHttpError(401, "Invalid Credentials!");
         }
+        console.log("Password match");
+        console.log(`Logged In as ${JSON.stringify(user)}`);
 
         req.session.userId=user._id;
+        console.log(`req.session.userId ${req.session.userId}`);
         res.status(201).json(user);
     }
     catch(error){
