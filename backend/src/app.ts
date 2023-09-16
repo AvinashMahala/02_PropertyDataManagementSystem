@@ -24,23 +24,37 @@ const corsOption={
 const app = express();
 app.use(morgan("dev"));
 app.use(express.json());
-app.set("trust proxy", 1); // trust first proxy
+// app.set("trust proxy", 1); // trust first proxy
+
 app.use(session({
-    name:'PdmsWebAppCookie',
-    secret: env.SESSION_SECRET,
-    resave: false,
+    name:"PdmsSessionCookie.sid",
+    resave: true,
     saveUninitialized: false,
-    cookie:{
+    secret: env.SESSION_SECRET,
+    cookie: {
         maxAge: 60 * 60 * 1000,
-        secure:true,
-        httpOnly:false,
-        sameSite:"none",
-    },
-    rolling: true,
-    store: MongoStore.create({
-        mongoUrl: env.MONGO_CONNECTION_STRING
-    })
-}));
+      secure:true,
+      httpOnly:true,
+      sameSite:"none"
+    }
+  }));
+
+// app.use(session({
+//     name:'PdmsWebAppCookie',
+//     secret: env.SESSION_SECRET,
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie:{
+//         maxAge: 60 * 60 * 1000,
+//         secure:true,
+//         httpOnly:false,
+//         sameSite:"none",
+//     },
+//     rolling: true,
+//     store: MongoStore.create({
+//         mongoUrl: env.MONGO_CONNECTION_STRING
+//     })
+// }));
 app.use(cors(corsOption));
 app.use("/api/users", userRoutes);
 app.use("/api/ownerDetails", requiresAuth, ownerDetailsRoutes);
