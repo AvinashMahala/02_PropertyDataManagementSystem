@@ -17,16 +17,12 @@ import flatRoutes from "./routes/FlatsRoutes";
 import tenantRoutes from "./routes/TenantsRoutes";
 import allRentDetailsRoutes from "./routes/RentalRecordsRoutes";
 import allMaintenanceDetailsRoutes from "./routes/MaintenanceRequestsRoutes";
-
-const app = express();
-
-app.use(morgan("dev"));
-
 //middleware
 const corsOption={
     origin:"https://pdms-website-client.onrender.com",
 }
-
+const app = express();
+app.use(morgan("dev"));
 app.use(express.json());
 app.use(cors(corsOption));
 
