@@ -30,13 +30,17 @@ app.use(session({
     name:"PdmsSessionCookie.sid",
     resave: true,
     saveUninitialized: false,
-    secret: env.SESSION_SECRET,
+    secret: "keyboardcat",
     cookie: {
         maxAge: 60 * 60 * 1000,
       secure:true,
       httpOnly:true,
       sameSite:"none"
-    }
+    },
+    rolling: true,
+    store: MongoStore.create({
+        mongoUrl: "mongodb+srv://pdms_dev:pdms_dev@clusterpdms.dewravc.mongodb.net/pdms_dev_db?retryWrites=true&w=majority"
+    })
   }));
 
 // app.use(session({
