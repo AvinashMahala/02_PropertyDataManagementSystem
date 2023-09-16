@@ -2,7 +2,7 @@ import "dotenv/config";
 import express, { Request, Response, NextFunction } from "express";
 import morgan from "morgan";
 import createHttpError, { isHttpError } from "http-errors";
-import session from "express-session";
+import session, { Store } from "express-session";
 import env from "./util/ValidateEnvUtil";
 import MongoStore  from "connect-mongo";
 import { requiresAuth } from "./middleware/auth";
@@ -26,12 +26,13 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(session({
     secret: env.SESSION_SECRET,
-    resave: false,
+    resave: true,
     saveUninitialized: false,
     cookie:{
         maxAge: 60 * 60 * 1000,
         secure:true,
-        sameSite:"none"
+        httpOnly:true,
+        sameSite:"none",
     },
     rolling: true,
     store: MongoStore.create({
