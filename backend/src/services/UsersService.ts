@@ -224,16 +224,16 @@ export const login: RequestHandler<unknown, unknown, IUserLoginBodyModel, unknow
         console.log(`Logged In as ${JSON.stringify(user)}`);
 
         req.session.userId=user._id;
-        req.session.save((err) => {
-            if (err) {
-              // Handle the error
-              console.log("Error inside req.session.save((err) => {");
-            } else {
-              // The session data is saved
-              console.log("No Error inside req.session.save((err) => {")
-              res.redirect('/');
-            }
-          });
+        // req.session.save((err) => {
+        //     if (err) {
+        //       // Handle the error
+        //       console.log("Error inside req.session.save((err) => {");
+        //     } else {
+        //       // The session data is saved
+        //       console.log("No Error inside req.session.save((err) => {")
+        //       res.redirect('/');
+        //     }
+        //   });
         console.log(`req.session.userId ${req.session.userId}`);
         res.status(201).json(user);
     }
