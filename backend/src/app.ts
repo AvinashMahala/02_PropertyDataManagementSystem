@@ -21,6 +21,11 @@ const app = express();
 
 app.use(morgan("dev"));
 
+//middleware
+const corsOption={
+    origin:"https://pdms-website-client.onrender.com",
+}
+
 app.use(express.json());
 
 app.use(session({
