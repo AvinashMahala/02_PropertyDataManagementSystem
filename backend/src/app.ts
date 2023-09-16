@@ -24,8 +24,6 @@ const corsOption={
 const app = express();
 app.use(morgan("dev"));
 app.use(express.json());
-app.use(cors(corsOption));
-
 app.use(session({
     secret: env.SESSION_SECRET,
     resave: false,
@@ -39,8 +37,7 @@ app.use(session({
         mongoUrl: env.MONGO_CONNECTION_STRING
     })
 }));
-
-
+app.use(cors(corsOption));
 app.use("/api/users", userRoutes);
 app.use("/api/ownerDetails", requiresAuth, ownerDetailsRoutes);
 app.use("/api/rentReceiptMetaDataDetails",requiresAuth, rentReceiptMetaDataDetailsRoutes);
