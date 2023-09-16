@@ -6,6 +6,7 @@ import session from "express-session";
 import env from "./util/ValidateEnvUtil";
 import MongoStore  from "connect-mongo";
 import { requiresAuth } from "./middleware/auth";
+import cors from "cors";
 
 import notesRoutes from "./routes/NotesRoutes";
 import userRoutes from "./routes/UsersRoutes";
@@ -27,6 +28,7 @@ const corsOption={
 }
 
 app.use(express.json());
+app.use(cors(corsOption));
 
 app.use(session({
     secret: env.SESSION_SECRET,
