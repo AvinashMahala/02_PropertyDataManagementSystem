@@ -1,7 +1,8 @@
 import { User } from "../models/user";
 import { IFlatInputModel, IFlatViewModel } from "../models/flatModel";
-
-const customAPIBaseUrl = "https://pdms-web-api-service.onrender.com";
+// Import the configuration module
+import config from './../config';
+const customAPIBaseUrl = config.customAPIBaseUrl;
 
 class UnauthorizedError extends Error {
   constructor(message: string | undefined) {

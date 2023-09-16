@@ -1,9 +1,8 @@
 import { User } from "../models/user";
 import { IRentReceiptMetaDataDetailsInputModel, IRentReceiptMetaDataDetailsViewModel } from "../models/rentReceiptMetaDataDetails";
-
-
-const customAPIBaseUrl = "https://pdms-web-api-service.onrender.com";
-
+// Import the configuration module
+import config from './../config';
+const customAPIBaseUrl = config.customAPIBaseUrl;
 class UnauthorizedError extends Error {
   constructor(message: string | undefined) {
     super(message);
