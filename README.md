@@ -22,6 +22,33 @@
   </p>
 </p>
 
+**Tech Stack:**
+
+🛠 **Backend**: Node.js, Express.js, MongoDB
+
+🎨 **Frontend**: React.js, Redux, Material-UI
+
+🧰 **Dev & Deploy**: Heroku, MongoDB Atlas
+
+💌 **Communication**: Express.js
+
+🧩 **Additional Concepts**: MERN Stack, Git
+
+**IDEs and Development Tools**:
+💻 **Visual Studio Code (VS Code)**: A versatile code editor for full-stack development.
+
+🧰 **Git**: Version control system for collaborative coding and project management.
+
+📦 **npm (Node Package Manager)**: Dependency management for JavaScript/Node.js projects.
+
+🛢 **MongoDB Compass**: GUI tool for managing and interacting with MongoDB databases.
+
+📋 **Postman**: API testing and documentation tool for backend development.
+
+🌐 **Chrome DevTools**: Browser-based debugging and profiling for frontend development.
+
+🔗 **GitHub**: Version control, collaboration, and code sharing platform.
+
 ![Downloads](https://img.shields.io/github/downloads/AvinashMahala/PropertyDataManagementSystem/total) ![Contributors](https://img.shields.io/github/contributors/AvinashMahala/PropertyDataManagementSystem?color=dark-green) ![Forks](https://img.shields.io/github/forks/AvinashMahala/PropertyDataManagementSystem?style=social) ![Stargazers](https://img.shields.io/github/stars/AvinashMahala/PropertyDataManagementSystem?style=social) ![Issues](https://img.shields.io/github/issues/AvinashMahala/PropertyDataManagementSystem) ![License](https://img.shields.io/github/license/AvinashMahala/PropertyDataManagementSystem) 
 
 
